@@ -1509,7 +1509,7 @@ h2.title {
   width: auto;
   border-width: 8px;
   border-style: solid;
-  border-color:transparent transparent transparent #FE980F;
+  border-color:transparent transparent transparent #639929;
   position: absolute;
   top: 11px;
   left:48px;
@@ -1517,7 +1517,7 @@ h2.title {
 }
 
 .breadcrumbs .breadcrumb > li + li:before {
-  content: " ";
+  content: "Β ";
 }
 
 #cart_items .cart_info {
@@ -1527,7 +1527,7 @@ h2.title {
 
 
 #cart_items .cart_info .cart_menu {
-  background: #FE980F;
+  background: #639929;
   color: #fff;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
@@ -1582,7 +1582,7 @@ h2.title {
 
 
 #cart_items .cart_info .cart_total_price {
-  color: #FE980F;
+  color: #639929;
   font-size: 24px;
 }
 
@@ -1629,7 +1629,7 @@ h2.title {
 }
 
 .cart_delete a:hover {
-  background:#FE980F
+  background:#639929
 }
 
 
@@ -1734,7 +1734,7 @@ h2.title {
 }
 
 .update, .check_out {
-  background: #FE980F;
+  background: #639929;
   border-radius: 0;
   color: #FFFFFF;
   margin-top: 18px;
@@ -1748,6 +1748,7 @@ h2.title {
 .check_out {
   margin-left: 20px
 }
+
 
 
 
