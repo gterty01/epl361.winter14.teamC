@@ -1802,10 +1802,10 @@ h2.title {
 }
 
 .checkout-options .nav li a {
-  color: #FE980F;
-  font-size: 18px;
-  font-weight: normal;
-  padding: 0
+	color: #639929;
+	font-size: 18px;
+	font-weight: normal;
+	padding: 0
 }
 
 .checkout-options .nav li a:hover {
@@ -1813,13 +1813,13 @@ h2.title {
 }
 
 .checkout-options .nav i {
-  margin-right: 10px;
-  border-radius: 50%;
-  padding: 5px;
-  background: #FE980F;
-  color:#fff;
-  font-size: 14px;
-  padding: 2px 3px;
+	margin-right: 10px;
+	border-radius: 50%;
+	padding: 5px;
+	background: #639929;
+	color:#fff;
+	font-size: 14px;
+	padding: 2px 3px;
 }
 
 
@@ -1932,9 +1932,9 @@ h2.title {
 
 #cart_items .cart_info 
 .table.table-condensed.total-result span {
-  color: #FE980F;
-  font-weight: 700;
-  font-size: 16px
+	color: #639929;
+	font-weight: 700;
+	font-size: 16px
 }
 
 #cart_items .cart_info 
