@@ -37,7 +37,7 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="login-administrator.html"><i class="fa fa-user"></i>Logged in as admin</a></li>
+                                <li><a href=""><i class="fa fa-user"></i>Logged in as admin</a></li>
                                 <li><a href="index.html"><i class="fa fa-lock"></i>Logout</a></li>
                             </ul>
                         </div>
@@ -65,10 +65,10 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 
-                                <li class="dropdown"><a href="#">Update Informations<i class="fa fa-angle-down"></i></a>
+                                <li class="dropdown"><a href="#">Change information<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="manageProducts.html">Products</a></li>
-                                        <li><a href="manageCustomers.html">Customers</a></li>
+                                        <li><a href="manageCustomers.html">Users</a></li>
                                         <li><a href="manageOrders.html">Orders</a></li>
                                         
                                     </ul>
@@ -89,9 +89,8 @@
     	<div class="bg">
 	    	<div class="row">
 	    		<div class="col-sm-12">
-					<h2 class="title text-center">ΠΡΟΪΟΝΤΑ</h2>
-				<section id="cart_items">
-		<div class="container">
+	    		  <section id="cart_items">
+	    		    <div class="container">
 			<div class="breadcrumbs">
 				<!--ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
@@ -102,11 +101,11 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td width="27%" class="image">	Εικόνα Προϊόντος</td>
-							<td width="25%" class="description">Περιγραφή</td>
-						  <td width="13%" class="price"><div align="left">Τιμή</div></td>
-							<td width="18%" class="quantity">Διαθέσιμη Ποσότητα</td>
-							<td width="12%" class="total"><div align="left">Εμφάνιση/Απόκρυψη</div></td>
+							<td width="27%" class="image">	Product's Image</td>
+							<td width="25%" class="description">Description</td>
+						  <td width="13%" class="price"><div align="left">Price</div></td>
+							<td width="18%" class="quantity">Stock</td>
+							<td width="12%" class="total"><div align="left"></div></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -117,9 +116,10 @@
 <input type="file" name="uploadField" />
 </form>
 </td>
-							<td class="cart_description"><h4><a href=""><span class="cart_quantity_button">
+							<td class="cart_description">
 							  <input class="cart_quantity_input" type="text" name="quantity2" value="Γλυκό Καρυδάκι" autocomplete="off" size="25">
-							</span></a></h4></br></br>
+      
+							</br></br>
 								<p>Product ID: 1089772</p>
 						  </td>
 							<td class="cart_price">
@@ -198,7 +198,7 @@
     		<div class="row">  	
 	    		<div class="col-sm-8">
 	    			 </div>                        
-				            <div class="form-group col-md-12"><button type="submit" class="btn btn-default">Ενημέρωση</button>
+				            <div class="form-group col-md-12"><button type="submit" class="btn btn-default">Update</button>
 <br>
 				            </div>
 
@@ -222,17 +222,11 @@
         </div>
         
     </footer><!--/Footer-->
-	
-
-  
+ 
     <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="js/gmaps.js"></script>
-	<script src="js/contact.js"></script>
-	<script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <script src="js/jquery.prettyPhoto.js"></script>
+        <script src="js/main.js"></script>
 </body>
 </html>
