@@ -9,7 +9,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 	             <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
 	             <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
-<title>E-shop Cyprus Food Museum  | Αρχική</title>
+	             <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<title>Επεξεργασία Παραγγελιών</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="style.css" rel="stylesheet" type="text/css" media="all" />
@@ -138,7 +140,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <br>
 <br>
 <br>
-					<div class="auto-style1">
+					<section id="cart_items">
+            <div class="container">
                 <div class="breadcrumbs">
                     <!--ol class="breadcrumb">
                      <li><a href="#">Home</a></li>
@@ -149,27 +152,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <table class="table table-condensed">
                         <thead>
                             <tr class="cart_menu">
-                                <td width="27%" class="price" style="height: 47px">
-								Αριθμός Παραγγελίας</td>
-                                <td width="30%" class="description" style="height: 47px">Όνομα Πελάτη , Ταυτότητα</td>
-                                <td class="price" style="height: 47px; width: 12%;"><div align="left">Ημερομηνία Δημιουργίας</div></td>
-                                <td class="price" style="height: 47px; width: 13%;">Ημερομηνία Ολοκλήρωσης</td>
-                                <td width="12%" class="price" style="height: 47px"><div align="left">Προϊόντα</div></td>
+                                <td width="27%" class="price">Αριθμός Παραγγελίας</td>
+                                <td width="30%" class="description">Όνομα πελάτη</td>
+                                <td width="8%" class="price"><div align="left">Ημερομηνία Δημιουργίας Παραγγελίας</div></td>
+                                <td class="price" style="width: 15%">Ημερομηνία Ολοκλήρωσης Παραγγελίας</td>
+                                <td width="12%" class="price"><div align="left">Προϊόντα</div></td>
+                                <td width="5%"></td>
                             </tr>
                         </thead>
                         <tbody>
-                        
                             <tr>
                                 <td class="cart_price">
                                     <p> 1234</p>
                                 </td>
-                                <td class="cart_price">Giannis Andreou</a>
-                                   <p> 345678 </p>
+                                <td class="cart_price"><p>Giannis Andreou</p>
+								<p>&nbsp;</p></a>
                                 </td>
-                                <td class="cart_price" style="width: 12%">
+                                <td class="cart_price">
                                     <p>21.1.2014</p>
                                 </td>
-                                <td class="cart_price" style="width: 13%">
+                                <td class="cart_price" style="width: 15%">
                                     <p>28.1.2014</p>
                                 </td>
                                 <td class="cart_price">
@@ -180,13 +182,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <td class="cart_price">
                                     <p> 1235</p>
                                 </td>
-                                <td class="cart_price">Giannis Pavlou</a>
-                                  <p> 341242  
+                                <td class="cart_price"><p>Giannis Pavlou</p>
+								<p>&nbsp;</p></a>
                                 </td>
-                                <td class="cart_price" style="width: 12%">
+                                <td class="cart_price">
                                     <p>22.1.2014</p>
                                 </td>
-                                <td class="cart_price" style="width: 13%">
+                                <td class="cart_price" style="width: 15%">
                                     <p>30.1.2014</p>
                                 </td>
                                 <td class="cart_price">
@@ -197,13 +199,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <td class="cart_price">
                                     <p> 1236</p>
                                 </td>
-                                <td class="cart_price">Sandro DelNero</a>
-                                    <p> 987656
+                                <td class="cart_price"><p>Sandro DelNero</p>
+								<p>&nbsp;</p></a>
                                 </td>
-                                <td class="cart_price" style="width: 12%">
+                                <td class="cart_price">
                                     <p>24.1.2014</p>
                                 </td>
-                                <td class="cart_price" style="width: 13%">
+                                <td class="cart_price" style="width: 15%">
                                     <p>1.02.2015</p>
                                 </td>
                                 <td class="cart_price">
@@ -215,13 +217,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <td class="cart_price">
                                     <p> 1237</p>
                                 </td>
-                                <td class="cart_price">Andonio Del Porto</a>
-                                   <p> 562876 
+                                <td class="cart_price"><p>Andonio Del Porto</p>
+								<p>&nbsp;</p></a>
                                 </td>
-                                <td class="cart_price" style="width: 12%">
+                                <td class="cart_price">
                                     <p>24.5.2014</p>
                                 </td>
-                                <td class="cart_price" style="width: 13%">
+                                <td class="cart_price" style="width: 15%">
                                     <p>3.02.2105</p>
                                 </td>
                                 <td class="cart_price">
@@ -232,6 +234,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </table>
                 </div>
             </div>
+        </section>
 <div id="contact-page" class="container">
     	<div class="bg">
 	    	<div class="row">
@@ -241,9 +244,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                       <div class="signup-form"><!--adminActions-->
                           <form action="#">
                               <br/>
-		     <p><button class="grey">Διαγραφή Παραγγελιας</button></p>
-		  		     <p><button class="grey">Νεα Παραγγελια</button></p>
-		      		      <p><button class="grey">Επεξεργασια Παραγγελιας</button></p>
+		     <p><button class="grey">Διαγραφη Παραγγελιας</button></p>
+		     <br> 
+		     <br> 
+		     <br> 
+
+		  	 <p><button class="grey">Νεα Παραγγελια</button></p>
+		  	 <br>
+		  	 <br> 
+		     <br> 
+
+		     <p><button class="grey">Επεξεργασια Παραγγελιας</button></p>
 
 
                               <br/>
@@ -261,6 +272,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  </div>
 		</div>
 </div>
+<div class="footer-bottom1">
+                      <div class="container">
+                          <div class="row">
+                              <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+                          </div>
+                      </div>
+                  </div>
+                  <br>
+                  
 
 </body>
 </html>

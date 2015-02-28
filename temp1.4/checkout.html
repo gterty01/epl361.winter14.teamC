@@ -8,8 +8,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Καλάθι</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/jquery1.min.js"></script>
@@ -138,13 +140,131 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clear"></div>
      <div class="clear"></div>
      </div>
-	</div>         <div class="register_account">
-           <div class="wrap">
-    	     <h4 class="title">το καλαθι ειναι αδειο</h4>
-    	     <p class="cart">Δεν υπάρχουν προϊόντα στο καλάθι. <br>Πατήστε<a href="index.html"> εδώ</a> για να συνεχίσετε τις αγορές σας. </p>
-    	   </div>
-    	</div>
-    <div class="footer">
+	</div>         <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<!--ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol-->
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed" style="margin-right: 0">
+					<thead>
+						<tr class="cart_menu">
+							<td width="27%" class="image">Προϊόν</td>
+							<td width="30%" class="description">Περιγραφή</td>
+						  <td width="8%" class="price"><div align="left">Τιμή</div></td>
+							<td width="18%" class="quantity">Ποσότητα</td>
+							<td width="12%" class="total"><div align="left">Σύνολο</div></td>
+							<td width="5%"></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="images/karydaki.png" alt="" width="100" height=""align="middle"></a>
+							</td>
+							<td class="cart_description"><h4><a href="">Γλυκό Καρυδάκι</a></h4>
+								<p>Product ID: 1089772</p>
+							</td>
+							<td class="cart_price">
+								<p>3,50 €</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">3,50 €</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="images/kumantaria.jpg" alt="" width="100" height="100" align="middle"></a>
+							</td>
+							<td class="cart_description">
+								<h4>Κουμανταρία</h4>
+								<p>Product ID: 1089773</p>
+							</td>
+							<td class="cart_price">
+								<p>10,00 €</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">10,00 €</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="images/zivania.jpg" alt="" width="100" height="100"></a>
+							</td>
+							<td class="cart_description">
+								<h4>Ζιβανία</h4>
+								<p>Product ID: 1089774</p>
+							</td>
+							<td class="cart_price">
+								<p>7,20 €</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">7,20 €</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> 
+	
+<section id="do_action">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+				</div>
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Σύνολο προϊόντων<span>20,70 €</span></li>
+							
+						  <li>Έξοδα Αποστολής<span>0 €</span></li>
+							<li>Γενικό Σύνολο<span>  20,70 €</span></li>
+						</ul>
+						<div class="text-center">
+					<br>
+							<a class="btn" href="">Ενημέρωση</a>
+							<a class="btn" href="checkout.html">Πραγματοποιήση Παραγγελίας</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+   <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">
 			 <!-- <div class="section group">

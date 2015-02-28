@@ -1974,6 +1974,45 @@ h5.m_4 a:hover{
 	float:left;
 	width:57.5%;
 }
+
+.btn{
+	background:#555;
+	color: #FFF;
+}
+.btn_1{
+	background:#555;
+	color: #FFF;
+}
+
+}
+.single-widget ul li a:hover{
+	background:none;
+	color:#FE980F;
+}
+
+#do_action .total_area {
+  padding-bottom: 18px !important;
+}
+
+#do_action .total_area, #do_action .chose_area {
+  border: 1px solid #E6E4DF;
+  color: #696763;
+  padding: 30px 25px 30px 0;
+  margin-bottom: 80px;
+}
+
+.total_area span {
+  float: right;
+}
+
+.total_area ul li {
+  background:#E6E4DF;
+  color: #696763;
+  margin-top: 10px;
+  padding: 7px 20px;
+}
+
+
 .cart_product {
   display: block;
   margin: 15px -70px 10px 25px;
@@ -1981,6 +2020,47 @@ h5.m_4 a:hover{
 #cart_items .cart_info .cart_price p {
   color:#696763;
   font-size: 18px
+}
+#cart_items .cart_info .cart_description h4 {
+  margin-bottom: 0
+}
+
+#cart_items .cart_info .cart_description h4 a {
+  color: #363432;
+  font-family: 'Roboto',sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+
+}
+
+#cart_items .cart_info .cart_description p {
+  color:#696763
+}
+.cart_product {
+  display: block;
+  margin: 15px -70px 10px 25px;
+}
+
+.cart_quantity_button a {
+  background:#F0F0E9;
+  color: #696763;
+  display: inline-block;
+  font-size: 16px;
+  height: 28px;
+  overflow: hidden;
+  text-align: center;
+  width: 35px;
+  float: left;
+}
+
+
+.cart_quantity_input {
+  color: #696763;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  
 }
 
 p.m_text1{
