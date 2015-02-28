@@ -16,6 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
@@ -30,7 +31,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .auto-style2 {
 	color: #FFFFFF;
 }
+
+
 </style>
+<script src="validationsRegister.js" ></script>
+
 </head>
 <body> 
 <div class="header-top">
@@ -140,14 +145,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="register_account">
           	<div class="wrap">
     	      <h4 class="title">Δημιουργια Λογαριασμου</h4>
-    		   <form>
+    	    
+    		   <form id='register' onsubmit="return DoCustomValidation();" method="post" action="registration.php" accept-charset="UTF-8"> <!--method='post'-->
+    											
     			 <div class="col_1_of_2 span_1_of_2">
-		   			<div><input type="text" value="Όνομα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
-		  		   	<div><input type="text" value="Επώνυμο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
-		    		<div><input type="text" value="E-Mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}"></div>
-		    		<div><input type="text" value="Κωδικός"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Κωδικός';}"></div>
-		    	 	<div><input type="text" value="Επιβεβαίωση Κωδικού" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επιβεβαιώση Κωδικού';}"></div>
-					<div><input type="text" value="Ημερομηνία Γέννησης" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ημερομηνία Γέννησης';}"></div>
+		   			<div><input type="text" id ="name" value="Όνομα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
+		  		   	<div><input type="text" id ="surname" value="Επώνυμο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
+				   	<div><input type="email" placeholder="me@example.com" name="mail" id ="mail" value="E-Mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}"></div>
+		    		<div><input type="text" id ="passwd" value="Κωδικός"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Κωδικός';}"></div>
+		    	 	<div><input type="text" id="passwdCon" value="Επιβεβαίωση Κωδικού" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επιβεβαιώση Κωδικού';}"></div>
+					<div><input type="text" id="birth" value="Ημερομηνία Γέννησης" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ημερομηνία Γέννησης';}"></div>
 					<div><select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
 		            <option value="null">Φύλο</option>         
 		            <option value="AX">Αρρεν</option>  
@@ -157,10 +164,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		    	 </div>
 		    	  <div class="col_1_of_2 span_1_of_2">	
-		    		<div><input type="text" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}"></div>
-		    		<div><input type="text" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}"></div>
-		    		<div><input type="text" value="Πόλη - Περιοχή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη - Περιοχή';}"></div>
-		    		<div><input type="text" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}"></div>
+		    		<div><input type="text" id="address1" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}"></div>
+		    		<div><input type="text" id="address2" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}"></div>
+		    		<div><input type="text" id="poli" value="Περιοχή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιοχή';}"></div>
+		    		<div><input type="text" id="postalCode" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}"></div>
 		    		
 		    		<div><select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
 		            <option value="null">Διάλεξε τη Χώρα σου</option>         
@@ -359,19 +366,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            <option value="SA">Saudi Arabia</option>
 		            <option value="SN">Senegal</option>
 		         </select></div>		        
-		          <div><input type="text" value="City" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'City';}"></div>
+		          <div><input type="text" id="city" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}"></div>
 		           <div>
 		          </div>
-		          	<input type="text" value="" class="code"> - <input type="text" value="" class="number">
+		          	<input type="text" id="codeC1" value="" class="code"> - <input type="text" id="tel1" value="" class="number">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Κινητού Τηλεφώνου</p>
-		          		<input type="text" value="" class="code"> - <input type="text" value="" class="number">
+		          		<input type="text" id="codeC1" value="" class="code"> - <input type="text" id="tel2" value="" class="number">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Σταθερού Τηλεφώνου</p>
 
 		          </div>
-		      <button class="grey">Δημιουργια Λογαριασμου</button>
+		      <button type="submit" class="grey" value="Submit">Δημιουργια Λογαριασμου</button>
 		    <p class="terms">Πατώντας το  'Δημιουργία Λογαριασμού' αυτόματα αποδέχεστε τους <a href="terms.html">Όροι Χρήσεις &amp; Προϋποθέσεις</a>.</p>
 		    <div class="clear"></div>
 		    </form>
+		    	
+		<!--<script type="text/javascript">-->
+		
+			<!--frmvalidator.EnableOnPageErrorDisplay();
+			frmvalidator.EnableMsgsTogether();
+			frmvalidator.addValidation("name","req","Καταχωρήστε το Όνομα σας");
+			frmvalidator.addValidation("mail","req","Καταχωρήστε το e - mail σας");
+			frmvalidator.addValidation("passwd","req","minlen = 6" ,"Καταχωρήστε τον Κωδικό σας, τουλάχιστον 6 χαρακτήρες.");
+			frmvalidator.addValidation("passwdCon","req","minlen = 6", "Επικυρώστε τον κωδικό που έχετε δώσει, τουλάχιστον 6 χαρακτήρες");
+			frmvalidator.addValidation("surname","req","Καταχωρήστε το Επίθετό σας");
+			frmvalidator.addValidation("birth","regexp=[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]","Δώσε την ημερομηνία Γεννήσεως στη μορφή YYYY-MM-DD");
+			frmvalidator.addValidation("mail","email","Καταχωρήστε μία έγκυρη διεύθυνση email");
+			frmvalidator.addValidation("address1","req","Καταχωρήστε τη διεύθυνσή σας");
+			frmvalidator.addValidation("postalCode","regexp=[0-9][0-9][0-9][0-9]","Καταχωρήστε Ταχυδρομικό Κώδικα");
+			frmvalidator.addValidation("city","req","Καταχωρήστε την Πόλη σας");*/
+			</script> -->
+						
+		    
+		    
     	</div>
     </div>
    <div class="footer">
