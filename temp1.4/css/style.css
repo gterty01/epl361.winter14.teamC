@@ -366,6 +366,7 @@ ul.last li a:hover{
 .main{
 	margin:2% 0;
 }
+
 .cont{
 	display: block;
 	float:left;
@@ -483,6 +484,7 @@ p.title{
 p.title a:hover{
 	color:#7DB122;
 }
+
 .cart-right {
 	float: right;
 	background: #7db122 url('../images/cart.png') -3px -2px;
@@ -506,6 +508,14 @@ p.title a:hover{
 .price1{
 	margin-top:10px;
 }
+.cart_menu {
+  background: #639929;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
 span.actual{
 	color:#7db122;
 	font-size:1em;
@@ -900,6 +910,7 @@ ul.f-list1 li a:hover {
 	-o-transform: translateY(10px);
 	transform: translateY(10px);
 }
+
 /*------------end social simptip----------------*/
 .social-media li:nth-child(1) a{
 	background: url(../images/img-sprite.png) -20px -170px;
@@ -914,6 +925,25 @@ ul.f-list1 li a:hover {
 	background: url(../images/img-sprite.png) -157px -170px;
 }
 /*--footer-bottom--*/
+.footer-bottom1 {
+  background: #D6D6D0;
+  padding-top: 10px;
+}
+
+.footer-bottom1 p {
+  color: #363432;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin-left: 15px;
+}
+
+.footer-bottom1 p span a {
+  color: #639929;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+
 .footer-bottom{
 	background:#7DB122;
 	padding:2% 0;
@@ -996,6 +1026,7 @@ input.inputbox, input.required, div.k2AccountPage input[type=text] {
 	-webkit-box-sizing: border-box;
 	font-size: 13px;
 }
+
 #login-form label {
 	color: #777;
 	line-height: 2.8em;
@@ -1082,6 +1113,44 @@ table {
 }
 .register_account form input[type=text].number {
 	width: 69.8%;
+}
+
+.register_account form input[type=email], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.register_account form input[type=email]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+		
+}
+
+.register_account form input[type=email]:invalid{
+	
+	box-shadow: 0 0 5px #d45252;
+	border-color:#b03535;
+	
+}
+
+
+.register_account form input[type=email].code {
+	width: 15%;
+}
+.register_account form input[type=email].number {
+	width: 69.8%;	
+
 }
 p.terms a, p.note a {
 	text-decoration: underline;
@@ -1905,6 +1974,95 @@ h5.m_4 a:hover{
 	float:left;
 	width:57.5%;
 }
+
+.btn{
+	background:#555;
+	color: #FFF;
+}
+.btn_1{
+	background:#555;
+	color: #FFF;
+}
+
+}
+.single-widget ul li a:hover{
+	background:none;
+	color:#FE980F;
+}
+
+#do_action .total_area {
+  padding-bottom: 18px !important;
+}
+
+#do_action .total_area, #do_action .chose_area {
+  border: 1px solid #E6E4DF;
+  color: #696763;
+  padding: 30px 25px 30px 0;
+  margin-bottom: 80px;
+}
+
+.total_area span {
+  float: right;
+}
+
+.total_area ul li {
+  background:#E6E4DF;
+  color: #696763;
+  margin-top: 10px;
+  padding: 7px 20px;
+}
+
+
+.cart_product {
+  display: block;
+  margin: 15px -70px 10px 25px;
+}
+#cart_items .cart_info .cart_price p {
+  color:#696763;
+  font-size: 18px
+}
+#cart_items .cart_info .cart_description h4 {
+  margin-bottom: 0
+}
+
+#cart_items .cart_info .cart_description h4 a {
+  color: #363432;
+  font-family: 'Roboto',sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+
+}
+
+#cart_items .cart_info .cart_description p {
+  color:#696763
+}
+.cart_product {
+  display: block;
+  margin: 15px -70px 10px 25px;
+}
+
+.cart_quantity_button a {
+  background:#F0F0E9;
+  color: #696763;
+  display: inline-block;
+  font-size: 16px;
+  height: 28px;
+  overflow: hidden;
+  text-align: center;
+  width: 35px;
+  float: left;
+}
+
+
+.cart_quantity_input {
+  color: #696763;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  
+}
+
 p.m_text1{
 	color:#777;
 	font-size:0.85em;
