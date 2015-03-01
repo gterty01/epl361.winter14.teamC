@@ -1152,6 +1152,35 @@ table {
 	width: 69.8%;	
 
 }
+
+.register_account form input[type=password], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.register_account form input[type=password]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+}
+.register_account form input[type=password].code {
+	width: 15%;
+}
+.register_account form input[type=password].number {
+	width: 69.8%;
+}
+
+
 p.terms a, p.note a {
 	text-decoration: underline;
 	color:#555;
