@@ -146,17 +146,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           	<div class="wrap">
     	      <h4 class="title">Δημιουργια Λογαριασμου</h4>
     	    
-    		   <form id='register' onsubmit="return DoCustomValidation();" method="post" action="registration.php" accept-charset="UTF-8"> <!--method='post'-->
+    		   <form id='register' onsubmit="return DoCustomValidation();" method="POST" action="registration.php" accept-charset="UTF-8"> <!--method='post'-->
     											
     			 <div class="col_1_of_2 span_1_of_2">
-		   			<div><input type="text" id ="name" value="Όνομα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
-		  		   	<div><input type="text" id ="surname" value="Επώνυμο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
+		   			<div><input type="text" id ="name" name ="name" value="Όνομα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
+		  		   	<div><input type="text" id ="surname" name="surname" value="Επώνυμο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
 				   	<div><input type="email" placeholder="me@example.com" name="mail" id ="mail" value="E-Mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}"></div>
-		    		<div><input type="text" id ="passwd" value="Κωδικός"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Κωδικός';}"></div>
-		    	 	<div><input type="text" id="passwdCon" value="Επιβεβαίωση Κωδικού" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επιβεβαιώση Κωδικού';}"></div>
-					<div><input type="text" id="birth" value="Ημερομηνία Γέννησης" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ημερομηνία Γέννησης';}"></div>
+		    		<div><input type="text" id ="passwd" value="Κωδικός"  name ="passwd" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Κωδικός';}"></div>
+		    	 	<div><input type="text" id="passwdCon" name ="passwdCon" value="Επιβεβαίωση Κωδικού" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επιβεβαιώση Κωδικού';}"></div>
+					<div><input type="text" id="birth" name="birth" value="Ημερομηνία Γέννησης" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ημερομηνία Γέννησης';}"></div>
 					<div><select id="filo" name="filo" onchange="change_country(this.value)" class="frm-field required">
-		            <option value="null">Φύλο</option>         
+		            <option value="Φύλο">Φύλο</option>         
 		            <option value="AX">Αρρεν</option>  
 		            <option value="AX">Θηλυ</option>
 		            </select>
@@ -164,10 +164,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		    	 </div>
 		    	  <div class="col_1_of_2 span_1_of_2">	
-		    		<div><input type="text" id="address1" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}"></div>
-		    		<div><input type="text" id="address2" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}"></div>
-		    		<div><input type="text" id="poli" value="Περιοχή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιοχή';}"></div>
-		    		<div><input type="text" id="postalCode" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}"></div>
+		    		<div><input type="text" id="address1" name="address1" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}"></div>
+		    		<div><input type="text" id="address2" name="address2" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}"></div>
+		    		<div><input type="text" id="poli" value="Περιοχή" name="poli" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιοχή';}"></div>
+		    		<div><input type="text" id="postalCode" name="postalCode" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}"></div>
 		    		
 		    		<div><select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
 		            <option value="null">Διάλεξε τη Χώρα σου</option>         
@@ -366,16 +366,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            <option value="SA">Saudi Arabia</option>
 		            <option value="SN">Senegal</option>
 		         </select></div>		        
-		          <div><input type="text" id="city" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}"></div>
+		          <div><input type="text" id="city" name="city" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}"></div>
 		           <div>
 		          </div>
-		          	<input type="text" id="codeC1" value="" class="code"> - <input type="text" id="tel1" value="" class="number">
+		          	<input type="text" id="codeC1" name="codeC1" value="" class="code"> - <input type="text" id="tel1" name="tel1" value="" class="number">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Κινητού Τηλεφώνου</p>
-		          		<input type="text" id="codeC2" value="" class="code"> - <input type="text" id="tel2" value="" class="number">
+		          		<input type="text" id="codeC2" name="codeC2" value="" class="code"> - <input type="text" id="tel2" name="tel2" value="" class="number">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Σταθερού Τηλεφώνου</p>
 
 		          </div>
-		      <button type="submit" class="grey" value="Submit">Δημιουργια Λογαριασμου</button>
+		      <button type="submit" class="grey" name="submit" value="Submit">Δημιουργια Λογαριασμου</button>
 		    <p class="terms">Πατώντας το  'Δημιουργία Λογαριασμού' αυτόματα αποδέχεστε τους <a href="terms.html">Όροι Χρήσεις &amp; Προϋποθέσεις</a>.</p>
 		    <div class="clear"></div>
 		    </form>
