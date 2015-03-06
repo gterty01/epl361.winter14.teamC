@@ -12,7 +12,7 @@ $username = "cyfoodmuseum";
 $password = "9m8ESxZD";
 $dbname = "cyfoodmuseum";
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 //@mysql_select_db($dbname) or die ("No database");
 
 // Check connection
@@ -36,16 +36,16 @@ echo $name2;
 
 if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && $_POST['passwdCon'] && $_POST['birth'] && $_POST['city'] && $_POST['postalCode'] && $_POST['address1'])
 {
-	echo "Here";
-	$query ="SELECT * FROM `USERS_FM`";
-	$result=mysql_query($query,$conn);
+	$querys ="SELECT * FROM `USERS_FM`";
+	$result=$conn->query($querys);
 	
-		echo "Here";
 
-	if(mysql_num_rows($result) != 0)
+	if($result->num_rows > 0)
 	{
-	echo $result;
-	echo "Username already exists";
+	while ($row = $result->fetch_assoc()){
+		if ($row["Name"] == $_POST["name"]){
+		
+		}
 	}
 	else{
 	
