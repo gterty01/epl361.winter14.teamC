@@ -45,7 +45,7 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	$result=$conn->query($querys);
 	
 		echo "Here";
-		$
+	
 
 	if($result->num_rows > 0)
 	{
@@ -58,6 +58,7 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	else{
 	
 	echo "Paei na valei ta dedomena sti vasi";
+	$email = $_POST['mail'];
 	$name = $_POST["name"];
 	$surname = $_POST['surname'];
 	$passwd = $_POST['passwd'];
