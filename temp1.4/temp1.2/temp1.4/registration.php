@@ -53,6 +53,9 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	 
 	 	if ($row["Email"]==$_POST['mail']){
 	 		echo "Username already exists";
+	 		header("Location: temp1.2/temp1.4/register.html");
+			alarm("Παρακαλούμε να επαναλάβετε την εγγραφή σας γιατί το email που δώσατε ήδη υπάρχει στη Βάση μας. Αν είστε ήδη εγγεγραμμένος χρήστης και ξεχάσατε τον κωδικό σας, κάντε login με την επιλογή 'Ξέχασα τον κωδικό μου'");
+
 	 		$var="yes";
 	 	}
     }
@@ -107,10 +110,13 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	if ($conn->query($sql) === TRUE){
 		echo "new record created";
 		
-			header("Location: http://www.index.html/");
+			header("Location: temp1.2/temp1.4/");
 
 	} else{
 		echo "Error: " . $sql . "<br>" . $conn->error;
+		header("Location: temp1.2/temp1.4/register.html");
+		alarm("Παρακαλούμε να επαναλάβετε την εγγραφή σας λόγω προβλήματος που δημιουργήθηκε με τη Βάση Δεδομένων");
+
 	}
 	
 	
