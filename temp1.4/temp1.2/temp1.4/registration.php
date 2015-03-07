@@ -45,17 +45,19 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	$result=$conn->query($querys);
 	
 		echo "Here";
-	
+	$var="no";
 
 	if($result->num_rows > 0)
 	{
 	 while($row = $result->fetch_assoc()) {
+	 
 	 	if ($row["Email"]==$_POST['mail']){
 	 		echo "Username already exists";
+	 		$var="yes";
 	 	}
     }
 	}
-	else{
+	if ($var=="no"){
 	
 	echo "Paei na valei ta dedomena sti vasi";
 	$email = $_POST['mail'];
