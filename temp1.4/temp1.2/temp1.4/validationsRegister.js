@@ -1,14 +1,15 @@
-﻿
-function DoCustomValidation()
+﻿function DoCustomValidation()
 {
 
 		//alert ('Espasan ta nevra mou, ok?');
+			
+		
 		
   var frm = document.forms["register"];
   var fr = frm.passwd.value.length;
 	var fr2=parseInt( fr, 10);
-	var sigkrisi = parseInt("6",10);
-	
+	var sigkrisi = parseInt("6",10);  	
+	var sigkrisi2 = parseInt("1",10);
 	
 	if (fr2<sigkrisi){
 		alert('Καταχωρήστε τον κωδικό σας, με τουλάχιστον 6 χαρακτήρες');
@@ -23,6 +24,21 @@ function DoCustomValidation()
 		return false;
 	}
 	
+	
+	
+	var mailsize= frm.mail.value.length;
+	var mails = parseInt(mailsize, 10);
+	
+	if (mails<sigkrisi2){
+		alert('Καταχωρήστε το email σας');
+		return false;
+	
+	}
+	
+	
+	
+	
+	
 		var surnameL = frm.surname.value.length;
 		var fr4 = parseInt(surnameL, 10);
 
@@ -30,7 +46,7 @@ function DoCustomValidation()
 		alert('Καταχωρήστε το Επώνυμό σας, το πολύ 50 χαρακτήρες');
 		return false;
 	}
-
+	
 
   /*re='[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]';
   if (!(re.test(frm.birth.value))){
@@ -44,7 +60,6 @@ function DoCustomValidation()
     return false;
   }
   
- 
   if (frm.name.value== "Όνομα"){
   	alert ('Καταχωρήστε το όνομά σας, το πολύ 50 χαρακτήρες.');
   	return false;
@@ -58,29 +73,17 @@ function DoCustomValidation()
   		alert ('Καταχωρήστε τον κωδικό σας, με τουλάχιστον 6 χαρακτήρες');
   		return false;
   	}
-	var content = document.getElementById(frm.passwd).value;
-    if(content.length<1){
-       alert ("Καταχωρήστε τον κωδικό σας, με τουλάχιστον 6 χαρακτήρες");
-        return false;
-    }
-    
-    var content = document.getElementById(frm.passwdCon).value;
-    if(content.length<1){
-       alert ("Καταχωρήστε την Επιβεβαίωση του κωδικού σας");
-        return false;
-    }
+	
+	    
 
-    
-    
-    
-    
     
   	re=/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
   	if (!(re.test(frm.birth.value))){	
   		alert ('Καταχωρήστε την Ημερομηνία Γέννησης σας στη μορφή YYYY-MM-DD');
   		return false;
   	}	
-  	
+
+	
   	if (frm.address1.value=="Διεύθυνση 1"){
 		alert ('Καταχωρήστε την κύρια διεύθυνσή σας, που θα χρησιμοποιείται για την αποστολή προϊόντων');
 		return false;
@@ -96,15 +99,17 @@ function DoCustomValidation()
 
 	
 
-	if (frm.country.value=="null"){
+	if (frm.country.value=="Διάλεξε τη Χώρα σου"){
 		alert ('Διαλέξτε τη χώρα διαμονής σας');
 		return false;
 	}
+	
+  	
 
 
   	
   }	
-  	
+
   	/*
   	if (frm.passwd.value.length<6||frm.passwd.value==""){
   		alert ('Καταχωρήστε τον κωδικό σας, με τουλάχιστον 6 χαρακτήρες');

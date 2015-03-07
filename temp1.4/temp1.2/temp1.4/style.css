@@ -1165,12 +1165,12 @@ table {
 		
 }
 
-.register_account form input[type=email]:invalid{
+/*.register_account form input[type=email]:invalid{
 	
 	box-shadow: 0 0 5px #d45252;
 	border-color:#b03535;
 	
-}
+}*/
 
 .register_account form input[type=email].code {
 	width: 15%;

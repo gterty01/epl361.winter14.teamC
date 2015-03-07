@@ -36,8 +36,6 @@ echo $name2;
 	echo $email;
 	
 		echo "Here";*/
-
-
 if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && $_POST['passwdCon'] && $_POST['birth'] && $_POST['city'] && $_POST['postalCode'] && $_POST['address1'])
 {
 	echo "Here";
@@ -53,8 +51,33 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	 
 	 	if ($row["Email"]==$_POST['mail']){
 	 		echo "Username already exists";
-	 		header("Location: temp1.2/temp1.4/register.html");
-			alarm("Παρακαλούμε να επαναλάβετε την εγγραφή σας γιατί το email που δώσατε ήδη υπάρχει στη Βάση μας. Αν είστε ήδη εγγεγραμμένος χρήστης και ξεχάσατε τον κωδικό σας, κάντε login με την επιλογή 'Ξέχασα τον κωδικό μου'");
+	 		session_start();
+	 		
+	 		
+	 		$_SESSION['onoma'] = $_POST["name"];
+			$_SESSION['epitheto']= $_POST['surname'];
+			
+			$_SESSION['gen'] = $_POST['birth'];
+			$_SESSION['city'] = $_POST['city'];
+			$_SESSION['tk'] = $_POST['postalCode'];
+			$_SESSION['d1']= $_POST['address1'];
+			
+			$_SESSION['filo']=$_POST['filo'];
+			$_SESSION['d2']=$_POST['address2'];
+			$_SESSION['xwra']=$_POST['country'];
+			$_SESSION['poli']=$_POST['poli'];
+			$_SESSION['codeC1']=$_POST['codeC1'];
+			$_SESSION['codeC2']=$_POST['codeC2'];
+			$_SESSION['tel1']=$_POST['tel1'];
+			$_SESSION['tel2']=$_POST['tel2'];
+
+	 		
+	 		
+	 		
+	 		
+	 		
+	 		
+	 		header("Location: register2.php");
 
 	 		$var="yes";
 	 	}
@@ -98,6 +121,11 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	 $poli = "null";
 	}else{ $poli = $_POST['poli'];}
 	
+	
+	
+
+
+	
 	$phone1= $codeC1." ".$tel1;
 	$phone2= $codeC2." ".$tel2;
 	echo "Prin to insert";
@@ -110,11 +138,11 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	if ($conn->query($sql) === TRUE){
 		echo "new record created";
 		
-			header("Location: temp1.2/temp1.4/");
+			header("Location: index.html");
 
 	} else{
 		echo "Error: " . $sql . "<br>" . $conn->error;
-		header("Location: temp1.2/temp1.4/register.html");
+		header("Location: register.html");
 		alarm("Παρακαλούμε να επαναλάβετε την εγγραφή σας λόγω προβλήματος που δημιουργήθηκε με τη Βάση Δεδομένων");
 
 	}
