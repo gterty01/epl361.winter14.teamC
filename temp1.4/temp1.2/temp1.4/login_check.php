@@ -42,7 +42,7 @@
 	else{
 			$error = "Δώσατε μη έγκυρο email!";
 			$_SESSION['error']=$error;
-			header("Location:login2.php");
+			header("Location:login_error.php");
 			die;
 		}
 
@@ -58,7 +58,7 @@
 		
 			$error = "Δώσατε μη έγκυρο κωδικό πρόσβασης!";
 			$_SESSION['error']=$error;
-			header("Location:login2.php");
+			header("Location:login_error.php");
 		}
 
 ?>
