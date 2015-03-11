@@ -10,10 +10,16 @@ $username = "cyfoodmuseum";
 $password = "9m8ESxZD";
 $dbname = "cyfoodmuseum ";
 
-$conn = mysql_connect($servername, $username, $password) or die ( "Could not connect: " . mysql_error() );
-$database = mysql_select_db($dbname, $conn) or die ("Could not select database: " . mysql_error() );
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$email = $_POST['email'];
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    echo "Connection faild";
+}
+echo "Connected successfully";
+
+
+$email = $_POST['mail'];
 print ($email);
 $password = $_POST['password'];
 print ($password);

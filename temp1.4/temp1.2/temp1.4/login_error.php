@@ -4,6 +4,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php session_start(); ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -27,6 +29,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 }
 .auto-style2 {
 	color: #FFFFFF;
+}
+.auto-style5 {
+	color: #FF0000;
 }
 </style>
 </head>
@@ -62,7 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="menu">
 	            <ul class="megamenu skyblue" style="left: -41px; top: 50px">
-			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
+			<li class="active grid"><a href="login.html">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">
@@ -144,6 +149,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 </div>
 					 <div class="clear"></div>
 				</div>
+				<p class="auto-style5"><?php echo $_SESSION['error']; ?></p>
 				<div class="col_1_of_login span_1_of_login">
 				<div class="login-title">
 	           		<h4 class="title">ειστε ηδη μελοσ;</h4>
