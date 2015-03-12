@@ -7,7 +7,9 @@
 </head>
 
 <?php
-
+	session_start();
+	$error = "";
+	$ok = "";
 	$servername = "localhost";
 	$username = "cyfoodmuseum";
 	$password = "9m8ESxZD";
@@ -34,66 +36,37 @@
 	print ($Quantity );
 	$Weight = $_POST['weight'];
 	print ($Weight);
-	$Supplier = $_POST['supplier'];
-	print ($Supplier);
+	$CodeSupplier= $_POST['supplier'];
+	print ($CodeSupplier);
 	$thisdate = date("Y-m-d");
 	echo $thisdate;
-	$Category = $_POST['category'];
+	$CodeCategory = $_POST['category'];
+	print ($CodeCategory);
 
-	$var = "no"
-	$sql ="SELECT * FROM `CATEGORY` WHERE NameCat ='$Category'";
-	$result=$conn->query($sql);
-	if($result->num_rows > 0){
-	 	while($row = $result->fetch_assoc()) {
-	 		 if ($row["NameCat"]== $_POST['category']){
-	 		 	$CodeCategory = $row["CodeCat"];
-				print ($CodeCategory);
-				$var = "yes"
-	 		 }
-	 	}	 	
-	 }	
-	 	
-	 if ($var=="no"){		 	
-	 	$sql1="INSERT INTO `cyfoodmuseum`.`CATEGORY` (`Name`) VALUES ('$Category');";
-	 	
-		$sql2 ="SELECT * FROM `CATEGORY` WHERE NameCat ='$Category'";
-		$result1=$conn->query($sql2);
-		if($result1->num_rows > 0){
-		 	while($row = $result1->fetch_assoc()) {
-		 		 if ($row["NameCat"]== $_POST['category']){
-		 		 	$CodeCategory = $row["CodeCat"];
-					print ($CodeCategory);
-		 		 }
-		 	}	 	
-		 }
-	 }
-
-	$var1 = "no"
-	$sql3 ="SELECT * FROM `SUPPLIER` WHERE CompanyName ='$Supplier'";
-	$result2=$conn->query($sql3);
-	if($result2->num_rows > 0){
-	 	while($row = $result2->fetch_assoc()) {
-	 		 if ($row["CompanyName"]== $_POST['supplier']){
-	 		 	$CodeSupplier = $row["SupplierNumber"];
-				print ($CodeSupplier);
-				$var = "yes"
-	 		 }
-	 	}	 	
-	 }	
-
-	if ($var1 == "no"){
-		$error = "Δεν υπάρχει ο προμηθευτής που εισάγατε στην ΒΔ";
-		die;
-	}
-
-
-	$sql="INSERT INTO `cyfoodmuseum`.`PRODUCT` (`Name`, `Description`, `Price`, `Category`,  `EntryPrice`, `CodeOfSupplier`, `Weight`, `Availability`) VALUES ('$ProductName', '$Description', '$Price', '$CodeCategory', '$thisdate', '$CodeSupplier', '$Weight', '$Quantity');";
-
-	 		
-?>
-
-
+	$querys ="SELECT * FROM `PRODUCT`";
+	$result=$conn->query($querys);
 	
+	if($result->num_rows > 0){
+		 while($row = $result->fetch_assoc()) {
+		 	if ($row["Name"]==$_POST['name']){
+		 		$error = "Το προϊόν ήδη υπάρχει.";
+		 		$_SESSION['error'] = $error;
+		 		$_SESSION['ok'] = " ";
+		 		header("Location:addProduct_dropdown.php");
+				die;
+			}
+		}
+	}
+	$_SESSION['error'] = " ";
+	$sql="INSERT INTO `cyfoodmuseum`.`PRODUCT` (`Name`, `Description`, `Price`, `CodeOfCategory`,  `EntryDate`, `CodeOfSupplier`, `Weight`, `Availability`) VALUES ('$ProductName', '$Description', '$Price', '$CodeCategory', '$thisdate', '$CodeSupplier', '$Weight', '$Quantity');";
+	$_SESSION['ok'] = " ";
+	if ($conn->query($sql) === TRUE){
+		$ok = "Η προσθήκη του προϊόντος ολοκληρώθηκε επιτυχώς!";		
+		$_SESSION['ok'] = $ok;
+		header("Location:addProduct_dropdown.php");
+		die;
+	 }
+?>
 
 <body>
 

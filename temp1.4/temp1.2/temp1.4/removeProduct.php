@@ -1,9 +1,10 @@
-﻿<!--A Design by W3layouts
+<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -11,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	             <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
 	             <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<title>Επεξεργασία Προϊόντων</title>
+<title>Προσθήκη Προϊόντων</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -27,6 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/css3-mediaqueries.js"></script>
     <script src="js/fwslider.js"></script>
+
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
@@ -36,10 +38,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 .auto-style2 {
 					 margin-left: 0px;
 				 }
+				 .auto-style5 {
+					color: #FF0000;
+				 }
+				 .auto-style6 {
+					color: #009900;
+				 }
+
 				 </style>
-				 </head>
+    
+    <script src="selectedDropdown.js"></script>
+				 
+</head>
 <body style="color: #FFFFFF; ">
-     <div class="header-top">
+<div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -59,7 +71,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clear"></div>
  		</div>
 	</div>
-	<div class="header-bottom">
+
+<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
@@ -140,104 +153,63 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="clear"></div>
      </div>
 	</div>
-  <!-- start slider -->
-    <div id="fwslider">
-            </div>
-    <!--/slider -->
-<div class="main">
-	  
+	
 <div class="login">
        <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προϊόντος /<a class="home" href="index.html">Διαγράφη Προϊόντος</a>/<a class="home" href="index.html">Επεξεργασία Προϊόντος </a></ul>
-		   <div class="content-top">
-			   <form method="post" action="contact-post.html">
-					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προϊόντος';}" style="width: 37%">
-					 	<input name="price" type="text" class="text" value="Τιμή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τιμή';}" style="margin-left: 10px; width: 14%;">
-						<input name="quantity" type="text" class="text" value="Ποσότητα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ποσότητα';}" style="margin-left: 10px; width: 13%;">
-						<input name="weight" type="text" class="text" value="Βάρος σε Kg" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Βάρος σε kg';}" style="margin-left: 10px; width: 15%;">
-					</div>
-					
-					<div class="to">
-						 <select id="category" name="category" style="width: 329px; height: 37px"  >
-<?php
-	echo "i am in";
-	$servername = "localhost";
-	$username = "cyfoodmuseum";
-	$password = "9m8ESxZD";
-	$dbname = "cyfoodmuseum";
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="index.html"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="index.html">Επεξεργασία Προϊόντος </a></ul>
 	
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	
-	// Check connection
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
-	    echo "Connection faild";
-	}
-	echo "Connected successfully";
-	//parse_url(file_get_contents("php://input"), $_POST);
-	//print_r($_POST); 
-	//session_start();
-		
-	$querys = "SELECT * FROM `CATEGORY`";
-	$result = $conn->query($querys);
-	$options = ""; 	
-	if($result->num_rows > 0){
-		echo '<select name="student">';
-		echo '<option value="">Select...</option>';
-	 	while($row = $result->fetch_assoc()) {
-			$codeCategory = $row["CodeCat"];
-			$category = $row["NameCat"];
-			echo '<option value="' . $codeCategory . '">';
-			echo $category;
-			echo '</option>';
+
+<form id='removeProduct' method="post" action="" >
+
+	<div> <?php
+		$servername = "localhost";
+		$username = "cyfoodmuseum";
+		$password = "9m8ESxZD";
+		$dbname = "cyfoodmuseum";
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);				
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+			echo "Connection faild";
 		}
-		echo '</select>';
-	}
-?>
+		echo "Connected successfully";
+										
+		$querys = "SELECT * FROM `CATEGORY`";
+		$result = $conn->query($querys);
+		if($result->num_rows > 0){
+			echo '<select name="category" style="width: 600px; height: 37px">';
+			echo '<option value="">Διάλεξε την κατηγορία του προϊόντος που θέλεις να διαγράψεις</option>';
+			while($row = $result->fetch_assoc()) {
+				$codeCategory = $row["CodeCat"];
+				$category = $row["NameCat"];
+				echo '<option value="' . $codeCategory . '">';
+				echo $category ;
+				echo '</option>';
+			}
+			echo '</select> </p>';
+		}
+	?>
+</div>	
+<br>
+	   <div class="submit" >
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="submit" value="Καταχώρηση"></div>
 
-					</select>
-								
-					<span style="padding-left:75px">
-						<select id="category" name="category1" style="width: 309px; height: 37px" class="auto-style2">
-						  <option value="c1">Διάλεξε τον προμηθευτή του προϊόντος</option>
-						  <option value="c2">Προμηθευτής1</option>
-						  <option value="c3">Προμηθευτής2</option>
-						  <option value="c4">Προμηθευτής3</option>
-						</select>
-					</span>
-					</div>
-					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;">Περιγραφή Προϊόντος:</textarea>
-	                </div>
-	                
-	                <div>
-	                <p class="auto-style1">Φωτογραφία Προϊόντος</p>
-	                <img src="images/karydaki.png" alt=""  width="74" height="84">
-	                  <form name="myWebForm" action="mailto:youremail@email.com" method="post" enctype="multipart/form-data">
-                        <input type="file" name="uploadField1" size="20" />
-                      </form>
+</form>
 
-	                </div>
-	                <div class="clear"></div>
-					<br>
+<div>
+</div>	
+	
+	
+	
 
-	                <div class="submit">
-	               		<input type="submit" value="Καταχώρηση">
-	                </div>
-               </form>
-            </div>
-       </div> 
-    </div>
-			<div class="clear"></div>
-<div class="footer-bottom1">
-
-                             <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-                          </div>
-                      </div>
-                  </div>
+</div>
+</div>
 
 </body>
+
 </html>
