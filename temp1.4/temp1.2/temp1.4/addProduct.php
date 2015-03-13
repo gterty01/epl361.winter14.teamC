@@ -66,6 +66,11 @@
 		header("Location:addProduct_dropdown.php");
 		die;
 	 }
+	
+	$error = "Η προσθήκη του προϊόντος δεν ολοκληρώθηκε!";
+	$_SESSION['error'] = $error;
+	header("Location:addProduct_dropdown.php");
+
 ?>
 
 <body>

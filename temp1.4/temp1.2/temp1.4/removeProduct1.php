@@ -150,7 +150,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="index.html"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="index.html">Επεξεργασία Προϊόντος </a></ul>
 	
 
-<form id='removeProduct' method="post" action="removeProduct1.php" >
+<form id='removeProduct' method="post" action="" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">
@@ -186,16 +186,57 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>	
 <br>
 	   <div class="submit" >
-	        <input type="submit" value="Καταχώρηση"></div>
+	   <input type="submit" value="Καταχώρηση"></div>
+
 
 </form>
 
 <div>
-</div>	
-	
-	
-	
-	
+<br>
+<form id='removeProduct' method="post" action="" >
+<strong><h6 class="auto-style7"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
+</strong>
+<span class="auto-style7">
+
+<?php
+		$servername = "localhost";
+		$username = "cyfoodmuseum";
+		$password = "9m8ESxZD";
+		$dbname = "cyfoodmuseum";
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);				
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		}
+										
+		parse_url(file_get_contents("php://input"), $_POST);
+
+		$CodeCategory = $_POST['category'];	
+		$querys = "SELECT * FROM `PRODUCT` where CodeOfCategory = '$CodeCategory' ";
+		$result = $conn->query($querys);
+		//echo "$CodeCategory";
+		if($result->num_rows > 0){
+			echo '<br>';
+			while($row = $result->fetch_assoc()) {
+				$nameProduct = $row["Name"];
+				$codeProduct = $row["Code"];
+				echo '<input TYPE=CHECKBOX  value="' . $codeProduct . '">   ';
+		    	echo $nameProduct;  
+				echo '</br>';		    
+			}
+		}else
+			echo "no";
+
+?>
+</span>
+<br>
+
+	  <div class="submit" >
+	  <input type="submit" value="Διαγραφή"></div>
+
+</form>
+</div>		
 
 </div>
 </div>

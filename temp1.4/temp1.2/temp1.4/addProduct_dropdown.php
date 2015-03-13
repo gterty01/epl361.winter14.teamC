@@ -8,9 +8,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-	             <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
-	             <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
-	             <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
 <title>Προσθήκη Προϊόντων</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -176,6 +176,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					 
 					<div class="to">
+					<p><select name="category" style="width: 329px; height: 37px">
+					<option value="">Διάλεξε την κατηγορία του προϊόντος</option>
 					<?php
 						$servername = "localhost";
 						$username = "cyfoodmuseum";
@@ -196,19 +198,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						$result = $conn->query($querys);
 						$options = ""; 	
 						if($result->num_rows > 0){
-							print '	<p><select name="category" style="width: 329px; height: 37px">';
-							print '<option value="">Διάλεξε την κατηγορία του προϊόντος</option>';
 						 	while($row = $result->fetch_assoc()) {
 								$codeCategory = $row["CodeCat"];
 								$category = $row["NameCat"];
 								print '<option value="' . $codeCategory . '">';
 								print $category;
 								print '</option>';
-							}
-							echo '</select>';
-							
+							}							
 						}
 					?>
+				</select>;
+
+					<select name="supplier" style="width: 329px; height: 37px">
+					<option value="">Διάλεξε τον προμηθευτή του προϊόντος</option>
 					<?php
 						$servername = "localhost";
 						$username = "cyfoodmuseum";
@@ -229,8 +231,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						$result = $conn->query($querys);
 						$options = ""; 	
 						if($result->num_rows > 0){
-							echo '<select name="supplier" style="width: 329px; height: 37px">';
-							echo '<option value="">Διάλεξε τον προμηθευτή του προϊόντος</option>';
 						 	while($row = $result->fetch_assoc()) {
 								$codeSupplier = $row["SupplierNumber"];
 								$supplier = $row["CompanyName"];
@@ -238,9 +238,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								echo $supplier ;
 								echo '</option>';
 							}
-							echo '</select> </p>';
 						}
 					?>
+					</select>
 					</div>
 				
 					<div class="clear"></div>
