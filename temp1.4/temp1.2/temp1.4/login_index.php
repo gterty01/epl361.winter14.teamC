@@ -1,9 +1,15 @@
+
+<?php 
+	session_start(); 
+?>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
 
 <!DOCTYPE HTML>
 <html>
@@ -55,11 +61,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="login.html">Λογαριασμός</a></li> |
+					<li class="active"><?php echo $_SESSION['login_user']; ?></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
-					<li><a href="login.html">Σύνδεση</a></li> |
-					<li><a href="register.html">Εγγραφή</a></li>
+					<li><a href="index.html">Αποσύνδεση</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -69,12 +74,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
-					<a href="index.html">
+					<a href="login_index.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="menu">
 	            <ul class="megamenu skyblue" style="left: -4.1%; top: 5%">
-			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
+			<li class="active grid"><a href="login_index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">
@@ -117,14 +122,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
-         <div class="search">	
-            <form id='anazitisi' method="POST" action="searchServer.php" accept-charset="UTF-8"> <!--method='post'-->
-  
-				<input type="text" name="search" id="search" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
+         <div class="search">	  
+				<input type="text" name="s" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
-				
 				<div id="response"> </div>
-				</form>
 		 </div>
 	  <div class="tag-list">
 	    <ul class="icon1 sub-icon1 profile_img">
