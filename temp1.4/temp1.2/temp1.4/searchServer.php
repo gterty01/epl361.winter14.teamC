@@ -200,7 +200,7 @@ if ($_POST["search"]){
 	{
 	 while($row = $result->fetch_assoc()) {
 	  if ($counter = 0){
-	  	echo "<div class='top-box'>"
+	  	echo "<div class='top-box'>";
 	  	}
 	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
 	 echo 	  	 "<a href='single.html'>";
@@ -211,12 +211,12 @@ if ($_POST["search"]){
 	 echo 				"</div>";
      echo         "<div class='price'>";
 	 echo 		   "<div class='cart-left'>";
-	 echo 					"<p class='title'>"
+	 echo 					"<p class='title'>";
 	 echo $row['NameCat']; echo " - " ;
 	 echo $row['Name'] ;
 	 echo "</p>";
 	 echo 							"<div class='price1'>";
-	 echo 							  "<span class='actual'>"
+	 echo 							  "<span class='actual'>";
 	 echo $row['Price'];
 	 echo "</span>";
 	 echo 							"</div>";
@@ -234,8 +234,8 @@ if ($_POST["search"]){
 	 
 	 if ($counter = 3){
 	  		  
-	  	echo '<div class="clear"></div>'
-		echo '</div>'
+	  	echo "<div class='clear;></div>";
+		echo "</div>";
 		$counter = 0;
 	  
 	  	}
