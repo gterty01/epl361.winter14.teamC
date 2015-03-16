@@ -45,7 +45,7 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	$result=$conn->query($querys);
 	
 		echo "Here";
-		$
+		
 
 	if($result->num_rows > 0)
 	{
@@ -103,13 +103,15 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	
 	if ($conn->query($sql) === TRUE){
 		echo "new record created";
+		
+			header("Location: http://www.index.html/");
+
 	} else{
 		echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 	
 	
 	echo "<h1>you have registered sucessfully</h1>";
-	
 	echo "<a href='index.php'>go to login page</a>";
 	}
 	

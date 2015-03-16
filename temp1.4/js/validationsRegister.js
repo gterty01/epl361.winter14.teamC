@@ -58,7 +58,24 @@ function DoCustomValidation()
   		alert ('Καταχωρήστε τον κωδικό σας, με τουλάχιστον 6 χαρακτήρες');
   		return false;
   	}
-	re=/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
+	var content = document.getElementById(frm.passwd).value;
+    if(content.length<1){
+       alert ("Καταχωρήστε τον κωδικό σας, με τουλάχιστον 6 χαρακτήρες");
+        return false;
+    }
+    
+    var content = document.getElementById(frm.passwdCon).value;
+    if(content.length<1){
+       alert ("Καταχωρήστε την Επιβεβαίωση του κωδικού σας");
+        return false;
+    }
+
+    
+    
+    
+    
+    
+  	re=/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
   	if (!(re.test(frm.birth.value))){	
   		alert ('Καταχωρήστε την Ημερομηνία Γέννησης σας στη μορφή YYYY-MM-DD');
   		return false;
@@ -72,12 +89,14 @@ function DoCustomValidation()
 		alert ('Καταχωρήστε την Πόλη που διαμένετε');
 		return false;
 	}
-	
-	
-	var xwra = frm.country.value
-			alert (xwra);
+	if (frm.postalCode.value=="Ταχυδρομικός Κώδικας"){
+		alert ('Καταχωρήστε τον Ταχυδρομικό Κώδικά σας');
+		return false;
+	}
 
-	if (frm.country.value==""){
+	
+
+	if (frm.country.value=="null"){
 		alert ('Διαλέξτε τη χώρα διαμονής σας');
 		return false;
 	}
