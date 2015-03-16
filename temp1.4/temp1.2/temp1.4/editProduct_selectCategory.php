@@ -1,9 +1,3 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
@@ -12,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	             <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
 	             <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<title>Διαγραφή Προϊόντων</title>
+<title>Επεξεργασία Προϊόντων</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -147,14 +141,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος </a></ul>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
 	
 
-<form id='removeProduct' method="post" action="removeProduct1.php" >
+<form id='editProduct' method="post" action="editProduct_selectProduct.php" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">
-	<option value="">Διάλεξε την κατηγορία του προϊόντος που θέλεις να διαγράψεις</option>
+	<option value="">Διάλεξε την κατηγορία του προϊόντος που θέλεις να επεξεργαστείς</option>
  <?php
 		$servername = "localhost";
 		$username = "cyfoodmuseum";
@@ -165,9 +159,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		// Check connection
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
-			echo "Connection faild";
 		}
-		echo "Connected successfully";
 										
 		$querys = "SELECT * FROM `CATEGORY`";
 		$result = $conn->query($querys);
@@ -182,63 +174,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 	?>
 </select>
-
 </div>	
 <br>
 	   <div class="submit" >
 	   <input type="submit" value="Καταχώρηση"></div>
 
 
-</form>
-
 <div>
 <br>
-<form id='removeProduct' method="post" action="" >
-<strong><h6 class="auto-style7"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
-</strong>
-<span class="auto-style7">
-
-<?php
-		$servername = "localhost";
-		$username = "cyfoodmuseum";
-		$password = "9m8ESxZD";
-		$dbname = "cyfoodmuseum";
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);				
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		}
-										
-		parse_url(file_get_contents("php://input"), $_POST);
-
-		$CodeCategory = $_POST['category'];	
-		$querys = "SELECT * FROM `PRODUCT` where CodeOfCategory = '$CodeCategory' ";
-		$result = $conn->query($querys);
-		//echo "$CodeCategory";
-		if($result->num_rows > 0){
-			echo '<br>';
-			while($row = $result->fetch_assoc()) {
-				$nameProduct = $row["Name"];
-				$codeProduct = $row["Code"];
-				echo '<input TYPE=CHECKBOX name = Product[]>  value="' . $codeProduct . '"';
-		    	echo $nameProduct;  
-				echo '</br>';		    
-			}
-		}else
-			echo "no";
-
-?>
-</span>
+</div>
 <br>
-
-	  <div class="submit" >
-	  <input type="submit" value="Διαγραφή"></div>
 
 </form>
 </div>		
 
-</div>
 </div>
 
 </body>
