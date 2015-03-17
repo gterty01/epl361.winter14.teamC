@@ -3,22 +3,56 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Untitled 1</title>
+<title>Διαγραφή Προϊόντος</title>
 </head>
 
 <body>
 <?php
+
+	$error_remove = "";
+	$ok_remove = "";
+
+	session_start();
+	$servername = "localhost";
+	$username = "cyfoodmuseum";
+	$password = "9m8ESxZD";
+	$dbname = "cyfoodmuseum";
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);				
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	
+	parse_url(file_get_contents("php://input"), $_POST);	
+
     $products = $_POST['Product'];
     if(isset($_POST['Product'])) {
-    	echo "You chose the following color(s): <br>";
    		foreach ($products as $p){
     		echo $p."<br />";
+    		$sql = "DELETE FROM `PRODUCT` WHERE Code = '$p' ";
+    		echo "<br />";
+
+    		if ($conn->query($sql) === TRUE) {
+    			$ok_remove = "Επιτυχής διαγραφή του προϊόντος!";
+		 		$_SESSION['error'] = " ";
+		 		$_SESSION['ok_remove'] = $ok_remove;
+		 		header("Location:removeProduct.php");
+				die;
+    			
+			} else {
+    			$error_remove = "Δεν έγινε η διαγρφή του προϊόντος! Ξαναπροσπαθήστε!";
+		 		$_SESSION['error_remove'] = $error_remove;
+		 		$_SESSION['ok_remove'] = " ";
+		 		header("Location:removeProduct.php");
+		 		die;
+			}			
    		 }
     } // end brace for if(isset
 
     else {
 
-	    echo "You did not choose a color.";
+	    echo "You did not choose product.";
 
     }
 

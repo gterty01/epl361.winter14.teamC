@@ -165,9 +165,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		// Check connection
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
-			echo "Connection faild";
 		}
-		echo "Connected successfully";
 										
 		$querys = "SELECT * FROM `CATEGORY`";
 		$result = $conn->query($querys);
@@ -193,7 +191,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <div>
 <br>
-<form id='removeProduct' method="post" action="" >
+<form id='removeProduct' method="post" action="removeProduct_database.php" >
 <strong><h6 class="auto-style7"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
 </strong>
 <span class="auto-style7">
@@ -215,19 +213,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$CodeCategory = $_POST['category'];	
 		$querys = "SELECT * FROM `PRODUCT` where CodeOfCategory = '$CodeCategory' ";
 		$result = $conn->query($querys);
-		//echo "$CodeCategory";
 		if($result->num_rows > 0){
 			echo '<br>';
 			while($row = $result->fetch_assoc()) {
 				$nameProduct = $row["Name"];
 				$codeProduct = $row["Code"];
-				echo '<input TYPE=CHECKBOX name = Product[]>  value="' . $codeProduct . '"';
+				echo '<input TYPE=CHECKBOX name = Product[]  value="' . $codeProduct . '"> ';
 		    	echo $nameProduct;  
 				echo '</br>';		    
 			}
-		}else
-			echo "no";
-
+		}
 ?>
 </span>
 <br>

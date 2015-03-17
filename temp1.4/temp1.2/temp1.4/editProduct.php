@@ -163,21 +163,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php">Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
 	    
 	     <div class="clear"></div>
-
-	    <p class="auto-style5"><?php echo $_SESSION['error']; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok']; ?></p>
 		   <div class="content-top">
 			   <form id='editProduct' onsubmit="return CheckProduct()" method="post" action="editProduct_showProduct.php" >
 					<div class="to">
-                     	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Pname']; ?>" onfocus="this.value = '';" style="width: 37%">
-					 	<input name="price" type="text" class="text" value="<?php echo $_SESSION['price']; ?>" onfocus="this.value = '';" style="margin-left: 10px; width: 14%;">
-						<input name="quantity" type="text" class="text" value="<?php echo $_SESSION['availability']; ?>" onfocus="this.value = '';" style="margin-left: 10px; width: 13%;">
-						<input name="weight" type="text" class="text" value="<?php echo $_SESSION['weight']; ?>" onfocus="this.value = '';"style="margin-left: 10px; width: 15%;">
+                     	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Pname']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προϊόντος';}" style="width: 37%">
+					 	<input name="price" type="text" class="text" value="<?php echo $_SESSION['price']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τιμή';}" style="margin-left: 10px; width: 14%;">
+						<input name="quantity" type="text" class="text" value="<?php echo $_SESSION['availability']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ποσότητα';}" style="margin-left: 10px; width: 13%;">
+						<input name="weight" type="text" class="text" value="<?php echo $_SESSION['weight']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Βάρος σε kg';}" style="margin-left: 10px; width: 15%;">
 					</div>
 					 
 					<div class="to">
 					<p><select name="category" style="width: 329px; height: 37px">
-					<option value="<?php echo $_SESSION['category']; ?>"></option>
+					<option value="<?php echo $_SESSION['category']; ?>"> <?php echo $_SESSION['CName']; ?> </option>
 					<?php
 						$servername = "localhost";
 						$username = "cyfoodmuseum";
@@ -210,7 +207,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</select>;
 
 					<select name="supplier" style="width: 329px; height: 37px">
-					<option value="<?php echo $_SESSION['supplier']; ?>"></option>
+					<option value="<?php echo $_SESSION['supplier']; ?>"><?php echo $_SESSION['SName']; ?></option>
 					<?php
 						$servername = "localhost";
 						$username = "cyfoodmuseum";
@@ -246,7 +243,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="clear"></div>
 
 					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Προϊόντος" onfocus="this.value = '';" style="height: 97px; width: 94%;"><?php echo $_SESSION['description']; ?></textarea>
+	                   <textarea name="description" value="Περιγραφή Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;"><?php echo $_SESSION['description']; ?></textarea>
 	                </div>
 	                
 	                <div>

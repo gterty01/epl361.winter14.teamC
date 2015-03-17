@@ -224,9 +224,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						if ($conn->connect_error) {
 						    die("Connection failed: " . $conn->connect_error);
 						    echo "Connection faild";
-						}
-						echo "Connected successfully";
-										
+						}										
 						$querys = "SELECT * FROM `SUPPLIER`";
 						$result = $conn->query($querys);
 						$options = ""; 	

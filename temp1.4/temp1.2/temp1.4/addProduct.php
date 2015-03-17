@@ -24,24 +24,15 @@
 	echo "Connected successfully";
 
 	parse_url(file_get_contents("php://input"), $_POST);
-	print_r($_POST); 
 	
 	$ProductName = $_POST['name'];
-	print ($ProductName);
 	$Description = $_POST['description'];
-	print ($Description);
 	$Price = $_POST['price'];
-	print ($Price);
 	$Quantity = $_POST['quantity'];
-	print ($Quantity );
 	$Weight = $_POST['weight'];
-	print ($Weight);
 	$CodeSupplier= $_POST['supplier'];
-	print ($CodeSupplier);
 	$thisdate = date("Y-m-d");
-	echo $thisdate;
 	$CodeCategory = $_POST['category'];
-	print ($CodeCategory);
 
 	$querys ="SELECT * FROM `PRODUCT`";
 	$result=$conn->query($querys);
@@ -70,7 +61,8 @@
 	$error = "Η προσθήκη του προϊόντος δεν ολοκληρώθηκε!";
 	$_SESSION['error'] = $error;
 	header("Location:addProduct_dropdown.php");
-
+	die;
+	
 ?>
 
 <body>

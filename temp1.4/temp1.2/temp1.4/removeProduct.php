@@ -35,6 +35,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 .auto-style7 {
 					 color: #000000;
 				 }
+				 .auto-style5 {
+					color: #FF0000;
+				 }
+				 .auto-style6 {
+					color: #009900;
+				 }
 
 				 </style>
     
@@ -147,9 +153,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="index.html"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="index.html">Επεξεργασία Προϊόντος </a></ul>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος </a></ul>
 	
-
+	    <p class="auto-style5"><?php echo $_SESSION['error_remove']; ?></p>
+	    <p class="auto-style6"><?php echo $_SESSION['ok_remove']; ?></p>
+		<br>
 <form id='removeProduct' method="post" action="removeProduct1.php" >
 
 	<div>

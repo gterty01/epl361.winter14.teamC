@@ -18,36 +18,46 @@
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
-	    echo "Connection faild";
 	}
-	echo "Connected successfully";
-	parse_url(file_get_contents("php://input"), $_POST);
-	print_r($_POST); 
-	
+
+	parse_url(file_get_contents("php://input"), $_POST);	
 	
 	$CodeProduct = $_POST['product'];	
-
-	$querys ="SELECT * FROM `PROTUCT` WHERE ";
+	$querys ="SELECT * FROM `PRODUCT` WHERE Code = '$CodeProduct'";
 	$result=$conn->query($querys);
 
-		session_start();
-	 	if($result->num_rows > 0){
-			while($row = $result->fetch_assoc()) {
- 				if ($row["Code"]==$_POST['product']){
-					$_SESSION['Pname'] = $row["Name"];
-					$_SESSION['price']= $row["Price"];
-					$_SESSION['availability'] = $row['Availability'];
-					$_SESSION['weight'] = $row['Weight'];
-					$_SESSION['category'] = $row['CodeOfCategory'];
-					$_SESSION['supplier']= $row['CodeOfSupplier'];
-					$_SESSION['description']=$row['Description'];
-					
-					header("Location: editProduct.php");
-					die;
+	session_start();
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()) {
+			$_SESSION['Pname'] = $row["Name"];
+			$_SESSION['price']= $row["Price"];
+			$_SESSION['availability'] = $row['Availability'];
+			$_SESSION['weight'] = $row['Weight'];
+			$_SESSION['category'] = $row['CodeOfCategory'];
+			$_SESSION['supplier']= $row['CodeOfSupplier'];
+			$_SESSION['description']=$row['Description'];
+			
+			$CatCode = $row['CodeOfCategory'];
+			$querys1 ="SELECT * FROM `CATEGORY` WHERE CodeCat = '$CatCode'";
+			$result1=$conn->query($querys1);
+			while($row1 = $result1->fetch_assoc()) {
 
-				}
+				$_SESSION['CName'] = $row1['NameCat'];	
 			}
+				
+			$SupplierCode = $row['CodeOfSupplier'];
+			$querys2 ="SELECT * FROM `SUPPLIER` WHERE SupplierNumber = '$SupplierCode'";
+			$result2=$conn->query($querys2);
+			while($row2 = $result2->fetch_assoc()) {
+
+				$_SESSION['SName'] = $row2['CompanyName'];	
+			}	
+
+			header("Location:editProduct.php");
+			die;
+
 		}
+	}
 		
 ?>
 <body>
