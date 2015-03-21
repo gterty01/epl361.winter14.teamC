@@ -28,12 +28,14 @@
 .auto-style2 {
 	margin-top: 0px;
 }
-.auto-style3 {
-	margin-top: 37px;
-}
 .auto-style4 {
 	margin-left: 0;
 }
+.auto-style8 {
+	color:black;
+}
+
+
 </style>
 </head>
 
@@ -148,9 +150,67 @@
 
      </div>
 	</div>
+	
+<span class="auto-style8">
 <?php
 
-echo "diskola ta pragmata";
+function apotelesmata($result2, $counterItem) {
+echo 'irthe function';
+if($result2->num_rows > 0)
+	{
+	$antikeimena= $result2->num_rows;
+	 while($row = $result2->fetch_assoc()) {
+	 
+	 if ($antikeimena>0){
+	 $antikeimena = $antikeimena - 1;
+	 echo "id: " . $row["Code"];
+	  if ($counterItem == 0){
+	  	echo "<div class='top-box'>";
+	  	} 
+	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
+	 echo 	  	 "<a href='single.html'>";
+	 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+	 echo 		 					"<div class='product_image'>";
+	 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" width="270" height="250"/>';
+	 //echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+	 echo 				"</div>";
+     echo         "<div class='price'>";
+	 echo 		   "<div class='cart-left'>";
+	 echo 					"<p class='title'>";
+	 echo $row['NameCat']; echo " - " ;
+	 echo $row['Name'] ;
+	 echo "</p>";
+	 echo 							"<div class='price1'>";
+	 echo 							  "<span class='actual'>";
+	 echo $row['Price'];
+	 echo "</span>";
+	 echo 							"</div>";
+ 	echo 						"</div>";
+	echo 						"<div> <a href='checkout.html' class='cart-right'></a> </div>";
+	echo 						"<div class='clear'></div>";
+	echo 					 "</div>"	;			
+	echo                    "</div>";
+	echo                    "</a>";
+	echo 				"</div>";
+
+	 
+	 $counterItem = $counterItem+1;
+	 
+	 
+	 if ($counterItem == 3){
+	  		  
+	  	echo "<div class='clear;></div>";
+		echo "</div>";
+		$counterItem = 0;
+	  
+	  	}
+	 }
+	 }
+	 }
+	 return $counterItem;
+
+}
+
 $servername = "localhost";
 $username = "cyfoodmuseum";
 $password = "9m8ESxZD";
@@ -164,24 +224,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     echo "Connection faild";
 }
-echo "Connected successfully";
 parse_url(file_get_contents("php://input"), $_POST);
-print_r($_POST); 
-
+//print_r($_POST); 
 if ($_POST["search"]){
 	$timi = $_POST['search'];
-	echo $timi;
 	if ($timi!="Αναζήτηση"){
-		$querys ="SELECT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Name` LIKE '%$timi%'";
+		$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
 		$result=$conn->query($querys);
 		
-		$queryDes ="SELECT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Description` LIKE '%$timi%'";
-		$resultDes=$conn->query($queryDes);
-
-		$querySup ="SELECT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `CompanyName` LIKE '%$timi%'";
+		//$querys2 ="SELECT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Name` LIKE '%$timi%'";
+		$arithmos = $result->num_rows;
+		
+		$queryDes ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%')";
+		$resultDes=$conn->query($queryDes);		
+		$querySup ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%')";
 		$resultSup=$conn->query($querySup);
 
-		$queryCat="SELECT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND `NameCat` LIKE '%$timi%'";
+		$queryCat="SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
 		$resultCat=$conn->query($queryCat);
 		
 		$counter=0;
@@ -193,21 +252,27 @@ if ($_POST["search"]){
 	}
 }
 
-?>
 
 
-<?php if($result->num_rows > 0)
+
+if($result->num_rows > 0)
 	{
+	echo "<div class='wrap'>";
+	echo 	"<div class='section group'>";
+	echo	 "<div class='cont span_2_of_3'>";
+ 	echo 		  	"<h2 class='head'>Αποτελεσματα Αναζητησης</h2>";
+	echo "<br>";
 	 while($row = $result->fetch_assoc()) {
-	  if ($counter = 0){
+	  if ($counter == 0){
 	  	echo "<div class='top-box'>";
-	  	}
+	  	} 
 	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
 	 echo 	  	 "<a href='single.html'>";
 	 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
 	 echo 		 					"<div class='product_image'>";
 	 
-	 echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+	// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+	 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" width="270" height="250"/>';
 	 echo 				"</div>";
      echo         "<div class='price'>";
 	 echo 		   "<div class='cart-left'>";
@@ -232,17 +297,34 @@ if ($_POST["search"]){
 	 $counter = $counter+1;
 	 
 	 
-	 if ($counter = 3){
-	  		  
-	  	echo "<div class='clear;></div>";
+	 if ($counter == 3){
+	  	echo "<div class='clear'></div>";
 		echo "</div>";
 		$counter = 0;
 	  
 	  	}
 	 }
 	 }
- ?>
+	 
+	 //$counter=apotelesmata($resultDes, $counter);
+ 	 //$counter=apotelesmata($resultSup, $counter);
+	 //$counter=apotelesmata($resultCat, $counter);
+ 		if ($counter != 3){
+	  	echo "<div class='clear'></div>";
+		echo "</div>";
+	  
+	  	}
+		  echo "</div>";
+	   echo "<div class='clear'></div>";
+	echo "</div>";
+	echo "</div>";
 
+	 
+	 
+	 
+	 
+ ?>
+</span>
 
 
 
