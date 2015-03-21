@@ -12,9 +12,7 @@
 	$password = "9m8ESxZD";
 	$dbname = "cyfoodmuseum";
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	//@mysql_select_db($dbname) or die ("No database");
-	
+	$conn = new mysqli($servername, $username, $password, $dbname);	
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
@@ -29,6 +27,7 @@
 	session_start();
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()) {
+			$_SESSION['product'] = $row["Code"];
 			$_SESSION['Pname'] = $row["Name"];
 			$_SESSION['price']= $row["Price"];
 			$_SESSION['availability'] = $row['Availability'];
@@ -58,6 +57,10 @@
 
 		}
 	}
+
+
+	
+
 		
 ?>
 <body>

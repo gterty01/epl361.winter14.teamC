@@ -32,8 +32,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
-				 .auto-style7 {
-					 color: #000000;
+				 .auto-style8 {
+					 color: #080808;
 				 }
 
 				 </style>
@@ -194,7 +194,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <form id='removeProduct' method="post" action="removeProduct_database.php" >
 <strong><h6 class="auto-style7"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
 </strong>
-<span class="auto-style7">
+<span class="auto-style8">
 
 <?php
 		$servername = "localhost";
@@ -220,6 +220,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$codeProduct = $row["Code"];
 				echo '<input TYPE=CHECKBOX name = Product[]  value="' . $codeProduct . '"> ';
 		    	echo $nameProduct;  
+		    	echo ' - ';
+		    	echo $codeProduct;
 				echo '</br>';		    
 			}
 		}

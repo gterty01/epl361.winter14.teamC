@@ -164,8 +164,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    
 	     <div class="clear"></div>
 
-	    <p class="auto-style5"><?php echo $_SESSION['error']; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok']; ?></p>
+	    <p class="auto-style5"><?php echo $_SESSION['error_add']; $_SESSION['error_add'] = " "; ?></p>
+	    <p class="auto-style6"><?php echo $_SESSION['ok_add']; $_SESSION['ok_add'] = " " ; ?></p>
 		   <div class="content-top">
 			   <form id='addProduct' onsubmit="return CheckProduct()" method="post" action="addProduct.php" >
 					<div class="to">
@@ -248,10 +248,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                </div>
 	                
 	                <div>
-	                <p class="auto-style1">Φωτογραφία Προϊόντος</p>
+	             <p class="auto-style1">Φωτογραφία Προϊόντος</p>
+	             <br>
+	                <form enctype="multipart/form-data" action="insert.php" method="post" name="changer">
+						<input name="MAX_FILE_SIZE" value="2,048KB" type="hidden">
+						<input name="image" accept="image/png" type="file">
+					</form>
+	                <!--<p class="auto-style1">Φωτογραφία Προϊόντος</p>
 					   <img  alt=""  width="74" height="84"id="blah" src="images/karydaki.jpg" alt="your image" />
 					   <input type='file' onchange="readURL(this);" />
-	                </div>
+	                </div> -->
 	                <div class="clear"></div>
 					<br>
 

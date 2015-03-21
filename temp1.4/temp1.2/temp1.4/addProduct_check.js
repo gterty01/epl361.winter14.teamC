@@ -2,11 +2,11 @@
 
 	var frm = document.forms["addProduct"];
 	
-	if (frm.name.value== "Όνομα Προϊόντος"){
+	if (frm.name.value == "Όνομα Προϊόντος"){
 		alert ('Καταχωρήστε το όνομα του προϊόντος!');
 	  	return false;
 	}
-	
+
 	if (frm.price.value == "Τιμή" ){
 	  	alert ('Καταχωρήστε την τιμή του προϊόντος!');
 	  	return false;

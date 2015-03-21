@@ -8,8 +8,8 @@
 
 <?php
 	session_start();
-	$error = "";
-	$ok = "";
+	$error_add = "";
+	$ok_add = "";
 	$servername = "localhost";
 	$username = "cyfoodmuseum";
 	$password = "9m8ESxZD";
@@ -19,9 +19,7 @@
 	
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
-	    echo "Connection faild";
 	}
-	echo "Connected successfully";
 
 	parse_url(file_get_contents("php://input"), $_POST);
 	
@@ -40,26 +38,26 @@
 	if($result->num_rows > 0){
 		 while($row = $result->fetch_assoc()) {
 		 	if ($row["Name"]==$_POST['name']){
-		 		$error = "Το προϊόν ήδη υπάρχει.";
-		 		$_SESSION['error'] = $error;
-		 		$_SESSION['ok'] = " ";
+		 		$error_add = "Το προϊόν ήδη υπάρχει.";
+		 		$_SESSION['error_add'] = $error;
+		 		$_SESSION['ok_add'] = " ";
 		 		header("Location:addProduct_dropdown.php");
 				die;
 			}
 		}
 	}
-	$_SESSION['error'] = " ";
+	$_SESSION['error_add'] = " ";
 	$sql="INSERT INTO `cyfoodmuseum`.`PRODUCT` (`Name`, `Description`, `Price`, `CodeOfCategory`,  `EntryDate`, `CodeOfSupplier`, `Weight`, `Availability`) VALUES ('$ProductName', '$Description', '$Price', '$CodeCategory', '$thisdate', '$CodeSupplier', '$Weight', '$Quantity');";
-	$_SESSION['ok'] = " ";
+	$_SESSION['ok_add'] = " ";
 	if ($conn->query($sql) === TRUE){
-		$ok = "Η προσθήκη του προϊόντος ολοκληρώθηκε επιτυχώς!";		
-		$_SESSION['ok'] = $ok;
+		$ok_add = "Η προσθήκη του προϊόντος ολοκληρώθηκε επιτυχώς!";		
+		$_SESSION['ok_add'] = $ok_add;
 		header("Location:addProduct_dropdown.php");
 		die;
 	 }
 	
-	$error = "Η προσθήκη του προϊόντος δεν ολοκληρώθηκε!";
-	$_SESSION['error'] = $error;
+	$error_add = "Η προσθήκη του προϊόντος δεν ολοκληρώθηκε!";
+	$_SESSION['error_add'] = $error_add;
 	header("Location:addProduct_dropdown.php");
 	die;
 	

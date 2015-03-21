@@ -47,7 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 				 </style>
     
-    <script src="addProduct_check.js"></script>
+    <script src="editProduct_check.js"></script>
 				 
 </head>
 <body style="color: #FFFFFF; ">
@@ -163,13 +163,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php">Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
 	    
 	     <div class="clear"></div>
+	     
+	    <p class="auto-style5"><?php echo $_SESSION['error_edit']; $_SESSION['error_edit'] = ' ' ; ?></p>
+	    <p class="auto-style6"><?php echo $_SESSION['ok_edit'];  $_SESSION['ok_edit'] = ' ';?></p>
 		   <div class="content-top">
-			   <form id='editProduct' onsubmit="return CheckProduct()" method="post" action="editProduct_showProduct.php" >
+			   <form id='editProduct' onsubmit="return checkEditProduct()" method="post" action="editProduct_saveDatabase.php" >
 					<div class="to">
-                     	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Pname']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προϊόντος';}" style="width: 37%">
-					 	<input name="price" type="text" class="text" value="<?php echo $_SESSION['price']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τιμή';}" style="margin-left: 10px; width: 14%;">
-						<input name="quantity" type="text" class="text" value="<?php echo $_SESSION['availability']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ποσότητα';}" style="margin-left: 10px; width: 13%;">
-						<input name="weight" type="text" class="text" value="<?php echo $_SESSION['weight']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Βάρος σε kg';}" style="margin-left: 10px; width: 15%;">
+						<p class="auto-style1">Κωδικός Προϊόντος: <?php echo $_SESSION['product']; ?></p>
+                     	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Pname']; ?>" style="width: 37%">
+					 	<input name="price" type="text" class="text" value="<?php echo $_SESSION['price']; ?>" style="margin-left: 10px; width: 14%;">
+						<input name="quantity" type="text" class="text" value="<?php echo $_SESSION['availability']; ?>" style="margin-left: 10px; width: 13%;">
+						<input name="weight" type="text" class="text" value="<?php echo $_SESSION['weight']; ?>" style="margin-left: 10px; width: 15%;">
 					</div>
 					 
 					<div class="to">
@@ -220,9 +224,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						// Check connection
 						if ($conn->connect_error) {
 						    die("Connection failed: " . $conn->connect_error);
-						    echo "Connection faild";
 						}
-						echo "Connected successfully";
 										
 						$querys = "SELECT * FROM `SUPPLIER`";
 						$result = $conn->query($querys);
@@ -243,7 +245,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="clear"></div>
 
 					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;"><?php echo $_SESSION['description']; ?></textarea>
+	                   <textarea name="description" value="Περιγραφή Προϊόντος" style="height: 97px; width: 94%;"><?php echo $_SESSION['description']; ?></textarea>
 	                </div>
 	                
 	                <div>
@@ -268,7 +270,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                               <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
                           </div>
                       </div>
-                  </div>
 
 </body>
 </html>

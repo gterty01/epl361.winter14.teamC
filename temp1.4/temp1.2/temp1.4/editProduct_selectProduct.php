@@ -173,9 +173,7 @@
 				echo '</option>';
 		    
 			}
-		}else
-			echo "no";
-
+		}
 ?>
 </select>
 </div>
