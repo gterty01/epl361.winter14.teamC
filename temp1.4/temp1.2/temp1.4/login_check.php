@@ -28,15 +28,29 @@
 	parse_url(file_get_contents("php://input"), $_POST);
 	print_r($_POST); 
 	
+		if (!$conn->set_charset("utf8")) {
+		    printf("Error loading character set utf8: %s\n", $conn->error);
+		} else {
+		   // printf("Current character set: %s\n", $conn->character_set_name());
+		}//die;
+
+	
 	$email = $_POST['mail'];
 	print ($email);
 	$password = $_POST['password'];
 	print ($password);
 	
+	$isAdmin="SELECT * FROM `ADMINS` WHERE Email ='$email'";
+	$resultAdmin=$conn->query($isAdmin);
+	
+
+	
+	
+	
 	$sql ="SELECT * FROM `USERS_FM` WHERE Email ='$email'";
 	$result=$conn->query($sql);
 	
-	if ($result->num_rows == 1){
+	if ($result->num_rows == 1 || $resultAdmin->num_rows == 1){
 
 	}
 	else{
@@ -49,16 +63,27 @@
 	$sql1 ="SELECT * FROM `USERS_FM` WHERE Email ='$email' AND Password ='$password'";
 	$result1=$conn->query($sql1);
 	
+	$adminPass ="SELECT * FROM `ADMINS` WHERE Email ='$email' AND Password ='$password'";
+	$PassA=$conn->query($adminPass);
+
+	
+	
 	if($result1->num_rows == 1)
 		{
 			$_SESSION['login_user']=$email;
 	        header("location:login_index.php"); /* Redirect the browser */
 	    }  
 		else {
-		
+			
+			if ($PassA->num_rows == 1){
+			$_SESSION['login_admin']=$email;
+	        header("location:admin_login.php"); /* Redirect the browser */
+			}
+			else {
 			$error = "Δώσατε μη έγκυρο κωδικό πρόσβασης!";
 			$_SESSION['error']=$error;
 			header("Location:login_error.php");
+			}
 		}
 
 ?>

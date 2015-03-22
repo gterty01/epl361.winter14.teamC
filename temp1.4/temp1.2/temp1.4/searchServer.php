@@ -169,6 +169,7 @@ if($result2->num_rows > 0)
 	  	} 
 	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
 	 echo 	  	 "<a href='single.html'>";
+
 	 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
 	 echo 		 					"<div class='product_image'>";
 	 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" width="270" height="250"/>';
@@ -191,6 +192,8 @@ if($result2->num_rows > 0)
 	echo 					 "</div>"	;			
 	echo                    "</div>";
 	echo                    "</a>";
+	// echo 	"</form>";
+
 	echo 				"</div>";
 
 	 
@@ -226,6 +229,13 @@ if ($conn->connect_error) {
 }
 parse_url(file_get_contents("php://input"), $_POST);
 //print_r($_POST); 
+
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $conn->error);
+} else {
+    //printf("Current character set: %s\n", $conn->character_set_name());
+}//die;
+
 if ($_POST["search"]){
 	$timi = $_POST['search'];
 	if ($timi!="Αναζήτηση"){
@@ -267,7 +277,11 @@ if($result->num_rows > 0)
 	  	echo "<div class='top-box'>";
 	  	} 
 	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
-	 echo 	  	 "<a href='single.html'>";
+	 $productCode=$row['Code'];
+	//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+	 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+	 // echo 	  	 "<a href='single.html'>";
+	
 	 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
 	 echo 		 					"<div class='product_image'>";
 	 
@@ -291,6 +305,7 @@ if($result->num_rows > 0)
 	echo 					 "</div>"	;			
 	echo                    "</div>";
 	echo                    "</a>";
+	//echo "</form>";
 	echo 				"</div>";
 
 	 
