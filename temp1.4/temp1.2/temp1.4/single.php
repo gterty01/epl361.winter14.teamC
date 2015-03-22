@@ -1,4 +1,4 @@
-<!--A Design by W3layouts
+﻿<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -56,7 +56,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </style>
 </head>
 <body>
-       <div class="header-top">
+
+
+<?php
+ $servername = "localhost";
+$username = "cyfoodmuseum";
+$password = "9m8ESxZD";
+$dbname = "cyfoodmuseum";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+//@mysql_select_db($dbname) or die ("No database");
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    echo "Connection faild";
+}
+parse_url(file_get_contents("php://input"), $_GET);
+//print_r($_GET); 
+
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $conn->error);
+} else {
+    //printf("Current character set: %s\n", $conn->character_set_name());
+}//die;
+$kodikos=$_GET['item'];
+
+$querys = "SELECT DISTINCT `Code` , `Name` , `Description` , `Availability` , `Price` , `NameCat` , `Weight`  , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Code` = '$kodikos'";
+$result=$conn->query($querys);
+$row = $result->fetch_assoc();	
+
+
+
+?>
+      <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -164,14 +197,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="wrap">
 		<div class="cont span_2_of_3">
 		  	<div class="grid images_3_of_2">
-						<div id="container" style="left: -1px; top: 0px">
+						<div id="container">
 							<div id="products_example">
 								<div id="products" style="height: 29px">
 									<div class="slides_container">
-									        <a href="#"><img class="a" id="img1" src="images/kumantaria.jpg" width="270" height="250" alt="" rel="images/kumantaria.jpg" /></a>
+									        <a href="#"><?php echo '<img class="a" id="img1" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" alt="" width="270" height="250"/>'; ?></a>
 									</div>
 									<ul class="pagination">
-										<li><a href="#"><img src="images/kumantaria.jpg" width="s-img" alt="1144953 3 2x"></a></li>
+										<li><a href="#"><?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" width="s-img" alt="1144953 3 2x"/>'; ?></a></li>
 									</ul>
 									<br>
 								</div>
@@ -179,8 +212,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 	            </div>
 		         <div class="desc1 span_3_of_2">
-		         	<h3 class="m_3">Κουμανταρια</h3>
-		             <p class="m_5">€25&nbsp;</p>
+		         	<h3 class="m_3"><?php echo $row['Name']; ?></h3>
+		             <p class="m_5">€ <?php echo $row['Price']; ?></p>
 		         	 <div class="btn_form">
 						<form>
 							<a href="checkout.html"><input type="submit" value="Αγορα" title=""></a>
@@ -189,17 +222,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 <br>
 					 <br>
 					 <div class="clear"></div>
-					<span class="m_link"><a href="checkout.html">ΠΡΟΣΘΗΚΗ ΣΤΟ ΚΑΛΑΘΙ</span>
-				     <p class="m_text2">Αποκλειστικά κυπριακό προϊόν. </p>
+					<span class="m_link"><a href="checkout.html">ΠΡΟΣΘΗΚΗ ΣΤΟ ΚΑΛΑΘΙ</a></span>
+					<p class="m_text2">Κατηγορία: <?php echo $row['NameCat']; ?></p>
+				     <p class="m_text2">Ζυγίζει: <?php echo $row['Weight']; ?> kg </p>
+				     <p class="m_text2">Διαθεσιμότητα: <?php echo $row['Availability']; ?></p>
+
 			     </div>
 			   <div class="clear"></div>	
 	         <div class="toogle">
      	<h3 class="m_3">Λεπτομερειες Προϊοντος</h3>
-     	<p class="m_text">Η Κουμανδαρία (ή κουμανταρία) είναι ένα γλυκό επιδόρπιο κρασί, που παράγεται στη περιοχή Κουμανδαρίας της Κύπρου, στους πρόποδες της οροσειράς Τροόδους. Έχει κατοχυρωθεί από την Ευρωπαϊκή Ένωση ως προϊόν ελεγχόμενης ονομασίας προέλευσης[1].
+     	<p class="m_text"><?php echo $row['Description']; ?></p>
+     	
+     	<h4 style="color:gray">Προμηθευτής</h4>
+		<p class="m_text"><?php echo $row['CompanyName']; ?></p>
 
-Η παραγωγή κουμανδαρίας τεκμηριώνεται στην Κύπρο από το 800 π.Χ. αλλά εντατικοποιήθηκε και συστηματοποιήθηκε με τη σημερινή της ονομασία κατά την περίοδο της Φραγκοκρατίας, όταν η περιοχή παραγωγής της ανήκε σε λατινικά μοναστικά τάγματα (La Grande Commanderie).
-
-Παράγεται από λιαστά (ημισταφιδομένα) σταφύλια. [2] Oίνοι, οι οποίοι παράγονται έτσι ονομάζονται στο εξωτερικό "Άχυροι Oίνοι".</p>
      </div>
      <div class="toogle">
      </div>

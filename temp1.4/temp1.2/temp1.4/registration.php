@@ -27,7 +27,11 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 parse_url(file_get_contents("php://input"), $_POST);
 print_r($_POST); 
-//die;
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $conn->error);
+} else {
+   // printf("Current character set: %s\n", $conn->character_set_name());
+}//die;
 
 /*$name2=($_POST['name']);
 echo $name2;
