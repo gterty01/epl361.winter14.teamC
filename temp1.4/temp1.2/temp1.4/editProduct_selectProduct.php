@@ -138,7 +138,7 @@
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
 	
 
-<form id='editProduct' method="post" action="editProduct_showProduct.php" >
+<form id='editProduct' method="post" accept-charset="utf8" action="editProduct_showProduct.php" >
 
 
 <div>
@@ -156,7 +156,10 @@
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
-										
+		if (!$conn->set_charset("utf8")) {
+    		printf("Error loading character set utf8: %s\n", $conn->error);
+    		die;
+		}										
 		parse_url(file_get_contents("php://input"), $_POST);
 
 		$CodeCategory = $_POST['category'];	

@@ -154,7 +154,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="login-title">
 	           		<h4 class="title">ειστε ηδη μελοσ;</h4>
 					<div id="loginbox" class="loginbox">
-						<form action="login_check.php" method="post" name="login" id="login-form">
+						<form action="login_check.php" method="post" accept-charset="utf8"  name="login" id="login-form">
 						  <fieldset class="input">
 						    <p id="login-form-username">
 						      <label for="modlgn_username">Email</label>

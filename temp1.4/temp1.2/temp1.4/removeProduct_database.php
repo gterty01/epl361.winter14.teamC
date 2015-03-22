@@ -23,8 +23,11 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
-	
 	parse_url(file_get_contents("php://input"), $_POST);	
+	if (!$conn->set_charset("utf8")) {
+    	printf("Error loading character set utf8: %s\n", $conn->error);
+    	die;
+	}
 
     $products = $_POST['Product'];
     if(isset($_POST['Product'])) {

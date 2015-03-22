@@ -165,9 +165,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	     <div class="clear"></div>
 	     
 	    <p class="auto-style5"><?php echo $_SESSION['error_edit']; $_SESSION['error_edit'] = ' ' ; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_edit'];  $_SESSION['ok_edit'] = ' ';?></p>
+	    <br>
 		   <div class="content-top">
-			   <form id='editProduct' onsubmit="return checkEditProduct()" method="post" action="editProduct_saveDatabase.php" >
+			   <form id='editProduct' enctype="multipart/form-data" onsubmit="return checkEditProduct()" method="post" accept-charset="utf8"  action="editProduct_saveDatabase.php" >
 					<div class="to">
 						<p class="auto-style1">Κωδικός Προϊόντος: <?php echo $_SESSION['product']; ?></p>
                      	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Pname']; ?>" style="width: 37%">
@@ -194,7 +194,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    echo "Connection faild";
 						}
 						echo "Connected successfully";
-										
+						if (!$conn->set_charset("utf8")) {
+    						printf("Error loading character set utf8: %s\n", $conn->error);
+    						die;
+						}						
 						$querys = "SELECT * FROM `CATEGORY`";
 						$result = $conn->query($querys);
 						$options = ""; 	
@@ -225,7 +228,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						if ($conn->connect_error) {
 						    die("Connection failed: " . $conn->connect_error);
 						}
-										
+						if (!$conn->set_charset("utf8")) {
+    						printf("Error loading character set utf8: %s\n", $conn->error);
+    						die;
+						}					
 						$querys = "SELECT * FROM `SUPPLIER`";
 						$result = $conn->query($querys);
 						$options = ""; 	
@@ -250,15 +256,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                
 	                <div>
 	                <p class="auto-style1">Φωτογραφία Προϊόντος</p>
-					   <img  alt=""  width="74" height="84"id="blah" src="images/karydaki.jpg" alt="your image" />
-					   <input type='file' onchange="readURL(this);" />
-	                </div>
+	                <br>
+					 <?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $_SESSION['image'] ).'" width="100" height="100"/>'; ?>
+					  
+					 <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">	
+					   <br>
+					   <img  id="output" width="100" height="100">
+						<script>
+						  var loadFile = function(event) {
+						    var output = document.getElementById('output');
+						    output.src = URL.createObjectURL(event.target.files[0]);
+						  };
+						</script>              
 	                <div class="clear"></div>
 					<br>
 
 	                <div class="submit">
 	               		<input type="submit" value="Καταχώρηση">
 	                </div>
+	                </div>
+	   
                </form>
             </div>
        </div> 

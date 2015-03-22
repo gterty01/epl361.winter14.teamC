@@ -150,7 +150,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος </a></ul>
 	
 
-<form id='removeProduct' method="post" action="removeProduct1.php" >
+<form id='removeProduct' method="post" accept-charset="utf8" action="removeProduct1.php" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">
@@ -166,7 +166,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
-										
+		if (!$conn->set_charset("utf8")) {
+	    	printf("Error loading character set utf8: %s\n", $conn->error);
+	    	die;
+		}										
 		$querys = "SELECT * FROM `CATEGORY`";
 		$result = $conn->query($querys);
 		if($result->num_rows > 0){
@@ -191,8 +194,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <div>
 <br>
-<form id='removeProduct' method="post" action="removeProduct_database.php" >
-<strong><h6 class="auto-style7"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
+<form id='removeProduct' method="post" accept-charset="utf8" action="removeProduct_database.php" >
+<strong><h6 class="auto-style8"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
 </strong>
 <span class="auto-style8">
 
@@ -207,9 +210,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
-										
+	
+					
 		parse_url(file_get_contents("php://input"), $_POST);
-
+		if (!$conn->set_charset("utf8")) {
+	    	printf("Error loading character set utf8: %s\n", $conn->error);
+	    	die;
+		}				
 		$CodeCategory = $_POST['category'];	
 		$querys = "SELECT * FROM `PRODUCT` where CodeOfCategory = '$CodeCategory' ";
 		$result = $conn->query($querys);

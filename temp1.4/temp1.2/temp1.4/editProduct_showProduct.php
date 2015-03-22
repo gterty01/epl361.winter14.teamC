@@ -17,8 +17,11 @@
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
-
 	parse_url(file_get_contents("php://input"), $_POST);	
+	if (!$conn->set_charset("utf8")) {
+    	printf("Error loading character set utf8: %s\n", $conn->error);
+    	die;
+	}
 	
 	$CodeProduct = $_POST['product'];	
 	$querys ="SELECT * FROM `PRODUCT` WHERE Code = '$CodeProduct'";
@@ -35,7 +38,8 @@
 			$_SESSION['category'] = $row['CodeOfCategory'];
 			$_SESSION['supplier']= $row['CodeOfSupplier'];
 			$_SESSION['description']=$row['Description'];
-			
+			$_SESSION['image']=$row['image'];
+
 			$CatCode = $row['CodeOfCategory'];
 			$querys1 ="SELECT * FROM `CATEGORY` WHERE CodeCat = '$CatCode'";
 			$result1=$conn->query($querys1);

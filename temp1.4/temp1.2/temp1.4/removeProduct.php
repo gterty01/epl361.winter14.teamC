@@ -155,10 +155,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
        <div class="wrap" style="width: 77%">
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /Διαγράφη Προϊόντος/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος </a></ul>
 	
-	    <p class="auto-style5"><?php echo $_SESSION['error_remove']; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_remove']; ?></p>
+	    <p class="auto-style5"><?php echo $_SESSION['error_remove']; $_SESSION['error_remove'] = " ";?></p>
+	    <p class="auto-style6"><?php echo $_SESSION['ok_remove'];  $_SESSION['ok_remove'] = " "; ?></p>
 		<br>
-<form id='removeProduct' method="post" action="removeProduct1.php" >
+<form id='removeProduct' method="post" accept-charset="utf8"  action="removeProduct1.php" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">
@@ -175,8 +175,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    die("Connection failed: " . $conn->connect_error);
 			echo "Connection faild";
 		}
-		echo "Connected successfully";
-										
+		if (!$conn->set_charset("utf8")) {
+	    	printf("Error loading character set utf8: %s\n", $conn->error);
+	    	die;
+		}										
+		
 		$querys = "SELECT * FROM `CATEGORY`";
 		$result = $conn->query($querys);
 		if($result->num_rows > 0){

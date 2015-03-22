@@ -29,6 +29,9 @@
 				 .auto-style7 {
 					 color: #000000;
 				 }
+				 .auto-style6 {
+					color: #009900;
+				 }
 
 				 </style>
     
@@ -142,9 +145,9 @@
 <div class="login">
        <div class="wrap" style="width: 77%">
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
-	
-
-<form id='editProduct' method="post" action="editProduct_selectProduct.php" >
+<p class="auto-style6"><?php echo $_SESSION['ok_edit'];  $_SESSION['ok_edit'] = ' ';?></p>
+<br>
+<form id='editProduct' method="post" accept-charset="utf8" action="editProduct_selectProduct.php" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">
@@ -160,7 +163,10 @@
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
-										
+		if (!$conn->set_charset("utf8")) {
+    		printf("Error loading character set utf8: %s\n", $conn->error);
+    		die;
+		}										
 		$querys = "SELECT * FROM `CATEGORY`";
 		$result = $conn->query($querys);
 		if($result->num_rows > 0){

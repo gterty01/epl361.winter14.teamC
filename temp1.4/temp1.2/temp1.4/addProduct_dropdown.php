@@ -167,7 +167,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <p class="auto-style5"><?php echo $_SESSION['error_add']; $_SESSION['error_add'] = " "; ?></p>
 	    <p class="auto-style6"><?php echo $_SESSION['ok_add']; $_SESSION['ok_add'] = " " ; ?></p>
 		   <div class="content-top">
-			   <form id='addProduct' onsubmit="return CheckProduct()" method="post" action="addProduct.php" >
+			   <form id='addProduct' enctype="multipart/form-data" onsubmit="return CheckProduct()" method="post" action="addProduct.php" accept-charset="utf8" >
 					<div class="to">
                      	<input name="name" type="text" class="text" value="Όνομα Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προϊόντος';}" style="width: 37%">
 					 	<input name="price" type="text" class="text" value="Τιμή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τιμή';}" style="margin-left: 10px; width: 14%;">
@@ -192,8 +192,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    die("Connection failed: " . $conn->connect_error);
 						    echo "Connection faild";
 						}
-						echo "Connected successfully";
-										
+						if (!$conn->set_charset("utf8")) {
+    						printf("Error loading character set utf8: %s\n", $conn->error);
+    						die;
+						}										
 						$querys = "SELECT * FROM `CATEGORY`";
 						$result = $conn->query($querys);
 						$options = ""; 	
@@ -224,7 +226,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						if ($conn->connect_error) {
 						    die("Connection failed: " . $conn->connect_error);
 						    echo "Connection faild";
-						}										
+						}				
+						if (!$conn->set_charset("utf8")) {
+    						printf("Error loading character set utf8: %s\n", $conn->error);
+    						die;
+						}						
 						$querys = "SELECT * FROM `SUPPLIER`";
 						$result = $conn->query($querys);
 						$options = ""; 	
@@ -250,23 +256,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                <div>
 	             <p class="auto-style1">Φωτογραφία Προϊόντος</p>
 	             <br>
-	                <form enctype="multipart/form-data" action="insert.php" method="post" name="changer">
-						<input name="MAX_FILE_SIZE" value="2,048KB" type="hidden">
-						<input name="image" accept="image/png" type="file">
-					</form>
-	                <!--<p class="auto-style1">Φωτογραφία Προϊόντος</p>
-					   <img  alt=""  width="74" height="84"id="blah" src="images/karydaki.jpg" alt="your image" />
-					   <input type='file' onchange="readURL(this);" />
-	                </div> -->
-	                <div class="clear"></div>
+				    <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+				    <br>
+				    <img  id="output" width="100" height="100">
+						<script>
+						  var loadFile = function(event) {
+						    var output = document.getElementById('output');
+						    output.src = URL.createObjectURL(event.target.files[0]);
+						  };
+						</script>   
+		                <div class="clear"></div>
 					<br>
 
 	                <div class="submit">
 	               		<input type="submit" value="Καταχώρηση">
 	                </div>
+	               </div> 
+
                </form>
             </div>
-       </div> 
+    </div>
     </div>
 			<div class="clear"></div>
 <div class="footer-bottom1">
@@ -275,7 +284,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                               <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
                           </div>
                       </div>
-                  </div>
 
 </body>
 </html>
