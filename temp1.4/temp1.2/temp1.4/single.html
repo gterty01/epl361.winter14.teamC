@@ -65,6 +65,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<option value="1">€ Ευρώ</option>
 						</select>
    				    </div>
+   				    <div class="clear"></div>
    			 </div>
 			 <div class="cssmenu">
 				<ul>
@@ -86,7 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="menu">
-	            <ul class="megamenu skyblue" style="left: -41px; top: 50px">
+	            <ul class="megamenu skyblue" style="left: -4.1%; top: 5%">
 			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
@@ -130,10 +131,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
-         <div class="search">	  
-				<input type="text" name="s" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
+         <div class="search">	
+            <form id='anazitisi' method="POST" action="searchServer.php" accept-charset="UTF-8"> <!--method='post'-->
+  
+				<input type="text" name="search" id="search" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
+				
 				<div id="response"> </div>
+				</form>
 		 </div>
 	  <div class="tag-list">
 	    <ul class="icon1 sub-icon1 profile_img">
@@ -157,6 +162,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
      <div class="clear"></div>
      <div class="clear"></div>
+     <br>
+
      </div>
 	</div>
 <div class="mens">    
@@ -164,7 +171,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <div class="wrap">
 		<div class="cont span_2_of_3">
 		  	<div class="grid images_3_of_2">
-						<div id="container" style="left: -1px; top: 0px">
+						<div id="container">
 							<div id="products_example">
 								<div id="products" style="height: 29px">
 									<div class="slides_container">
@@ -193,7 +200,61 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				     <p class="m_text2">Αποκλειστικά κυπριακό προϊόν. </p>
 			     </div>
 			   <div class="clear"></div>	
-	         <div class="toogle">
+	    <div class="clients">
+	    <h3 class="m_3">Προϊοντα που βρισκονται στην ιδια κατηγορια</h3>
+		 <ul id="flexiselDemo3">
+			<li><img src="images/kumantaria.jpg" width="150" height="100" /><a href="#">Category</a><p>€ 25</p></li>
+			<li><img src="images/zivania.jpg"width="60"height="100"/><a href="#">Category</a><p>€ 10</p></li>
+		 </ul>
+	<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo1").flexisel();
+			$("#flexiselDemo2").flexisel({
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: { 
+		    		portrait: { 
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		}, 
+		    		landscape: { 
+		    			changePoint:640,
+		    			visibleItems: 2
+		    		},
+		    		tablet: { 
+		    			changePoint:768,
+		    			visibleItems: 3
+		    		}
+		    	}
+		    });
+		
+			$("#flexiselDemo3").flexisel({
+				visibleItems: 5,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: { 
+		    		portrait: { 
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		}, 
+		    		landscape: { 
+		    			changePoint:640,
+		    			visibleItems: 2
+		    		},
+		    		tablet: { 
+		    			changePoint:768,
+		    			visibleItems: 3
+		    		}
+		    	}
+		    });
+		    
+		});
+	</script>
+	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+     </div>
+     <div class="toogle">
      	<h3 class="m_3">Λεπτομερειες Προϊοντος</h3>
      	<p class="m_text">Η Κουμανδαρία (ή κουμανταρία) είναι ένα γλυκό επιδόρπιο κρασί, που παράγεται στη περιοχή Κουμανδαρίας της Κύπρου, στους πρόποδες της οροσειράς Τροόδους. Έχει κατοχυρωθεί από την Ευρωπαϊκή Ένωση ως προϊόν ελεγχόμενης ονομασίας προέλευσης[1].
 
@@ -232,6 +293,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><a href="#">Εστιατόρια</a></li>
 						<li class="last"><a href="#">Βιβλία</a></li>
 					</ul>
+                   <section  class="sky-form">
+					<h4>Τιμή</h4>
+						<div class="row row1 scroll-pane">
+							<div class="col col-4">
+								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>€1,00 - €5,00</label>
+							</div>
+							<div class="col col-4">
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€6,00 - €10,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€11,00 - €15,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€16,00 - €20,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€21,00 - €25,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>€26,00 - €50,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€51,00 - €75,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€76,00 - €100,00</label>
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>€100+</label>
+							</div>
+						</div>
+		        </section>
 		       		        
 		  
 		      </div>

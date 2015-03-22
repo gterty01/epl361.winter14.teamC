@@ -5,14 +5,11 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
-<link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<title>Επεξεργασία Προϊόντων</title>
+<title>E-shop Cyprus Food Museum  | Αρχική</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,7 +25,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/css3-mediaqueries.js"></script>
     <script src="js/fwslider.js"></script>
-
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
@@ -38,9 +34,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 .auto-style2 {
 					 margin-left: 0px;
 				 }
-				 .auto-style5 {
-					color: #FF0000;
-				 }
+				.auto-style3 {
+					color: red ;
+				}
+
+				 .auto-style4 {
+					margin-left: 0;
+				}
+				.auto-style5 {
+					float: none;
+					margin-left: 0;
+					margin-top: 6px;
+					display:table-row;
+				}
 				 .auto-style6 {
 					color: #009900;
 				 }
@@ -64,23 +70,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="#">Σύνδεση ως διαχειριστής</a></li> |
-					<li><a href="index.html">Αποσύνδεση</a></li> |
-					</ul>
+					<li class="active"><?php echo $_SESSION['login_admin']; ?></li> |
+					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
+					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
+					<li><a href="index.html">Αποσύνδεση</a></li>
+				</ul>
 			</div>
 			<div class="clear"></div>
  		</div>
-	</div>
-	<div class="header-bottom">
+	</div>	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
-				<div class="logo">
-					<a href="index.html">
+				<div class="logo" >
+					<a href="login_index.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
-				<div class="menu">
-	            <ul class="megamenu skyblue" style="left: -41px; top: 50px">
-			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
+				<div class="auto-style5" style="height:100px" >
+	            <ul class="megamenu skyblue" >
+			<li class="active grid"><a href="login_index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">
@@ -119,7 +126,69 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
 				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>
+				
 			</ul>
+            <ul class="megamenu skyblue" >
+			<li><a class="color4" href="#">ΡΥΘΜΙΣΕΙΣ</a>
+				<div class="megapanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Ρυμίσεις Προϊόντων</h4>
+								<ul>
+									<li><a href="addProduct_dropdown.php">Προσθήκη Προϊόντος</a></li>
+									<li><a href="removeProduct.php">Διαγραφή Προϊόντος</a></li>
+									<li><a href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος</a></li>
+								</ul>	
+							</div>							
+					  </div>
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Ρυμίσεις Μελών</h4>
+								<ul>
+									<li><a href="404.html">Προσθήκη Μέλους</a></li>
+									<li><a href="404.html">Διαγραφή Μέλους</a></li>
+									<li><a href="404.html">Επεξεργασία Μέλους</a></li>
+								</ul>	
+							</div>							
+						</div>
+						</div>
+						<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Ρυμίσεις Κατηγοριών</h4>
+								<ul>
+									<li><a href="404.html">Προσθήκη Κατηγορίας</a></li>
+									<li><a href="404.html">Διαγραφή Κατηγορίας</a></li>
+									<li><a href="404.html">Επεξεργασία Κατηγορίας</a></li>
+								</ul>	
+							</div>							
+					  </div>
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Ρυμίσεις Παραγγελιών</h4>
+								<ul>
+									<li><a href="404.html">Προσθήκη Παραγγελίας</a></li>
+									<li><a href="404.html">Διαγραφή Παραγγελίας</a></li>
+									<li><a href="404.html">Επεξεργασία Παραγγελίας</a></li>
+								</ul>	
+						</div>
+					  </div>
+					  </div>
+					  <div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Διάφορα</h4>
+								<ul>
+									<li><a href="404.html">Ρυθμίσεις Προμηθευτών</a></li>
+									<li><a href="404.html">Ρυθμίσεις Φορτωτών</a></li>
+								</ul>	
+							</div>							
+						</div>
+					</div>
+					</div>
+				</li>	
+			</ul>			
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
@@ -150,9 +219,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
      <div class="clear"></div>
      <div class="clear"></div>
+     <br>
+
      </div>
 	</div>
-  <!-- start slider -->
+	  <!-- start slider -->
     <div id="fwslider">
             </div>
     <!--/slider -->
@@ -164,7 +235,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    
 	     <div class="clear"></div>
 	     
-	    <p class="auto-style5"><?php echo $_SESSION['error_edit']; $_SESSION['error_edit'] = ' ' ; ?></p>
+	    <p class="auto-style3"><?php echo $_SESSION['error_edit']; $_SESSION['error_edit'] = ' ' ; ?></p>
 	    <br>
 		   <div class="content-top">
 			   <form id='editProduct' enctype="multipart/form-data" onsubmit="return checkEditProduct()" method="post" accept-charset="utf8"  action="editProduct_saveDatabase.php" >
@@ -258,9 +329,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                <p class="auto-style1">Φωτογραφία Προϊόντος</p>
 	                <br>
 					 <?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $_SESSION['image'] ).'" width="100" height="100"/>'; ?>
-					  
+					  <br>
 					 <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">	
-					   <br>
+					<br>	
+					<br>	
 					   <img  id="output" width="100" height="100">
 						<script>
 						  var loadFile = function(event) {

@@ -44,10 +44,10 @@
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
     }else{
-    	$error_add = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
-        $_SESSION['error_add'] = $error_add;
-        $_SESSION['ok_add'] = " ";
-		header("Location:addProduct_dropdown.php");
+    	$error_edit = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
+        $_SESSION['error_edit'] = $error_edit;
+        $_SESSION['ok_edit'] = " ";
+		header("Location:editProduct.php");
 		die;
     }
     

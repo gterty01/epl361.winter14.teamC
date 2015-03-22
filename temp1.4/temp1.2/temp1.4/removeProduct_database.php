@@ -55,7 +55,9 @@
 
     else {
 
-	    echo "You did not choose product.";
+    		$error_remove = "Δεν επέλεξες προϊόν!";
+		 	$_SESSION['error_remove'] = $error_remove;
+		 	header("Location:removeProduct.php");
 
     }
 

@@ -161,7 +161,7 @@ body{
 	text-indent: -9999px;
 	outline:none;
 	cursor: pointer;
-	background: url('../images/search.png') no-repeat 0px 3px; 
+	background: url('images/search.png') no-repeat 0px 3px; 
 	width:30px;
 	height:25px;
 	padding:8px;
@@ -311,14 +311,14 @@ body{
 	vertical-align:middle;
 }
 .c1{
-	background: url('../images/tag.png') no-repeat 0px 0px;
+	background: url('images/tag.png') no-repeat 0px 0px;
 	width:42px;
 	height:42px;
 	display: inline-block;
 	vertical-align: middle;
 }
 .c2{
-	background: url('../images/cart.png') no-repeat 0px 1px;
+	background: url('images/cart.png') no-repeat 0px 1px;
 	width:42px;
 	height:42px;
 	display: inline-block;
@@ -487,7 +487,7 @@ p.title a:hover{
 
 .cart-right {
 	float: right;
-	background: #7db122 url('../images/cart.png') -3px -2px;
+	background: #7db122 url('images/cart.png') -3px -2px;
 	border-radius: 100px;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
@@ -499,7 +499,7 @@ p.title a:hover{
 }
 .span_1_of_3:hover .cart-right{
 	float: right;
-	background: #7db122 url('../images/cart.png') -3px -2px;
+	background: #7db122 url('images/cart.png') -3px -2px;
 	border-radius: 100px;
 	width: 40px;
 	height: 40px;
@@ -829,7 +829,7 @@ ul.f-list1 li a:hover {
 	height: 40px;
 	width: 40px;
 	display: block;
-	background: url('../images/img-sprite.png');
+	background: url('images/img-sprite.png');
 }
 .social-media li a:hover {
 	zoom: 1;
@@ -981,11 +981,6 @@ ul.f-list1 li a:hover {
 	border-top:1px solid #ddd;
 	padding:2% 0;
 }
-.addProduct{
-	border-top:1px solid #ddd;
-	padding:2% 0;
-}
-
 .col_1_of_login:first-child {
 	margin-left: 0;
 }
@@ -1120,44 +1115,6 @@ table {
 	width: 69.8%;
 }
 
-.register_account form input[type=email], .register_account form select {
-	font-size:0.95em;
-	color:#777;
-	padding: 8px;
-	outline: none;
-	margin:10px 0;
-	width:91%;
-	font-family: 'Exo 2', sans-serif;
-	border:none;
-	box-shadow:0 0 2px #aaa;
-	-webkit-box-shadow:0 0 2px #aaa;
-	-moz-box-shadow:0 0 2px #aaa;
-	-o-box-shadow:0 0 2px #aaa;
-}
-.register_account form input[type=email]:hover, .register_account form select:hover {
-	box-shadow:0 0 4px #aaa;
-	-webkit-box-shadow:0 0 4px #aaa;
-	-moz-box-shadow:0 0 4px #aaa;
-	-o-box-shadow:0 0 4px #aaa;
-		
-}
-
-.register_account form input[type=email]:invalid{
-	
-	box-shadow: 0 0 5px #d45252;
-	border-color:#b03535;
-	
-}
-
-
-.register_account form input[type=email].code {
-	width: 15%;
-}
-.register_account form input[type=email].number {
-	width: 69.8%;	
-
-}
-
 .register_account form input[type=password], .register_account form select {
 	font-size:0.95em;
 	color:#777;
@@ -1186,6 +1143,42 @@ table {
 }
 
 
+.register_account form input[type=email], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.register_account form input[type=email]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+		
+}
+
+/*.register_account form input[type=email]:invalid{
+	
+	box-shadow: 0 0 5px #d45252;
+	border-color:#b03535;
+	
+}*/
+
+.register_account form input[type=email].code {
+	width: 15%;
+}
+.register_account form input[type=email].number {
+	width: 69.8%;	
+
+}
 p.terms a, p.note a {
 	text-decoration: underline;
 	color:#555;
@@ -1351,7 +1344,7 @@ ul.dc_pagination li a:hover{
 	background: transparent;
 }
 .metro.focus:after{
-	background:url('../images/minus.gif');
+	background:url('images/minus.gif');
 	width: 13px;
 	height: 13px;
 	right: 10px;
@@ -1365,7 +1358,7 @@ ul.dc_pagination li a:hover{
 	right: 10px;
 	top: 50%;
 	margin-top: -4px;
-	background: url('../images/plus.gif');
+	background: url('images/plus.gif');
 	width: 13px;
 	height: 13px;
 	-webkit-transform-origin: 50% 20%;
@@ -1979,11 +1972,11 @@ p.m_text{
 }
 .nbs-flexisel-nav-left {
 	left: 0px;
-	background: url('../images/img-sprite.png') no-repeat -23px -217px;
+	background: url('images/img-sprite.png') no-repeat -23px -217px;
 }
 .nbs-flexisel-nav-right {
 	right: 0px;
-	background: url('../images/img-sprite.png') no-repeat -51px -217px;
+	background: url('images/img-sprite.png') no-repeat -51px -217px;
 }
 .toogle{
 	margin-top:4%;
@@ -2008,45 +2001,6 @@ h5.m_4 a:hover{
 	float:left;
 	width:57.5%;
 }
-
-.btn{
-	background:#555;
-	color: #FFF;
-}
-.btn_1{
-	background:#555;
-	color: #FFF;
-}
-
-}
-.single-widget ul li a:hover{
-	background:none;
-	color:#FE980F;
-}
-
-#do_action .total_area {
-  padding-bottom: 18px !important;
-}
-
-#do_action .total_area, #do_action .chose_area {
-  border: 1px solid #E6E4DF;
-  color: #696763;
-  padding: 30px 25px 30px 0;
-  margin-bottom: 80px;
-}
-
-.total_area span {
-  float: right;
-}
-
-.total_area ul li {
-  background:#E6E4DF;
-  color: #696763;
-  margin-top: 10px;
-  padding: 7px 20px;
-}
-
-
 .cart_product {
   display: block;
   margin: 15px -70px 10px 25px;
@@ -2054,47 +2008,6 @@ h5.m_4 a:hover{
 #cart_items .cart_info .cart_price p {
   color:#696763;
   font-size: 18px
-}
-#cart_items .cart_info .cart_description h4 {
-  margin-bottom: 0
-}
-
-#cart_items .cart_info .cart_description h4 a {
-  color: #363432;
-  font-family: 'Roboto',sans-serif;
-  font-size: 20px;
-  font-weight: normal;
-
-}
-
-#cart_items .cart_info .cart_description p {
-  color:#696763
-}
-.cart_product {
-  display: block;
-  margin: 15px -70px 10px 25px;
-}
-
-.cart_quantity_button a {
-  background:#F0F0E9;
-  color: #696763;
-  display: inline-block;
-  font-size: 16px;
-  height: 28px;
-  overflow: hidden;
-  text-align: center;
-  width: 35px;
-  float: left;
-}
-
-
-.cart_quantity_input {
-  color: #696763;
-  float: left;
-  font-size: 16px;
-  text-align: center;
-  font-family: 'Roboto',sans-serif;
-  
 }
 
 p.m_text1{
@@ -2238,7 +2151,7 @@ p.m_text2{
 	display: block;
 	width: 41px;
 	height: 38px;
-	background: url('../images/quotes.png') no-repeat 0 0;
+	background: url('images/quotes.png') no-repeat 0 0;
 	content: "";
 }
 .testimonials .testi-item blockquote > a:hover {
@@ -2277,7 +2190,7 @@ span.rollover {
 	-o-transition-duration: 1s;
 	-moz-transition-duration: 1s;
 	-webkit-transition: -webkit-transform 1s;
-	background: rgba(0, 0, 0, 0.4) url('../images/magnify-alt.png') no-repeat center;
+	background: rgba(0, 0, 0, 0.4) url('images/magnify-alt.png') no-repeat center;
 	cursor: pointer;
 	height: 215px;
 	width: 252px;
@@ -2304,7 +2217,7 @@ ul.delivery-list{
 ul.delivery-list li{
 	font-size: 0.85em;
 	margin: 0 0 8px 10px;
-	list-style-image: url('../images/list_marker.png');
+	list-style-image: url('images/list_marker.png');
 }
 ul.delivery-list li a{
 	color: #777;

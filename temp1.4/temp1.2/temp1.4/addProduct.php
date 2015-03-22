@@ -36,6 +36,8 @@
 	$CodeSupplier= $_POST['supplier'];
 	$thisdate = date("Y-m-d");
 	$CodeCategory = $_POST['category'];
+
+   $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
@@ -61,7 +63,7 @@
 		}
 	}
 	$_SESSION['error_add'] = " ";
-	$sql="INSERT INTO `cyfoodmuseum`.`PRODUCT` (`Name`, `Description`, `Price`, `CodeOfCategory`,  `EntryDate`, `CodeOfSupplier`, `Weight`, `Availability`, `image`) VALUES ('$ProductName', '$Description', '$Price', '$CodeCategory', '$thisdate', '$CodeSupplier', '$Weight', '$Quantity', '$imgData');";
+	$sql="INSERT INTO `cyfoodmuseum`.`PRODUCT` (`Name`, `Description`, `Price`, `CodeOfCategory`,  `EntryDate`, `CodeOfSupplier`, `Weight`, `Availability`, `image`) VALUES ('$ProductName', '$Description', '$Price', '$CodeCategory', '$thisdate', '$CodeSupplier', '$Weight', '$Quantity', '$imgData' );";
 	$_SESSION['ok_add'] = " ";
 	
 

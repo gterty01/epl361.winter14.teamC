@@ -26,15 +26,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
        <div class="header-top">
-			<div class="wrap"> 
-			<div class="wrap" style="width: 98%"> 
+	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
-   				        <select tabindex="4" class="dropdown" style="left: 2px; top: 0px; width: 114px; height: 16px">
+   				        <select tabindex="4" class="dropdown">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
 						</select>
    				    </div>
+   				    <div class="clear"></div>
    			 </div>
 			 <div class="cssmenu">
 				<ul>
@@ -47,10 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="clear"></div>
  		</div>
-
-			<div class="clear"></div>
- 		</div>
-	 </div>
+	</div>
 	 <div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
@@ -59,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="menu">
-	            <ul class="megamenu skyblue" style="left: -41px; top: 50px">
+	            <ul class="megamenu skyblue" style="left: -4.1%; top: 5%">
 			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
@@ -68,7 +65,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="h_nav">
 								<h4>Κατηγορίες Τροφίμων</h4>
 								<ul>
-									<li><a href="womens.html">Αλλαντικά</a></li>
+									<li><a href="allantika.html">Αλλαντικά</a></li>
 									<li><a href="glikakoutaliou.html">Γλυκά του Κουταλιού</a></li>
 									<li><a href="votana.html">Βότανα</a></li>
 									<li><a href="galaktokomika.html">Γαλακτοκομικά</a></li>
@@ -80,16 +77,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  </div>
 					</div>
 				</li>				
-				<li><a class="color7" href="mens.html">ΣΚΕΥΗ</a></li>
-				<li><a class="color6" href="other.html">ΥΛΙΚΑ</a>
+				<li><a class="color7" href="skeui.html">ΣΚΕΥΗ</a></li>
+				<li><a class="color6" href="#">ΥΛΙΚΑ</a>
 				<div class="megapanel">
 					<div class="col1">
 							<div class="h_nav">
 								<h4>Υλικά</h4>
 								<ul>
-									<li><a href="mens.html">Ζυμάρι</a></li>
-									<li><a href="mens.html">Χόρτα</a></li>
-									<li><a href="mens.html">Φρούτα</a></li>
+									<li><a href="zimaria.html">Ζυμάρι</a></li>
+									<li><a href="xorta.html">Χόρτα</a></li>
+									<li><a href="frouta.html">Φρούτα</a></li>
 								</ul>	
 							</div>							
 						</div>
@@ -103,10 +100,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
-         <div class="search">	  
-				<input type="text" name="s" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
+         <div class="search">	
+            <form id='anazitisi' method="POST" action="searchServer.php" accept-charset="UTF-8"> <!--method='post'-->
+  
+				<input type="text" name="search" id="search" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
+				
 				<div id="response"> </div>
+				</form>
 		 </div>
 	  <div class="tag-list">
 	    <ul class="icon1 sub-icon1 profile_img">
@@ -118,7 +119,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</li>
 		</ul>
 		<ul class="icon1 sub-icon1 profile_img">
-			<li><a class="active-icon c2" href="#"> </a>
+			<li><a class="active-icon c2" href="checkout.html"> </a>
 				<ul class="sub-icon1 list">
 					<li><h3>Αδειο Καλαθι</h3><a href=""></a></li>
 					<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=""></a></p></li>
@@ -130,6 +131,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
      <div class="clear"></div>
      <div class="clear"></div>
+     <br>
+
      </div>
 	</div>
 

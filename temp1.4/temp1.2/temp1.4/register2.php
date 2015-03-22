@@ -59,6 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<option value="1">€ Ευρώ</option>
 						</select>
    				    </div>
+   				    <div class="clear"></div>
    			 </div>
 			 <div class="cssmenu">
 				<ul>
@@ -80,7 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="menu">
-	            <ul class="megamenu skyblue" style="left: -41px; top: 50px">
+	            <ul class="megamenu skyblue" style="left: -4.1%; top: 5%">
 			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
@@ -124,10 +125,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
-         <div class="search">	  
-				<input type="text" name="s" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
+         <div class="search">	
+            <form id='anazitisi' method="POST" action="searchServer.php" accept-charset="UTF-8"> <!--method='post'-->
+  
+				<input type="text" name="search" id="search" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
+				
 				<div id="response"> </div>
+				</form>
 		 </div>
 	  <div class="tag-list">
 	    <ul class="icon1 sub-icon1 profile_img">
@@ -151,6 +156,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
      <div class="clear"></div>
      <div class="clear"></div>
+     <br>
+
      </div>
 	</div>
           <div class="register_account">
