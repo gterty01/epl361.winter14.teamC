@@ -76,11 +76,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		background:#EEEEEE;
 		color:black;
 	}
+.searchSubmit{
+background: url(images/delete.png) center no-repeat;
+width:24px;
+height:24px;
+font-size: 0; line-height: 0;
+}
 </style>
 </head>
 
 <body>
+<?php 
+	session_start(); 
+?>
 
+<?php
+$xristis;
+if(isset($_SESSION['login_user']))
+{
+$xristis = $_SESSION['login_user'];
+}
+else
+{
+$xristis = "Σύνδεση";
+header("Location: login.html");
+}
+
+?>
      <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
@@ -94,10 +116,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="login.html">Λογαριασμός</a></li> |
+					<li class="active"><?php echo $_SESSION['login_user']?></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
-					<li><a href="login.html">Σύνδεση</a></li> |
 					<li><a href="register.html">Εγγραφή</a></li>
 				</ul>
 			</div>
@@ -204,7 +225,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="clear"></div>
 
 	<div class="wrap">
-	<form>
+	<?php
+	
+$servername = "localhost";
+$username = "cyfoodmuseum";
+$password = "9m8ESxZD";
+$dbname = "cyfoodmuseum";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+//@mysql_select_db($dbname) or die ("No database");
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    echo "Connection faild";
+}
+parse_url(file_get_contents("php://input"), $_POST);
+//print_r($_POST); 
+
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $conn->error);
+} else {
+    //printf("Current character set: %s\n", $conn->character_set_name());
+}//die;
+$xristis=$_SESSION['login_user'];
+$querys ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' ";
+$result=$conn->query($querys);
+		
+	
+	?>
+	
+	
+	<form method="post" action="diagrafiApoKalathi.php">
   <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align=center ">
     <thead>
       <tr style="vertical-align:middle">
@@ -217,21 +269,53 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Γλυκό Καρυδάκι</td>
-        <td><img src="images/karydaki.jpg" width="100px" height="100 px" ></td>
-        <td>ΚυπροςFood</td>
-        <td>€10</td>
-        <td><input id="posotita" type="number" min="1" value="1" name="posotita"></td>
-        <td><input type="image" src="images/delete.png" alt="sumbit"></td>
-      </tr>
+    <?php
+	$counter=0;
+	if($result->num_rows > 0)
+	{
+	 while($row = $result->fetch_assoc()) {
+	 $proion = $row['CodeOfProduct'];
+		$stoixeiaProiontos="SELECT * FROM `PRODUCT` WHERE `Code` = '$proion' ";
+		$apotelesmata=$conn->query($stoixeiaProiontos);
+			
+		if($apotelesmata->num_rows == 0){
+			echo "nothing";
+		}
+				
+		
+		$row2 = $apotelesmata->fetch_assoc();
+		$proionOnoma=$row2['Name'];
+		$kodikosproion=$row2['Code'];
+		$price=$row2['Price'];
+		$promitheftis=$row2['CodeOfSupplier'];
+		$takeSup="SELECT * FROM `SUPPLIER` WHERE `SupplierNumber` = '$promitheftis'";
+		$querySup=$conn->query($takeSup);
+		$rowSup=$querySup->fetch_assoc();
+		$NamePromithefti=$rowSup['CompanyName'];
+		echo "<tr>";
+		echo "<td>$proionOnoma</td>";
+		echo '<td><img  src="data:image/jpeg;base64,'.base64_encode( $row2['image'] ).'" width="100" height="100"/></td>';
+		echo "<td>$NamePromithefti</td>";
+		echo "<td>€$price</td>";
+		echo "<td><input id='posotita' type='number' min='1' value='1' name='posotita'></td>";
+		$counter=$counter+1;
+		echo "<td><input type='submit' class='searchSubmit' id='diagrapsou$counter' name='diagrapsou' value=$kodikosproion></td>";
+		echo "</tr>";
+	}
+	} else{
+		header("Location: checkout.html");
+	}
+
+
+    
+    ?>
      </tbody>
     </table>
     
      <br><br>
 
 	<div class="active" style="margin-left:auto; margin-right:auto; width:75%; "> 
-    <button type="submit" class="grey" name="submit" value="Submit" style="float:right" >Προχωρήστε στο Ταμείο</button>
+    <button type="button" class="grey" name="submit" style="float:right" >Προχωρήστε στο Ταμείο</button>
 	</div>
     </form>
 <!-- DC Table Styles II:1 End -->
