@@ -21,15 +21,6 @@
     <script type="text/javascript" src="js/fwslider.js"></script>
 <!--end slider -->
 <script type="text/javascript" src="js/jquery.easydropdown.js"></script>
-<script type="text/javascript">
-	function doesExist(){
-
-	alert('Το προϊόν που επιλέξατε υπάρχει ήδη στο καλάθι σας!');
-	return false;
-	}
-</script>
-
-
 <style type="text/css">
 .auto-style1 {
 	color: #FFFFFF;
@@ -160,11 +151,6 @@
 	
 <span class="auto-style8">
 <?php
-	session_start(); 
-?>
-
-<?php
-
 function apotelesmata($result2, $counterItem) {
 echo 'irthe function';
 if($result2->num_rows > 0)
@@ -231,8 +217,6 @@ $servername = "localhost";
 $username = "cyfoodmuseum";
 $password = "9m8ESxZD";
 $dbname = "cyfoodmuseum";
-$xristis=$_SESSION['login_user'];
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 //@mysql_select_db($dbname) or die ("No database");
@@ -304,17 +288,8 @@ if($result->num_rows > 0)
 	 echo "</span>";
 	 echo 							"</div>";
  	echo 						"</div>";
- 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
-	$resultCheck=$conn->query($querysCheck);
-	echo $xristis;
-	echo $resultCheck->num_rows;
-	if($resultCheck->num_rows == 0){
-	echo  "<iframe name='votar' style='display:none;'></iframe>";
-  	echo   "<form id='prosthiki' method='POST' action='prosthikiKalathi.php' accept-charset='UTF-8' target='votar'>";
-	}
-  	else{
-  	echo   "<form id='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
-  	}
+ 	
+ 		echo "<form id='prosthiki' method='POST' onsubmit='prosthikiKalathi.php' accept-charset='UTF-8'>";
  	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
 	echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
 	echo					"</form>";
