@@ -55,6 +55,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		border-spacing:1px;
 		border-collapse:separate;
 		padding:0 3px;
+x
+
 	}
 	
 	td, th {
@@ -72,16 +74,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	}
 	
 	td {
-		background:#FAFAFA;
+		background:white;
 	}
+p{
+	color:#777;
+	font-size:0.85em;
+	line-height: 1.8em;
+	vertical-align:middle;
+
+}	
+h{
+	/*font-weight: bold;*/
+	color : #008000;
 	
+}
 	</style>
 </head>
 
-<body>
-
+<body style="color: #FFFFFF; ">
      <div class="header-top">
-	   <div class="wrap"> 
+	   <div class="wrap" style="width: 91%"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
    				        <select tabindex="4" class="dropdown">
@@ -93,16 +105,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="login.html">Λογαριασμός</a></li> |
+					<li class="active"><a href=""><?php echo $_SESSION['login_user']; ?></a></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
-					<li><a href="login.html">Σύνδεση</a></li> |
-					<li><a href="register.html">Εγγραφή</a></li>
+					<li><a href="index.html">Αποσύνδεση</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
  		</div>
 	</div>
+</div>
 
 
 	 <div class="header-bottom">
@@ -167,17 +179,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</form>
 		 </div>
 	  <div class="tag-list">
+	    <ul class="icon1 sub-icon1 profile_img">
+			<li>
+				<ul class="sub-icon1 list">
+					<li><h3>sed diam nonummy</h3><a href=""></a></li>
+					<li><p>Lorem ipsum dolor sit amet, consectetuer  <a href="">adipiscing elit, sed diam</a></p></li>
+				</ul>
+			</li>
+		</ul>
 		<ul class="icon1 sub-icon1 profile_img">
-			<li><a class="active-icon c2" href="checkout.html"> </a>
+			<li><a class="active-icon c2" href="kalathiProionta.php"> </a>
 				<ul class="sub-icon1 list">
 					<li><h3>Αδειο Καλαθι</h3><a href=""></a></li>
 					<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=""></a></p></li>
 				</ul>
 			</li>
 		</ul>
-	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
+	    <ul class="last"><li><a href="kalathiProionta.php">ΚΑΛΑΘΙ(0)</a></li></ul>
 	  </div>
-    </div>
+     <div class="clear"></div>
+     <div class="clear"></div>
+     <br>
 
      </div>
 	</div>
@@ -189,55 +211,55 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<h4 class="title">Τα Στοιχεια του λογαριασμου σας</h4>
 	<form>
 	
-  <table class="tsc_tables2_1" summary="Profile of User" style="width:100%; align=center ">
+  <table class="tsc_tables2_1" summary="Profile of User" style="width:100%; ">
     <thead>
     </thead>
     <tbody>
       <tr>
-        <td>Όνομα:</td>
-        <td><p class="m_text2"><?php echo $_SESSION['onoma'];?> </p></td>
-       	<td>Διεύθυνση 1 :</td>
-        <td><p class="m_text2"><?php echo $_SESSION['d1']; ?> </p></td>
+        <td><h>Όνομα:</h></td>
+        <td><p><?php echo $_SESSION['onoma'];?> </p></td>
+       	<td><h>Διεύθυνση 1:</h></td>
+        <td><p><?php echo $_SESSION['d1']; ?> </p></td>
 
       </tr>
       <tr>
-        <td>Επώνυμο:</td>
-        <td><p class="m_text2"><?php echo $_SESSION['epitheto']; ?></p></td>
-        <td>Διεύθυνση 2 :</td>
-        <td><p class="m_text2"><?php echo $_SESSION['d2']; ?></p></td>
+        <td><h>Επώνυμο:</h></td>
+        <td><p><?php echo $_SESSION['epitheto']; ?></p></td>
+        <td><h>Διεύθυνση 2:</h></td>
+        <td><p><?php if ($_SESSION['d2']!="null") echo $_SESSION['d2']; else echo "-";  ?></p></td>
 
       </tr>
       <tr>
-        <td>Email:</td>
-        <td><p class="m_text2"><?php echo $_SESSION['email']; ?></p></td>
-        <td>Ταχυδρομικός κώδικας:</td>
-        <td><p class="m_text2"><?php echo $_SESSION['tk']; ?></p></td>
+        <td><h>Email:</h></td>
+        <td><p><?php echo $_SESSION['email']; ?></p></td>
+        <td><h>Ταχυδρομικός κώδικας:</h></td>
+        <td><p><?php echo $_SESSION['tk']; ?></p></td>
 
       </tr>
       <tr>
-        <td>Ημερομηνία Γέννησης:</td>
-        <td><p class="m_text2"><?php echo $_SESSION['birth']; ?></p></td>
-		<td>Χώρα:</td>
-		<td><p class="m_text2"><?php echo $_SESSION['xwra']; ?></p></td>
+        <td><h>Ημερομηνία Γέννησης:</h></td>
+        <td><p><?php echo $_SESSION['birth']; ?></p></td>
+		<td><h>Χώρα:</h></td>
+		<td><p><?php echo $_SESSION['xwra']; ?></p></td>
 
 
       </tr>
       <tr>
-        <td>Φύλο:</td>
-        <td> <p class="m_text2"><?php echo $_SESSION['filo']; ?></p></td>
-        <td>Πόλη:</td>		
-        <td><p class="m_text2"><?php echo $_SESSION['poli'];?></p></td>
+        <td><h>Φύλο:</h></td>
+        <td> <p><?php if ($_SESSION['filo']!="null") echo $_SESSION['filo']; else echo "-"; ?></p></td>
+        <td><h>Πόλη:</h></td>		
+        <td><p><?php echo $_SESSION['poli'];?></p></td>
 
       </tr>
       <tr>
-        <td>Αριθμός Κινητού Τηλεφώνου:</td>
-        <td><p class="m_text2"><?php echo $_SESSION['tel1'];?></p></td>
+        <td><h>Αριθμός Κινητού Τηλεφώνου:</h></td>
+        <td><p><?php if (empty($_SESSION['tel1'])) echo $_SESSION['tel1']; else echo "-";?></p></td>
         <td></td>
 		<td></td>
       </tr>
       <tr>
-        <td>Αριθμός Σταθερού Τηλεφώνου:</td>
-         <td><p class="m_text2"><?php echo $_SESSION['tel2'];?></p></td>
+        <td><h>Αριθμός Σταθερού Τηλεφώνου:</h></td>
+         <td><p><?php if (empty($_SESSION['tel2'])) echo $_SESSION['tel2']; else echo "-";?></p></td>
         <td></td>
        <td></td>
      

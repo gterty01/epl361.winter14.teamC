@@ -9,11 +9,9 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Profile_Database</title>
+<title>Προφίλ χρήστη</title>
 </head>
-
 <body>
-
 <?php
 
 $servername = "localhost";
@@ -29,17 +27,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if (!$conn->set_charset("utf8")) {
+   	printf("Error loading character set utf8: %s\n", $conn->error);
+    die;
+}
+
+
 $xristis;
 if(isset($_SESSION['login_user'])){
 	$xristis = $_SESSION['login_user'];
 }else{
 	$xristis = "Σύνδεση";
-	//header("Location: login.html");
-	echo "oxiiiii";
+	header("Location: login.html");
 	die;
 }
-
-query1 = "SELECT * FROM `USERS_FM` WHERE Email = '$xristis'";
+$query1 = "SELECT * FROM `USERS_FM` WHERE Email = '$xristis'";
 
 $result = $conn->query($query1);
 
@@ -55,13 +57,16 @@ while($row = $result->fetch_assoc()) {
 	$_SESSION['tk'] = $row['PostalCode'];	
 	$_SESSION['tel2'] = $row['HomeNumber'];	
 	$_SESSION['tel1'] = $row['PhoneNumber'];	
-	$_SESSION['xwra'] = $row['Country'];	
-	echo "all good";
+	$_SESSION['xwra'] = $row['Country'];
+		
 }	
-echo "not good";
+
+header("Location: profile.php");	
+die;
 
 
 ?>
+
 </body>
 
 </html>
