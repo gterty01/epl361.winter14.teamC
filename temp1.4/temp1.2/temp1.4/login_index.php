@@ -61,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><?php echo $_SESSION['login_user']; ?></li> |
+					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_user']; ?></a></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
 					<li><a href="index.html">Αποσύνδεση</a></li>

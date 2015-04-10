@@ -37,7 +37,7 @@
 	$thisdate = date("Y-m-d");
 	$CodeCategory = $_POST['category'];
 
-   $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+   //$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
