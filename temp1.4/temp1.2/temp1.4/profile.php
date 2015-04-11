@@ -114,7 +114,6 @@ h{
 			<div class="clear"></div>
  		</div>
 	</div>
-</div>
 
 
 	 <div class="header-bottom">
@@ -209,24 +208,24 @@ h{
 
 	<div class="wrap">
 	<h4 class="title">Τα Στοιχεια του λογαριασμου σας</h4>
-	<form>
+ <form id='editProfile' method="POST" action="edit_profile.php" accept-charset="UTF-8"> <!--method='post'-->
 	
   <table class="tsc_tables2_1" summary="Profile of User" style="width:100%; ">
     <thead>
     </thead>
     <tbody>
       <tr>
-        <td><h>Όνομα:</h></td>
-        <td><p><?php echo $_SESSION['onoma'];?> </p></td>
-       	<td><h>Διεύθυνση 1:</h></td>
-        <td><p><?php echo $_SESSION['d1']; ?> </p></td>
+        <td style="height: 50px"><h>Όνομα:</h></td>
+        <td style="height: 50px"><p><?php echo $_SESSION['onoma'];?> </p></td>
+       	<td style="height: 50px"><h>Διεύθυνση 1:</h></td>
+        <td style="height: 50px"><p><?php echo $_SESSION['d1']; ?> </p></td>
 
       </tr>
       <tr>
         <td><h>Επώνυμο:</h></td>
         <td><p><?php echo $_SESSION['epitheto']; ?></p></td>
         <td><h>Διεύθυνση 2:</h></td>
-        <td><p><?php if ($_SESSION['d2']!="null") echo $_SESSION['d2']; else echo "-";  ?></p></td>
+        <td><p><?php if ($_SESSION['d2']!="") echo $_SESSION['d2']; else echo "-"; ?></p></td>
 
       </tr>
       <tr>
@@ -253,13 +252,13 @@ h{
       </tr>
       <tr>
         <td><h>Αριθμός Κινητού Τηλεφώνου:</h></td>
-        <td><p><?php if (empty($_SESSION['tel1'])) echo $_SESSION['tel1']; else echo "-";?></p></td>
+        <td><p><?php if (($_SESSION['tel1'] != "")AND($_SESSION['tel1'] != " ")) echo $_SESSION['tel1']; else echo "-"; ?></p></td>
         <td></td>
 		<td></td>
       </tr>
       <tr>
         <td><h>Αριθμός Σταθερού Τηλεφώνου:</h></td>
-         <td><p><?php if (empty($_SESSION['tel2'])) echo $_SESSION['tel2']; else echo "-";?></p></td>
+         <td><p><?php if (($_SESSION['tel2'] != "")AND($_SESSION['tel2'] != " ")) echo $_SESSION['tel2']; else echo "-";?></p></td>
         <td></td>
        <td></td>
      

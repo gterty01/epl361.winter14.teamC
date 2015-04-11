@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προσθήκη Προϊόντος</title>
+<title>Προσθήκη κατηγοριών</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -30,9 +30,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <style type="text/css">
 				 .auto-style1 {
 					 color: gray;
-				 }
-				 .auto-style2 {
-					 margin-left: 0px;
 				 }
 				 .auto-style3 {
 					color: red ;
@@ -229,7 +226,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  
 <div class="login">
        <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προϊόντος /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος </a></ul>
+	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέας Κατηγορίας/<a class="home" href="removeCategory.php">Διαγράφη Κατηγορίας</a>/<a class="home" href="editCategory.php">Επεξεργασία Κατηγορίας </a></ul>
 	    
 	     <div class="clear"></div>
 
@@ -238,92 +235,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		   <div class="content-top">
 			   <form id='addProduct' enctype="multipart/form-data" onsubmit="return CheckProduct()" method="post" action="addProduct.php" accept-charset="utf8" >
 					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προϊόντος';}" style="width: 37%">
-					 	<input name="price" type="text" class="text" value="Τιμή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τιμή';}" style="margin-left: 10px; width: 14%;">
-						<input name="quantity" type="text" class="text" value="Ποσότητα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ποσότητα';}" style="margin-left: 10px; width: 13%;">
-						<input name="weight" type="text" class="text" value="Βάρος σε Kg" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Βάρος σε kg';}" style="margin-left: 10px; width: 15%;">
+                     	<input name="name" type="text" class="text" value="Όνομα Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Κατηγορίας';}" style="width: 37%">
 					</div>
-					 
-					<div class="to">
-					<p><select name="category" style="width: 329px; height: 37px">
-					<option value="">Διάλεξε την κατηγορία του προϊόντος</option>
-					<?php
-						$servername = "localhost";
-						$username = "cyfoodmuseum";
-						$password = "9m8ESxZD";
-						$dbname = "cyfoodmuseum";
-						
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-						
-						// Check connection
-						if ($conn->connect_error) {
-						    die("Connection failed: " . $conn->connect_error);
-						    echo "Connection faild";
-						}
-						if (!$conn->set_charset("utf8")) {
-    						printf("Error loading character set utf8: %s\n", $conn->error);
-    						die;
-						}										
-						$querys = "SELECT * FROM `CATEGORY`";
-						$result = $conn->query($querys);
-						$options = ""; 	
-						if($result->num_rows > 0){
-						 	while($row = $result->fetch_assoc()) {
-								$codeCategory = $row["CodeCat"];
-								$category = $row["NameCat"];
-								print '<option value="' . $codeCategory . '">';
-								print $category;
-								print '</option>';
-							}							
-						}
-					?>
-				</select>;
-
-					<select name="supplier" style="width: 329px; height: 37px">
-					<option value="">Διάλεξε τον προμηθευτή του προϊόντος</option>
-					<?php
-						$servername = "localhost";
-						$username = "cyfoodmuseum";
-						$password = "9m8ESxZD";
-						$dbname = "cyfoodmuseum";
-						
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-						
-						// Check connection
-						if ($conn->connect_error) {
-						    die("Connection failed: " . $conn->connect_error);
-						    echo "Connection faild";
-						}				
-						if (!$conn->set_charset("utf8")) {
-    						printf("Error loading character set utf8: %s\n", $conn->error);
-    						die;
-						}						
-						$querys = "SELECT * FROM `SUPPLIER`";
-						$result = $conn->query($querys);
-						$options = ""; 	
-						if($result->num_rows > 0){
-						 	while($row = $result->fetch_assoc()) {
-								$codeSupplier = $row["SupplierNumber"];
-								$supplier = $row["CompanyName"];
-								echo '<option value="' . $codeSupplier . '">';
-								echo $supplier ;
-								echo '</option>';
-							}
-						}
-					?>
-					</select>
-					</div>
-				
+					 				
 					<div class="clear"></div>
 
 					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Προϊόντος" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;">Περιγραφή Προϊόντος:</textarea>
+	                   <textarea name="description" value="Περιγραφή Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;">Περιγραφή Προϊόντος:</textarea>
 	                </div>
 	                
 	                <div>
-	             <p class="auto-style1">Φωτογραφία Προϊόντος</p>
+	             <p class="auto-style1">Φωτογραφία Κατηγορίας</p>
 	             <br>
 				    <input type="file" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)">
 				    <br>

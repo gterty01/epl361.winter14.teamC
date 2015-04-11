@@ -40,13 +40,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .auto-style4 {
 	font-size: medium;
 }
-.auto-style5 {
-	font-size: small;
+p.code1{
+	color:#008000;
 }
 
-
 </style>
-<script src="validationsRegister.js" ></script>
+<script src="edit_profile_check.js" ></script>
 
 </head>
 <body> 
@@ -63,11 +62,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="login.html">Λογαριασμός</a></li> |
+					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_user']; ?></a></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
-					<li><a href="login.html">Σύνδεση</a></li> |
-					<li><a href="register.html">Εγγραφή</a></li>
+					<li><a href="index.html">Αποσύνδεση</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -154,41 +152,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
           <div class="register_account">
           	<div class="wrap">
-    	      <h4 class="title">Δημιουργια Λογαριασμου</h4>
+    	      <h4 class="title">Επεξεργασια Στοιχειων του Λογαριασμου σας</h4>
     	    
-    		   <form id='register' onsubmit="return DoCustomValidation();" method="POST" action="registration.php" accept-charset="UTF-8"> <!--method='post'-->
+    		   <form id='EditProfile' onsubmit="return CheckProfile();" method="POST" action="edit_profile_database.php" accept-charset="UTF-8"> <!--method='post'-->
     									
     			 <div class="col_1_of_2 span_1_of_2">
-    			 	<p class="code">Όνομα</p>
+    			 	<p class="code1">Όνομα</p>
 		   			<div><input type="text" id ="name" name ="name" value="<?php echo $_SESSION['onoma']; ?>"></div>
-				 	<p class="code">Επίθετο</p>
+				 	<p class="code1">Επίθετο</p>
 		  		   	<div><input type="text" id ="surname" name="surname" value="<?php echo $_SESSION['epitheto']; ?>" ></div>
-		          	<p class="code">Ημερομηνία Γέννησης</p>
+		          	<p class="code1">Ημερομηνία Γέννησης</p>
 					<div><input type="text" id="birth" name="birth" value="<?php echo $_SESSION['birth']; ?>"></div>
-		          	<p class="code">Φύλο</p>
-					<div><select id="filo"  oninit="<?php echo $_SESSION['filo']; ?>" name="filo" onchange="change_country(this.value)" class="frm-field required">
-		            <option value="Φύλο">Φύλο</option>         
+		          	<p class="code1">Φύλο</p>
+					<div><select id="filo" name="filo" onchange="change_country(this.value)" class="frm-field required">
+		            <option value="<?php if ($_SESSION['filo']!="null") echo $_SESSION['filo']; else echo "Φύλο" ?>"><?php if ($_SESSION['filo']!="null") echo $_SESSION['filo']; else echo "Φύλο" ?></option>         
 		            <option value="Αρρεν">Αρρεν</option>  
 		            <option value="Θηλυ">Θηλυ</option>
 		            </select>
-		          	<p class="code">Κωδικός Χώρας + Αριθμός Κινητού Τηλεφώνου</p>
-		            <div><input type="text" id="codeC1" name="codeC1" value="<?php echo $_SESSION['codeC1']; ?>" class="code"> - <input type="text" id="tel1" name="<?php echo $_SESSION['tel1']; ?>" value="" class="number">
-		          	<p class="code">Κωδικός Χώρας + Αριθμός Σταθερού Τηλεφώνου</p>
-		          	<input type="text" id="codeC2" name="codeC2" value="<?php echo $_SESSION['codeC2']; ?>" class="code"> - <input type="text" id="tel2" name="tel2" value="<?php echo $_SESSION['tel2']; ?>" class="number">
+		          	<p class="code1">Αριθμός Κινητού Τηλεφώνου</p>
+		            <div>
+						<input type="text" id="tel1" name="tel1" value="<?php echo $_SESSION['tel1']; ?>" class="number" style="width: 87%">
+		          	<p class="code1">Αριθμός Σταθερού Τηλεφώνου</p>
+		           <input type="text" id="tel2" name="tel2" value="<?php echo $_SESSION['tel2']; ?>" class="number" style="width: 88%">
 					</div>
 					</div>
 
 		    	 </div>
 		    	  <div class="col_1_of_2 span_1_of_2">
-		    	  	<p class="code">Διεύθυνση 1</p>
+		    	  	<p class="code1">Διεύθυνση 1</p>
 		    		<div><input type="text" id="address1" name="address1" value="<?php echo $_SESSION['d1']; ?>"></div>
-		          	<p class="code">Διεύθυνση 2</p>
-		    		<div><input type="text" id="address2" name="address2" value="<?php echo $_SESSION['d2']; ?>" ></div>
-		           	<p class="code">Ταχυδρομικός Κώδικας</p>
+		          	<p class="code1">Διεύθυνση 2</p>
+		    		<div><input type="text" id="address2" name="address2" value="<?php if ($_SESSION['d2']!="null") echo $_SESSION['d2']; ?>" ></div>
+		           	<p class="code1">Ταχυδρομικός Κώδικας</p>
 		    		<div><input type="text" id="postalCode" name="postalCode" value="<?php echo $_SESSION['tk']; ?>"></div>
-		          	<p class="code">Χώρα</p>
-		    		<div><select id="country" name="country" oninit="<?php $_SESSION['xwra']; ?>" onchange="change_country(this.value)" class="frm-field required">
-		           		             <option value="Διάλεξε τη Χώρα σου">Διάλεξε τη Χώρα σου</option>
+		          	<p class="code1">Χώρα</p>
+		    		<div><select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
+		           		             <option value="<?php echo $_SESSION['xwra']; ?>"><?php echo $_SESSION['xwra']; ?></option>
 									<option value="Åland Islands">Åland Islands</option>
 									<option value="Afghanistan">Afghanistan</option>
 									<option value="Albania">Albania</option>
@@ -385,9 +384,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<option value="Senegal">Senegal</option>
 											            
 		         </select></div>	
-		          <p class="code">Πόλη</p>
-		         	        
-		          <div><input type="text" id="city" name="city" value="<?php echo $_SESSION['city']; ?>"></div>
+		          <p class="code1">Πόλη</p>  
+		          <div><input type="text" id="city" name="city" value="<?php echo $_SESSION['poli']; ?>"></div>
 		           <div>
 		          </div>
 
@@ -396,7 +394,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		         <br>
 		    <div class="clear"></div>
 		         <br>
-		      <button type="submit" class="grey" name="submit" value="Submit">Αποθηκευση στοιχειων</button></div>
+		      		<button type="submit" class="grey" name="submit" value="Submit" style="float:right">Αποθηκευση στοιχειων</button></div>
 		    <div class="clear"></div>
 		    </form>						
 		    
@@ -411,7 +409,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
 			   <div class="section group example">
 				 <div class="col_1_of_f_2 span_1_of_f_2" style="width: 41%; margin-left: 0; height: 150px">
-				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
+				    <h2>ΠΛΗΡΟΦΟΡΙΕςΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
 				            <li><a href="terms.html">Όροι Χρήσης</a></li>
