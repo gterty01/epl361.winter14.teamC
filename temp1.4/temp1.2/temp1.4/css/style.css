@@ -1013,7 +1013,7 @@ h4.title{
 }
 input.inputbox, input.required, div.k2AccountPage input[type=text] {
 	background: #FFF;
-	border: 1px solid #BDBCBC;
+	border: 1px solid #999999;
 	color: inherit;
 	font-family: inherit;
 	font-size: inherit;
@@ -2315,7 +2315,7 @@ ul.delivery-list li a:hover{
 	font-size: 0.85em;
 	font-family: 'Exo 2', sans-serif;
 	margin: 10px 0;
-	border: 1px solid #EEE;
+	border: 1px solid #CCCCCC;
 	color: #777;
 	background: #FFF;
 	float: left;
@@ -2325,7 +2325,7 @@ ul.delivery-list li a:hover{
 	width: 98.3%;
 	font-size:0.85em;
 	margin: 10px 0;
-	border: 1px solid #EEE;
+	border: 1px solid #CCCCCC;
 	color:#777;
 	font-family: 'Exo 2', sans-serif;
 	outline: none;
