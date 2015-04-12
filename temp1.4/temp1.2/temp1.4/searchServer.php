@@ -29,7 +29,12 @@
 	}
 </script>
 
-
+ <script type='text/javascript'>
+function validateInsertion(){
+				alert('Προστέθηκε στο καλάθι σας!');
+				return true;		
+			}
+	</script>
 <style type="text/css">
 .auto-style1 {
 	color: #FFFFFF;
@@ -201,10 +206,7 @@ if($result2->num_rows > 0)
  	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
 	echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
 	echo					"</form>";
- 	
- 	
- 	
-	//echo 						"<div> <a href='checkout.html' class='cart-right'></a> </div>";
+ 	//echo 						"<div> <a href='checkout.html' class='cart-right'></a> </div>";
 	echo 						"<div class='clear'></div>";
 	echo 					 "</div>"	;			
 	echo                    "</div>";
@@ -306,14 +308,15 @@ if($result->num_rows > 0)
  	echo 						"</div>";
  	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
 	$resultCheck=$conn->query($querysCheck);
-	echo $xristis;
-	echo $resultCheck->num_rows;
 	if($resultCheck->num_rows == 0){
-	echo  "<iframe name='votar' style='display:none;'></iframe>";
-  	echo   "<form id='prosthiki' method='POST' action='prosthikiKalathi.php' accept-charset='UTF-8' target='votar'>";
+	//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+  		
+			
+  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiKalathi.php'  accept-charset='UTF-8'>"; 
+	echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
 	}
   	else{
-  	echo   "<form id='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
   	}
  	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
 	echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
