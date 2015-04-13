@@ -28,6 +28,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!-- dropdown -->
 <script src="js/jquery.easydropdown.js"></script>
+<script type="text/javascript">
+function copyelements() {
+var table = document.getElementById('proiontakalathiou');
+var r = table.rows[table.rows.length-1];
+var inputs = r.getElementsByTagName("input");
+var result = new Array(inputs.length);
+
+alert(table.rows[table.rows.length-1].cells[0].children[0].value);
+/*for (var i=0; i<inputs.length; i++){
+        result[i] = inputs[i].value; // not innerHTML or something
+        var cell = result[i].innerHTML;
+    alert(cell);
+    }*/
+}
+</script>
 <style type="text/css">
 .auto-style1 {
 	width: 90%;
@@ -256,8 +271,8 @@ $result=$conn->query($querys);
 	?>
 	
 	
-	<form method="post" action="diagrafiApoKalathi.php">
-  <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align=center ">
+	<form method="post" action="episkopisiparaggelias.php" name="formadiagrafis">
+  <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align=center" id="proiontakalathiou">
     <thead>
       <tr style="vertical-align:middle">
         <th scope="col">Προϊόν</th>
@@ -265,14 +280,17 @@ $result=$conn->query($querys);
         <th scope="col">Προμηθευτής</th>
         <th scope="col">Τιμή</th>
         <th scope="col">Ποσότητα</th>
+        <th scope="col">Βάρος</th>
         <th scope="col">Διαγραφή</th>
       </tr>
     </thead>
     <tbody>
     <?php
-	$counter=0;
+  	$counter=0;
+  	$twoD = array(array());
 	if($result->num_rows > 0)
 	{
+    $numofproducts=0;
 	 while($row = $result->fetch_assoc()) {
 	 $proion = $row['CodeOfProduct'];
 		$stoixeiaProiontos="SELECT * FROM `PRODUCT` WHERE `Code` = '$proion' ";
@@ -287,6 +305,7 @@ $result=$conn->query($querys);
 		$proionOnoma=$row2['Name'];
 		$kodikosproion=$row2['Code'];
 		$price=$row2['Price'];
+		$varos=$row2['Weight'];
 		$promitheftis=$row2['CodeOfSupplier'];
 		$takeSup="SELECT * FROM `SUPPLIER` WHERE `SupplierNumber` = '$promitheftis'";
 		$querySup=$conn->query($takeSup);
@@ -297,27 +316,81 @@ $result=$conn->query($querys);
 		echo '<td><img  src="data:image/jpeg;base64,'.base64_encode( $row2['image'] ).'" width="100" height="100"/></td>';
 		echo "<td>$NamePromithefti</td>";
 		echo "<td>€$price</td>";
-		echo "<td><input id='posotita' type='number' min='1' value='1' name='posotita'></td>";
-		$counter=$counter+1;
+		echo "<td><input id='posotita$counter' type='number' min='1' value='1' name='posotita$counter' onblur='document.formatameiou.posotita$counter.value = this.value;' ></td>";
+		echo "<td>$varos kg</td>";
 		echo "<td><input type='submit' class='searchSubmit' id='diagrapsou$counter' name='diagrapsou' value=$kodikosproion></td>";
 		echo "</tr>";
+      /*  $twoD[$numofproducts][0] = $proionOnoma;
+        $twoD[$numofproducts][1] = $price;
+        $twoD[$numofproducts][2] = $varos;
+        
+		$metavliti = $twoD[$numofproducts][0];
+		$tempmet= "$metavliti";
+
+        $metavliti1 = $twoD[$numofproducts][1];
+		$tempmet1= "$metavliti1";
+		$metavliti2 = $twoD[$numofproducts][2];
+		$tempmet2= "$metavliti2";*/
+
+
+		echo "<input type='hidden' name='onoma$counter' id='onoma$counter' value=$proionOnoma>";
+		echo "<input type='hidden' name='kodikos$counter' id='kodikos$counter' value=$kodikosproion>";
+		echo "<input type='hidden' name='timi$counter' id='timi$counter' value=$price>";
+		echo "<input type='hidden' name='varos$counter' id='varos$counter' value=$varos>";
+		$counter=$counter+1;
+        //$numofproducts++;
 	}
+	echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$counter>";
+	
 	} else{
 		header("Location: checkout.html");
 	}
 
 
-    
-    ?>
+   ?>
      </tbody>
-    </table>
-    
-     <br><br>
-
-	<div class="active" style="margin-left:auto; margin-right:auto; width:75%; "> 
-    <button type="button" class="grey" name="submit" style="float:right" >Προχωρήστε στο Ταμείο</button>
-	</div>
+   </table>
+   <br><br>
+   <div class='active' style='margin-left:auto; margin-right:auto; width:75%;'>
+   <button type="submit"  class="grey" name="submittameiou" id="submittameiou" style="float:right" >Προχωρήστε στο Ταμείο</button>
+   </div>
     </form>
+<!--	<div class='active' style='margin-left:auto; margin-right:auto; width:75%;'>
+	<form method='post' action='tameio.php' name="formatameiou" onsubmit="takeposotites()" >
+<?PHP
+	$metritis=0;
+	echo $counter;
+		while ($metritis<$counter){
+		echo $metritis;
+		echo $twoD[$metritis][0];
+		echo $twoD[$metritis][1];
+		echo $twoD[$metritis][2];
+
+		$metavliti = $twoD[$metritis][0];
+		$tempmet= "$metavliti";
+		
+		$metavliti1 = $twoD[$metritis][1];
+		$tempmet1= "$metavliti1";
+		$metavliti2 = $twoD[$metritis][2];
+		$tempmet2= "$metavliti2";
+
+
+		echo "<input type='hidden' name='onoma$metritis' value='$tempmet'>";
+		echo "<input type='hidden' name='timi$metritis' value='$tempmet1'>";
+		echo "<input type='hidden' name='varos$metritis' value='$tempmet2'>";
+		echo "<input type='hidden' name='posotita$metritis' onblur='document.formadiagrafis.proiontakalathiou.posotita$metritis.value = this.value;'  >";
+		echo $metritis;
+		$metritis=$metritis+1;
+		echo $metritis;
+		}
+
+
+			
+	?>
+    <button type="submit"  class="grey" name="submit" style="float:right" >Προχωρήστε στο Ταμείο</button>
+	</form>
+	</div>-->
+
 <!-- DC Table Styles II:1 End -->
 	<br>
 	<br>
