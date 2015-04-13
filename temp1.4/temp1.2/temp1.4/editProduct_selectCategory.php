@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>E-shop Cyprus Food Museum  | Αρχική</title>
+<title>Επεξεργασία Προϊόντος</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -41,7 +41,17 @@
 				 </style>
     
     <script src="selectedDropdown.js"></script>
-				 
+		<script>
+		function check() {
+			var frm = document.forms["editProduct"];
+
+			if (frm.category.value == "" ){
+	  			alert ('Διαλέξτε την κατηγορία του προϊόντος που θέλετε να επεξεργαστείτε!');
+	  			return false;
+			}
+		}	
+</script>
+  			 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
@@ -216,7 +226,7 @@
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
 <p class="auto-style6"><?php echo $_SESSION['ok_edit'];  $_SESSION['ok_edit'] = ' ';?></p>
 <br>
-<form id='editProduct' method="post" accept-charset="utf8" action="editProduct_selectProduct.php" >
+<form id='editProduct' onsubmit="return check()" method="post" accept-charset="utf8" action="editProduct_selectProduct.php" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">

@@ -230,7 +230,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  
 <div class="login">
        <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προμηθευτή /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προμηθευτή</a></ul>
+	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προμηθευτή /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/<a class="home" href="editSupplier_selectSupplier.php">Επεξεργασία Προμηθευτή</a></ul>
 	    
 	     <div class="clear"></div>
 

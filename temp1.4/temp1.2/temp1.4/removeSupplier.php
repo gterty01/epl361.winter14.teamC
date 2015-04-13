@@ -47,7 +47,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 .auto-style8 {
 					 color: #080808;
 				 }
-
 		 </style>
     
     <script src="selectedDropdown.js"></script>
@@ -57,8 +56,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
-			    				    <div class="box1">
-   				        <select tabindex="4" class="dropdown">
+			    		<div class="box1">
+   				        <select tabindex="4" class="dropdown" style="left: 2px; top: -1px">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
 						</select>
@@ -67,7 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><?php echo $_SESSION['login_admin']; ?></li> |
+					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_admin']; ?></a></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
 					<li><a href="index.html">Αποσύνδεση</a></li>
@@ -225,7 +224,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addSupplier.php"> Προσθήκη Νέου Προμηθευτή </a> /Διαγράφη Προμηθευτή/<a class="home" href="editProduct_selectCategory.php">Επεξεργασία Προμηθευτή </a></ul>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addSupplier.php"> Προσθήκη Νέου Προμηθευτή </a> /Διαγράφη Προμηθευτή/<a class="home" href="editSupplier_selectSupplier.php">Επεξεργασία Προμηθευτή </a></ul>
 	
 
 <p class="auto-style3"><?php echo $_SESSION['error_remove_supplier']; $_SESSION['error_remove_supplier'] = " ";?></p>
@@ -234,9 +233,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div>
 <br>
 <form id='removeSupplier' method="post" accept-charset="utf8" action="removeSupplier_database.php" >
-<strong><h6 class="auto-style8"> Διαλέξετε τους προμηθευτές που θέλετε να διαγραφούν : </h6>
-</strong>
-<span class="auto-style8">
+<h1 class="remove"> Διαλέξτε τους προμηθευτές που θέλετε να διαγράψετε : </h1>
+
+<span  class="remove">
 
 <?php
 		$servername = "localhost";
@@ -282,8 +281,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>		
 
 </div>
+<br>
+<br>
+<div class="footer-bottom1">
+
+    <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+    <p class="pull-right" style="height: 41px">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
 </div>
-
+</div>
 </body>
-
 </html>

@@ -1,9 +1,15 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <?php session_start(); ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Επεξεργασία Προϊόντος</title>
+<title>Επεξεργασία Προμηθευτή</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,12 +28,10 @@
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
-				 .auto-style7 {
-					 color: #000000;
-				 }
-				 .auto-style6 {
-					color: #009900;
-				 }
+				 .auto-style3 {
+					color: red ;
+				}
+
 				 .auto-style4 {
 					margin-left: 0;
 				}
@@ -37,25 +41,17 @@
 					margin-top: 6px;
 					display:table-row;
 				}
-
-				 </style>   
+				.auto-style6 {
+					color: green ;
+				}
+			 
+				 </style>
     
-    <script src="selectedDropdown.js"></script>
-    <script>
-	function check() {
-		var frm = document.forms["editProduct"];
-
-		if (frm.product.value == "" ){
-	  		alert ('Διαλέξτε το προϊόν που θέλετε να επεξεργαστείτε!');
-	  		return false;
-		}
-	}    
-    
-    </script>
+    <script src="addSupplier_check.js"></script>
 				 
 </head>
 <body style="color: #FFFFFF; ">
-<div class="header-top">
+     <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -76,8 +72,7 @@
 			</div>
 			<div class="clear"></div>
  		</div>
-	</div>
-<div class="header-bottom">
+	</div>	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
@@ -221,64 +216,79 @@
      <br>
 
      </div>
-	</div>	
+	</div>
+	  <!-- start slider -->
+    <div id="fwslider">
+            </div>
+    <!--/slider -->
+<div class="main">
+	  
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
-	
+	    <ul class="breadcrumb breadcrumb__t"><a class="home" href="addSupplier.php"> Προσθήκη Νέου Προμηθευτή </a> /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/Επεξεργασία Προμηθευτή</ul>
+	    
+	     <div class="clear"></div>
+	     
+	    <p class="auto-style3"><?php echo $_SESSION['error_edit_supplier']; $_SESSION['error_edit_supplier'] = ' ' ; ?></p>
+	    <p class="auto-style6"><?php echo $_SESSION['ok_edit_supplier']; $_SESSION['ok_edit_supplier'] = ' ' ; ?></p>
 
-<form id='editProduct' onsubmit="return check();" method="post" accept-charset="utf8" action="editProduct_showProduct.php" >
+	    <br>
+		   <div class="content-top">
+			   <form id='addSupplier' enctype="multipart/form-data" onsubmit="return CheckSupplier()" method="post" action="editSupplier_saveDatabase.php" accept-charset="utf8" >
+					<div>
+					<p class="m_text2">Κωδικός Προμηθευτή: <?php echo $_SESSION['supplier']; ?></p>
+	     			<div class="clear"></div>
+					<br>
+					</div>
+					<p class="m_text2" style="display:inline; width: 34%;color:#008000" >Όνομα Προμηθευτή:</p>
+					<p class="m_text2" style="display:inline; margin-left:265px; width: 27%; color:#008000" >Τηλέφωνο Προμηθευτή:</p>
+					<p class="m_text2" style="display:inline; margin-left: 160px; width: 27%; color:#008000" >Φαξ Προμηθευτή:</p>					
+					<div class="to">
+                     	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Sname']; ?>" style="width: 34%">
+					 	<input name="til" type="text" class="text" value="<?php echo $_SESSION['til']; ?>" style="margin-left: 10px; width: 27%;">
+						<input name="fax" type="text" class="text" value="<?php echo $_SESSION['fax']; ?>" style="margin-left: 10px; width: 20%;">
+					</div>
+					
+	     			<div class="clear"></div>
+					<p class="m_text2" style="display:inline;margin-left:0px;  width: 34%; height: 23px; color:#008000" >Διεύθυνση 1:</p>
+					<p class="m_text2" style="display:inline; margin-left:285px; width: 27%; color:#008000" >Διεύθυνση 2:</p>
+					<p class="m_text2" style="display:inline; margin-left: 260px; width: 27%; color:#008000" >Πόλη:</p>
+	 
+					<div class="to">
+						<input name="d1" type="text" class="text" value="<?php echo $_SESSION['a1']; ?>" style="margin-left: 10px; width: 31%;">
+						<input name="d2" type="text" class="text" value="<?php echo $_SESSION['a2']; ?>" style="margin-left: 10px; width: 30%;">
+						<input name="city" type="text" class="text" value="<?php echo $_SESSION['city']; ?>" style="margin-left: 10px; width: 20%;">
+					</div>
+	     			<div class="clear"></div>
+					<p class="m_text2" style="display:inline;margin-left:0px;  width: 34%; height: 23px; color:#008000" >Ταχυδρομικός Κώδικας:</p>
+					<p class="m_text2" style="display:inline; margin-left:135px; width: 27%; color:#008000" >Ιστοσελίδα:</p>
+					<p class="m_text2" style="display:inline; margin-left: 260px; width: 27%; color:#008000" >Email:</p>
+					
+					<div class="to">
+						<input name="tk" type="text" class="text" value="<?php echo $_SESSION['tk']; ?>" style="margin-left: 10px; width: 23%;">
+						<input name="site" type="text" class="text" value="<?php echo $_SESSION['site']; ?>" style="margin-left: 10px; width: 29%;">
+						<input name="email" type="text" class="text" value="<?php echo $_SESSION['email']; ?>" style="margin-left: 10px; width: 25%;">
+					
+					</div>
+				
+					<div class="clear"></div>
+					<br>
+					<br>
+	    	  <div class="submit" >
+	 		 <input type="submit" value="Αποθήκευση"></div>
+      
+               </form>
+            </div>
+       </div> 
+    </div>
+	<div class="clear"></div>
+			
+<div class="footer-bottom1">
 
-
-<div>
-<br>
-<select name="product" style="width: 600px; height: 37px">
-	<option value="">Διάλεξε το προϊόν που θέλεις να επεξεργαστείς</option>
-<?php
-		$servername = "localhost";
-		$username = "cyfoodmuseum";
-		$password = "9m8ESxZD";
-		$dbname = "cyfoodmuseum";
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);				
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		}
-		if (!$conn->set_charset("utf8")) {
-    		printf("Error loading character set utf8: %s\n", $conn->error);
-    		die;
-		}										
-		parse_url(file_get_contents("php://input"), $_POST);
-
-		$CodeCategory = $_POST['category'];	
-		$querys = "SELECT * FROM `PRODUCT` where CodeOfCategory = '$CodeCategory' ";
-		$result = $conn->query($querys);
-		//echo "$CodeCategory";
-		if($result->num_rows > 0){
-			echo '<br>';
-			while($row = $result->fetch_assoc()) {
-				$nameProduct = $row["Name"];
-				$codeProduct = $row["Code"];
-				echo '<option value="' . $codeProduct . '">';
-				echo $nameProduct ;
-				echo '</option>';
-		    
-			}
-		}
-?>
-</select>
+    <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+    <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
 </div>
-<br>
-
-	  <div class="submit" >
-	  <input type="submit" value="Επεξεργασία"></div>
-
-</form>
-</div>		
-
 </div>
 
 </body>
-
 </html>

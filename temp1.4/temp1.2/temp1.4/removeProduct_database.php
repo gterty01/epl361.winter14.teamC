@@ -38,11 +38,9 @@
 
     		if ($conn->query($sql) === TRUE) {
     			$ok_remove = "Επιτυχής διαγραφή του προϊόντος!";
-		 		$_SESSION['error'] = " ";
-		 		$_SESSION['ok_remove'] = $ok_remove;
-		 		header("Location:removeProduct.php");
-				die;
-    			
+				$_SESSION['error'] = " ";
+				$_SESSION['ok_remove'] = $ok_remove;
+
 			} else {
     			$error_remove = "Δεν έγινε η διαγρφή του προϊόντος! Ξαναπροσπαθήστε!";
 		 		$_SESSION['error_remove'] = $error_remove;
@@ -60,6 +58,9 @@
 		 	header("Location:removeProduct.php");
 
     }
+    
+	header("Location:removeProduct.php");
+	die;
 
 ?>
 </body>

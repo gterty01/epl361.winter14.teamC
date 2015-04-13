@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>E-shop Cyprus Food Museum  | Αρχική</title>
+<title>Επεξεργασία Προϊόντος</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -241,12 +241,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			   <form id='editProduct' enctype="multipart/form-data" onsubmit="return checkEditProduct()" method="post" accept-charset="utf8"  action="editProduct_saveDatabase.php" >
 					<div class="to">
 						<p class="auto-style1">Κωδικός Προϊόντος: <?php echo $_SESSION['product']; ?></p>
+						<br>
+						<br>
+						<div>
+							<p class="m_text2" style="display:inline; width: 37%;color:#008000" >Όνομα Προϊόντος:</p>
+							<p class="m_text2" style="display:inline; margin-left:305px; width: 14%; color:#008000" >Τιμή:</p>
+							<p class="m_text2" style="display:inline; margin-left: 140px; width: 13%; color:#008000" >Ποσότητα:</p>					
+							<p class="m_text2" style="display:inline; margin-left: 100px; width: 15%; color:#008000" >Βάρος:</p>					
+						</div>
                      	<input name="name" type="text" class="text" value="<?php echo $_SESSION['Pname']; ?>" style="width: 37%">
 					 	<input name="price" type="text" class="text" value="<?php echo $_SESSION['price']; ?>" style="margin-left: 10px; width: 14%;">
 						<input name="quantity" type="text" class="text" value="<?php echo $_SESSION['availability']; ?>" style="margin-left: 10px; width: 13%;">
 						<input name="weight" type="text" class="text" value="<?php echo $_SESSION['weight']; ?>" style="margin-left: 10px; width: 15%;">
 					</div>
-					 
+					<div class="clear"></div>
+					<br>
+						<div>
+							<p class="m_text2" style="display:inline; width: 37%;color:#008000" >Κατηγορία Προϊόντος:</p>
+							<p class="m_text2" style="display:inline; margin-left:205px; width: 14%; color:#008000" >Προμηθευτής Προϊόντος:</p>				
+						</div>
+			 
 					<div class="to">
 					<p><select name="category" style="width: 329px; height: 37px">
 					<option value="<?php echo $_SESSION['category']; ?>"> <?php echo $_SESSION['CName']; ?> </option>
@@ -318,15 +332,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					?>
 					</select>
 					</div>
+					<div class="clear"></div>
+					<br>
+					<div>
+						<p class="m_text2" style="display:inline; width: 37%;color:#008000" >Περιγραφή Προϊόντος:</p>
+					</div>
 				
 					<div class="clear"></div>
-
 					<div class="text">
 	                   <textarea name="description" value="Περιγραφή Προϊόντος" style="height: 97px; width: 94%;"><?php echo $_SESSION['description']; ?></textarea>
 	                </div>
 	                
 	                <div>
-	                <p class="auto-style1">Φωτογραφία Προϊόντος</p>
+	                <p class="m_text2" style="display:inline; width: 37%;color:#008000">Φωτογραφία Προϊόντος</p>
 	                <br>
 					 <?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $_SESSION['image'] ).'" width="100" height="100"/>'; ?>
 					  <br>

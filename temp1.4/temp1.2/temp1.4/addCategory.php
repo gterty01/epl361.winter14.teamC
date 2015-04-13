@@ -241,9 +241,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="clear"></div>
 
 					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;">Περιγραφή Προϊόντος:</textarea>
+	                   <textarea name="description" value="Περιγραφή Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Προϊόντος:';}" style="height: 97px; width: 94%;">Περιγραφή Κατηγορίας:</textarea>
+	                </div>
+					<div class="clear"></div>
+					<div class="to">
+					<?php
+						$servername = "localhost";
+						$username = "cyfoodmuseum";
+						$password = "9m8ESxZD";
+						$dbname = "cyfoodmuseum";
+						
+						// Create connection
+						$conn = new mysqli($servername, $username, $password, $dbname);
+						
+						// Check connection
+						if ($conn->connect_error) {
+						    die("Connection failed: " . $conn->connect_error);
+						    echo "Connection faild";
+						}
+						if (!$conn->set_charset("utf8")) {
+    						printf("Error loading character set utf8: %s\n", $conn->error);
+    						die;
+						}	
+															
+						$querys = "SELECT * FROM `SUBCATEGORY`";
+						$result = $conn->query($querys);
+						$options = ""; 	
+						if($result->num_rows > 0){
+						 	while($row = $result->fetch_assoc()) {
+								$codeSubCategory = $row["Code"];
+								$category = $row["Name"];
+								print '<option value="' . $codeCategory . '">';
+								print $category;
+								print '</option>';
+							}							
+						}
+					?>
+						<p class="m_text2"><input class="m_text2" type="radio" id ="pistwtiki_karta" name="sex" value="pistwtiki_karta">Πιστωτική Κάρτα</p>
+						<p class="m_text2"><input class="m_text2" type="radio" id ="PayPal" name="sex" value="PayPal">PayPal</p>
+						<br>
 	                </div>
 	                
+					<div class="clear"></div>
 	                <div>
 	             <p class="auto-style1">Φωτογραφία Κατηγορίας</p>
 	             <br>

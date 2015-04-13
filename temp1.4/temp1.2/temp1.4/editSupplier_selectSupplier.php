@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Επεξεργασία Προϊόντος</title>
+<title>Επεξεργασία Προμηθευτή</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -43,9 +43,9 @@
     <script src="selectedDropdown.js"></script>
     <script>
 	function check() {
-		var frm = document.forms["editProduct"];
+		var frm = document.forms["editSupplier"];
 
-		if (frm.product.value == "" ){
+		if (frm.supplier.value == "" ){
 	  		alert ('Διαλέξτε το προϊόν που θέλετε να επεξεργαστείτε!');
 	  		return false;
 		}
@@ -224,16 +224,16 @@
 	</div>	
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addProduct_dropdown.php"> Προσθήκη Νέου Προϊόντος </a> /<a class="home" href="removeProduct.php">Διαγράφη Προϊόντος</a>/Επεξεργασία Προϊόντος</ul>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addSupplier.php"> Προσθήκη Νέου Προμηθευτή </a> /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/Επεξεργασία Προμηθευτή</ul>
 	
 
-<form id='editProduct' onsubmit="return check();" method="post" accept-charset="utf8" action="editProduct_showProduct.php" >
+<form id='editSupplier' onsubmit="return check();" method="post" accept-charset="utf8" action="editSupplier_showSupplier.php" >
 
 
 <div>
 <br>
-<select name="product" style="width: 600px; height: 37px">
-	<option value="">Διάλεξε το προϊόν που θέλεις να επεξεργαστείς</option>
+<select name="supplier" style="width: 600px; height: 37px">
+<option value="">Διαλέξτε τον προμηθευτή που θέλετε να επεξεργαστείτε</option>
 <?php
 		$servername = "localhost";
 		$username = "cyfoodmuseum";
@@ -249,19 +249,16 @@
     		printf("Error loading character set utf8: %s\n", $conn->error);
     		die;
 		}										
-		parse_url(file_get_contents("php://input"), $_POST);
-
-		$CodeCategory = $_POST['category'];	
-		$querys = "SELECT * FROM `PRODUCT` where CodeOfCategory = '$CodeCategory' ";
+		$querys = "SELECT * FROM `SUPPLIER`";
 		$result = $conn->query($querys);
 		//echo "$CodeCategory";
 		if($result->num_rows > 0){
 			echo '<br>';
 			while($row = $result->fetch_assoc()) {
-				$nameProduct = $row["Name"];
-				$codeProduct = $row["Code"];
-				echo '<option value="' . $codeProduct . '">';
-				echo $nameProduct ;
+				$nameSupplier = $row["CompanyName"];
+				$CodeSupplier = $row["SupplierNumber"];
+				echo '<option value="' . $CodeSupplier . '">';
+				echo $nameSupplier;
 				echo '</option>';
 		    
 			}

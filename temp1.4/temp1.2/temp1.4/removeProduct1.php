@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>E-shop Cyprus Food Museum  | Αρχική</title>
+<title>Διαγραφή Προϊόντος</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -37,22 +37,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					margin-top: 6px;
 					display:table-row;
 				}
-
 				 .auto-style8 {
 					 color: #080808;
 				 }
+	
 
 		 </style>
     
     <script src="selectedDropdown.js"></script>
 				 
 </head>
-<body style="color: #FFFFFF; ">
+
+<body>
 <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
-			    				    <div class="box1">
-   				        <select tabindex="4" class="dropdown">
+			    		<div class="box1">
+   				        <select tabindex="4" class="dropdown" style="left: 2px; top: -1px">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
 						</select>
@@ -61,7 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><?php echo $_SESSION['login_admin']; ?></li> |
+					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_admin']; ?></a></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
 					<li><a href="index.html">Αποσύνδεση</a></li>
@@ -70,7 +71,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clear"></div>
  		</div>
 	</div>
-
 <div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
@@ -267,9 +267,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div>
 <br>
 <form id='removeProduct' method="post" accept-charset="utf8" action="removeProduct_database.php" >
-<strong><h6 class="auto-style8"> Διάλεξε το προϊόν ή τα προϊόντα που θέλετε να διαγραφούν : </h6>
-</strong>
-<span class="auto-style8">
+<h1 class="remove"> Διαλέξτε το προϊόν ή τα προϊόντα που θέλετε να διαγράψετε : </h1>
+<span class="remove">
 
 <?php
 		$servername = "localhost";

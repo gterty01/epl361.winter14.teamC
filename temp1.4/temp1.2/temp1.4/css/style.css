@@ -2147,6 +2147,21 @@ p.m_text2{
 	line-height: 1.8em;
 	margin-top:20px;
 }
+h1.remove{
+	color:#777;
+	font-size:100%;
+	line-height: 1.8em;
+	margin-top:20px;
+   	font-weight: bold;
+}
+
+span.remove{
+	color:#777;
+	font-size:0.85em;
+	line-height: 1.8em;
+	margin-top:20px;
+}
+
 /*--out--*/
 /*  GRID OF Content and sidebar   ============================================================================= */
 .labout{
