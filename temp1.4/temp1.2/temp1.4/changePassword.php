@@ -5,7 +5,6 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
-
 <?php session_start(); ?>
 
 <?php
@@ -23,25 +22,18 @@ else{
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προβολή προφίλ</title>
-
+<title>Αλλαγή Κωδικού Πρόσβασης</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
-<link type="text/css" rel="stylesheet" href="dreamcodes/tables2/css/tsc_tables2.css" />
 <script type="text/javascript" src="js/jquery1.min.js"></script>
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script type="text/javascript" src="js/megamenu.js"></script>
+
+
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<!-- dropdown -->
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
 .auto-style1 {
@@ -50,59 +42,59 @@ else{
 	-webkit-transition: all .2s linear;
 	-o-transition: all .2s linear;
 	-ms-transition: all .2s linear;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 0;
+	margin: 0 auto;
 }
 .auto-style2 {
 	color: #FFFFFF;
 }
-
-	table {
-		color:#333;
-		font-family:Helvetica,Arial,sans-serif;
-		width:100%;
-		border-spacing:1px;
-		border-collapse:separate;
-		padding:0 3px;
-x
-
-	}
-	
-	td, th {
-		width: 200px;
-		height: 50px;
-		transition:all .3s;
-		text-align:left;
-		vertical-align:middle;
-	}
-
-	th {
-		background:grey;
-		font-weight:700;
-		color : white;
-	}
-	
-	td {
-		background:white;
-	}
-p{
-	color:#777;
-	font-size:0.85em;
-	line-height: 1.8em;
-	vertical-align:middle;
-
-}	
-h{
-	/*font-weight: bold;*/
-	color : #008000;
-	
+.auto-style3 {
+	color: red ;
 }
-	</style>
-</head>
+.auto-style4 {
+	font-size: medium;
+}
+.auto-style5 {
+	color: #009900;
+}
+p.code1{
+	color:#008000;
+}
 
-<body style="color: #FFFFFF; ">
-     <div class="header-top">
+</style>
+
+<script>
+
+function checkNewPassword(){
+
+	var frm = document.forms["ChangePassword"];
+	var pass1 = frm.passwdNew.value.length;
+	var fr1 = parseInt(pass1, 10);
+	var pass2 = frm.passwdOld.value.length;
+	var fr2 = parseInt(pass2, 10);
+	
+	var sigkrisi = parseInt("6",10);
+	var sigkrisi2 = parseInt("1",10);
+
+	if (fr2 < sigkrisi2){
+		alert('Δεν καταχώρησατε τον προγηγούμενο κωδικό πρόσβασης σας');
+	  	return false;
+	}
+
+	if (fr1 < sigkrisi){
+		alert('Καταχωρήστε τον νέο κωδικό σας, με τουλάχιστον 6 χαρακτήρες');
+	  	return false;
+	}
+
+  	if(frm.passwdNew.value != frm.passwdRepeat.value){
+    	alert('Ο κωδικός που δώσατε δεν είναι ίδιος με την Επιβεβαίωσή του. Δώστε ίδιο κωδικό και στα δύο πεδία.');
+    	return false;
+  	}
+
+}
+</script>
+</head>
+<body> 
+   <div class="header-top">
 	   <div class="wrap" style="width: 91%"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -124,9 +116,7 @@ h{
 			<div class="clear"></div>
  		</div>
 	</div>
-
-
-	 <div class="header-bottom">
+	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
@@ -188,122 +178,62 @@ h{
 				</form>
 		 </div>
 	  <div class="tag-list">
-	    <ul class="icon1 sub-icon1 profile_img">
-			<li>
-				<ul class="sub-icon1 list">
-					<li><h3>sed diam nonummy</h3><a href=""></a></li>
-					<li><p>Lorem ipsum dolor sit amet, consectetuer  <a href="">adipiscing elit, sed diam</a></p></li>
-				</ul>
-			</li>
-		</ul>
 		<ul class="icon1 sub-icon1 profile_img">
-			<li><a class="active-icon c2" href="kalathiProionta.php"> </a>
+			<li><a class="active-icon c2" href="checkout.html"> </a>
 				<ul class="sub-icon1 list">
 					<li><h3>Αδειο Καλαθι</h3><a href=""></a></li>
 					<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=""></a></p></li>
 				</ul>
 			</li>
 		</ul>
-	    <ul class="last"><li><a href="kalathiProionta.php">ΚΑΛΑΘΙ(0)</a></li></ul>
+	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
 	  </div>
+    </div>
      <div class="clear"></div>
      <div class="clear"></div>
      <br>
 
      </div>
 	</div>
-          
-	<div class="clear"><br><br><br></div>
-	<div class="clear"></div>
-	   
-
-	<div class="wrap">
-	<h4 class="title">Τα Στοιχεια του λογαριασμου σας</h4>
- <form id='editProfile' method="POST" action="edit_profile.php" accept-charset="UTF-8"> <!--method='post'-->
 	
-  <table class="tsc_tables2_1" summary="Profile of User" style="width:100%; ">
-    <thead>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="height: 50px"><h>Όνομα:</h></td>
-        <td style="height: 50px"><p><?php echo $_SESSION['onoma'];?> </p></td>
-       	<td style="height: 50px"><h>Διεύθυνση 1:</h></td>
-        <td style="height: 50px"><p><?php echo $_SESSION['d1']; ?> </p></td>
-
-      </tr>
-      <tr>
-        <td><h>Επώνυμο:</h></td>
-        <td><p><?php echo $_SESSION['epitheto']; ?></p></td>
-        <td><h>Διεύθυνση 2:</h></td>
-        <td><p><?php if ($_SESSION['d2']!="") echo $_SESSION['d2']; else echo "-"; ?></p></td>
-
-      </tr>
-      <tr>
-        <td><h>Email:</h></td>
-        <td><p><?php echo $_SESSION['email']; ?></p></td>
-        <td><h>Ταχυδρομικός κώδικας:</h></td>
-        <td><p><?php echo $_SESSION['tk']; ?></p></td>
-
-      </tr>
-      <tr>
-        <td><h>Ημερομηνία Γέννησης:</h></td>
-        <td><p><?php echo $_SESSION['birth']; ?></p></td>
-		<td><h>Χώρα:</h></td>
-		<td><p><?php echo $_SESSION['xwra']; ?></p></td>
+	<p class="auto-style3"  style="margin-left:2%;"><?php echo $_SESSION['error_changePassword']; $_SESSION['error_changePassword'] = " "; ?></p>
+	<p class="auto-style5" style="margin-left:2%;"><?php echo $_SESSION['ok_changePassword']; $_SESSION['ok_changePassword'] = " "; ?></p>
 
 
-      </tr>
-      <tr>
-        <td><h>Φύλο:</h></td>
-        <td> <p><?php if ($_SESSION['filo']!="null") echo $_SESSION['filo']; else echo "-"; ?></p></td>
-        <td><h>Πόλη:</h></td>		
-        <td><p><?php echo $_SESSION['poli'];?></p></td>
-
-      </tr>
-      <tr>
-        <td><h>Αριθμός Κινητού Τηλεφώνου:</h></td>
-        <td><p><?php if (($_SESSION['tel1'] != "")AND($_SESSION['tel1'] != " ")) echo $_SESSION['tel1']; else echo "-"; ?></p></td>
-        <td></td>
-		<td></td>
-      </tr>
-      <tr>
-        <td><h>Αριθμός Σταθερού Τηλεφώνου:</h></td>
-         <td><p><?php if (($_SESSION['tel2'] != "")AND($_SESSION['tel2'] != " ")) echo $_SESSION['tel2']; else echo "-";?></p></td>
-        <td></td>
-       <td></td>
-     
-      </tr>
-     </tbody>
-    </table>
-    
-     <br><br>
-    </form>
-
-	<div class="active" style="margin-left:auto; width:75%; "> 
-    <a href="changePassword.php"><button type="submit" class="grey" name="submit" value="Submit" style="float:none">Αλλαγη κωδικου προσβασης</button></a>
-     <a href="edit_profile.php"><button type="submit" class="grey" name="submit" value="Submit" style="float:inherit">Επεξεργασια Στοιχειων</button></a>
-
-	</div>
-<!-- DC Table Styles II:1 End -->
-	<br>
-	<br>
-	</div>	
-	
-
-	<div class="clear"><br><br></div>
-	<div class="clear"></div>
-	
+          <div class="register_account">
+          	<div class="wrap">
+    	      <h4 class="title">Αλλαγη Κωδικου Προσβασης</h4>
+    	    
+    		   <form id='ChangePassword' onsubmit="return checkNewPassword();" method="POST" action="changePassword_database.php" accept-charset="UTF-8"> <!--method='post'-->
+    									
+    			 <div class="col_1_of_2 span_1_of_2" style="width: 40%;">
+				 	<p class="m_text2">Προηγούμενος Κωδικός Πρόσβασης</p>
+		    	 	<div><input type="password" id="passwdOld" name ="passwdOld" value=""></div>
+		          	<p class="m_text2">Νέος Κωδικός Πρόσβασης</p>
+					<div><input type="password" id="passwdNew" name="passwdNew" value=""></div>
+					<p class="m_text2">Επανάληψη Νέου Κωδικού Πρόσβασης</p>
+					<div><input type="password" id="passwdRepeat" name="passwdRepeat" value=""></div>					
+		    	 </div>
+		    	 <div>
+		         <br>
+		    <div class="clear"></div>
+		         <br>
+		      		<button type="submit" class="grey" name="submit" value="Submit" style="float:none">Αποθηκευση νεου κωδικου προσβασης</button></div>
+		    <div class="clear"></div>
+		    </form>						
+		    
+		    
+    	</div>
+    </div>
    <div class="footer">
 		<div class="footer-middle">
-			<div class="wrap">
-			   
+			<div class="wrap">		   
 		   <div class="auto-style3">
 		   	   <br>
 			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
 			   <div class="section group example">
 				 <div class="col_1_of_f_2 span_1_of_f_2" style="width: 41%; margin-left: 0; height: 150px">
-				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
+				    <h2>ΠΛΗΡΟΦΟΡΙΕςΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
 				            <li><a href="terms.html">Όροι Χρήσης</a></li>
@@ -324,8 +254,9 @@ h{
 				</div>
 		    </div>
 		   </div>
-		  <div class="clear"><img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
-					μας στο: 99 05 98 20<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a><div class="wrap" style="width: 90%; height: 24px">
+		  <div class="clear">
+			  <img src="images/3.png" width="58" class="auto-style2"><span class="auto-style1"><span class="auto-style2">Καλέστε 
+					μας στο: 99 05 98 20</span><a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a><div class="wrap" style="width: 90%; height: 24px">
 				<div class="f-list2">
 				 <ul>
 					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
@@ -340,8 +271,6 @@ h{
 		</div>
 	</div>
 
-
-<!-- DC Table Styles II:1 Start -->
-</body>
-
+   </body>
+   
 </html>

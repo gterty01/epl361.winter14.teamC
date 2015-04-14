@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προσθήκη κατηγοριών</title>
+<title>Επεξεργασία κατηγορίας</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -52,21 +52,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script>
 	    function CheckCategory(){
 	
-		var frm = document.forms["addCategory"];
+			var frm = document.forms["addCategory"];
 		
-		var name = frm.name.value.length;
-		var fr1 = parseInt(name, 10);
-		var sigkrisi = parseInt("1",10);
+			var name = frm.name.value.length;
+			var fr1 = parseInt(name, 10);
+			var sigkrisi = parseInt("1",10);
 	
-		if (fr1 < sigkrisi){
-			alert ('Καταχωρήστε το όνομα της κατηγορίας!');
-		  	return false;
-		}
+			if (fr1 < sigkrisi){
+				alert ('Καταχωρήστε το όνομα της κατηγορίας!');
+		  		return false;
+			}
 	
-		if (frm.name.value == "Όνομα Κατηγορίας"){
-			alert ('Καταχωρήστε το όνομα της κατηγορίας!');
-		  	return false;
-		}	
+			if (frm.name.value == "Όνομα Κατηγορίας"){
+				alert ('Καταχωρήστε το όνομα της κατηγορίας!');
+		  		return false;
+			}	
 	}
     </script>
 				 
@@ -245,26 +245,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  
 <div class="login">
        <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέας Κατηγορίας/<a class="home" href="removeCategory.php">Διαγράφη Κατηγορίας</a>/<a class="home" href="editCategory_selectCategory.php">Επεξεργασία Κατηγορίας </a></ul>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addCategory.php"> Προσθήκη Νέας Κατηγορίας</a> /<a class="home" href="removeCategory.php">Διαγράφη Κατηγορίας</a>/Επεξεργασία Κατηγορίας</ul>
 	    
 	     <div class="clear"></div>
 
-	    <p class="auto-style3"><?php echo $_SESSION['error_add_category']; $_SESSION['error_add_category'] = " "; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_add_category']; $_SESSION['ok_add_category'] = " " ; ?></p>
-		   <div class="content-top">
-			   <form id='addCategory' enctype="multipart/form-data" onsubmit="return CheckCategory()" method="post" action="addCategory_database.php" accept-charset="utf8" >
+	    <p class="auto-style3"><?php echo $_SESSION['error_edit_category']; $_SESSION['error_edit_category'] = " "; ?></p>
+		 		
+		 <div class="content-top">
+			   <form id='addCategory' enctype="multipart/form-data" onsubmit="return CheckCategory()" method="post" action="editCategory_saveDatabase.php" accept-charset="utf8" >
 					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Κατηγορίας';}" style="width: 37%">
+						<p class="auto-style1">Κωδικός Κατηγορίας: <?php echo $_SESSION['category']; ?></p>
+						<br>
+						<br>
+						<p class="m_text2" style="width: 37%;color:#008000" >Όνομα Κατηγορίας:</p>
+						<input name="name" type="text" class="text" value="<?php echo $_SESSION['Cname']; ?>" style="width: 37%">
 					</div>
 					 				
 					<div class="clear"></div>
+					
+					<p class="m_text2" style="width: 37%;color:#008000" >Περιγραφή Κατηγορίας:</p>
 
 					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Κατηγορίας';}" style="height: 97px; width: 94%;">Περιγραφή Κατηγορίας</textarea>
+	                   <textarea name="description" style="height: 97px; width: 94%;"><?php echo $_SESSION['Description'];?></textarea>
 	                </div>
 					<div class="clear"></div>
-					
 					<div class="to">
+					
+					<h1 class="remove">Η κατηγορία αυτή ανήκει στην υπερκατηγορία :</h1> <p class="m_text2"><?php echo $_SESSION['iperkatigoria'] ?></p>
+	
+					<div class="clear"></div>
+					<br>
 					<h1 class="remove">Διάλεξε την υπερκατηγορία της κατηγορίας: </h1>
 					<?php
 					
@@ -310,9 +320,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	                <div>
 	             <p class="auto-style1">Φωτογραφία Κατηγορίας</p>
 	             <br>
-				    <input type="file" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)">
+	             <?php if ($_SESSION['image'] != "") echo '<img src="data:image/jpeg;base64,'.base64_encode( $_SESSION['image'] ).'" width="100" height="100"/>'; ?>
 				    <br>
+
+				    <input type="file" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)">
 				   <br>
+				   <br>
+
 				    <img id="output" width="100" height="100">
 						<script>
 						  var loadFile = function(event) {
@@ -333,6 +347,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     </div>
 			<div class="clear"></div>
+			<br>
+			<br>
 <div class="footer-bottom1">
 
                              <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>

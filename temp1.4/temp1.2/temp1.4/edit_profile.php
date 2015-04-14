@@ -7,6 +7,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php session_start(); ?>
 
+<?php
+$xristis;
+if(isset($_SESSION['login_user'])){
+	$xristis = $_SESSION['login_user'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+
+?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -65,7 +77,7 @@ p.code1{
 					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_user']; ?></a></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
-					<li><a href="index.html">Αποσύνδεση</a></li>
+					<li><a href="logout.php">Αποσύνδεση</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -75,12 +87,12 @@ p.code1{
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
-					<a href="index.html">
+					<a href="login_index.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="menu">
 	            <ul class="megamenu skyblue" style="left: -4.1%; top: 5%">
-			<li class="active grid"><a href="index.html">ΑΡΧΙΚΗ</a></li>
+			<li class="active grid"><a href="login_index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">

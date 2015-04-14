@@ -1,15 +1,9 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start(); ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προσθήκη κατηγοριών</title>
+<title>Επεξεργασία Κατηγορίας</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,12 +22,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
-				 .auto-style1 {
-					 color: gray;
+				 .auto-style7 {
+					 color: #000000;
 				 }
-				 .auto-style3 {
-					color: red ;
-				}
+				 .auto-style6 {
+					color: #009900;
+				 }
 				 .auto-style4 {
 					margin-left: 0;
 				}
@@ -43,31 +37,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					margin-top: 6px;
 					display:table-row;
 				}
-				 .auto-style6 {
-					color: #009900;
-				 }
 
-				 </style>
+				 </style>   
     
+    <script src="selectedDropdown.js"></script>
     <script>
-	    function CheckCategory(){
-	
-		var frm = document.forms["addCategory"];
-		
-		var name = frm.name.value.length;
-		var fr1 = parseInt(name, 10);
-		var sigkrisi = parseInt("1",10);
-	
-		if (fr1 < sigkrisi){
-			alert ('Καταχωρήστε το όνομα της κατηγορίας!');
-		  	return false;
+	function check() {
+		var frm = document.forms["editCategory"];
+
+		if (frm.category.value == "" ){
+	  		alert ('Διαλέξτε την κατηγορία που θέλετε να επεξεργαστείτε!');
+	  		return false;
 		}
-	
-		if (frm.name.value == "Όνομα Κατηγορίας"){
-			alert ('Καταχωρήστε το όνομα της κατηγορίας!');
-		  	return false;
-		}	
-	}
+	}    
+    
     </script>
 				 
 </head>
@@ -93,7 +76,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="clear"></div>
  		</div>
-	</div>	<div class="header-bottom">
+	</div>
+<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
@@ -237,108 +221,72 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <br>
 
      </div>
-	</div>  <!-- start slider -->
-    <div id="fwslider">
-            </div>
-    <!--/slider -->
-<div class="main">
-	  
+	</div>	
 <div class="login">
        <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέας Κατηγορίας/<a class="home" href="removeCategory.php">Διαγράφη Κατηγορίας</a>/<a class="home" href="editCategory_selectCategory.php">Επεξεργασία Κατηγορίας </a></ul>
-	    
-	     <div class="clear"></div>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addCategory.php"> Προσθήκη Νέας Κατηγορίας</a> /<a class="home" href="removeCategory.php">Διαγράφη Κατηγορίας</a>/Επεξεργασία Κατηγορίας</ul>
+	
 
-	    <p class="auto-style3"><?php echo $_SESSION['error_add_category']; $_SESSION['error_add_category'] = " "; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_add_category']; $_SESSION['ok_add_category'] = " " ; ?></p>
-		   <div class="content-top">
-			   <form id='addCategory' enctype="multipart/form-data" onsubmit="return CheckCategory()" method="post" action="addCategory_database.php" accept-charset="utf8" >
-					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Κατηγορίας';}" style="width: 37%">
-					</div>
-					 				
-					<div class="clear"></div>
+<form id='editCategory' onsubmit="return check();" method="post" accept-charset="utf8" action="editCategory_showCategory.php" >
+     <div class="clear"></div>
 
-					<div class="text">
-	                   <textarea name="description" value="Περιγραφή Κατηγορίας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Κατηγορίας';}" style="height: 97px; width: 94%;">Περιγραφή Κατηγορίας</textarea>
-	                </div>
-					<div class="clear"></div>
-					
-					<div class="to">
-					<h1 class="remove">Διάλεξε την υπερκατηγορία της κατηγορίας: </h1>
-					<?php
-					
-						$servername = "localhost";
-						$username = "cyfoodmuseum";
-						$password = "9m8ESxZD";
-						$dbname = "cyfoodmuseum";
-						
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-						
-						// Check connection
-						if ($conn->connect_error) {
-						    die("Connection failed: " . $conn->connect_error);
-						    echo "Connection faild";
-						}
-						
-						if (!$conn->set_charset("utf8")) {
-    						printf("Error loading character set utf8: %s\n", $conn->error);
-    						die;
-						}		
-												
-						$querys = "SELECT * FROM `SUBCATEGORY`";
-						$result = $conn->query($querys);
-						$options = ""; 	
-						if($result->num_rows > 0){
-						 	while($row = $result->fetch_assoc()) {
-								$codeSubCategory = $row["Code"];
-								$SubCategory = $row["Name"];
-								print '<p class="m_text2">';
-								print '<input type="radio" id=iperkatigoria name=iperkatigoria value="' . $codeSubCategory . '">';
-								print $SubCategory;
-								print '</p>';
-							}							
-						}
-						
-					?>
-						<br>
-	                </div>
-	                
-					<div class="clear"></div>
-					<br>
-	                <div>
-	             <p class="auto-style1">Φωτογραφία Κατηγορίας</p>
-	             <br>
-				    <input type="file" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)">
-				    <br>
-				   <br>
-				    <img id="output" width="100" height="100">
-						<script>
-						  var loadFile = function(event) {
-						    var output = document.getElementById('output');
-						    output.src = URL.createObjectURL(event.target.files[0]);
-						  };
-						</script>   
-		                <div class="clear"></div>
-					<br>
+<p class="auto-style6"><?php echo $_SESSION['ok_edit_category']; $_SESSION['ok_edit_category'] = " "; ?></p>
 
-	                <div class="submit">
-	               		<input type="submit" value="Καταχώρηση">
-	                </div>
-	               </div> 
+<div>
+<br>
+<select name="category" style="width: 600px; height: 37px">
+<option value="">Διαλέξτε την κατηγορία που θέλετε να επεξεργαστείτε</option>
+<?php
+		$servername = "localhost";
+		$username = "cyfoodmuseum";
+		$password = "9m8ESxZD";
+		$dbname = "cyfoodmuseum";
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);				
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		}
+		if (!$conn->set_charset("utf8")) {
+    		printf("Error loading character set utf8: %s\n", $conn->error);
+    		die;
+		}										
+		$querys = "SELECT * FROM `CATEGORY`";
+		$result = $conn->query($querys);
+		//echo "$CodeCategory";
+		if($result->num_rows > 0){
+			echo '<br>';
+			while($row = $result->fetch_assoc()) {
+				$nameCategory = $row["NameCat"];
+				$CodeCategory = $row["CodeCat"];
+				echo '<option value="' . $CodeCategory . '">';
+				echo $nameCategory;
+				echo '</option>';
+		    
+			}
+		}
+?>
+</select>
+</div>
+<br>
 
-               </form>
-            </div>
+	  <div class="submit" >
+	  <input type="submit" value="Επεξεργασία"></div>
+
+</form>
+</div>		
+     <div class="clear"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="footer-bottom1">
+           <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+           <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
     </div>
-    </div>
-			<div class="clear"></div>
-<div class="footer-bottom1">
 
-                             <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-                          </div>
-                      </div>
+</div>
 
 </body>
+
 </html>

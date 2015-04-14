@@ -40,6 +40,8 @@ echo $name2;
 	echo $email;
 	
 		echo "Here";*/
+
+session_start();
 if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && $_POST['passwdCon'] && $_POST['birth'] && $_POST['city'] && $_POST['postalCode'] && $_POST['address1'])
 {
 	echo "Here";
@@ -55,7 +57,6 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	 
 	 	if ($row["Email"]==$_POST['mail']){
 	 		echo "Username already exists";
-	 		session_start();
 	 		
 	 		
 	 		$_SESSION['onoma'] = $_POST["name"];
@@ -141,8 +142,9 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	
 	if ($conn->query($sql) === TRUE){
 		echo "new record created";
-		
-			header("Location: index.html");
+		$_SESSION['email'] = $email;
+		header("Location: sendEmail.php");
+		die;
 
 	} else{
 		echo "Error: " . $sql . "<br>" . $conn->error;
