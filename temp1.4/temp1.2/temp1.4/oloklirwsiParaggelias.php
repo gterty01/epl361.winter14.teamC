@@ -4,7 +4,7 @@
 <title>Ολοκλήρωση Παραγγελίας</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="style.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/jquery1.min.js"></script>
 <!-- start menu -->
@@ -16,11 +16,20 @@
 <script>
 function checkCard(){
 var frm = document.forms["register"];
- month 
+
  
 var cardL = frm.cardnumber.value.length;
 	var fr3 = parseInt(cardL,10);
 	var sigkrisiString = parseInt("16",10);
+	if (fr3<sigkrisiString){
+		alert('Καταχωρήστε ένα έγκυρο Αριθμό Κάρτας');
+		return false;
+	}
+
+	if (isNaN(frm.cardnumber.value)){
+    	alert("Καταχωρήστε ένα έγκυρο Αριθμό Κάρτας. Χρησιμοποιήστε μόνο αριθμούς");
+    	return false;
+  	}
 
 var ccvL = frm.ccv.value.length;
 	var fr4 = parseInt(ccvL,10);
@@ -41,23 +50,24 @@ var ccvL = frm.ccv.value.length;
 		alert('Καταχωρήστε το ονοματεπώνυμο του Κατόχου της Κάρτας');
 		return false;
 	}
-	var monthL = frm.month.value.length;
-
-	var fr6 = parseInt(monthL,10);
-
-	if (fr6==sigkrisiName){
+	var monthL = frm.minas.value;
+	if (monthL =="00"){
 		alert('Καταχωρήστε το Mήνα Ημερομηνίας Λήξης της κάρτας');
 		return false;
 	}
 	var etos = frm.year.value;
 	var etosL = frm.year.value.length;
-	var fr7 = parseInt(monthL,10);
+	var fr7 = parseInt(etosL,10);
 	var sigkrisiYear = parseInt("4",10);
 
-i	if (fr7<sigkrisiYear){
+	if (fr7<sigkrisiYear){
 		alert('Καταχωρήστε το Έτος Ημερομηνίας Λήξης της κάρτας');
 		return false;
 	}
+	if (isNaN(frm.year.value)){
+    	alert("Καταχωρήστε το Έτος Ημερομηνίας Λήξης της κάρτας. Χρησιμοποιήστε μόνο αριθμούς");
+    	return false;
+  	}
 
 	
 
@@ -201,28 +211,23 @@ i	if (fr7<sigkrisiYear){
 
      </div>
 	</div>
-		<h4 class="title" style="margin-left:50px;">ολοκληρωση παραγγελιασ</h4>
 		<br>
+			<h4 class="title" style="margin-left:50px;">ολοκληρωση παραγγελιασ</h4>
 
     <div class="wrap">
 		<h4 class="title">Διευθυνση αποστολησ</h4>
 		<div class="clear"></div>
-			<div class="register_account">
 			
-    		<form id='paraggelia_dieuthinsi' onsubmit="" method="POST" action="" accept-charset="UTF-8"> 
     	    	<p class="m_text2">Αρχιεπισκόπου Μακαρίου 47, Λυθροδόντας </p>
 				<p class="m_text2">2565, Κύπρος, Λευκωσία</p>
 				<p class="m_text2">Ραφαέλα Λουκά</p>
 				<br>
-    	    </form>
     	  
     	  <div class="clear"></div>
 			<br>
     	    <h4 class="title">Προϊοντα</h4>
     	    <div class="clear"></div>
-			<div class="register_account">
-
-    		<form id='register' onsubmit="" method="POST" action="" accept-charset="UTF-8"> 
+    		<form id='register' onsubmit="return checkCard();" method="POST" action="plirwmi.php" accept-charset="UTF-8"> 
     		<table>
     		<thead>
 		      <tr>
@@ -232,21 +237,43 @@ i	if (fr7<sigkrisiYear){
 		      </tr>
 		    </thead>
     	    <tbody>
-      			<tr>
-        			<td><p class="m_text2">Γλυκό Καρυδάκι</p></td>
-        			<td><p class="m_text2">1</p></td>
-				</tr>
-				<tr>
-        			<td><p class="m_text2">Κουμανταρία</p></td>
-        			<td><p class="m_text2">5</p></td>
-				</tr>
-				<tr>
-    	    		<td><p class="m_text2">Λουκάνικα Κρασάτα</p></td>
-    	    		<td><p class="m_text2">2</p></td>
-    	    	</tr>
-    	    	<tr>
+    	    	<?php
+    	    		$antikeimena=$_POST['arithmosproiontwn'];
+    	    		$num=0; 
+    	    		$sinolo=0;
+    	    		while($num<$antikeimena){
+    	    		$proionOnoma=$_POST["onoma$num"];
+					$kodikosproion=$_POST["kodikos$num"];
+					$price=$_POST["timi$num"];
+					$varos=$_POST["varos$num"];
+					$posotita=$_POST["posotita$num"];
+					$poso=$_POST["poso$num"];	
+					echo "<tr>";
+    	    		echo "<td><p class='m_text2'>$proionOnoma</p></td>";
+    	    		echo "<td><p class='m_text2'>$posotita</p></td>";
+    	    		echo "<td><p class='m_text2'>$poso</p></td>";
+					echo "</tr>";
+					
+					echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
+					echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
+					echo "<input type='hidden' name='timi$num' id='timi$num' value=$price>";
+					echo "<input type='hidden' name='varos$num' id='varos$num' value=$varos>";
+					echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
+					echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
+					echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
+		
+    	    		$sinolo=$sinolo+$poso;
+    	    	
+    	    		$num=$num+1;
+    	    		}	
+    	    	?>
+    	    	 <tr>
+    	    	  <td><br></td>
+
+    	    	 </tr>
+      	    	<tr>
 				 <th class="txt-lt" style="width: 266px; height: 19px">Σύνολο</th>
-				 <td><p class="txt-lt" style="width: 266px; height: 19px">$15</p></td>
+				 <td><h1 class="remove" style="width: 266px; height: 19px">€<?php echo $sinolo?></h1></td>
 
     	    	</tr>
     	    	
@@ -256,18 +283,18 @@ i	if (fr7<sigkrisiYear){
 			<br>
     	    <h4 class='title'>Στοιχεια ΚαρταΣ</h4>
     	    <div class='clear'></div>
-
-			echo "<p class='auto-style5'>Aριθμός Κάρτας</p>";				   
-			echo "<div><input type='text' name='cardnumber' class='code3' id ='address' maxlength='16' value=''></div>";
+    	    <div class="plirofories">
+			<p class='auto-style5'>Aριθμός Κάρτας</p>			   
+			<div><input type='text' name='cardnumber' class='code3' id ='address' autocomplete="off" maxlength='16' value=''></div>
 			<br>
-			echo "<p class='auto-style5'>CCV - Τριψήφιος Αριθμός στο πίσω μέρος της κάρτας</p>";				   
-			echo "<div><input type='text' name='ccv' id ='ccv' maxlength='3' class='code' value=''></div>";
+			<p class='auto-style5'>CCV - Τριψήφιος Αριθμός στο πίσω μέρος της κάρτας</p>			   
+			<div><input type='text' name='ccv' id ='ccv' maxlength='3' class='code' value='' autocomplete="off" ></div>
 			<br>
-			echo "<p class='auto-style5'>Κάτοχος Κάρτας</p>";				   
-			echo "<div><input type='text' name='cardowner' id ='cardowner' value='' class="code4"></div>";
-			echo "<br>";
-			echo "<p class='auto-style5'>Ημερομηνία Λήξης της Κάρτας</p>";	
-			<div><select id='minas' name='minas' class="code1">
+			<p class='auto-style5'>Κάτοχος Κάρτας</p>			   
+			<div><input type='text' name='cardowner' id ='cardowner' value='' class="code4"></div>
+			<br>
+			<p class='auto-style5'>Ημερομηνία Λήξης της Κάρτας</p>
+			<div><select id='minas' name='minas' class="code1" >
 			 <option value="00"></option>         
 			 <option value="1">01</option>         
 		     <option value="2">02</option>  
@@ -282,24 +309,17 @@ i	if (fr7<sigkrisiYear){
 		     <option value="11">11</option>  
 		     <option value="12">12</option>
 			</select> - <input type='text' id='year' name='year' value='' maxlength='4' class='code'>
-		    <p class='code'>Mήνας&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Έτος</p></div> 
+		    <p class='code'>Mήνας&nbsp;&nbsp;&nbsp;&nbsp; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Έτος</p></div>
+		    </div>  
 			<br>
     	    <div class="clear"></div>
 			<br>   
 			 <button type="submit" class="grey" name="submit" value="Submit">Ολοκληρωση Παραγγελιας</button>
  			</form>
-    	    </div>
-			 	   
+			</div>   
 			 
-			 
-			 
-			 
-			 
-			 
-	
-	</div>
-	</div>
-
+		 
+		
      <div class="clear"><br><br></div>
      <div class="clear"></div>
 

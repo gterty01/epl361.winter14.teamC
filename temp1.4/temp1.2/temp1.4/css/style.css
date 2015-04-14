@@ -1111,7 +1111,29 @@ table {
 .register_account form input[type=text].code {
 	width: 15%;
 }
-.register_account form input[type=text].number {
+
+
+.form input[type=text].code {
+	width: 15%;
+}
+
+
+.form input[type=text].code3 {
+	width: 35%;
+}
+.form input[type=text].code4 {
+	width: 45%;
+}
+
+.form select.code1 {
+	width: 5%;
+}
+
+.form select.code {
+	width: 10%;
+}
+
+.form input[type=text].number {
 	width: 69.8%;
 }
 
@@ -1191,6 +1213,21 @@ p.terms {
 	padding: 15px 0 0 15px;
 }
 button.grey{
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	background: #555;
+	font-size:0.95;
+	line-height: 16px;
+	text-transform: uppercase;
+	padding:10px 30px;
+	color: #FFF;
+	border: none;
+	float: left;
+	font-family: 'Exo 2', sans-serif;
+	outline:none;
+}
+input.grey{
 	display: inline-block;
 	text-decoration: none;
 	cursor: pointer;

@@ -1013,7 +1013,7 @@ h4.title{
 }
 input.inputbox, input.required, div.k2AccountPage input[type=text] {
 	background: #FFF;
-	border: 1px solid #BDBCBC;
+	border: 1px solid #999999;
 	color: inherit;
 	font-family: inherit;
 	font-size: inherit;
@@ -1081,6 +1081,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+
 .register_account{
 	border-top:1px solid #ddd;
 	padding:2% 0;
@@ -1111,8 +1114,108 @@ table {
 .register_account form input[type=text].code {
 	width: 15%;
 }
-.register_account form input[type=text].number {
+
+.form plirofories input[type=text], .form register_account select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.form plirofories input[type=text]:hover, .form register_account select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+}
+.wrap form plirofories input[type=text].code {
+	width: 15%;
+}
+
+.wrap form plirofories input[type=text].code {
+	width: 15%;
+}
+
+
+.wrap form plirofories input[type=text].code3 {
+	width: 35%;
+}
+.wrap form plirofories input[type=text].code4 {
+	width: 45%;
+}
+
+.wrap form plirofories select.code1 {
+	width: 5%;
+}
+
+.wrap form plirofories select.code {
+	width: 10%;
+}
+
+.form input[type=text].number {
 	width: 69.8%;
+}
+
+.register_account form input[type=email], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+
+.register_account form input[type=email], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+
+
+.register_account form input[type=email]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+		
+}
+
+.register_account form input[type=email]:invalid{
+	
+	box-shadow: 0 0 5px #d45252;
+	border-color:#b03535;
+	
+}
+
+
+.register_account form input[type=email].code {
+	width: 15%;
+}
+.register_account form input[type=email].number {
+	width: 69.8%;	
+
 }
 
 .register_account form input[type=password], .register_account form select {
@@ -1143,42 +1246,6 @@ table {
 }
 
 
-.register_account form input[type=email], .register_account form select {
-	font-size:0.95em;
-	color:#777;
-	padding: 8px;
-	outline: none;
-	margin:10px 0;
-	width:91%;
-	font-family: 'Exo 2', sans-serif;
-	border:none;
-	box-shadow:0 0 2px #aaa;
-	-webkit-box-shadow:0 0 2px #aaa;
-	-moz-box-shadow:0 0 2px #aaa;
-	-o-box-shadow:0 0 2px #aaa;
-}
-.register_account form input[type=email]:hover, .register_account form select:hover {
-	box-shadow:0 0 4px #aaa;
-	-webkit-box-shadow:0 0 4px #aaa;
-	-moz-box-shadow:0 0 4px #aaa;
-	-o-box-shadow:0 0 4px #aaa;
-		
-}
-
-/*.register_account form input[type=email]:invalid{
-	
-	box-shadow: 0 0 5px #d45252;
-	border-color:#b03535;
-	
-}*/
-
-.register_account form input[type=email].code {
-	width: 15%;
-}
-.register_account form input[type=email].number {
-	width: 69.8%;	
-
-}
 p.terms a, p.note a {
 	text-decoration: underline;
 	color:#555;
@@ -1189,6 +1256,21 @@ p.terms {
 	padding: 15px 0 0 15px;
 }
 button.grey{
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	background: #555;
+	font-size:0.95;
+	line-height: 16px;
+	text-transform: uppercase;
+	padding:10px 30px;
+	color: #FFF;
+	border: none;
+	float: left;
+	font-family: 'Exo 2', sans-serif;
+	outline:none;
+}
+input.grey{
 	display: inline-block;
 	text-decoration: none;
 	cursor: pointer;
@@ -2001,6 +2083,45 @@ h5.m_4 a:hover{
 	float:left;
 	width:57.5%;
 }
+
+.btn{
+	background:#555;
+	color: #FFF;
+}
+.btn_1{
+	background:#555;
+	color: #FFF;
+}
+
+}
+.single-widget ul li a:hover{
+	background:none;
+	color:#FE980F;
+}
+
+#do_action .total_area {
+  padding-bottom: 18px !important;
+}
+
+#do_action .total_area, #do_action .chose_area {
+  border: 1px solid #E6E4DF;
+  color: #696763;
+  padding: 30px 25px 30px 0;
+  margin-bottom: 80px;
+}
+
+.total_area span {
+  float: right;
+}
+
+.total_area ul li {
+  background:#E6E4DF;
+  color: #696763;
+  margin-top: 10px;
+  padding: 7px 20px;
+}
+
+
 .cart_product {
   display: block;
   margin: 15px -70px 10px 25px;
@@ -2008,6 +2129,47 @@ h5.m_4 a:hover{
 #cart_items .cart_info .cart_price p {
   color:#696763;
   font-size: 18px
+}
+#cart_items .cart_info .cart_description h4 {
+  margin-bottom: 0
+}
+
+#cart_items .cart_info .cart_description h4 a {
+  color: #363432;
+  font-family: 'Roboto',sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+
+}
+
+#cart_items .cart_info .cart_description p {
+  color:#696763
+}
+.cart_product {
+  display: block;
+  margin: 15px -70px 10px 25px;
+}
+
+.cart_quantity_button a {
+  background:#F0F0E9;
+  color: #696763;
+  display: inline-block;
+  font-size: 16px;
+  height: 28px;
+  overflow: hidden;
+  text-align: center;
+  width: 35px;
+  float: left;
+}
+
+
+.cart_quantity_input {
+  color: #696763;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  
 }
 
 p.m_text1{
@@ -2065,6 +2227,21 @@ p.m_text2{
 	line-height: 1.8em;
 	margin-top:20px;
 }
+h1.remove{
+	color:#777;
+	font-size:100%;
+	line-height: 1.8em;
+	margin-top:20px;
+   	font-weight: bold;
+}
+
+span.remove{
+	color:#777;
+	font-size:0.85em;
+	line-height: 1.8em;
+	margin-top:20px;
+}
+
 /*--out--*/
 /*  GRID OF Content and sidebar   ============================================================================= */
 .labout{
@@ -2233,7 +2410,7 @@ ul.delivery-list li a:hover{
 	font-size: 0.85em;
 	font-family: 'Exo 2', sans-serif;
 	margin: 10px 0;
-	border: 1px solid #EEE;
+	border: 1px solid #CCCCCC;
 	color: #777;
 	background: #FFF;
 	float: left;
@@ -2243,7 +2420,7 @@ ul.delivery-list li a:hover{
 	width: 98.3%;
 	font-size:0.85em;
 	margin: 10px 0;
-	border: 1px solid #EEE;
+	border: 1px solid #CCCCCC;
 	color:#777;
 	font-family: 'Exo 2', sans-serif;
 	outline: none;

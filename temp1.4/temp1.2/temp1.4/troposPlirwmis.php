@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
-<title>Τρόπος Πληρωμής</title>
+<title>Παραγγελία</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -12,6 +12,8 @@
 <script type="text/javascript" src="js/megamenu.js"></script>
 
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+
+
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
 .auto-style1 {
@@ -29,24 +31,63 @@
 .auto-style4 {
 	font-size: medium;
 }
+.auto-style5 {
+	font-size: small;
+}
+
 </style>
 
 <script>
-function checkTropoPlirwmis(){
-	if(document.getElementById('pistwtiki_karta').checked) {
-		return true;
-
-	}
-	if(document.getElementById('PayPal').checked){
-		return true;
+function checkDiefthinsi(){
+  var frm = document.forms["diefthinsiapostolis"];
+  	var dieL = frm.address.value.length;
+	var fr3 = parseInt(dieL,10);
+	var sigkrisiString = parseInt("0",10);
+	
+	if (fr3==sigkrisiString){
+		alert('Καταχωρήστε τη Διεύθυνση Αποστολής');
+		return false;
 	}
 	
-	  alert('Δεν διαλέξατε τρόπο πληρωμής!');
-	  return false;
+	if (isNaN(frm.postalCode.value)){
+    	alert("Καταχωρήστε έναν έγκυρο ταχυδρομικό κώδικα. Χρησιμοποιήστε μόνο αριθμούς");
+    	return false;
+  	}
+  	var poL = frm.postalCode.value.length;
+	var frp = parseInt(poL,10);
+	if (frp==sigkrisiString){
+		alert('Καταχωρήστε τον Ταχυδρομικό Κώδικα της Διεύθυνσης Αποστολής');
+		return false;
+	}
+	
+	var poliLe = frm.Poli.value.length;
+	var poliL = parseInt(poliLe,10);
+	
+	if (poliL==sigkrisiString){
+		alert('Καταχωρήστε την Πόλη Αποστολής');
+		return false;
+	}
+
+
 
 }
 </script>
+<script>
+function checkTropoPlirwmis(){
+if(document.getElementById('pistwtiki_karta').checked) {
+return true;
 
+}
+if(document.getElementById('PayPal').checked){
+return true;
+}
+
+  alert('Δεν διαλέξατε τρόπο πληρωμής!');
+  return false;
+
+}
+
+</script>
 
 </head>
 
@@ -163,41 +204,101 @@ function checkTropoPlirwmis(){
 	</div>
 	
 	<?php
-	if(isset($_POST['diagrapsou'])){
+	if(isset($_POST['submitdiefthinsi'])){
+		$num=0;
+		$antikeimena=$_POST['arithmosproiontwn'];
+		echo "<div class='register_account'>";
+	    echo "<div class='wrap'>";
+		echo "<h4 class='title'>Διευθυνση Αποστολης</h4>";
+		echo "<div class='clear'></div>";
+		echo "<form id='diefthinsiapostolis' onsubmit='return checkDiefthinsi();' method='POST' action='episkopisiparaggelias.php' accept-charset='UTF-8'>"; 
+		while ($num<$antikeimena){
+			$proionOnoma=$_POST["onoma$num"];
+			$kodikosproion=$_POST["kodikos$num"];
+			$price=$_POST["timi$num"];
+			$varos=$_POST["varos$num"];
+			$posotita=$_POST["posotita$num"];
+			$poso=$posotita*$price;
+			echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
+			echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
+			echo "<input type='hidden' name='timi$num' id='timi$num' value=$price>";
+			echo "<input type='hidden' name='varos$num' id='varos$num' value=$varos>";
+			echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
+			echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
+			echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
 
-	
+			$num=$num+1;
+		}
+
+ 			echo "<div class='col_1_of_2 span_1_of_2'>";	
+
+			echo "<p class='auto-style5'>Διεύθυνση</p>";				   
+			echo "<div><input type='text' name='address' id ='address' value=''></div>";
+			echo "<p class='auto-style5'>Ταχυδρομικός Κώδικας</p>";				   
+			echo "<div><input type='text' name='postalCode' id ='postalCode' value=''></div>";
+			echo "<p class='auto-style5'>Πόλη</p>";				   
+			echo "<div><input type='text' name='Poli' id ='Poli' value=''></div>";
+			echo "<br>";
+			echo 	"<input type='submit' class='grey' name='diefthinsiApostolis' value='Υποβολη'>";
+			echo "</div>";
+
+		echo "</form>";
+		echo "</div>";	
+		echo "</div>";
+		
+		
 	}	
-	?>
+	else{
 	
-	
-	
-	
-	
-		<h4 class="title" style="margin-left:50px;">ολοκληρωση παραγγελιασ</h4>
-		<br>
+	echo "<h4 class='title' style='margin-left:50px;'>ολοκληρωση παραγγελιασ</h4>";
+	echo 	"<br>";
 
-    <div class="wrap">
+    echo "<div class='wrap'>";
 			 
-    	<h4 class="title">Στοιχεια Καρτας</h4>
-    	<div class="clear"></div>
-		<form id='paraggelia_troposPlirwmis' onsubmit="return checkTropoPlirwmis();" method="POST" action="oloklirwsiParaggelias.html" accept-charset="UTF-8"> 
-			<p class="m_text2"><input class="m_text2" type="radio" id ="pistwtiki_karta" name="pistwtiki_karta" value="pistwtiki_karta">Πιστωτική Κάρτα</p>
-			<p class="m_text2"><input class="m_text2" type="radio" id ="PayPal" name="PayPal" value="PayPal">PayPal</p>
-			<br>
-			<button type="submit" class="grey" name="submit" value="Submit">Υποβολη</button>
+    	echo "<h4 class='title'>Στοιχεια Καρτας</h4>";
+    	echo "<div class='clear'></div>";
+		echo "<form id='paraggelia_troposPlirwmis' onsubmit='return checkTropoPlirwmis();' method='POST' action='oloklirwsiParaggelias.html' accept-charset='UTF-8'>";
+		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='pistwtiki_karta' name='payment' value='pistwtiki_karta'>Πιστωτική Κάρτα</p>";
+		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='PayPal' name='payment' value='PayPal'>PayPal</p>";
+		echo 	"<br>";
+		$num=0;
+			$antikeimena=$_POST['arithmosproiontwn'];
+			while ($num<$antikeimena){
+			$proionOnoma=$_POST["onoma$num"];
+			$kodikosproion=$_POST["kodikos$num"];
+			$price=$_POST["timi$num"];
+			$varos=$_POST["varos$num"];
+			$posotita=$_POST["posotita$num"];
+			$poso=$posotita*$price;
+			echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
+			echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
+			echo "<input type='hidden' name='timi$num' id='timi$num' value=$price>";
+			echo "<input type='hidden' name='varos$num' id='varos$num' value=$varos>";
+			echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
+			echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
+			echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
 
-    	</form>
+			$num=$num+1;
+		}
+
+		echo 	"<button type='submit' class='grey' name='submit' value='Submit'>Υποβολη</button>";
+
+    	echo "</form>";
 
 	
-	</div>
+	echo "</div>";
+	
+	
+	}
+	?>
+				        	
+		
 
-     <div class="clear"><br><br></div>
-     <div class="clear"></div>
 
 
 
-
-
+<div class="clear"><br><br></div>
+<div class="clear"></div>
 <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">
