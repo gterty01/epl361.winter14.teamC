@@ -5,11 +5,10 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Σύνδεση Χρήστη</title>
+<title>Σύνδεση Χρήστη - Ανάκτηση Κωδικού Πρόσβασης</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -30,9 +29,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .auto-style2 {
 	color: #FFFFFF;
 }
+.auto-style3 {
+	color: green;
+	font-weight: bold;
+}
+
 .auto-style5 {
 	color: #FF0000;
 }
+
 </style>
 </head>
 <body>
@@ -59,6 +64,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clear"></div>
  		</div>
 	</div>
+
+
 	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
@@ -146,45 +153,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
      </div>
 	</div>
+
         <div class="login">
-          	<div class="wrap">
-				<div class="col_1_of_login span_1_of_login">
-					<h4 class="title">Δεν ειστε Μελος;</h4>
-					<p>Δεν γίνατε ακόμα μέλος στο Ηλεκτρονικό μας Κατάστημα; Εγγραφείτε τώρα για να δημιουργήσετε το δικό σας λογαριασμό και να μπορείτε να αναζητήσετε κάθε λογής προϊόντα της Κυπριακής Παράδοσης, λαμβάνοντας ταυτόχρονα προσφορές και εκπτώσεις. </p>
-					<div class="button1">
-					   <a href="register.html"><input type="submit" name="Submit" value="Δημιουργία Λογαριασμού"></a>
-					 </div>
-					 <div class="clear"></div>
-				</div>
-				<p class="auto-style5"><?php echo $_SESSION['error']; ?></p>
-				<div class="col_1_of_login span_1_of_login">
+          	<div class="wrap" style="width: 80%">
+          			<p class="auto-style5"><?php echo $_SESSION['error_pass']; $_SESSION['error_pass'] = " ";?></p>
+          			<p class="auto-style3"><?php echo $_SESSION['ok_pass']; $_SESSION['ok_pass'] = " ";?></p>
+
 				<div class="login-title">
-	           		<h4 class="title">ειστε ηδη μελοσ;</h4>
-					<div id="loginbox" class="loginbox">
-						<form action="login_check.php" method="post" accept-charset="utf8"  name="login" id="login-form">
+					<div id="loginbox" class="loginbox" style="width: 367px">
+						<form action="recoverPassword.php" method="post" name="login" id="login-form">
 						  <fieldset class="input">
-						    <p id="login-form-username">
-						      <label for="modlgn_username">Email</label>
-						      <input id="modlgn_username" type="text" name="mail" class="inputbox" size="18" autocomplete="off">
-						    </p>
-						    <p id="login-form-password">
-						      <label for="modlgn_passwd">Κωδικός Χρήστη</label>
-						      <input id="modlgn_passwd" type="password" name="password" class="inputbox" size="18" autocomplete="off">
+						    <p id="login-form-username" style="width: 716px; height: 72px">
+						      <label for="modlgn_username">Email που έχετε καταχωρήσει στην ιστοσελίδα μας:</label><br>
+						      <input id="modlgn_username" type="text" name="mail" class="inputbox" size="18" autocomplete="off" style="width: 51%">
 						    </p>
 						    <div class="remember">
-							    <p id="login-form-remember">
-							      <label for="modlgn_remember"><a href="forgotPassword.php">Ξεχάσατε τον κωδικό σας;</a></label>
-							   </p>
-							    <input type="submit" name="Submit" class="button" value="Σύνδεση"><div class="clear"></div>
+							   <input type="submit" name="Submit" class="button" style="float:left; width: 261px;" value="Ανάκτηση Κωδικού Πρόσβασης"><div class="clear"></div>
 							 </div>
 						  </fieldset>
 						 </form>
-					</div>
 			    </div>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</div>
+		
+
+
       <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">

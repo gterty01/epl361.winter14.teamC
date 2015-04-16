@@ -14,6 +14,14 @@
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
 <script type="text/javascript">$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+
 <!--start slider -->
     <link rel="stylesheet" href="css/fwslider.css" media="all"/>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -169,6 +177,7 @@ function validateInsertion(){
 ?>
 
 <?php
+$array = array();
 
 function apotelesmata($result2, $counterItem) {
 echo 'irthe function';
@@ -182,7 +191,7 @@ if($result2->num_rows > 0)
 	 echo "id: " . $row["Code"];
 	  if ($counterItem == 0){
 	  	echo "<div class='top-box'>";
-	  	} 
+	  } 
 	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
 	 echo 	  	 "<a href='single.html'>";
 	 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
@@ -214,10 +223,42 @@ if($result2->num_rows > 0)
 	// echo 	"</form>";
 	echo 				"</div>";
 	 
-	 $counterItem = $counterItem+1;
-	 
-	 
-	 if ($counterItem == 3){
+	$counterItem = $counterItem+1;
+	
+	
+	$arrlength = count($array);
+	$Pcode = $row["Code"];
+	$no = "SELECT CodeOfSupplier FROM `PRODUCT` where Code = '$Pcode'";
+	$no_r = $conn->query($no);
+
+	if($no_r->num_rows > 0){
+		while($line = $no_r->fetch_assoc()){
+			$currentCode = $line["CodeOfSupplier"];
+		}
+	}
+
+	$count = 0;
+	for($x = 0; $x < $arrlength; $x++) {
+		$querys2 = "SELECT * FROM `PRODUCT` where Code = '$array[$x]'";
+		$result2 = $conn->query($querys2);
+		if($result2->num_rows > 0){
+			while($line2 = $result2->fetch_assoc()){
+				if ($line2["CodeOfSupplier"] == $currentCode){
+					$count = 1;
+				}
+			}
+		}
+	}	
+	
+	if ($count == 0){
+		array_push($array,$row["Code"]);	 
+	}
+
+
+
+
+	
+	if ($counterItem == 3){
 	  		  
 	  	echo "<div class='clear;></div>";
 		echo "</div>";
@@ -253,35 +294,67 @@ if (!$conn->set_charset("utf8")) {
 if ($_POST["search"]){
 	$timi = $_POST['search'];
 	if ($timi!="Αναζήτηση"){
-		$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
+		$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Availability`>0 AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
 		$result=$conn->query($querys);
 		
 		//$querys2 ="SELECT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Name` LIKE '%$timi%'";
 		$arithmos = $result->num_rows;
 		
-		$queryDes ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%')";
+		$queryDes ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat`AND `Availability`>0 AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%')";
 		$resultDes=$conn->query($queryDes);		
-		$querySup ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%')";
+		$querySup ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `Availability`>0 AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%')";
 		$resultSup=$conn->query($querySup);
-		$queryCat="SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
+		$queryCat="SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `Availability`>0 AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
 		$resultCat=$conn->query($queryCat);
 		
 		$counter=0;
-		
-		
 	}
 }
-if($result->num_rows > 0)
-	{
+
+if($result->num_rows > 0){
+	
+
 	echo "<div class='wrap'>";
 	echo 	"<div class='section group'>";
 	echo	 "<div class='cont span_2_of_3'>";
  	echo 		  	"<h2 class='head'>Αποτελεσματα Αναζητησης</h2>";
 	echo "<br>";
-	 while($row = $result->fetch_assoc()) {
-	  if ($counter == 0){
-	  	echo "<div class='top-box'>";
-	  	} 
+	while($row = $result->fetch_assoc()) {
+		if ($counter == 0){
+	  		echo "<div class='top-box'>";
+		 } 
+	 				
+	 $diathesimotita= $row['Availability'];
+	 if ($diathesimotita>0){
+	 					$arrlength = count($array);
+					$Pcode = $row["Code"];
+					$no = "SELECT CodeOfSupplier FROM `PRODUCT` where Code = '$Pcode'";
+					$no_r = $conn->query($no);
+				
+					if($no_r->num_rows > 0){
+						while($line = $no_r->fetch_assoc()){
+							$currentCode = $line["CodeOfSupplier"];
+						}
+					}
+				
+					$count = 0;
+					for($x = 0; $x < $arrlength; $x++) {
+						$querys2 = "SELECT * FROM `PRODUCT` where Code = '$array[$x]'";
+						$result2 = $conn->query($querys2);
+						if($result2->num_rows > 0){
+							while($line2 = $result2->fetch_assoc()){
+								if ($line2["CodeOfSupplier"] == $currentCode){
+									$count = 1;
+								}
+							}
+						}
+					}	
+					
+					if ($count == 0){
+						array_push($array,$row["Code"]);	 
+					}
+
+
 	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
 	 $productCode=$row['Code'];
 	//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
@@ -322,7 +395,7 @@ if($result->num_rows > 0)
 	echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
 	echo					"</form>";
  	
-
+	 
 	//echo 						"<div> <a href='checkout.html' class='cart-right'></a> </div>";
 	echo 						"<div class='clear'></div>";
 	echo 					 "</div>"	;			
@@ -339,30 +412,98 @@ if($result->num_rows > 0)
 		echo "</div>";
 		$counter = 0;
 	  
-	  	}
+	  }
+	  }
 	 }
-	 }
-	 
+}
+    
 	 //$counter=apotelesmata($resultDes, $counter);
  	 //$counter=apotelesmata($resultSup, $counter);
 	 //$counter=apotelesmata($resultCat, $counter);
+ 		
  		if ($counter != 3){
 	  	echo "<div class='clear'></div>";
 		echo "</div>";
-	  
+	 	
 	  	}
-		  echo "</div>";
-	   echo "<div class='clear'></div>";
-	echo "</div>";
-	echo "</div>";
-	 
-	 
-	 
-	 
+
+
+
+
+
+
+
+
+
+
+
+		echo "</div>";
+
+
+		echo "</div>";
+ 
+		echo	"<div class='rsidebar span_1_of_left'>";
+		
+        echo           "<section class='sky-form'>";
+		echo			"<h4>Τιμή</h4>";
+	//	echo				"<div class='row row1 scroll-pane'>";
+		echo					"<div class='col col-4'>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox' checked=''><i></i>€1,00 - €5,00</label>";
+		echo					"</div>";
+		echo					"<div class='col col-4'>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €10,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €15,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €20,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €25,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €50,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €75,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €100,00</label>";
+		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€100+</label>";
+		echo					"</div>";
+		//echo				"</div>";
+		echo        "</section>";
+
+		
+		echo		"<section  class='sky-form'>";
+		echo			"<h4>Μαρκα</h4>";
+		//echo				"<div class='row row1 scroll-pane'>";
+		echo					"<div class='col col-4'>";
+	
+		$arrlength = count($array);
+		for($x = 0; $x < $arrlength; $x++) {
+		   	//echo $array[$x];
+			$querys = "SELECT * FROM `PRODUCT`,`SUPPLIER` where Code = '$array[$x]' AND CodeOfSupplier = SupplierNumber";
+			$result = $conn->query($querys);
+			if($result->num_rows > 0){
+				while($row = $result->fetch_assoc()){
+					echo '<label class=checkbox><input type=checkbox name=Supl[]> <i></i> ';
+					echo $row["CompanyName"];  
+					echo "</label>";
+
+				}
+			}
+		}		
+		
+		//echo					"</div>";
+		echo				"</div>";
+		echo       "</section>";
+		echo	"<div>";
+		echo "</div>";
+
+
+
+
+
+
+
+
+		echo "</div>";
+
+	    echo "<div class='clear'></div>";
+		echo "</div>";
+ 		echo "</div>";
  ?>
 </span>
-
-
 
  <div class="footer">
 		<div class="footer-middle">
