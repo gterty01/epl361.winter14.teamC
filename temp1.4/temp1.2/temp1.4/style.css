@@ -1115,7 +1115,7 @@ table {
 	width: 15%;
 }
 
-.form plirofories input[type=text], .form register_account select {
+.plirofories input[type=text], .form register_account select {
 	font-size:0.95em;
 	color:#777;
 	padding: 8px;
@@ -1129,33 +1129,33 @@ table {
 	-moz-box-shadow:0 0 2px #aaa;
 	-o-box-shadow:0 0 2px #aaa;
 }
-.form plirofories input[type=text]:hover, .form register_account select:hover {
+.plirofories input[type=text]:hover, .form register_account select:hover {
 	box-shadow:0 0 4px #aaa;
 	-webkit-box-shadow:0 0 4px #aaa;
 	-moz-box-shadow:0 0 4px #aaa;
 	-o-box-shadow:0 0 4px #aaa;
 }
-.wrap form plirofories input[type=text].code {
+.plirofories input[type=text].code {
 	width: 15%;
 }
 
-.wrap form plirofories input[type=text].code {
+.plirofories input[type=text].code {
 	width: 15%;
 }
 
 
-.wrap form plirofories input[type=text].code3 {
+.plirofories input[type=text].code3 {
 	width: 35%;
 }
-.wrap form plirofories input[type=text].code4 {
+.plirofories input[type=text].code4 {
 	width: 45%;
 }
 
-.wrap form plirofories select.code1 {
+.plirofories select.code1 {
 	width: 5%;
 }
 
-.wrap form plirofories select.code {
+.plirofories select.code {
 	width: 10%;
 }
 

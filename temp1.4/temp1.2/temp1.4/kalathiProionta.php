@@ -8,7 +8,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Καλάθι</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -99,12 +98,10 @@ font-size: 0; line-height: 0;
 }
 </style>
 </head>
-
 <body>
 <?php 
 	session_start(); 
 ?>
-
 <?php
 $xristis;
 if(isset($_SESSION['login_user']))
@@ -116,7 +113,36 @@ else
 $xristis = "Σύνδεση";
 header("Location: login.html");
 }
+?>
+<?php
+$servername = "localhost";
+$username = "cyfoodmuseum";
+$password = "9m8ESxZD";
+$dbname = "cyfoodmuseum";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+//@mysql_select_db($dbname) or die ("No database");
 
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    echo "Connection faild";
+}
+parse_url(file_get_contents("php://input"), $_POST);
+//print_r($_POST); 
+
+if (!$conn->set_charset("utf8")) {
+    printf("Error loading character set utf8: %s\n", $conn->error);
+} else {
+    //printf("Current character set: %s\n", $conn->character_set_name());
+}//die;
+$xristis=$_SESSION['login_user'];
+$querys ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' ";
+$result=$conn->query($querys);
+if($result->num_rows == 0){
+	header("Location: checkout.html");
+
+}
 ?>
      <div class="header-top">
 	   <div class="wrap"> 
@@ -140,8 +166,6 @@ header("Location: login.html");
 			<div class="clear"></div>
  		</div>
 	</div>
-
-
 	 <div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
@@ -196,10 +220,8 @@ header("Location: login.html");
 	   <div class="header-bottom-right" style="width: 34%">
          <div class="search">	
             <form id='anazitisi' method="POST" action="searchServer.php" accept-charset="UTF-8"> <!--method='post'-->
-  
 				<input type="text" name="search" id="search" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
-				
 				<div id="response"> </div>
 				</form>
 		 </div>
@@ -223,7 +245,6 @@ header("Location: login.html");
 	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
 	  </div>
     </div>
-
      </div>
 	</div>
          <section id="cart_items">
@@ -240,37 +261,6 @@ header("Location: login.html");
 	<div class="clear"></div>
 
 	<div class="wrap">
-	<?php
-	
-$servername = "localhost";
-$username = "cyfoodmuseum";
-$password = "9m8ESxZD";
-$dbname = "cyfoodmuseum";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-//@mysql_select_db($dbname) or die ("No database");
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    echo "Connection faild";
-}
-parse_url(file_get_contents("php://input"), $_POST);
-//print_r($_POST); 
-
-if (!$conn->set_charset("utf8")) {
-    printf("Error loading character set utf8: %s\n", $conn->error);
-} else {
-    //printf("Current character set: %s\n", $conn->character_set_name());
-}//die;
-$xristis=$_SESSION['login_user'];
-$querys ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' ";
-$result=$conn->query($querys);
-		
-	
-	?>
-	
-	
 	<form method="post" action="episkopisiparaggelias.php" name="formadiagrafis">
   <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align=center" id="proiontakalathiou">
     <thead>
@@ -295,64 +285,61 @@ $result=$conn->query($querys);
 	 $proion = $row['CodeOfProduct'];
 		$stoixeiaProiontos="SELECT * FROM `PRODUCT` WHERE `Code` = '$proion' ";
 		$apotelesmata=$conn->query($stoixeiaProiontos);
-			
 		if($apotelesmata->num_rows == 0){
 			echo "nothing";
 		}
-				
-		
 		$row2 = $apotelesmata->fetch_assoc();
 		$proionOnoma=$row2['Name'];
 		$kodikosproion=$row2['Code'];
 		$price=$row2['Price'];
 		$varos=$row2['Weight'];
+		$diathesimotita=$row2['Availability'];
 		$promitheftis=$row2['CodeOfSupplier'];
 		$takeSup="SELECT * FROM `SUPPLIER` WHERE `SupplierNumber` = '$promitheftis'";
 		$querySup=$conn->query($takeSup);
 		$rowSup=$querySup->fetch_assoc();
 		$NamePromithefti=$rowSup['CompanyName'];
+		if ($diathesimotita>0){
 		echo "<tr>";
 		echo "<td>$proionOnoma</td>";
 		echo '<td><img  src="data:image/jpeg;base64,'.base64_encode( $row2['image'] ).'" width="100" height="100"/></td>';
 		echo "<td>$NamePromithefti</td>";
 		echo "<td>€$price</td>";
-		echo "<td><input id='posotita$counter' type='number' min='1' value='1' name='posotita$counter' onblur='document.formatameiou.posotita$counter.value = this.value;' ></td>";
+		echo "<td><input id='posotita$counter' type='number' min='1' max='$diathesimotita' value='1' name='posotita$counter' onblur='document.formatameiou.posotita$counter.value = this.value;' ></td>";
 		echo "<td>$varos kg</td>";
 		echo "<td><input type='submit' class='searchSubmit' id='diagrapsou$counter' name='diagrapsou' value=$kodikosproion></td>";
 		echo "</tr>";
       /*  $twoD[$numofproducts][0] = $proionOnoma;
         $twoD[$numofproducts][1] = $price;
         $twoD[$numofproducts][2] = $varos;
-        
 		$metavliti = $twoD[$numofproducts][0];
 		$tempmet= "$metavliti";
-
         $metavliti1 = $twoD[$numofproducts][1];
 		$tempmet1= "$metavliti1";
 		$metavliti2 = $twoD[$numofproducts][2];
 		$tempmet2= "$metavliti2";*/
-
-
 		echo "<input type='hidden' name='onoma$counter' id='onoma$counter' value=$proionOnoma>";
 		echo "<input type='hidden' name='kodikos$counter' id='kodikos$counter' value=$kodikosproion>";
 		echo "<input type='hidden' name='timi$counter' id='timi$counter' value=$price>";
 		echo "<input type='hidden' name='varos$counter' id='varos$counter' value=$varos>";
 		$counter=$counter+1;
+		}
         //$numofproducts++;
 	}
 	echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$counter>";
-	
 	} else{
-		header("Location: checkout.html");
+		echo "nothing";
+		
 	}
-
-
    ?>
      </tbody>
    </table>
    <br><br>
    <div class='active' style='margin-left:auto; margin-right:auto; width:75%;'>
-   <button type="submit"  class="grey" name="submittameiou" id="submittameiou" style="float:right" >Προχωρήστε στο Ταμείο</button>
+   
+   
+	<button type='submit'  class='grey' name='submittameiou' id='submittameiou' style='float:right' >Προχωρήστε στο Ταμείο</button>
+     
    </div>
     </form>
 <!--	<div class='active' style='margin-left:auto; margin-right:auto; width:75%;'>

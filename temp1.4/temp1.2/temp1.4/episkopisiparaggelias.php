@@ -1,6 +1,45 @@
 ﻿<?php
 	session_start(); 
 ?>
+<?php
+$xristis;
+if(isset($_SESSION['login_user']))
+{
+$xristis = $_SESSION['login_user'];
+}
+else
+{
+$xristis = "Σύνδεση";
+header("Location: login.html");
+}
+if ($_POST['arithmosproiontwn']==0){
+
+header("Location: index.html");
+
+}
+if(!(isset($_POST['arithmosproiontwn']))){
+header("Location: index.html");
+}
+
+if(isset($_POST['diagrapsou'])){
+$servername = "localhost";
+$username = "cyfoodmuseum";
+$password = "9m8ESxZD";
+$dbname = "cyfoodmuseum";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+
+$xristis = $_SESSION['login_user'];
+
+		$proion=$_POST['diagrapsou'];
+		$querys ="DELETE FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$proion' ";
+		$result=$conn->query($querys);
+		header("Location: kalathiProionta.php");
+		
+}
+
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -171,16 +210,7 @@ if (!$conn->set_charset("utf8")) {
     //printf("Current character set: %s\n", $conn->character_set_name());
 }//die;
 $xristis=$_SESSION['login_user'];
-if(isset($_POST['diagrapsou'])){
-		$proion=$_POST['diagrapsou'];
-		print_r($_POST);
-		echo "metapost";
-		echo $proion;
-		$querys ="DELETE FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$proion' ";
-		$result=$conn->query($querys);
-		header("Location: kalathiProionta.php");
-		
-}else{
+if(!(isset($_POST['diagrapsou']))){
 $antikeimena=$_POST['arithmosproiontwn'];
 $num=0;
 	
@@ -234,12 +264,17 @@ echo "<div class='wrap'>";
 		echo		"<p class='m_text2'>$postalcode, $city, $country </p>";
 		echo		"<p class='m_text2'>$name $surn</p>";
 		echo	"<br>";
-		echo "<input type='hidden' name='addressSent' id='addressSent' value=$address>";
-		echo "<input type='hidden' name='postalSent' id='postalSent' value=$address>";
-		echo "<input type='hidden' name='citySent' id='citySent' value=$address>";
-		echo "<input type='hidden' name='country' id='country' value=$address>";
-		echo	"<input type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>";
-		echo 	"<input type='submit' class='grey' name='submitsinexeia' value='Συνεχεια' style='margin-left:50px; '>";
+		echo "<input type='hidden' name='addressSent' id='addressSent' value='$address'>";
+		echo "<input type='hidden' name='postalSent' id='postalSent' value=$postalcode>";
+		echo "<input type='hidden' name='citySent' id='citySent' value=$city>";
+		echo "<input type='hidden' name='country' id='country' value=$country>";
+		echo "<input type='hidden' name='name' id='name' value=$name>";
+		echo "<input type='hidden' name='surn' id='surn' value=$surn>";
+	
+		echo 	"<button type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>Επεξεργασια Διευθυνσης</button>";
+		//echo	"<input type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>";
+		//echo 	"<input type='submit' class='grey' name='submitsinexeia' value='Συνεχεια' style='margin-left:50px; '>";
+		echo 	"<button type='submit' class='grey' name='submitsinexeia' style='margin-left:50px; ' value='Συνεχεια'>Συνεχεια</button>";
 
 	echo "</div>";
 	
@@ -247,8 +282,6 @@ echo "<div class='wrap'>";
 	echo "</form>";
 }
 ?>
-
-
      <div class="clear"><br><br></div>
      <div class="clear"></div>
 

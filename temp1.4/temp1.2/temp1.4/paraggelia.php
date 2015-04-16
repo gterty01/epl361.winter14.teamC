@@ -1,4 +1,30 @@
-﻿<!DOCTYPE HTML>
+﻿<?php
+	session_start(); 
+?>
+
+<?php
+$xristis;
+if(isset($_SESSION['login_user']))
+{
+$xristis = $_SESSION['login_user'];
+}
+else
+{
+$xristis = "Σύνδεση";
+header("Location: login.html");
+}
+
+
+if(!(isset($_POST['arithmosproiontwn']))){
+header("Location: index.html");
+
+
+}
+
+?>
+
+
+<!DOCTYPE HTML>
 <html>
 <head>
 <title>Παραγγελία</title>
@@ -204,6 +230,8 @@ return true;
 	</div>
 	
 	<?php
+	parse_url(file_get_contents("php://input"), $_POST);
+
 	if(isset($_POST['submitdiefthinsi'])){
 		$num=0;
 		$antikeimena=$_POST['arithmosproiontwn'];
@@ -239,7 +267,9 @@ return true;
 			echo "<p class='auto-style5'>Πόλη</p>";				   
 			echo "<div><input type='text' name='Poli' id ='Poli' value=''></div>";
 			echo "<br>";
-			echo 	"<input type='submit' class='grey' name='diefthinsiApostolis' value='Υποβολη'>";
+			echo 	"<button type='submit' class='grey' name='diefthinsiApostolis' value='Υποβολη'>Υποβολη</button>";
+
+			//echo 	"<input type='submit' class='grey' name='diefthinsiApostolis' value='Υποβολη'>";
 			echo "</div>";
 
 		echo "</form>";
@@ -263,12 +293,20 @@ return true;
 		echo 	"<br>";
 		$num=0;
 			$antikeimena=$_POST['arithmosproiontwn'];
+			$address=$_POST['addressSent'];
+			$postalcode=$_POST['postalSent'];
+			$city=$_POST['citySent'];
+			$country=$_POST['country'];
+			$name=$_POST['name'];
+			$surn=$_POST['surn'];
+
 			while ($num<$antikeimena){
 			$proionOnoma=$_POST["onoma$num"];
 			$kodikosproion=$_POST["kodikos$num"];
 			$price=$_POST["timi$num"];
 			$varos=$_POST["varos$num"];
 			$posotita=$_POST["posotita$num"];
+			
 			$poso=$posotita*$price;
 			echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
 			echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
@@ -277,9 +315,17 @@ return true;
 			echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
 			echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
 			echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
+			
+
 
 			$num=$num+1;
 		}
+		echo "<input type='hidden' name='addressSent' id='addressSent' value='$address'>";
+		echo "<input type='hidden' name='postalSent' id='postalSent' value=$postalcode>";
+		echo "<input type='hidden' name='citySent' id='citySent' value=$city>";
+		echo "<input type='hidden' name='country' id='country' value=$country>";
+		echo "<input type='hidden' name='name' id='name' value=$name>";
+		echo "<input type='hidden' name='surn' id='surn' value=$surn>";
 
 		echo 	"<button type='submit' class='grey' name='submit' value='Submit'>Υποβολη</button>";
 
