@@ -294,12 +294,13 @@ if (!$conn->set_charset("utf8")) {
 if ($_POST["search"]){
 	$timi = $_POST['search'];
 	if ($timi!="Αναζήτηση"){
+
 		$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Availability`>0 AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
 		$result=$conn->query($querys);
 		
 		//$querys2 ="SELECT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Name` LIKE '%$timi%'";
 		$arithmos = $result->num_rows;
-		
+
 		$queryDes ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat`AND `Availability`>0 AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%')";
 		$resultDes=$conn->query($queryDes);		
 		$querySup ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `Availability`>0 AND `CodeOfSupplier` = `SupplierNumber` AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%')";
@@ -429,37 +430,28 @@ if($result->num_rows > 0){
 
 
 
-
-
-
-
-
-
-
-
 		echo "</div>";
 
 
 		echo "</div>";
- 
+	if($result->num_rows > 0){
+
 		echo	"<div class='rsidebar span_1_of_left'>";
 		
         echo           "<section class='sky-form'>";
 		echo			"<h4>Τιμή</h4>";
 	//	echo				"<div class='row row1 scroll-pane'>";
-		echo					"<div class='col col-4'>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox' checked=''><i></i>€1,00 - €5,00</label>";
-		echo					"</div>";
-		echo					"<div class='col col-4'>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €10,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €15,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €20,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €25,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €50,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €75,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€1,00 - €100,00</label>";
-		echo						"<label class='checkbox'><input type='checkbox' name='checkbox'><i></i>€100+</label>";
-		echo					"</div>";
+		echo					"<form class='col col-4' id='select_price' method='post' accept-charset='utf-8'>";
+		echo						'<label class="checkbox"><input id ="datepicker" type="radio" name = "price" value="5" onchange="window.location.href= \'searchPrice.php?Value =5&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €5,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="10" onchange="window.location.href = \'searchPrice.php?Value =10&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €10,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="15" onchange="window.location.href = \'searchPrice.php?Value =15&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €15,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="20" onchange="window.location.href = \'searchPrice.php?Value =20&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €20,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="25" onchange="window.location.href = \'searchPrice.php?Value =25&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €25,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="50" onchange="window.location.href = \'searchPrice.php?Value =50&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €50,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="75" onchange="window.location.href = \'searchPrice.php?Value =75&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €75,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="100" onchange="window.location.href = \'searchPrice.php?Value =100&& Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €100,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="101" onchange="window.location.href = \'searchPrice.php?Value =101&& Timi ='.urlencode($timi).'\'" ><i></i>€100+</label>';
+		echo					"</form>";
 		//echo				"</div>";
 		echo        "</section>";
 
@@ -469,6 +461,8 @@ if($result->num_rows > 0){
 		//echo				"<div class='row row1 scroll-pane'>";
 		echo					"<div class='col col-4'>";
 	
+	
+
 		$arrlength = count($array);
 		for($x = 0; $x < $arrlength; $x++) {
 		   	//echo $array[$x];
@@ -476,7 +470,8 @@ if($result->num_rows > 0){
 			$result = $conn->query($querys);
 			if($result->num_rows > 0){
 				while($row = $result->fetch_assoc()){
-					echo '<label class=checkbox><input type=checkbox name=Supl[]> <i></i> ';
+					$number = $row["SupplierNumber"];
+					echo '<label class="checkbox"><input type="radio" name = "Sup[]" value="' . $row['SupplierNumber'] .'" onchange="window.location.href= \'searchSupplier.php?Value ='.urlencode($number).' && Timi ='.urlencode($timi).'\'" ><i></i> ';
 					echo $row["CompanyName"];  
 					echo "</label>";
 
@@ -491,8 +486,7 @@ if($result->num_rows > 0){
 		echo "</div>";
 
 
-
-
+}
 
 
 
