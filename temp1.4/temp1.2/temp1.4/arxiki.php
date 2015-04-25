@@ -1,0 +1,749 @@
+﻿<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<?php 
+	session_start(); 
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>E-shop Cyprus Food Museum  | Αρχική</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'/>
+<script type="text/javascript" src="js/jquery1.min.js"></script>
+<!-- start menu -->
+<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="js/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<!--start slider -->
+    <link rel="stylesheet" href="css/fwslider.css" media="all">
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/css3-mediaqueries.js"></script>
+    <script src="js/fwslider.js"></script>
+<!--end slider -->
+<script src="js/jquery.easydropdown.js"></script>
+<script type="text/javascript">
+	function doesExist(){
+
+	alert('Το προϊόν που επιλέξατε υπάρχει ήδη στο καλάθι σας!');
+	return false;
+	}
+</script>
+
+ <script type='text/javascript'>
+function validateInsertion(){
+				alert('Προστέθηκε στο καλάθι σας!');
+				return true;		
+			}
+	</script>
+
+<style type="text/css">
+.auto-style1 {
+	color: #FFFFFF;
+}
+.auto-style2 {
+	margin-top: 0px;
+}
+.auto-style4 {
+	margin-left: 0;
+}
+</style>
+</head>
+<body style="color: #FFFFFF; ">
+     <div class="header-top">
+	   <div class="wrap"> 
+			<div class="header-top-left">
+			    				    <div class="box1">
+   				        <select tabindex="4" class="dropdown">
+							<option value="" class="label" value="">Νόμισμα :</option>
+							<option value="1">€ Ευρώ</option>
+						</select>
+   				    </div>
+   				    <div class="clear"></div>
+   			 </div>
+			 <div class="cssmenu">
+				<ul>
+				
+				<?php 
+				if(isset($_SESSION['login_user'])){
+					$xristis=$_SESSION['login_user'];
+					echo "<li class='active'><a href='profile.php'>$xristis</a></li> |";
+					echo "<li><a href='kalathiProionta.php'>Καλάθι/Αγορά</a></li> |";
+					echo "<li><a href='profile.php'>Προφίλ</a></li> |";
+					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
+
+				}else{
+					echo "<li><a href='login.html'>Σύνδεση</a></li> |";
+					echo "<li><a href='register.html'>Εγγραφή</a></li>";
+
+				}				
+				
+				?>
+				</ul>
+			</div>
+			<div class="clear"></div>
+ 		</div>
+	</div>
+	<div class="header-bottom">
+	    <div class="wrap" style="width: 98%">
+			<div class="header-bottom-left">
+				<div class="logo">
+					<a href="arxiki.php">
+					<img src="images/trofima.jpg"></a>
+				</div>
+				<div class="menu">
+			</div>
+		</div>
+	   <div class="header-bottom-right" style="width: 34%">
+         <div class="search">	
+            <form id='anazitisi' method="POST" action="searchServer.php" accept-charset="UTF-8"> <!--method='post'-->
+  
+				<input type="text" name="search" id="search" class="auto-style4" value="Αναζήτηση" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Αναζήτηση';}" style="width: 159px">
+				<input type="submit" value="Subscribe" id="submit" name="submit">
+				
+				<div id="response"> </div>
+				</form>
+		 </div>
+	  <div class="tag-list">
+	    <ul class="icon1 sub-icon1 profile_img">
+			<li>
+				<ul class="sub-icon1 list">
+					<li><h3>sed diam nonummy</h3><a href=""></a></li>
+					<li><p>Lorem ipsum dolor sit amet, consectetuer  <a href="">adipiscing elit, sed diam</a></p></li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="icon1 sub-icon1 profile_img">
+		<?php
+			$servername = "localhost";
+								$username = "cyfoodmuseum";
+								$password = "9m8ESxZD";
+								$dbname = "cyfoodmuseum";
+								// Create connection
+								$conn = new mysqli($servername, $username, $password, $dbname);
+								//@mysql_select_db($dbname) or die ("No database");
+								
+								// Check connection
+								if ($conn->connect_error) {
+								    die("Connection failed: " . $conn->connect_error);
+								    echo "Connection faild";
+								}
+								if (!$conn->set_charset("utf8")) {
+								    printf("Error loading character set utf8: %s\n", $conn->error);
+								} else {
+								    //printf("Current character set: %s\n", $conn->character_set_name());
+								}//die;
+
+			if(isset($_SESSION['login_user'])){
+			    $xristis=$_SESSION['login_user'];
+			
+				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
+				$queryCart=$conn->query($posotitakalathi);
+				if($queryCart->num_rows > 0){
+				echo "<li><a class='active-icon c2' href='kalathiProionta.php'> </a>";
+				echo "<ul class='sub-icon1 list'>";
+				echo 	"<li><h3>$queryCart->num_rows Προϊόντα</h3><a href=''></a></li>";
+				echo	"<li><p>Δες τα προϊόντα στο καλάθι σου και κάνε τις Αγορές σου!<a href=''></a></p></li>";
+				echo "</ul>";
+				echo "</li>";
+				}else{
+				echo "<li><a class='active-icon c2' href='checkout.html'> </a>";
+				echo  	"<ul class='sub-icon1 list'>";
+				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
+				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
+				echo 	"</ul>";
+				echo 	"</li>";
+				}
+			}else{
+			
+				echo "<li><a class='active-icon c2' href=''> </a>";
+				echo "<ul class='sub-icon1 list'>";
+				echo 	"<li><h3>Συνδεθείτε</h3><a href=''></a></li>";
+				echo 	"<li><p>Γίνεται μέλος στο καταστημά μας, προσθέστε προϊόντα στο καλάθι σας και κάνετε τις αγορές σας!<a href=''></a></p></li>";
+				echo "</ul>";
+				echo "</li>";
+
+			
+			
+			
+			}
+			
+		?>			
+		</ul>
+		<?php
+			if(isset($_SESSION['login_user'])){
+
+				$xristis=$_SESSION['login_user'];
+			
+				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
+				$queryCart=$conn->query($posotitakalathi);
+				if($queryCart->num_rows > 0){
+				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
+				}else{
+				echo "<ul class='last'><li><a href='checkout.html'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+				}		   
+		}else{
+			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
+
+		}	    
+	    ?>
+
+	  </div>
+    </div>
+     <div class="clear"></div>
+	            <ul class="megamenu skyblue"  >
+			<li class="active grid"><a href="arxiki.php">ΑΡΧΙΚΗ</a></li>
+			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
+				<div class="megapanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Κατηγορίες Τροφίμων</h4>
+								<ul>
+								<?php
+								$servername = "localhost";
+								$username = "cyfoodmuseum";
+								$password = "9m8ESxZD";
+								$dbname = "cyfoodmuseum";
+								// Create connection
+								$conn = new mysqli($servername, $username, $password, $dbname);
+								//@mysql_select_db($dbname) or die ("No database");
+								
+								// Check connection
+								if ($conn->connect_error) {
+								    die("Connection failed: " . $conn->connect_error);
+								    echo "Connection faild";
+								}
+								if (!$conn->set_charset("utf8")) {
+								    printf("Error loading character set utf8: %s\n", $conn->error);
+								} else {
+								    //printf("Current character set: %s\n", $conn->character_set_name());
+								}//die;
+									$queryCat="SELECT * FROM `CATEGORY` WHERE `SubCategory`='1';";
+									$trofima=$conn->query($queryCat);
+									if ($trofima->num_rows>0){
+										while($row = $trofima->fetch_assoc()) {
+											$category=$row['CodeCat'];
+											$onomasia=$row['NameCat'];
+											echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';
+
+										
+										}
+									}
+								
+								
+								
+								?>
+								</ul>	
+							</div>							
+						</div>
+					  </div>
+					</div>
+				</li>				
+				<li><a class="color6" href="#">ΥΛΙΚΑ</a>
+				<div class="megapanel">
+					<div class="col1">
+							<div class="h_nav">
+								<h4>Υλικά</h4>
+								<ul>
+								<?php
+								$queryCatY="SELECT * FROM `CATEGORY` WHERE `SubCategory`='2';";
+									$ilika=$conn->query($queryCatY);
+									if ($ilika->num_rows>0){
+										while($row2 = $ilika->fetch_assoc()) {
+											$category=$row2['CodeCat'];
+											$onomasia=$row2['NameCat'];
+											echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';
+
+										
+										}
+									}								
+								?>
+								</ul>	
+							</div>							
+						</div>
+					</div>
+				</li>
+				
+				<?php
+				$katigories="SELECT * FROM `CATEGORY` WHERE `SubCategory`='3';";
+				$all=$conn->query($katigories);
+				if ($all->num_rows>0){
+					while($row3 = $all->fetch_assoc()) {
+						$category=$row3['CodeCat'];
+						$onomasia=$row3['NameCat'];
+						//echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">"$onomasia"</a></li>';
+						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
+					}
+				}			
+				
+				
+				
+				?>
+				
+				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
+				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
+
+				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
+				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
+				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
+			</ul>
+     <div class="clear"></div>
+     <br>
+
+     </div>
+	</div>
+  <!-- start slider -->
+    <div id="fwslider">
+        <div class="slider_container">
+            <div class="slide"> 
+                <!-- Slide image -->
+                    <img src="images/koupes.jpg" alt=""/>
+                <!-- /Slide image -->
+                <!-- Texts container -->
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <!-- Text title -->
+                        <h4 class="title">CY-FOOD MUSEUM</h4>
+                        <!-- /Text title -->
+                        
+                        <!-- Text description -->
+                        <h4 class="description">Κυπριακά και Νόστιμα</h4>
+                        <!-- /Text description -->
+                    </div>
+                </div>
+                 <!-- /Texts container -->
+            </div>
+            <!-- /Duplicate to create more slides -->
+            <div class="slide">
+                <img src="images/diosmos.jpg" alt=""/>
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <h4 class="title">CY-FOOD MUSEUM</h4>
+                        <h4 class="description">Πάντα με αγνά υλικά</h4>
+                    </div>
+                </div>
+            </div>
+            <!--/slide -->
+        </div>
+        <div class="timers"></div>
+        <div class="slidePrev"><span></span></div>
+        <div class="slideNext"><span></span></div>
+    </div>
+    <!--/slider -->
+<div class="main">
+	<div class="wrap">
+		<div class="section group">
+		  <div class="cont span_2_of_3">
+		  	<h2 class="head">Προτεινομενα Προϊοντα</h2>
+			<div class="top-box">
+			
+			<?php
+				$contain=0;
+				if(isset($_SESSION['login_user'])){
+					$xristis=$_SESSION['login_user'];
+					$previewd="SELECT * FROM `VIEWPRODUCT` WHERE `UserCode`='$xristis';";
+					$queryViewd=$conn->query($previewd);
+					if ($queryViewd->num_rows > 0){
+						$contain=1;
+						
+						$maxdate="SELECT MAX(Date_view), `CodeOfProduct`  FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis'; ";
+						$querymax=$conn->query($maxdate);
+						$rowMax=$querymax->fetch_assoc();
+						$codeProsfato=$rowMax['CodeOfProduct'];
+						
+						$cat="SELECT * FROM `PRODUCT` WHERE `Code`='$codeProsfato';";
+						$querykatigoria=$conn->query($cat);
+						$rowKat=$querykatigoria->fetch_assoc();
+						$katigoria=$rowKat['CodeOfCategory'];
+						
+						
+						$ipopsifia="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria';";
+						$quIpopsifia=$conn->query($ipopsifia);
+						
+						$range=$quIpopsifia->num_rows;
+						
+						$var=rand(1,$range);
+						$counter=0;
+						while ($counter!=$var){
+							$rowIpo=$quIpopsifia->fetch_assoc();
+							$counter=$counter+1;
+						}
+						$prwto=$rowIpo['Code'];
+						
+						 echo "<div class='col_1_of_3 span_1_of_3'>" ;
+						 $productCode=$rowIpo['Code'];
+						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+						 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+						 // echo 	  	 "<a href='single.html'>";
+						
+						 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+						 echo 		 					"<div class='product_image'>";
+						 
+						// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+						 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $rowIpo['image'] ).'" width="270" height="250"/>';
+						 echo 				"</div>";
+					     echo         "<div class='price'>";
+						 echo 		   "<div class='cart-left'>";
+						 echo 					"<p class='title'>";
+						 echo $rowIpo['Name'] ;
+						 echo "</p>";
+						 echo 							"<div class='price1'>";
+						 echo 							  "<span class='actual'>";
+						 echo $rowIpo['Price'];
+						 echo "</span>";
+						 echo 							"</div>";
+					 	echo 						"</div>";
+					 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+						$resultCheck=$conn->query($querysCheck);
+						if($resultCheck->num_rows == 0){
+						//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+			
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+						//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+						}
+					  	else{
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+					  	}
+					 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+						echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+						echo					"</form>";
+						echo 						"<div class='clear'></div>";
+						echo 					 "</div>"	;			
+						echo                    "</div>";
+						echo                    "</a>";
+						//echo "</form>";
+						echo 				"</div>";
+					
+						
+						$maxtimes="SELECT MAX(SumTimes), `CodeOfProduct`  FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis'; ";
+						$querytimes=$conn->query($maxtimes);
+						$rowTimes=$querytimes->fetch_assoc();
+						$codeTimes=$rowTimes['CodeOfProduct'];
+						
+						$cat2="SELECT * FROM `PRODUCT` WHERE `Code`='$codeTimes';";
+						$querykatigoria2=$conn->query($cat2);
+						$rowKat2=$querykatigoria2->fetch_assoc();
+						$katigoria2=$rowKat2['CodeOfCategory'];
+						
+						
+						$ipopsifia2="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria2' and `Code`<>'$prwto';";
+						$quIpopsifia2=$conn->query($ipopsifia2);
+						
+						$range2=$quIpopsifia2->num_rows;
+						$var2=rand(1,$range2);
+						$counter=0;
+						while ($counter!=$var2){
+							$rowIpo2=$quIpopsifia2->fetch_assoc();
+							$counter=$counter+1;
+						}
+						$deftero=$rowIpo2['Code'];
+						
+						echo "<div class='col_1_of_3 span_1_of_3'>" ;
+						 $productCode=$rowIpo2['Code'];
+						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+						 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+						 // echo 	  	 "<a href='single.html'>";
+						
+						 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+						 echo 		 					"<div class='product_image'>";
+						 
+						// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+						 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $rowIpo2['image'] ).'" width="270" height="250"/>';
+						 echo 				"</div>";
+					     echo         "<div class='price'>";
+						 echo 		   "<div class='cart-left'>";
+						 echo 					"<p class='title'>";
+						 echo $rowIpo2['Name'] ;
+						 echo "</p>";
+						 echo 							"<div class='price1'>";
+						 echo 							  "<span class='actual'>";
+						 echo $rowIpo2['Price'];
+ 						echo "</span>";
+						 echo 							"</div>";
+					 	echo 						"</div>";
+					 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+						$resultCheck=$conn->query($querysCheck);
+						if($resultCheck->num_rows == 0){
+						//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+			
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+						//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+						}
+					  	else{
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+					  	}
+					 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+						echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+						echo					"</form>";
+						echo 						"<div class='clear'></div>";
+						echo 					 "</div>"	;			
+						echo                    "</div>";
+						echo                    "</a>";
+						//echo "</form>";
+						echo 				"</div>";
+
+						
+						
+						
+						
+						
+						$tixi="SELECT * FROM `PRODUCT` WHERE `Code`<>'$prwto' AND `Code`<>'$deftero';";
+						$quIpopsifia3=$conn->query($tixi);
+						$range3=$quIpopsifia3->num_rows;
+						$var3=rand(1,$range3);
+						//echo $var3;
+						$counter=0;
+						while ($counter!=$var3){
+							$rowIpo3=$quIpopsifia3->fetch_assoc();
+							$counter=$counter+1;
+						}
+						$trito=$rowIpo3['Code'];
+
+						echo "<div class='col_1_of_3 span_1_of_3'>" ;
+						 $productCode=$rowIpo3['Code'];
+						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+						 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+						 // echo 	  	 "<a href='single.html'>";
+						
+						 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+						 echo 		 					"<div class='product_image'>";
+						 
+						// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+						 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $rowIpo3['image'] ).'" width="270" height="250"/>';
+						 echo 				"</div>";
+					     echo         "<div class='price'>";
+						 echo 		   "<div class='cart-left'>";
+						 echo 					"<p class='title'>";
+						 echo $rowIpo3['Name'] ;
+						 echo "</p>";
+						 echo 							"<div class='price1'>";
+						 echo 							  "<span class='actual'>";
+						 echo $rowIpo3['Price'];
+ 						echo "</span>";
+						 echo 							"</div>";
+					 	echo 						"</div>";
+					 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+						$resultCheck=$conn->query($querysCheck);
+						if($resultCheck->num_rows == 0){
+						//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+			
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+						//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+						}
+					  	else{
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+					  	}
+					 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+						echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+						echo					"</form>";
+						echo 						"<div class='clear'></div>";
+						echo 					 "</div>"	;			
+						echo                    "</div>";
+						echo                    "</a>";
+						//echo "</form>";
+						echo 				"</div>";
+
+						
+						
+					
+						
+						
+						
+						
+						
+			
+									}
+					
+
+				}
+				
+			?>
+			
+				
+				<!--</div>-->
+				<div class="clear"></div>
+			</div>	
+			<!--<div class="cont span_3_of_3">-->
+			<div class="top-box1">
+				<div class="clear"></div>
+			</div>	
+		  <h2 class="head">Προσφορες</h2>
+		  <div class="top-box1">
+			  <div class="col_1_of_3 span_1_of_3">
+			  	 <a href="single.html">
+				 <div class="inner_content clearfix" style='left: 0px; top: 0px'>
+					<div class="product_image">
+						<img src="images/kumantaria.jpg" alt="" width="270" height="250"/>
+					</div>
+					<div class="sale-box1"><span class="on_sale title_shop">Sale</span></div>	
+                    <div class="price">
+					   <div class="cart-left">
+							<p class="title">Κυπριακό Κρασί - Κουμανταρία</p>
+							<div classs="price1">
+							  <span class="reducedfrom">€30,00</span>
+							  <span class="actual">€25,00</span>
+							</div>
+						</div>
+						<form id='prosthiki' method="POST" action="prosthiki.php" accept-charset="UTF-8">
+						<input type="submit" class="cart-right" name="kalathi" value="" >
+						</form>
+						<!--<div> <a href="checkout.html" class="cart-right"></a> </div> -->
+						<div class="clear"></div>
+					 </div>				
+                   </div>
+                   </a>
+				</div>
+				<div class="col_1_of_3 span_1_of_3">
+					 <a href="single.html">
+					<div class="inner_content clearfix" style='left: 0px; top: 0px'>
+					<div class="product_image">
+						<img src="images/xaloumi.jpg" alt="" width="270" height="250"/>
+					</div>
+                    <div class="sale-box1"><span class="on_sale title_shop">Sale</span></div>	
+				    <div class="price">
+					   <div class="cart-left">
+							<p class="title">Χαλλούμι</p>
+							<div class="price1">
+							<span class="reducedfrom">€6,00</span>
+							  <span class="actual">€4,50</span>
+							</div>
+						</div>
+						<div> <a href="checkout.html" class="cart-right"></a> </div>
+						<div class="clear"></div>
+					 </div>				
+                   </div>
+                   </a>
+				</div>
+				<div class="col_1_of_3 span_1_of_3">
+				 <a href="single.html">
+				 <div class="inner_content clearfix" style='left: 0px; top: 0px'>
+					<div class="product_image">
+						<img src="images/pergamonto.jpg" alt="" width="270" height="250"/>
+					</div>
+                    <div class="sale-box1"><span class="on_sale title_shop">Sale</span></div>	
+                    <div class="price">
+					   <div class="cart-left">
+							<p class="title">Γλυκό Κουταλιού - Περγαμόντο</p>
+							<div class="price1">
+							  <span class="reducedfrom">€9,00</span>
+							  <span class="actual">€6,50</span>
+							
+							</div>
+						</div>
+						<div> <a href="checkout.html" class="cart-right"></a> </div>
+						<div class="clear"></div>
+					 </div>				
+                   </div>
+                   </a>
+				</div>
+				<div class="clear"></div>
+			</div>	
+		  </div>
+
+			<div class="rsidebar span_1_of_left" >
+				<div class="top-border"> </div>
+				 <div class="border">
+	             <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
+	             <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
+				  <script src="js/jquery.nivo.slider.js"></script>
+				    <script type="text/javascript">
+				    $(window).load(function() {
+				        $('#slider').nivoSlider();
+				    });
+				    </script>
+		    <div class="slider-wrapper theme-default">
+              <div id="slider" class="nivoSlider">
+                <img src="images/koypepia.jpg"  alt="" width="230" height="300"/>
+               	<img src="images/karaoloi.jpg"  alt="" width="230" height="300"/>
+                <img src="images/koukia.jpg"  alt="" width="230" height="300"/>
+              </div>
+             </div>
+              <div class="btn"><a href="single.html">Δες Συνταγές!</a></div>
+             </div>
+           <div class="top-border"> </div>
+			<div class="sidebar-bottom">
+			    <h2 class="m_1">Επισκεφθεiτε το Blog μας!<br></h2>
+			    <p class="m_text">Επισκεφτείτε την ιστοσελίδα μας και διαβάστε τα πάντα για την Κυπριακή Παράδοση και Κουζίνα</p>
+			    <div class="subscribe">
+					  <a href="http://foodmuseum.cs.ucy.ac.cy/" target="_blank"><input type="submit" value="Cy - FoodMuseum Blog"> </a></div>
+					
+	  			</div>
+			</div>
+	    </div>
+	   <div class="clear"></div>
+	</div>
+	</div>	  
+	<!--</div>-->
+	<!--</div>-->
+   <div class="footer">
+		<div class="footer-middle">
+			<div class="wrap">   
+		   <div class="section group example">
+		   	   <br>
+			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
+			   <div class="section group example">
+				 <div class="col_1_of_f_2 span_1_of_f_2" style="width: 41%; margin-left: 0; height: 150px">
+				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
+						<ul class="f-list1">
+						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
+				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				             <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="copyright.html">Copyright</a></li>
+			
+				         </ul>
+				 </div>
+				 <div class="col_1_of_f_2 span_1_of_f_2">
+				 <div class="clear"></div>
+				   <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
+						<div class="company_address">
+					                <p>Εικονικό Μουσείο Κυπριακών Τροφίμων και Διατροφής</p>
+							   		<p>Κύπρος</p>
+							   		<p>Κινητό Τηλέφωνο: 99 05 98 20</p>
+					   				<p>Fax: 22 77 06 76</p>
+					 	 			<p style="" >Email: <span>cyfoodmuseum@gmail.com</span></p>
+					   		<!--style="height: 24px"-->
+					   </div>
+				</div>
+				<div class="clear"></div>
+
+		    </div>
+		   </div>
+		   </div>
+		   <div class="clear"></div>
+		  <div class="auto-style1">
+		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
+					μας στο: 99 05 98 20     </span>
+			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
+			</div>
+		</div>
+					
+					<div class="footer-bottom">
+					<div class="wrap">
+				<div class="f-list2">
+				 <ul>
+					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
+					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
+					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				 </ul>
+			    </div>
+			    <div class="clear"></div>
+			    </div>
+		      </div>
+	     	
+	     	 </div>
+		    </div>
+		  </div>
+		</div>
+
+</body>
+</html>

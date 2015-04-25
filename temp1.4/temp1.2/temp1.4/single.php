@@ -56,7 +56,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </style>
 </head>
 <body>
-
+<?php
+	session_start(); 
+?>
 
 <?php
  $servername = "localhost";
@@ -82,9 +84,27 @@ if (!$conn->set_charset("utf8")) {
 }//die;
 $kodikos=$_GET['item'];
 
-$querys = "SELECT DISTINCT `Code` , `Name` , `Description` , `Availability` , `Price` , `NameCat` , `Weight`  , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Code` = '$kodikos'";
+$querys = "SELECT DISTINCT `Code` , `Name` , `Description` , `Availability` , `Price` , `NameCat` , `Weight`  , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Code` = '$kodikos';";
 $result=$conn->query($querys);
 $row = $result->fetch_assoc();	
+if(isset($_SESSION['login_user'])){
+	$xristis=$_SESSION['login_user'];
+	$product=$row['Code'];
+	$queryview="SELECT * FROM `cyfoodmuseum`.`VIEWPRODUCT` where `UserCode`='$xristis' AND `CodeOfProduct`='$product';";
+	$eideAgain=$conn->query($queryview);
+	if($eideAgain->num_rows > 0){
+		$rowEide=$eideAgain->fetch_assoc();
+		$thisdate = date("Y-m-d");
+		$times=$rowEide['SumTimes']+1;
+		$allagi="UPDATE `cyfoodmuseum`.`VIEWPRODUCT` SET `Date_view`='$thisdate', `SumTimes`='$times' where `UserCode`='$xristis' and `CodeOfProduct`='$product' ";
+		$conn->query($allagi);												
+	}else{
+		$thisdate = date("Y-m-d");
+		$times=1;
+		$eisagwgi="INSERT INTO `cyfoodmuseum`.`VIEWPRODUCT` (`UserCode`, `CodeOfProduct`, `Date_view` , `SumTimes`) VALUES ('$xristis', '$product', '$thisdate', '$times') ";
+		$conn->query($eisagwgi);												
+	}
+}
 
 
 
