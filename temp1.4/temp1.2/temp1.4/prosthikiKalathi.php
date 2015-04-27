@@ -368,15 +368,15 @@ if($result->num_rows > 0){
 		echo			"<h4>Τιμή</h4>";
 	//	echo				"<div class='row row1 scroll-pane'>";
 		echo					"<form class='col col-4' id='select_price' method='post' accept-charset='utf-8'>";
-		echo						'<label class="checkbox"><input id ="datepicker" type="radio" name = "price" value="5" onchange="window.location.href= \'searchPrice.php?Value = 5 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €5,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="10" onchange="window.location.href = \'searchPrice.php?Value = 10 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €10,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="15" onchange="window.location.href = \'searchPrice.php?Value = 15 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €15,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="20" onchange="window.location.href = \'searchPrice.php?Value = 20 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €20,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="25" onchange="window.location.href = \'searchPrice.php?Value = 25 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €25,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="50" onchange="window.location.href = \'searchPrice.php?Value = 50 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €50,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="75" onchange="window.location.href = \'searchPrice.php?Value = 75 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €75,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="100" onchange="window.location.href = \'searchPrice.php?Value = 100 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €100,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="101" onchange="window.location.href = \'searchPrice.php?Value = 101 && Timi ='.urlencode($timi).'\'" ><i></i>€100+</label>';
+		echo						'<label class="checkbox"><input id ="datepicker" type="radio" name = "price" value="5" onchange="window.location.href= \'searchPrice.php?Value =5&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €5,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="10" onchange="window.location.href = \'searchPrice.php?Value =10&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €10,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="15" onchange="window.location.href = \'searchPrice.php?Value =15&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €15,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="20" onchange="window.location.href = \'searchPrice.php?Value =20&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €20,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="25" onchange="window.location.href = \'searchPrice.php?Value =25&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €25,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="50" onchange="window.location.href = \'searchPrice.php?Value =50&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €50,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="75" onchange="window.location.href = \'searchPrice.php?Value =75&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €75,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="100" onchange="window.location.href = \'searchPrice.php?Value =100&& Search ='.urlencode($timi).'\'" ><i></i>€1,00 - €100,00</label>';
+		echo						'<label class="checkbox"><input type="radio" name = "price" value="101" onchange="window.location.href = \'searchPrice.php?Value =101&& Search ='.urlencode($timi).'\'" ><i></i>€100+</label>';
 		echo					"</form>";
 		//echo				"</div>";
 		echo        "</section>";
@@ -397,7 +397,7 @@ if($result->num_rows > 0){
 			if($result->num_rows > 0){
 				while($row = $result->fetch_assoc()){
 					$number = $row["SupplierNumber"];
-					echo '<label class="checkbox"><input type="radio" name = "Sup[]" value="' . $row['SupplierNumber'] .'" onchange="window.location.href= \'searchSupplier.php?Value = '.urlencode($number).' \'" ><i></i> ';
+					echo '<label class="checkbox"><input type="radio" name = "Sup[]" value="' . $row['SupplierNumber'] .'" onchange="window.location.href= \'searchSupplier.php?Value ='.urlencode($number).'&& Search ='.urlencode($timi).'\'" ><i></i> ';
 					echo $row["CompanyName"];  
 					echo "</label>";
 

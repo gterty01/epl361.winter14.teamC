@@ -391,9 +391,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		          <div><input type="text" id="city" name="city" value="<?php echo $_SESSION['city']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}"></div>
 		           <div>
 		          </div>
-		          	<input type="text" id="codeC1" name="codeC1" value="<?php echo $_SESSION['codeC1']; ?>" class="code"> - <input type="text" id="tel1" name="<?php echo $_SESSION['tel1']; ?>" value="" class="number">
+		          	<input type="text" id="codeC1" name="codeC1" value="<?php echo $_SESSION['codeC1']; ?>" class="code"> - 
+					  <input type="text" id="tel1" name="<?php echo $_SESSION['tel1']; ?>" value="" class="number"style="width: 69%">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Κινητού Τηλεφώνου</p>
-		          		<input type="text" id="codeC2" name="codeC2" value="<?php echo $_SESSION['codeC2']; ?>" class="code"> - <input type="text" id="tel2" name="tel2" value="<?php echo $_SESSION['tel2']; ?>" class="number">
+		          		<input type="text" id="codeC2" name="codeC2" value="<?php echo $_SESSION['codeC2']; ?>" class="code"> - 
+					  <input type="text" id="tel2" name="tel2" value="<?php echo $_SESSION['tel2']; ?>" class="number" style="width: 69%">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Σταθερού Τηλεφώνου</p>
 
 		          </div>

@@ -192,149 +192,144 @@ function validateInsertion(){
     	die;
 	}
 	
- 	$Value = $_GET['Value_'];
-	$timi = $_GET['Timi_'];
-
-if (is_numeric($timi)){
-	if ($Value!=101){
- 	$querys = "SELECT * FROM `PRODUCT` WHERE CodeOfSupplier = '$Value' AND `Availability`>0 AND Price <= '$timi'";
+ 	$Value = $_GET['Value_']; //supplier
+	$timi = $_GET['Search_']; // search
+	$price =  $_GET['Timi_']; // timi
+	
+	if (($price!=101) && ($price!=0)){
+		$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Availability`>0 AND CodeOfSupplier = '$Value' AND Price <= '$price' AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND Price <= '$price'  AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND Price <= '$price'  AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` and CodeOfSupplier = '$Value' AND Price <= '$price'  AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
  	}else{
- 	 	$querys = "SELECT * FROM `PRODUCT` WHERE CodeOfSupplier = '$Value' AND `Availability`>0 AND Price >= '$timi'"; 	
+ 	 	//$querys = "SELECT * FROM `PRODUCT` WHERE CodeOfSupplier = '$Value' AND `Availability`>0 AND Price >= '$timi'"; 
+ 	 	$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Availability`>0 AND CodeOfSupplier = '$Value' AND Price >= '$price' AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND Price >= '$price' AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND Price >= '$price' AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` and CodeOfSupplier = '$Value' AND Price >= '$price' AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
  	}
 
-}
-else{
-		$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Availability`>0 AND CodeOfSupplier = '$Value' AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` and CodeOfSupplier = '$Value' AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
-		//$querys ="SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Availability`>0 AND CodeOfSupplier = '$Value' AND (MATCH(`Name`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Name` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and  CodeOfSupplier = '$Value' AND (MATCH(`Description`) AGAINST('$timi' WITH QUERY EXPANSION) OR `Description` LIKE '%$timi%') UNION SELECT DISTINCT `Code` , `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where  `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` and CodeOfSupplier = '$Value' AND (MATCH(`CompanyName`) AGAINST('$timi' WITH QUERY EXPANSION) OR `CompanyName` LIKE '%$timi%') UNION SELECT DISTINCT `Code`, `Name` , `Description` , `Price` , `NameCat` , `Weight` , `Availability` , `image` ,  `CompanyName` FROM `PRODUCT` , `CATEGORY` , `SUPPLIER` WHERE `CodeOfCategory` = `CodeCat` AND `SupplierNumber` = `CodeOfSupplier` and CodeOfSupplier = '$Value' AND (MATCH(`NameCat`) AGAINST('%$timi%' WITH QUERY EXPANSION))";
-}
-
 	$result = $conn->query($querys);
-	
+	$counter=0;
+
 	if($result->num_rows > 0){	
 
-	echo "<div class='wrap'>";
-	echo 	"<div class='section group'>";
-	echo	 "<div class='cont span_2_of_3'>";
- 	echo 		  	"<h2 class='head'>Αποτελεσματα Αναζητησης βαση μαρκας</h2>";
-	echo "<br>";
-	while($row = $result->fetch_assoc()) {
+		echo "<div class='wrap'>";
+		echo 	"<div class='section group'>";
+		echo	 "<div class='cont span_2_of_3'>";
+	 	echo 		  	"<h2 class='head'>Αποτελεσματα Αναζητησης βαση μαρκας</h2>";
+		echo "<br>";
+		while($row = $result->fetch_assoc()) {
 
-		if ($counter == 0){
-	  		echo "<div class='top-box'>";
-		 } 
-			
-	 $diathesimotita= $row['Availability'];
-	 if ($diathesimotita>0){
-	 	$arrlength = count($array);
-		$Pcode = $row["Code"];
-		$no = "SELECT CodeOfSupplier FROM `PRODUCT` where Code = '$Pcode'";
-		$no_r = $conn->query($no);
-			
-		if($no_r->num_rows > 0){
-			while($line = $no_r->fetch_assoc()){
-				$currentCode = $line["CodeOfSupplier"];
-			}
-		}
+			if ($counter == 0){
+		  		echo "<div class='top-box'>";
+			 } 
 				
-	$count = 0;
-	for($x = 0; $x < $arrlength; $x++) {
-		$querys2 = "SELECT * FROM `PRODUCT` where Code = '$array[$x]'";
-		$result2 = $conn->query($querys2);
-		if($result2->num_rows > 0){
-			while($line2 = $result2->fetch_assoc()){
-				if ($line2["CodeOfSupplier"] == $currentCode){
-					$count = 1;
+			 $diathesimotita= $row['Availability'];
+			 if ($diathesimotita>0){
+			 	$arrlength = count($array);
+				$Pcode = $row["Code"];
+				$no = "SELECT CodeOfSupplier FROM `PRODUCT` where Code = '$Pcode'";
+				$no_r = $conn->query($no);
+					
+				if($no_r->num_rows > 0){
+					while($line = $no_r->fetch_assoc()){
+						$currentCode = $line["CodeOfSupplier"];
+					}
+				}
+				
+			$count = 0;
+			for($x = 0; $x < $arrlength; $x++) {
+				$querys2 = "SELECT * FROM `PRODUCT` where Code = '$array[$x]'";
+				$result2 = $conn->query($querys2);
+				if($result2->num_rows > 0){
+					while($line2 = $result2->fetch_assoc()){
+						if ($line2["CodeOfSupplier"] == $currentCode){
+							$count = 1;
+						}
+					}
+				}
+			}	
+					
+			if ($count == 0){
+				array_push($array,$row["Code"]);	 
+			}
+			
+			$CategoryName = $row['NameCat'];			
+			$Category = $row['CodeOfCategory'];
+			$cat = "SELECT * FROM `CATEGORY` where CodeCat = '$Category'";
+			$result_cat = $conn->query($cat);
+		
+			if($result_cat->num_rows > 0){
+				while($category = $result_cat->fetch_assoc()){
+					$CategoryName = $category['NameCat'];
 				}
 			}
-		}
-	}	
-					
-	if ($count == 0){
-		array_push($array,$row["Code"]);	 
-	}
-	
-	$CategoryName = $row['NameCat'];			
-	$Category = $row['CodeOfCategory'];
-	$cat = "SELECT * FROM `CATEGORY` where CodeCat = '$Category'";
-	$result_cat = $conn->query($cat);
-
-	if($result_cat->num_rows > 0){
-		while($category = $result_cat->fetch_assoc()){
-			$CategoryName = $category['NameCat'];
-		}
-	}
 
 
-	 echo "<div class='col_1_of_3 span_1_of_3'>" ;
-	 $productCode=$row['Code'];
-	//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
-	 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
-	 // echo 	  	 "<a href='single.html'>";
-	
-	 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
-	 echo 		 					"<div class='product_image'>";
-	 
-	// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
-	 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" width="270" height="250"/>';
-	 echo 				"</div>";
-     echo         "<div class='price'>";
-	 echo 		   "<div class='cart-left'>";
-	 echo 					"<p class='title'>";
-	 echo $CategoryName; echo " - " ;
-	 echo $row['Name'] ;
-	 echo "</p>";
-	 echo 							"<div class='price1'>";
-	 echo 							  "<span class='actual'>";
-	 echo $row['Price'];
-	 echo "</span>";
-	 echo 							"</div>";
- 	echo 						"</div>";
- 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
-	$resultCheck=$conn->query($querysCheck);
-	if($resultCheck->num_rows == 0){
-	//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
-  		
+			echo "<div class='col_1_of_3 span_1_of_3'>" ;
+			$productCode=$row['Code'];
+			//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+			echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+			 // echo 	  	 "<a href='single.html'>";
 			
-  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiKalathi.php'  accept-charset='UTF-8'>"; 
-	echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+			echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+			echo 		 					"<div class='product_image'>";
+			 
+			// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+			echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'" width="270" height="250"/>';
+			echo 				"</div>";
+		    echo         "<div class='price'>";
+			echo 		   "<div class='cart-left'>";
+			echo 					"<p class='title'>";
+			echo $CategoryName; echo " - " ;
+			echo $row['Name'] ;
+			echo "</p>";
+			echo 							"<div class='price1'>";
+			echo 							  "<span class='actual'>";
+			echo $row['Price'];
+			echo "</span>";
+			echo 							"</div>";
+		 	echo 						"</div>";
+		 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+			$resultCheck=$conn->query($querysCheck);
+			if($resultCheck->num_rows == 0){
+			//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+		  		
+					
+		  		echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiKalathi.php'  accept-charset='UTF-8'>"; 
+				echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+			}
+		  	else{
+		  		echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+		  	}
+		 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+			echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+			echo					"</form>";
+		 	
+			 
+			//echo 						"<div> <a href='checkout.html' class='cart-right'></a> </div>";
+			echo 						"<div class='clear'></div>";
+			echo 					 "</div>"	;			
+			echo                    "</div>";
+			echo                    "</a>";
+			//echo "</form>";
+			echo 				"</div>";
+			 
+			 $counter = $counter+1;
+		 
+	
+			 if ($counter == 3){
+			  	echo "<div class='clear'></div>";
+				echo "</div>";
+				$counter = 0;
+			  
+			  }
+			}
+		}
 	}
-  	else{
-  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
-  	}
- 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
-	echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
-	echo					"</form>";
- 	
-	 
-	//echo 						"<div> <a href='checkout.html' class='cart-right'></a> </div>";
-	echo 						"<div class='clear'></div>";
-	echo 					 "</div>"	;			
-	echo                    "</div>";
-	echo                    "</a>";
-	//echo "</form>";
-	echo 				"</div>";
-	 
-	 $counter = $counter+1;
-	 
-
-	 if ($counter == 3){
-	  	echo "<div class='clear'></div>";
-		echo "</div>";
-		$counter = 0;
-	  
-	  }
-	  }
-	 }
-}
     
 	 //$counter=apotelesmata($resultDes, $counter);
  	 //$counter=apotelesmata($resultSup, $counter);
 	 //$counter=apotelesmata($resultCat, $counter);
  		
  		if ($counter != 3){
-	  	echo "<div class='clear'></div>";
-		echo "</div>";
-	 	
+		  	echo "<div class='clear'></div>";
+			echo "</div>";
 	  	}
 
 
@@ -342,67 +337,74 @@ else{
 
 
 		echo "</div>";
-	if($result->num_rows > 0){
- 
-		echo	"<div class='rsidebar span_1_of_left'>";
-		
-        echo           "<section class='sky-form'>";
-		echo			"<h4>Τιμή</h4>";
-	//	echo				"<div class='row row1 scroll-pane'>";
-		echo					"<form class='col col-4' id='select_price' method='post' accept-charset='utf-8'>";
-		echo						'<label class="checkbox"><input id ="datepicker" type="radio" name = "price" value="5" onchange="window.location.href= \'searchPrice.php?Value = 5 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €5,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="10" onchange="window.location.href = \'searchPrice.php?Value = 10 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €10,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="15" onchange="window.location.href = \'searchPrice.php?Value = 15 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €15,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="20" onchange="window.location.href = \'searchPrice.php?Value = 20 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €20,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="25" onchange="window.location.href = \'searchPrice.php?Value = 25 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €25,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="50" onchange="window.location.href = \'searchPrice.php?Value = 50 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €50,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="75" onchange="window.location.href = \'searchPrice.php?Value = 75 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €75,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="100" onchange="window.location.href = \'searchPrice.php?Value = 100 && Timi ='.urlencode($timi).'\'" ><i></i>€1,00 - €100,00</label>';
-		echo						'<label class="checkbox"><input type="radio" name = "price" value="101" onchange="window.location.href = \'searchPrice.php?Value = 101 && Timi ='.urlencode($timi).'\'" ><i></i>€100+</label>';
-		echo					"</form>";
-		//echo				"</div>";
-		echo        "</section>";
-
-		
-		echo		"<section  class='sky-form'>";
-		echo			"<h4>Μαρκα</h4>";
-		//echo				"<div class='row row1 scroll-pane'>";
-		echo					"<div class='col col-4'>";
 	
-		$arrlength = count($array);
-		for($x = 0; $x < $arrlength; $x++) {
-		   	//echo $array[$x];
-			$querys = "SELECT * FROM `PRODUCT`,`SUPPLIER` where Code = '$array[$x]' AND CodeOfSupplier = SupplierNumber";
-			$result = $conn->query($querys);
-			if($result->num_rows > 0){
-				while($row = $result->fetch_assoc()){
-					$number = $row["SupplierNumber"];
-					echo '<label class="checkbox"><input type="radio" name = "Sup[]" value="'. $row['SupplierNumber'].'" onchange="window.location.href= \'searchSupplier.php?Value = '.urlencode($number).' && Timi ='.urlencode($timi).'\'" ><i></i> ';
-					echo $row["CompanyName"];  
-					echo "</label>";
-
-				}
-			}
-		}		
+		if($result->num_rows > 0){
+ 
+			echo	"<div class='rsidebar span_1_of_left'>";
+			
+	        echo           "<section class='sky-form'>";
+			echo			"<h4>Τιμή</h4>";
+		//	echo				"<div class='row row1 scroll-pane'>";
+			echo					"<form class='col col-4' id='select_price' method='post' accept-charset='utf-8'>";
+			echo						'<label class="checkbox"><input id ="datepicker" type="radio" name = "price" value="5" onchange="window.location.href= \'searchPrice.php?Value =5&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €5,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="10" onchange="window.location.href = \'searchPrice.php?Value =10&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €10,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="15" onchange="window.location.href = \'searchPrice.php?Value =15&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €15,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="20" onchange="window.location.href = \'searchPrice.php?Value =20&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €20,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="25" onchange="window.location.href = \'searchPrice.php?Value =25&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €25,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="50" onchange="window.location.href = \'searchPrice.php?Value =50&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €50,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="75" onchange="window.location.href = \'searchPrice.php?Value =75&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €75,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="100" onchange="window.location.href = \'searchPrice.php?Value =100&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€1,00 - €100,00</label>';
+			echo						'<label class="checkbox"><input type="radio" name = "price" value="101" onchange="window.location.href = \'searchPrice.php?Value =101&& Search ='.urlencode($timi).'&& Timi ='.urlencode($Value).'\'" ><i></i>€100+</label>';
+			echo					"</form>";
+			//echo				"</div>";
+			echo        "</section>";
+	
+			
+			echo		"<section  class='sky-form'>";
+			echo			"<h4>Μαρκα</h4>";
+			//echo				"<div class='row row1 scroll-pane'>";
+			echo					"<div class='col col-4'>";
 		
-		//echo					"</div>";
-		echo				"</div>";
-		echo       "</section>";
-		echo	"<div>";
-		echo "</div>";
+			$arrlength = count($array);
+			for($x = 0; $x < $arrlength; $x++) {
+			   	//echo $array[$x];
+				$querys = "SELECT * FROM `PRODUCT`,`SUPPLIER` where Code = '$array[$x]' AND CodeOfSupplier = SupplierNumber";
+				$result = $conn->query($querys);
+				if($result->num_rows > 0){
+					while($row = $result->fetch_assoc()){
+						$number = $row["SupplierNumber"];
+						echo '<label class="checkbox"><input type="radio" name = "Sup[]" value="'. $row['SupplierNumber'].'" onchange="window.location.href= \'searchSupplier.php?Value ='.urlencode($number).'&& Search ='.urlencode($timi).'&& Timi ='.urlencode($price).'\'" ><i></i> ';
+						echo $row["CompanyName"];  
+						echo "</label>";
+	
+					}
+				}
+			}		
+		
+			//echo					"</div>";
+			echo				"</div>";
+			echo       "</section>";
+			echo	"<div>";
+			echo "</div>";
 
 
-}
+		}
+		else {
+			
+			echo "<div class='wrap'>";
+			echo 	"<div class='section group'>";
+			echo	 "<div class='cont span_2_of_3'>";
+			echo 		"<h1 class='remove'>ΔΕΝ ΒΡΕΘΗΚΑΝ ΑΠΟΤΕΛΕΣΜΑΤΑ ΓΙΑ ΤΗΝ ΑΝΑΖΗΤΗΣΗ ΣΑΣ</h1>";
+			echo 		"<br>";
+			echo 		"<br>";
+	}
 
 
+	echo "</div>";
 
-
-
-		echo "</div>";
-
-	    echo "<div class='clear'></div>";
-		echo "</div>";
- 		echo "</div>";
+	echo "<div class='clear'></div>";
+	echo "</div>";
+ 	echo "</div>";
 
 
 ?>

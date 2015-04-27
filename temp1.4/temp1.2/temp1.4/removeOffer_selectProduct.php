@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Επιλογή Προϊόντος για Προσφορά</title>
+<title>Επιλογή Προϊόντος για Αφαίρεση Προσφοράς</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -224,19 +224,18 @@
 	</div>	
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t">Προσθήκη Νέας Προσφοράς /<a class="home" href="removeOffer_selectProduct.php">Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></ul>
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addOffer_selectProduct.php">Προσθήκη Νέας Προσφοράς </a>/Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</ul>
 	
 
-<form id='addOffer' onsubmit="return check();" method="post" accept-charset="utf8" action="addOffer.php" >
+<form id='addOffer' onsubmit="return check();" method="post" accept-charset="utf8" action="removeOffer.php" >
      <div class="clear"></div>
 
-		<p class="auto-style6"><?php echo $_SESSION['ok_addOffer']; $_SESSION['ok_addOffer'] = " "; ?></p>
-	    <p class="auto-style4"><?php echo $_SESSION['error_addOffer']; $_SESSION['error_addOffer'] = " "; ?></p>
+  <p class="auto-style6"><?php echo $_SESSION['ok_removeOffer']; $_SESSION['ok_removeOffer'] = " "; ?></p>
 
 <div>
 <br>
 <select name="Product_offer" style="width: 600px; height: 37px">
-<option value="">Διαλέξτε το προϊόν που θέλετε να προσθέσετε στις προσφορές:</option>
+<option value="">Διαλέξτε το προϊόν που θέλετε να αφαιρέσετε απο τις προσφορές:</option>
 <?php
 
 		$servername = "localhost";
@@ -253,7 +252,7 @@
     		printf("Error loading character set utf8: %s\n", $conn->error);
     		die;
 		}										
-		$querys = "SELECT * FROM `PRODUCT`";
+		$querys = "SELECT * FROM `OFFER`,`PRODUCT` where CodeOfProduct = Code";
 		$result = $conn->query($querys);
 		//echo "$CodeCategory";
 		if($result->num_rows > 0){
@@ -268,6 +267,7 @@
 		}
 		
 ?>
+
 </select>
 </div>
 <br>

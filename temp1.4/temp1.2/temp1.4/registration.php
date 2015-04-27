@@ -76,12 +76,6 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 			$_SESSION['tel1']=$_POST['tel1'];
 			$_SESSION['tel2']=$_POST['tel2'];
 
-	 		
-	 		
-	 		
-	 		
-	 		
-	 		
 	 		header("Location: register2.php");
 
 	 		$var="yes";
@@ -115,7 +109,7 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	}else{ $filo = $_POST['filo'];}
 	
 	if ($_POST['address2']=="Διεύθυνση 2"){
-	 $address2 = "null";
+	 $address2 = "";
 	}else{ $address2 = $_POST['address2'];}
 	
 	if ($_POST['country']=="Διάλεξε τη Χώρα σου"){

@@ -1,9 +1,15 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <?php session_start(); ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Επιλογή Προϊόντος για Προσφορά</title>
+<title>Προσθήκη Προσφοράς</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,12 +28,13 @@
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
-				 .auto-style7 {
-					 color: #000000;
-				 }
-				 .auto-style6 {
-					color: #009900;
-				 }
+				 .auto-style3 {
+					color: black ;
+				}
+				.auto-style4 {
+					color: red ;
+				}
+
 				 .auto-style4 {
 					margin-left: 0;
 				}
@@ -37,22 +44,36 @@
 					margin-top: 6px;
 					display:table-row;
 				}
-
-				 </style>   
+				 .auto-style6 {
+					color: #009900;
+				 }
+				.box
+				{
+				   border:1px solid silver;
+				}
+				 </style>
     
-    <script src="selectedDropdown.js"></script>
+    <script src="addSupplier_check.js"></script>
+    
     <script>
 	function check() {
-		var frm = document.forms["addOffer"];
-
-		if (frm.category.value == "" ){
-	  		alert ('Διαλέξτε το προϊόν που θέλετε να προσθέσετε στις προσφορές!');
+		var frm = document.forms["addOffer2"];
+		if (frm.nea_timi.value == "Νέα Τιμή Προσφοράς"){
+			alert ('Καταχωρήστε τη νέα τιμή προσφοράς!');
 	  		return false;
 		}
+		if (isNaN(frm.nea_timi.value)){
+    		alert("Η τιμή πρέπει να είναι αριθμός!");
+    		return false;
+  		}
+		if (frm.nea_timi.value > frm.palia_timi.value){
+			alert ('Η νέα τιμή πρέπει να είναι μικρότερη απο την παλιά τιμή του προϊόντος!');
+	  		return false;
+		}
+
 	}    
     
-    </script>
-				 
+    </script>				 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
@@ -76,8 +97,7 @@
 			</div>
 			<div class="clear"></div>
  		</div>
-	</div>
-<div class="header-bottom">
+	</div>	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
@@ -221,84 +241,93 @@
      <br>
 
      </div>
-	</div>	
+	</div>
+	
+	
+	<?php
+	
+	$servername = "localhost";
+	$username = "cyfoodmuseum";
+	$password = "9m8ESxZD";
+	$dbname = "cyfoodmuseum";
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);	
+	// Check connection
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	}
+	parse_url(file_get_contents("php://input"), $_POST);	
+	
+	if (!$conn->set_charset("utf8")) {
+    	printf("Error loading character set utf8: %s\n", $conn->error);
+    	die;
+	}
+
+	session_start();
+
+	$Code= $_POST['Product_offer'];
+	
+	$querys = "SELECT * FROM `PRODUCT` where Code = '$Code' ";
+	$result=$conn->query($querys);
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()) {
+			$_SESSION['price'] = $row["Price"];
+			$_SESSION['Name'] = $row["Name"];
+			$_SESSION['Code'] = $row["Code"];
+
+		}
+	}
+	
+	?>
+
+  <!-- start slider -->
+    <div id="fwslider">
+            </div>
+    <!--/slider -->
+<div class="main">
+	  
 <div class="login">
        <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t">Προσθήκη Νέας Προσφοράς /<a class="home" href="removeOffer_selectProduct.php">Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></ul>
-	
+	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέας Προσφοράς /<a class="home" href="removeOffer_selectProduct.php">Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></ul>
+	    
+	     <div class="clear"></div>
 
-<form id='addOffer' onsubmit="return check();" method="post" accept-charset="utf8" action="addOffer.php" >
-     <div class="clear"></div>
-
-		<p class="auto-style6"><?php echo $_SESSION['ok_addOffer']; $_SESSION['ok_addOffer'] = " "; ?></p>
 	    <p class="auto-style4"><?php echo $_SESSION['error_addOffer']; $_SESSION['error_addOffer'] = " "; ?></p>
+	   
+	   <div class="clear"></div>
+		<br>
+		<br>
+		   <div class="content-top">
+			   <form id='addOffer2' enctype="multipart/form-data" onsubmit="return check()" method="post" action="addOffer_database.php" accept-charset="utf8" >
+					
+					<h1 class="remove" style="display:inline">Όνομα Προϊόντος για Προσφορά: </h1> <p class="m_text2" style="display:inline"><?php echo $_SESSION['Name']; ?> </p> 
+					<br>
+					<br>
+					<br>
 
-<div>
-<br>
-<select name="Product_offer" style="width: 600px; height: 37px">
-<option value="">Διαλέξτε το προϊόν που θέλετε να προσθέσετε στις προσφορές:</option>
-<?php
-
-		$servername = "localhost";
-		$username = "cyfoodmuseum";
-		$password = "9m8ESxZD";
-		$dbname = "cyfoodmuseum";
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);				
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		}
-		if (!$conn->set_charset("utf8")) {
-    		printf("Error loading character set utf8: %s\n", $conn->error);
-    		die;
-		}										
-		$querys = "SELECT * FROM `PRODUCT`";
-		$result = $conn->query($querys);
-		//echo "$CodeCategory";
-		if($result->num_rows > 0){
-			echo '<br>';
-			while($row = $result->fetch_assoc()) {
-				$name = $row["Name"];
-				$Code = $row["Code"];
-				echo '<option value="' . $Code . '">';
-				echo $name;
-				echo '</option>';
-			}
-		}
-		
-?>
-</select>
-</div>
-<br>
-<br>
-
-	  <div class="submit" >
-	  <input type="submit" value="Καταχώρηση"></div>
-
-</form>
-</div>		
-     <div class="clear"></div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-	<div class="footer-bottom1">
-           <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-           <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+					<div class="to">
+						<p class="auto-style3"> Παλιά Τιμή:</p>
+                     	<input name="palia_timi" type="text" class="text" value="<?php echo $_SESSION['price']; ?>" readonly style="margin-left: 10px; width: 18%;">
+                     	<input name="nea_timi" type="text" class="text" value="Νέα Τιμή Προσφοράς" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Νέα Τιμή Προσφοράς';}" style="margin-left: 10px; width: 21%;">
+					</div>
+				
+					<div class="clear"></div>
+					<br>
+					<br>
+	    	  <div class="submit" >
+	 		 <input type="submit" value="Προσθήκη Προσφοράς"></div>
+      
+               </form>
+            </div>
     </div>
+    </div>
+			<div class="clear"></div>
+<div class="footer-bottom1">
 
-</div>
+                             <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+                          </div>
+                      </div>
 
 </body>
-
 </html>
