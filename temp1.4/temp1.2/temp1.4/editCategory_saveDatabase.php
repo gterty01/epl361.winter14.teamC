@@ -49,15 +49,6 @@
 		}
 	}
      
-    if ($imgData != ""){
-		$querys = "SELECT * FROM `CATEGORY` WHERE CodeCat = $code" ;
-		$result=$conn->query($querys);
-		if($result->num_rows > 0){
-			while($row = $result->fetch_assoc()) {
-				$imgData = $_POST['imageCat'];
-			}
-		}
-	}	
 	
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
@@ -70,7 +61,26 @@
 			die;
 		}
 	}
-    
+        if ($imgData == ""){
+		$querys = "SELECT * FROM `CATEGORY` WHERE CodeCat = $code" ;
+		$result=$conn->query($querys);
+		if($result->num_rows > 0){
+			while($row = $result->fetch_assoc()) {
+				$imgData = $_POST['imageCat'];
+				$_SESSION['error_edit_category'] = " ";
+				$sql="UPDATE `CATEGORY` SET NameCat ='$CategoryName', DescriptionCat ='$Description', SubCategory = '$SubCategory' WHERE CodeCat='$code'";
+				$_SESSION['ok_edit_category'] = " ";
+				if ($conn->query($sql) === TRUE){
+					$ok_edit_category = "Η επεξεργασία της κατηγορίας ολοκληρώθηκε επιτυχώς!";		
+					$_SESSION['ok_edit_category'] = $ok_edit_category;
+					header("Location:editCategory_selectCategory.php");
+					die;
+				 }
+
+			}
+		}
+	}	
+
 	$_SESSION['category'] = $row["CodeCat"];
 	$_SESSION['Cname'] = $row["CatName"];
 	$_SESSION['Description']= $row["DescriptionCat"];

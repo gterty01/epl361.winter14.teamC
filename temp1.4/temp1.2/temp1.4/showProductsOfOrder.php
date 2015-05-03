@@ -9,16 +9,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Διαγραφή Κατηγορίας</title>
+<title>Προβολή Λεπτομερειών της Παραγγελίας</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="dreamcodes/tables2/css/tsc_tables2.css" />
+
 <script type="text/javascript" src="js/jquery1.min.js"></script>
+
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!--start slider -->
     <link rel="stylesheet" href="css/fwslider.css" media="all">
@@ -27,37 +32,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/fwslider.js"></script>
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
-		<style type="text/css">
-				.auto-style3 {
-					color: red ;
-				}
-	
-				.auto-style4 {
-					margin-left: 0;
-				}
-				.auto-style5 {
-					float: none;
-					margin-left: 0;
-					margin-top: 6px;
-					display:table-row;
-				}
-				.auto-style6 {
-					color: #009900;
-				 }
-				 .auto-style8 {
-					 color: #080808;
-				 }
-		 </style>
-    
-    <script src="selectedDropdown.js"></script>
-				 
+	<style type="text/css">
+	 .auto-style4 {
+		margin-left: 0;
+	}
+	.auto-style5 {
+		float: none;
+		margin-left: 0;
+		margin-top: 6px;
+		display:table-row;
+	}
+ th{
+	color: black;
+}
+.button1{
+	float:left;
+	margin-top: 6%;
+}
+
+</style>
+						 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
-			    		<div class="box1">
-   				        <select tabindex="4" class="dropdown" style="left: 2px; top: -1px">
+			    				    <div class="box1">
+   				        <select tabindex="4" class="dropdown">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
 						</select>
@@ -66,7 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_admin']; ?></a></li> |
+					<li class="active"><?php echo $_SESSION['login_admin']; ?></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
 					<li><a href="index.html">Αποσύνδεση</a></li>
@@ -74,9 +75,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="clear"></div>
  		</div>
-	</div>
-
-<div class="header-bottom">
+	</div>	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
@@ -215,77 +214,96 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
 	  </div>
     </div>
-     <div class="clear"></div>
+    </div>
      <div class="clear"></div>
      <br>
-
      </div>
-	</div>
-	
-<div class="login">
-       <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addCategory.php"> Προσθήκη Νέας Κατηγορίας </a> /Διαγράφη Κατηγορίας/<a class="home" href="editCategory_selectCategory.php">Επεξεργασία Κατηγορίας </a></ul>
-	
+<div class="wrap">
+	<h4 class="title">Προϊοντα</h4>
+    	    <div class="clear"></div>
+    		<table>
+    		<thead>
+		      <tr>
+		        <th class="remove" style="width: 266px; height: 19px">Όνομα</th>
+		        <th class="remove" style="width: 291px; height: 19px">Ποσότητα</th>
+		        <th class="remove" style="width: 291px; height: 19px">Ποσό</th>
+		      </tr>
+		    </thead>
+    	    <tbody>
+  			<?php
+  				$servername = "localhost";
+				$username = "cyfoodmuseum";
+				$password = "9m8ESxZD";
+				$dbname = "cyfoodmuseum";
+								
+				// Create connection
+				$conn = new mysqli($servername, $username, $password, $dbname);
+								
+				// Check connection
+				if ($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+					echo "Connection faild";
+				}
+						
+				if (!$conn->set_charset("utf8")) {
+		    		printf("Error loading character set utf8: %s\n", $conn->error);
+		    		die;
+				}		
+				print_r($_GET);		
+  				$code = $_GET["order"];
+  				$stoixeiaParaggelias = "SELECT * FROM `SERIESOFORDERS` WHERE CodeOfOrder = '$code'";
+				$result = $conn->query($stoixeiaParaggelias);	
+				$sinoliko = 0;
+				if($result->num_rows > 0){
+					while($row = $result->fetch_assoc()) {
+						$product = $row["CodeOfProduct"];
+						$quantity = $row["Quantity"];
+  						$stoixeiaProiontwn= "SELECT * FROM `PRODUCT` WHERE Code = '$product'";
+  						$result1 = $conn->query($stoixeiaProiontwn);	
+  						if($result1->num_rows > 0){
+							while($row1 = $result1->fetch_assoc()) {
+								$name = $row1["Name"];
+								$price = $row1["Price"];
+								$poso = $price * $quantity;
+								echo "<tr>";
+			    	    		echo "<td><p class='m_text2'>$name</p></td>";
+			    	    		echo "<td><p class='m_text2'>$quantity</p></td>";
+			    	    		echo "<td><p class='m_text2'>$poso</p></td>";
+								echo "</tr>";
+								$sinoliko = $sinoliko + $poso;
+							}
+						}
+					}
+				}
+			?> 
+    	    	 <tr>
+    	    	  <td><br></td>
+			 	</tr>
+      	    	<tr>
+				 <th class="txt-lt" style="width: 266px; height: 19px">Σύνολο</th>
+				 <td><h1 class="remove" style="width: 266px; height: 19px">€<?php echo $sinoliko?></h1></td>
+								
+    	    	</tr>
 
-<p class="auto-style3"><?php echo $_SESSION['error_remove_category']; $_SESSION['error_remove_category'] = " ";?></p>
-<p class="auto-style6"><?php echo $_SESSION['ok_remove_category'];  $_SESSION['ok_remove_category'] = " "; ?></p>
-
-<div>
-<br>
-<form id='removeCategory' method="post" accept-charset="utf8" action="removeCategory_database.php" >
-<h1 class="remove"> Διαλέξτε τις κατηγορίες που θέλετε να διαγράψετε : </h1>
-
-<span  class="remove">
-
-<?php
-		$servername = "localhost";
-		$username = "cyfoodmuseum";
-		$password = "9m8ESxZD";
-		$dbname = "cyfoodmuseum";
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);				
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		}
-	
-					
-		parse_url(file_get_contents("php://input"), $_POST);
-		if (!$conn->set_charset("utf8")) {
-	    	printf("Error loading character set utf8: %s\n", $conn->error);
-	    	die;
-		}		
-				
-		$querys = "SELECT * FROM `CATEGORY`";
-		$result = $conn->query($querys);
-		if($result->num_rows > 0){
-			echo '<br>';
-			while($row = $result->fetch_assoc()) {
-				$CategoryCode = $row["CodeCat"];
-				$CategoryName = $row["NameCat"];
-				echo '<input TYPE=CHECKBOX  name = Category[]  value="' . $CategoryCode . '"> ';
-		    	echo $CategoryName;  
-				echo '</br>';		    
-			}
-		}
-?>
-</span>
-<br>
-
-	  <div class="submit" >
-	  <input type="submit" value="Διαγραφή"></div>
-
-</form>
-</div>		
-
+    	    </tbody>
+			</table>
+<br>	  
+<div class="clear"></div>
+<div class="button1">
+<a href="showOrdersOfUser.php"><input type="submit" name="Submit" class="button" value="Προβολή Παραγγελιών"></a>
 </div>
 <br>
+
+<div class="clear"></div>
 <br>
+<br>
+
 <div class="footer-bottom1">
 
-    <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-    <p class="pull-right" style="height: 41px">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+	<p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+	 <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+	</div>
 </div>
-</div>
+
 </body>
 </html>

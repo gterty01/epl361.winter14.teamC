@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Διαγραφή Κατηγορίας</title>
+<title>Προσθήκη Διαχειριστή</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -27,12 +27,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/fwslider.js"></script>
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
-		<style type="text/css">
-				.auto-style3 {
+				 <style type="text/css">
+				 .auto-style1 {
+					 color: gray;
+				 }
+				 .auto-style3 {
 					color: red ;
 				}
-	
-				.auto-style4 {
+				 .auto-style4 {
 					margin-left: 0;
 				}
 				.auto-style5 {
@@ -41,23 +43,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					margin-top: 6px;
 					display:table-row;
 				}
-				.auto-style6 {
+				 .auto-style6 {
 					color: #009900;
 				 }
-				 .auto-style8 {
-					 color: #080808;
-				 }
-		 </style>
+
+				 </style>
     
-    <script src="selectedDropdown.js"></script>
+    <script src="addProduct_check.js"></script>
+    <script>
+function check(){
+
+	var frm = document.forms["addAdmin"];
+	var pass1 = frm.passwdNew.value.length;
+	var fr1 = parseInt(pass1, 10);
+	
+	var sigkrisi = parseInt("6",10);
+
+	if (fr1 < sigkrisi){
+		alert('Καταχωρήστε τον κωδικό πρόσβασης, με τουλάχιστον 6 χαρακτήρες');
+	  	return false;
+	}
+
+  	if(frm.passwdNew.value != frm.passwdRepeat.value){
+    	alert('Ο κωδικός που δώσατε δεν είναι ίδιος με την Επιβεβαίωσή του. Δώστε ίδιο κωδικό και στα δύο πεδία.');
+    	return false;
+  	}
+
+} 
+    
+    </script>
 				 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
-			    		<div class="box1">
-   				        <select tabindex="4" class="dropdown" style="left: 2px; top: -1px">
+			    				    <div class="box1">
+   				        <select tabindex="4" class="dropdown">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
 						</select>
@@ -66,7 +88,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_admin']; ?></a></li> |
+					<li class="active"><?php echo $_SESSION['login_admin']; ?></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
 					<li><a href="index.html">Αποσύνδεση</a></li>
@@ -74,9 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="clear"></div>
  		</div>
-	</div>
-
-<div class="header-bottom">
+	</div>	<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
@@ -220,72 +240,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <br>
 
      </div>
-	</div>
-	
-<div class="login">
-       <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addCategory.php"> Προσθήκη Νέας Κατηγορίας </a> /Διαγράφη Κατηγορίας/<a class="home" href="editCategory_selectCategory.php">Επεξεργασία Κατηγορίας </a></ul>
-	
+	</div>  <!-- start slider -->
+    <div id="fwslider">
+            </div>
+    <!--/slider -->
+<div class="main">
+		
+  
+<div class="register_account">
 
-<p class="auto-style3"><?php echo $_SESSION['error_remove_category']; $_SESSION['error_remove_category'] = " ";?></p>
-<p class="auto-style6"><?php echo $_SESSION['ok_remove_category'];  $_SESSION['ok_remove_category'] = " "; ?></p>
-
-<div>
-<br>
-<form id='removeCategory' method="post" accept-charset="utf8" action="removeCategory_database.php" >
-<h1 class="remove"> Διαλέξτε τις κατηγορίες που θέλετε να διαγράψετε : </h1>
-
-<span  class="remove">
-
-<?php
-		$servername = "localhost";
-		$username = "cyfoodmuseum";
-		$password = "9m8ESxZD";
-		$dbname = "cyfoodmuseum";
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);				
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		}
-	
-					
-		parse_url(file_get_contents("php://input"), $_POST);
-		if (!$conn->set_charset("utf8")) {
-	    	printf("Error loading character set utf8: %s\n", $conn->error);
-	    	die;
-		}		
-				
-		$querys = "SELECT * FROM `CATEGORY`";
-		$result = $conn->query($querys);
-		if($result->num_rows > 0){
-			echo '<br>';
-			while($row = $result->fetch_assoc()) {
-				$CategoryCode = $row["CodeCat"];
-				$CategoryName = $row["NameCat"];
-				echo '<input TYPE=CHECKBOX  name = Category[]  value="' . $CategoryCode . '"> ';
-		    	echo $CategoryName;  
-				echo '</br>';		    
-			}
-		}
-?>
-</span>
-<br>
-
-	  <div class="submit" >
-	  <input type="submit" value="Διαγραφή"></div>
-
-</form>
-</div>		
-
-</div>
-<br>
-<br>
+          	<div class="wrap">
+          		<p class="auto-style6"><?php echo $_SESSION['ok_addΑdmin']; $_SESSION['ok_addΑdmin'] = " "; ?></p>
+	   			<p class="auto-style3"><?php echo $_SESSION['error_addΑdmin']; $_SESSION['error_addΑdmin'] = " "; ?></p>
+    	     	<div class="clear"></div>
+				<br>
+    	      
+    	      <h4 class="title">Προσθηκη Διαχειριστη</h4>
+    	    
+    		   <form id='addAdmin' onsubmit="return check();" method="POST" action="addAdmin_database.php" accept-charset="UTF-8"> <!--method='post'-->
+    			 <div class="col_1_of_2 span_1_of_2" style="width: 40%;">
+				 	<p class="m_text2">Email Νέου Διαχειριστή</p>
+		    	 	<div><input type="email" id="email" name ="email" value=""></div>
+		          	<p class="m_text2">Κωδικός Πρόσβασης</p>
+					<div><input type="password" id="passwdNew" name="passwdNew" value=""></div>
+					<p class="m_text2">Επανάληψη Κωδικού Πρόσβασης</p>
+					<div><input type="password" id="passwdRepeat" name="passwdRepeat" value=""></div>					
+		    	 </div>
+		    	 <div>
+		         <br>
+		    <div class="clear"></div>
+		         <br>
+		      		<button type="submit" class="grey" name="submit" value="Submit" style="float:none">Αποθηκευση νεου διαχειριστη</button></div>
+		    <div class="clear"></div>
+		    </form>						
+		    
+		    
+    	</div>
+    </div>
+			<div class="clear"></div>
 <div class="footer-bottom1">
 
-    <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-    <p class="pull-right" style="height: 41px">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-</div>
-</div>
+       <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+        <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+         </div>
+         </div>
+
 </body>
 </html>

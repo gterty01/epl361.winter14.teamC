@@ -1,15 +1,9 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start(); ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Διαγραφή Κατηγορίας</title>
+<title>Επιλογή Slide για αλλαγή φωτογραφίας</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -27,12 +21,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/fwslider.js"></script>
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
-		<style type="text/css">
-				.auto-style3 {
-					color: red ;
-				}
-	
-				.auto-style4 {
+				 <style type="text/css">
+				 .auto-style7 {
+					 color: #000000;
+				 }
+				 .auto-style6 {
+					color: #009900;
+				 }
+				 .auto-style4 {
 					margin-left: 0;
 				}
 				.auto-style5 {
@@ -41,23 +37,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					margin-top: 6px;
 					display:table-row;
 				}
-				.auto-style6 {
-					color: #009900;
-				 }
-				 .auto-style8 {
-					 color: #080808;
-				 }
-		 </style>
+				.auto-style3{
+					color: red;
+
+				}
+}
+				 </style>   
     
     <script src="selectedDropdown.js"></script>
+    <script>
+	function check() {
+		var frm = document.forms["addSlide"];
+
+		if (frm.slide.value == "" ){
+	  		alert ('Διαλέξτε το slide που θέλεις!');
+	  		return false;
+		}
+	}    
+    
+    </script>
 				 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
-			    		<div class="box1">
-   				        <select tabindex="4" class="dropdown" style="left: 2px; top: -1px">
+			    				    <div class="box1">
+   				        <select tabindex="4" class="dropdown">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
 						</select>
@@ -66,7 +72,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="profile_database.php"><?php echo $_SESSION['login_admin']; ?></a></li> |
+					<li class="active"><?php echo $_SESSION['login_admin']; ?></li> |
 					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
 					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
 					<li><a href="index.html">Αποσύνδεση</a></li>
@@ -75,7 +81,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clear"></div>
  		</div>
 	</div>
-
 <div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
@@ -220,72 +225,53 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <br>
 
      </div>
-	</div>
-	
+	</div>	
 <div class="login">
-       <div class="wrap" style="width: 77%">
-<ul class="breadcrumb breadcrumb__t"><a class="home" href="addCategory.php"> Προσθήκη Νέας Κατηγορίας </a> /Διαγράφη Κατηγορίας/<a class="home" href="editCategory_selectCategory.php">Επεξεργασία Κατηγορίας </a></ul>
-	
+       <div class="wrap" style="width: 77%">	
 
-<p class="auto-style3"><?php echo $_SESSION['error_remove_category']; $_SESSION['error_remove_category'] = " ";?></p>
-<p class="auto-style6"><?php echo $_SESSION['ok_remove_category'];  $_SESSION['ok_remove_category'] = " "; ?></p>
+<form id='addSlide' onsubmit="return check();" method="post" accept-charset="utf8" action="addSlide.php" >
+     <div class="clear"></div>
+
+		<p class="auto-style6"><?php echo $_SESSION['ok_slide']; $_SESSION['ok_slide'] = " "; ?></p>
+	    <p class="auto-style3"><?php echo $_SESSION['error_slide']; $_SESSION['error_slide'] = " "; ?></p>
 
 <div>
 <br>
-<form id='removeCategory' method="post" accept-charset="utf8" action="removeCategory_database.php" >
-<h1 class="remove"> Διαλέξτε τις κατηγορίες που θέλετε να διαγράψετε : </h1>
-
-<span  class="remove">
-
-<?php
-		$servername = "localhost";
-		$username = "cyfoodmuseum";
-		$password = "9m8ESxZD";
-		$dbname = "cyfoodmuseum";
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);				
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		}
-	
-					
-		parse_url(file_get_contents("php://input"), $_POST);
-		if (!$conn->set_charset("utf8")) {
-	    	printf("Error loading character set utf8: %s\n", $conn->error);
-	    	die;
-		}		
-				
-		$querys = "SELECT * FROM `CATEGORY`";
-		$result = $conn->query($querys);
-		if($result->num_rows > 0){
-			echo '<br>';
-			while($row = $result->fetch_assoc()) {
-				$CategoryCode = $row["CodeCat"];
-				$CategoryName = $row["NameCat"];
-				echo '<input TYPE=CHECKBOX  name = Category[]  value="' . $CategoryCode . '"> ';
-		    	echo $CategoryName;  
-				echo '</br>';		    
-			}
-		}
-?>
-</span>
+<select name="slide" style="width: 600px; height: 37px">
+	<option value="">Διαλέξτε το slide που θέλετε να αλάξετε</option>
+	<option value="1">Slide 1</option>
+	<option value="2">Slide 2</option>
+</select>
+</div>
+<br>
 <br>
 
 	  <div class="submit" >
-	  <input type="submit" value="Διαγραφή"></div>
+	  <input type="submit" value="Καταχώρηση"></div>
 
 </form>
 </div>		
+     <div class="clear"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-</div>
 <br>
 <br>
-<div class="footer-bottom1">
+<br>
+<br>
+<br>
+<br>
 
-    <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-    <p class="pull-right" style="height: 41px">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+	<div class="footer-bottom1">
+           <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+           <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+    </div>
+
 </div>
-</div>
+
 </body>
+
 </html>

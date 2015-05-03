@@ -265,8 +265,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$CompanyName = $row["CompanyName"];
 				echo '<input TYPE=CHECKBOX  name = Supplier[]  value="' . $SupplierNumber . '"> ';
 		    	echo $CompanyName;  
-		    	echo ' - ';
-		    	echo $SupplierNumber;
 				echo '</br>';		    
 			}
 		}

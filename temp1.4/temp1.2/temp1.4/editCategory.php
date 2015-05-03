@@ -304,12 +304,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						 	while($row = $result->fetch_assoc()) {
 								$codeSubCategory = $row["Code"];
 								$SubCategory = $row["Name"];
-								print '<p class="m_text2">';
-								print '<input type="radio" id=iperkatigoria name=iperkatigoria value="' . $codeSubCategory . '">';
-								print $SubCategory;
-								print '</p>';
+								if ($SubCategory != "Δεν ανήκει σε κάποια υπερκατηγορία"){
+									print '<p class="m_text2">';
+									print '<input type="radio" id=iperkatigoria name=iperkatigoria value="' . $codeSubCategory . '">';
+									print $SubCategory;
+									print '</p>';
+								}else {
+									$notExistCode = $row["Code"];
+									$notExistName = $row["Name"];									
+								}
+		
 							}							
 						}
+						
+						print '<p class="m_text2">';
+						print '<input type="radio" id=iperkatigoria name=iperkatigoria value="' . $notExistCode . '">';
+						print $notExistName;
+						print '</p>';
 						
 					?>
 						<br>

@@ -298,8 +298,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$codeProduct = $row["Code"];
 				echo '<input TYPE=CHECKBOX name = Product[]  value="' . $codeProduct . '"> ';
 		    	echo $nameProduct;  
-		    	echo ' - ';
-		    	echo $codeProduct;
 				echo '</br>';		    
 			}
 		}

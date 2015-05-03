@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Αλλαγή Κωδικού Πρόσβασης</title>
+</head>
+
+
 <?php
 
 	session_start();
@@ -32,8 +41,8 @@
 			$mail = $row["Email"];
 			$sql="UPDATE `USERS_FM` SET Password = '$newPassword' WHERE Email ='$mail'";
 			
-			if ($conn->query($sql) === TRUE){
-				$ok_changePassword = "Επιτυχής αλλαγή κωδικού πρόσβασης!";
+			if ($conn->query($sql) === TRUE){1
+				$ok_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας ολοκληρώθηκε επιτυχώς!";
 				$_SESSION['ok_changePassword'] = $ok_changePassword;
 				$_SESSION['error_changePassword'] = " ";
 				header("Location:changePassword.php");
@@ -41,13 +50,15 @@
 			}
 		}
 	}else{
-		$error_changePassword = "Ο προηγούμενος κωδικός πρόσβασης που έδωσες ήταν λανθασμένος!";
+		$error_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας δεν ολοκληρώθηκε επιτυχώς!";
 		$_SESSION['error_changePassword'] = $error_changePassword;
 		$_SESSION['ok_changePassword'] = " ";
 		header("Location:changePassword.php");
 		die;
 	}
-
-
-
 ?>
+<body>
+
+</body>
+
+</html>
