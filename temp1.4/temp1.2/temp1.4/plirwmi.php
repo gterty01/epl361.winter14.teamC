@@ -1,4 +1,32 @@
-﻿<!DOCTYPE HTML>
+﻿<?php 
+	session_start(); 
+header('Cache-Control: max-age=900');?>
+
+
+<?php
+$xristis;
+if(isset($_SESSION['login_user']))
+{
+$xristis = $_SESSION['login_user'];
+}
+else
+{
+$xristis = "Σύνδεση";
+header("Location: login.html");
+}
+
+if(!(isset($_SESSION['arithmosproiontwn']))){
+header("Location: index.html");
+
+
+}
+
+
+?>
+
+
+
+<!DOCTYPE HTML>
 <html>
 <head>
 <title>Ολοκλήρωση Παραγγελίας</title>
@@ -53,28 +81,6 @@ function printDiv(divName) {
 
 <body>
 
-<?php
-	session_start(); 
-?>
-
-<?php
-$xristis;
-if(isset($_SESSION['login_user']))
-{
-$xristis = $_SESSION['login_user'];
-}
-else
-{
-$xristis = "Σύνδεση";
-header("Location: login.html");
-}
-if(!(isset($_POST['arithmosproiontwn']))){
-header("Location: index.html");
-
-
-}
-
-?>
 
 <?php
 $servername = "localhost";
@@ -97,13 +103,13 @@ if (!$conn->set_charset("utf8")) {
     //printf("Current character set: %s\n", $conn->character_set_name());
 }//die;
 $xristis=$_SESSION['login_user'];
-$antikeimena=$_POST['arithmosproiontwn'];
-$address=$_POST['addressSent'];
-$postalCode=$_POST['postalSent'];
-$city=$_POST['citySent'];
-$country=$_POST['country'];
-$name=$_POST['name'];
-$surn=$_POST['surn'];
+$antikeimena=$_SESSION['arithmosproiontwn'];
+$address=$_SESSION['addressSent'];
+$postalCode=$_SESSION['postalSent'];
+$city=$_SESSION['citySent'];
+$country=$_SESSION['country'];
+$name=$_SESSION['nameSent'];
+$surn=$_SESSION['surnSent'];
 $num=0; 
 $sinolikovaros=0;
 while($num<$antikeimena){
@@ -114,7 +120,7 @@ while($num<$antikeimena){
 		
 	$num=$num+1;
 }
-$sinolo=$_POST['sinoloplirwmis'];
+$sinolo=$_SESSION['sinoloplirwmis'];
 $thisdate = date("Y-m-d");
 $sql="INSERT INTO `cyfoodmuseum`.`ORDERS` (`userEmail`, `DateCreated`, `Price`, `Completed`, `Canceled`, `Weight`, `AddressSent`, `citySent`, `postalSent`, `countrySent`) VALUES ('$xristis','$thisdate','$sinolo','0', '0', '$sinolikovaros', '$address', '$city', '$postalCode',  '$country');";
 $conn->query($sql);
@@ -135,8 +141,8 @@ $max;
 
 $num=0;
 while($num<$antikeimena){
-$kodikos=$_POST["kodikos$num"];
-$posotita=$_POST["posotita$num"];
+$kodikos=$_SESSION["kodikos$num"];
+$posotita=$_SESSION["posotita$num"];
 $er="INSERT INTO `cyfoodmuseum`.`SERIESOFORDERS` (`CodeOfOrder`, `CodeOfProduct`, `Quantity`) VALUES ('$max','$kodikos','$posotita');";
 
 $avail="SELECT * FROM `PRODUCT` WHERE `Code`='$kodikos'";
@@ -288,10 +294,10 @@ if(@mail($to, $subject, $message))
 	<h4 class="title">Αναφορα:</h4>
 	<h5 class="title" >Διεύθυνση αποστολής</h5>
 		<div class="clear"></div>
-				<p class="m_text2"><?php echo $_POST['addressSent']; ?></p>
-				<p class="m_text2"><?php echo $_POST['postalSent']; ?> <?php echo $_POST['citySent']; ?></p>
-				<p class="m_text2"><?php echo $_POST['country']; ?></p>
-				<p class="m_text2"><?php echo $_POST['name']; ?> <?php echo $_POST['surn']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['addressSent']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['postalSent']; ?> <?php echo $_SESSION['citySent']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['countrySent']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['nameSent']; ?> <?php echo $_SESSION['surnSent']; ?></p>
 				<br>
     	  
     	  <div class="clear"></div>
@@ -309,46 +315,46 @@ if(@mail($to, $subject, $message))
 		    </thead>
     	    <tbody>
 			<?php
-    	    		$antikeimena=$_POST['arithmosproiontwn'];
-    	    		$address=$_POST['addressSent'];
-					$postalCode=$_POST['postalSent'];
-					$city=$_POST['citySent'];
-					$country=$_POST['country'];
-					$name=$_POST['name'];
-					$surn=$_POST['surn'];
+    	    		$antikeimena=$_SESSION['arithmosproiontwn'];
+    	    		$address=$_SESSION['addressSent'];
+					$postalCode=$_SESSION['postalSent'];
+					$city=$_SESSION['citySent'];
+					$country=$_SESSION['countrySent'];
+					$name=$_SESSION['nameSent'];
+					$surn=$_SESSION['surnSent'];
 					$num=0; 
     	    		$sinolo=0;
     	    		while($num<$antikeimena){
-    	    		$proionOnoma=$_POST["onoma$num"];
-					$kodikosproion=$_POST["kodikos$num"];
-					$price=$_POST["timi$num"];
-					$varos=$_POST["varos$num"];
-					$posotita=$_POST["posotita$num"];
-					$poso=$_POST["poso$num"];	
+    	    		$proionOnoma=$_SESSION["onoma$num"];
+					$kodikosproion=$_SESSION["kodikos$num"];
+					$price=$_SESSION["timi$num"];
+					$varos=$_SESSION["varos$num"];
+					$posotita=$_SESSION["posotita$num"];
+					$poso=$_SESSION["poso$num"];	
 					echo "<tr>";
     	    		echo "<td><p class='m_text2'>$proionOnoma</p></td>";
     	    		echo "<td><p class='m_text2'>$posotita</p></td>";
     	    		echo "<td><p class='m_text2'>$poso</p></td>";
 					echo "</tr>";
-					echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
+					/*echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
 					echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
 					echo "<input type='hidden' name='timi$num' id='timi$num' value=$price>";
 					echo "<input type='hidden' name='varos$num' id='varos$num' value=$varos>";
 					echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
 					echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
-					echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
+					echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";*/
 		
     	    		$sinolo=$sinolo+$poso;
     	    	
     	    		$num=$num+1;
     	    		}	
-				echo "<input type='hidden' name='addressSent' id='addressSent' value='$address'>";
+				/*echo "<input type='hidden' name='addressSent' id='addressSent' value='$address'>";
 				echo "<input type='hidden' name='postalSent' id='postalSent' value=$postalcode>";
 				echo "<input type='hidden' name='citySent' id='citySent' value=$city>";
 				echo "<input type='hidden' name='country' id='country' value=$country>";
 				echo "<input type='hidden' name='name' id='name' value=$name>";
 				echo "<input type='hidden' name='surn' id='surn' value=$surn>";
-				echo "<input type='hidden' name='sinoloplirwmis' id='sinoloplirwmis' value=$sinolo>";
+				echo "<input type='hidden' name='sinoloplirwmis' id='sinoloplirwmis' value=$sinolo>";*/
 
     	    	?>
     	    	 <tr>

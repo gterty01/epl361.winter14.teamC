@@ -1,7 +1,8 @@
 ﻿<?php
-	session_start();
+	session_start(); 
 header('Cache-Control: max-age=900');
 ?>
+
 <?php
 $xristis;
 if(isset($_SESSION['login_user']))
@@ -13,44 +14,19 @@ else
 $xristis = "Σύνδεση";
 header("Location: login.html");
 }
-/*if((!(isset($_POST['arithmosproiontwn']))) && (!(isset($_SESSION['arithmosproiontwn'])))  ) {
+
+
+/*if(!(isset($_SESSION['arithmosproiontwn']))){
 header("Location: index.html");
 }*/
-if (isset($_POST['arithmosproiontwn'])){
-if (($_POST['arithmosproiontwn']==0)){
-header("Location: index.html");
-}
-}
-if (isset($_SESSION['arithmosproiontwn'])){
-if (($_SESSION['arithmosproiontwn']==0)){
-header("Location: index.html");
-}
-}
-
-if(isset($_POST['diagrapsou'])){
-$servername = "localhost";
-$username = "cyfoodmuseum";
-$password = "9m8ESxZD";
-$dbname = "cyfoodmuseum";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-$xristis = $_SESSION['login_user'];
-
-		$proion=$_POST['diagrapsou'];
-		$querys ="DELETE FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$proion' ";
-		$result=$conn->query($querys);
-		header("Location: kalathiProionta.php");
-		
-}
 
 ?>
+
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Διεύθυνση Αποστολής</title>
+<title>Παραγγελία</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="style.css" rel="stylesheet" type="text/css" media="all" />
@@ -61,6 +37,8 @@ $xristis = $_SESSION['login_user'];
 <script type="text/javascript" src="js/megamenu.js"></script>
 
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+
+
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
 .auto-style1 {
@@ -75,12 +53,66 @@ $xristis = $_SESSION['login_user'];
 	color: #FFFFFF;
 }
 
-
-
 .auto-style4 {
 	font-size: medium;
 }
+.auto-style5 {
+	font-size: small;
+}
+
 </style>
+
+<script>
+function checkDiefthinsi(){
+  var frm = document.forms["diefthinsiapostolis"];
+  	var dieL = frm.address.value.length;
+	var fr3 = parseInt(dieL,10);
+	var sigkrisiString = parseInt("0",10);
+	
+	if (fr3==sigkrisiString){
+		alert('Καταχωρήστε τη Διεύθυνση Αποστολής');
+		return false;
+	}
+	
+	if (isNaN(frm.postalCode.value)){
+    	alert("Καταχωρήστε έναν έγκυρο ταχυδρομικό κώδικα. Χρησιμοποιήστε μόνο αριθμούς");
+    	return false;
+  	}
+  	var poL = frm.postalCode.value.length;
+	var frp = parseInt(poL,10);
+	if (frp==sigkrisiString){
+		alert('Καταχωρήστε τον Ταχυδρομικό Κώδικα της Διεύθυνσης Αποστολής');
+		return false;
+	}
+	
+	var poliLe = frm.Poli.value.length;
+	var poliL = parseInt(poliLe,10);
+	
+	if (poliL==sigkrisiString){
+		alert('Καταχωρήστε την Πόλη Αποστολής');
+		return false;
+	}
+
+
+
+}
+</script>
+<script>
+function checkTropoPlirwmis(){
+if(document.getElementById('pistwtiki_karta').checked) {
+return true;
+
+}
+if(document.getElementById('PayPal').checked){
+return true;
+}
+
+  alert('Δεν διαλέξατε τρόπο πληρωμής!');
+  return false;
+
+}
+
+</script>
 
 </head>
 
@@ -195,131 +227,65 @@ $xristis = $_SESSION['login_user'];
 
      </div>
 	</div>
-<?php
-$servername = "localhost";
-$username = "cyfoodmuseum";
-$password = "9m8ESxZD";
-$dbname = "cyfoodmuseum";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+	
+	<?php
+	parse_url(file_get_contents("php://input"), $_POST);
 
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    echo "Connection faild";
-}
-parse_url(file_get_contents("php://input"), $_POST);
-if (!$conn->set_charset("utf8")) {
-    printf("Error loading character set utf8: %s\n", $conn->error);
-} else {
-    //printf("Current character set: %s\n", $conn->character_set_name());
-}//die;
-$xristis=$_SESSION['login_user'];
-if(!(isset($_POST['diagrapsou']))){
-if(isset($_POST['arithmosproiontwn'])){
-$_SESSION['arithmosproiontwn']=$_POST['arithmosproiontwn'];
-}
-$num=0;
-$antikeimena=$_SESSION['arithmosproiontwn'];	
-	echo "<form method='post' action='paraggelia.php' name='formaproiontwn'>";
-if((isset($_POST['arithmosproiontwn']))){
-	while ($num<$antikeimena){
-	$proionOnoma=$_POST["onoma$num"];
-	$kodikosproion=$_POST["kodikos$num"];
-	$price=$_POST["timi$num"];
-	$varos=$_POST["varos$num"];
-	$posotita=$_POST["posotita$num"];
-	$_SESSION["onoma$num"]=$proionOnoma;
-	$_SESSION["kodikos$num"]=$kodikosproion;
-	$_SESSION["timi$num"]=$price;
-	$_SESSION["varos$num"]=$varos;
-	$_SESSION["posotita$num"]=$posotita;
+		/*$num=0;
+		$antikeimena=$_POST['arithmosproiontwn'];*/
+		echo "<div class='register_account'>";
+	    echo "<div class='wrap'>";
+		echo "<h4 class='title'>Διευθυνση Αποστολης</h4>";
+		echo "<div class='clear'></div>";
+		echo "<form id='diefthinsiapostolis' onsubmit='return checkDiefthinsi();' method='POST' action='episkopisiparaggelias.php' accept-charset='UTF-8'>"; 
+		/*while ($num<$antikeimena){
+			$proionOnoma=$_POST["onoma$num"];
+			$kodikosproion=$_POST["kodikos$num"];
+			$price=$_POST["timi$num"];
+			$varos=$_POST["varos$num"];
+			$posotita=$_POST["posotita$num"];
 			$poso=$posotita*$price;
-	$_SESSION["poso$num"]=$poso;
-		/*	echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
+			echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
 			echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
 			echo "<input type='hidden' name='timi$num' id='timi$num' value=$price>";
 			echo "<input type='hidden' name='varos$num' id='varos$num' value=$varos>";
 			echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
 			echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
-			echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";*/
-	
-		$num=$num+1;
-	}
-}
-$querys ="SELECT * FROM `USERS_FM` WHERE `Email`='$xristis' ";
-$result=$conn->query($querys);
-$address;
-$postalcode;
-$city;
-$country;
-while($row = $result->fetch_assoc()) {
-	$address=$row['Address1'];
-	$postalcode=$row['PostalCode'];
-	$city=$row['City'];
-	$country=$row['Country'];
-	$name=$row['Name'];
-	$surn=$row['Surname'];
-	$_SESSION['addressSent']=$address;
-	$_SESSION['postalSent']=$postalcode;
-	$_SESSION['citySent']=$city;
-	$_SESSION['countrySent']=$country;
-	$_SESSION['nameSent']=$name;
-	$_SESSION['surnSent']=$surn;
-}
+			echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
 
-	if(isset($_POST['diefthinsiApostolis'])){
-	$address=$_POST['address'];
-	$postalcode=$_POST['postalCode'];
-	$city=$_POST['Poli'];
-	$_SESSION['addressSent']=$address;
-	$_SESSION['postalSent']=$postalcode;
-	$_SESSION['citySent']=$city;
+			$num=$num+1;
+		}*/
+
+ 			echo "<div class='col_1_of_2 span_1_of_2'>";	
+
+			echo "<p class='auto-style5'>Διεύθυνση</p>";				   
+			echo "<div><input type='text' name='address' id ='address' value=''></div>";
+			echo "<p class='auto-style5'>Ταχυδρομικός Κώδικας</p>";				   
+			echo "<div><input type='text' name='postalCode' id ='postalCode' value=''></div>";
+			echo "<p class='auto-style5'>Πόλη</p>";				   
+			echo "<div><input type='text' name='Poli' id ='Poli' value=''></div>";
+			echo "<br>";
+			echo 	"<button type='submit' class='grey' name='diefthinsiApostolis' value='Υποβολη'>Υποβολη</button>";
+
+			//echo 	"<input type='submit' class='grey' name='diefthinsiApostolis' value='Υποβολη'>";
+			echo "</div>";
+
+		echo "</form>";
+		echo "</div>";	
+		echo "</div>";
+		
+	?>
+				        	
+		
 
 
-	}
 
-$address2=$_SESSION['addressSent'];
-$postal2=$_SESSION['postalSent'];
-$city2=$_SESSION['citySent'];
-$country2=$_SESSION['countrySent'];
-$name2=$_SESSION['nameSent'];
-$surn2=$_SESSION['surnSent'];
 
-echo "<div class='wrap'>";
-		echo "<h4 class='title'>διευθυνση αποστολης</h4>";
-    	echo 	"<div class='clear'></div>";
-    	echo    	"<p class='m_text2'>$address2</p>";
-		echo		"<p class='m_text2'>$postal2, $city2, $country2 </p>";
-		echo		"<p class='m_text2'>$name2 $surn2</p>";
-		echo	"<br>";
-		echo "<input type='hidden' name='addressSent' id='addressSent' value='$address2'>";
-		echo "<input type='hidden' name='postalSent' id='postalSent' value=$postal2>";
-		echo "<input type='hidden' name='citySent' id='citySent' value=$city2>";
-		echo "<input type='hidden' name='country' id='country' value=$country2>";
-		echo "<input type='hidden' name='name' id='name' value=$name2>";
-		echo "<input type='hidden' name='surn' id='surn' value=$surn2>";
-	
-		//echo 	"<button type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>Επεξεργασια Διευθυνσης</button>";
-		//echo	"<input type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>";
-		//echo 	"<input type='submit' class='grey' name='submitsinexeia' value='Συνεχεια' style='margin-left:50px; '>";
-		echo 	"<button type='submit' class='grey' name='submitsinexeia' style='margin-left:50px; ' value='Συνεχεια'>Συνεχεια</button>";
-
-	echo "</div>";
-	echo "</form>";
-	echo "<form method='post' action='allagidiefthinsis.php' name='formaallagwn'>";
-	echo 	"<button type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>Επεξεργασια Διευθυνσης</button>";
-	echo "</form>";
-
-}
-?>
-     <div class="clear"><br><br></div>
-     <div class="clear"></div>
-
+<div class="clear"><br><br></div>
+<div class="clear"></div>
 <div class="footer">
 		<div class="footer-middle">
-			<div class="wrap">		   
+			<div class="wrap">
 		   <div class="auto-style3">
 		   	   <br>
 			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">

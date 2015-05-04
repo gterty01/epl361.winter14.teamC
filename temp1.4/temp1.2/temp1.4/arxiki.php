@@ -55,7 +55,7 @@ function validateInsertion(){
 }
 </style>
 </head>
-<body style="color: #FFFFFF; ">
+<body style="color: #FFFFFF;" <?php if(isset($_SESSION['alarm'])){ echo "onload='validateInsertion();' "; unset($_SESSION['alarm']); } ?> >
      <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
@@ -299,22 +299,35 @@ function validateInsertion(){
 
      </div>
 	</div>
+	<?php
+		$sl="SELECT * FROM `SLIDE`";
+		$slide=$conn->query($sl);
+		$slideFirst=$slide->fetch_assoc();
+		$slideSecond=$slide->fetch_assoc();
+
+	
+	
+	?>
   <!-- start slider -->
     <div id="fwslider">
         <div class="slider_container">
             <div class="slide"> 
                 <!-- Slide image -->
-                    <img src="images/koupes.jpg" alt=""/>
+                    <!--<img src="images/koupes.jpg" alt=""/>-->
+                 <?php   
+               echo '<img  src="data:image/jpeg;base64,'.base64_encode( $slideFirst['SlideImage'] ).'" alt="" />';
+               ?>
+
                 <!-- /Slide image -->
                 <!-- Texts container -->
                 <div class="slide_content">
                     <div class="slide_content_wrap">
                         <!-- Text title -->
-                        <h4 class="title">CY-FOOD MUSEUM</h4>
+                        <!--<h4 class="title">CY-FOOD MUSEUM</h4>-->
                         <!-- /Text title -->
                         
                         <!-- Text description -->
-                        <h4 class="description">Κυπριακά και Νόστιμα</h4>
+                        <h4 class="description"><?php echo $slideFirst['SlideTitle']; ?></h4>
                         <!-- /Text description -->
                     </div>
                 </div>
@@ -322,11 +335,13 @@ function validateInsertion(){
             </div>
             <!-- /Duplicate to create more slides -->
             <div class="slide">
-                <img src="images/diosmos.jpg" alt=""/>
+ 				<?php   
+               echo '<img  src="data:image/jpeg;base64,'.base64_encode( $slideSecond['SlideImage'] ).'" alt="" />';
+               ?>
                 <div class="slide_content">
                     <div class="slide_content_wrap">
-                        <h4 class="title">CY-FOOD MUSEUM</h4>
-                        <h4 class="description">Πάντα με αγνά υλικά</h4>
+                        <!--<h4 class="title">CY-FOOD MUSEUM</h4>-->
+                        <h4 class="description"><?php echo $slideSecond['SlideTitle']; ?></h4>
                     </div>
                 </div>
             </div>
@@ -357,16 +372,13 @@ function validateInsertion(){
 						$querymax=$conn->query($maxdate);
 						$rowMax=$querymax->fetch_assoc();
 						$codeProsfato=$rowMax['CodeOfProduct'];
-						
 						$cat="SELECT * FROM `PRODUCT` WHERE `Code`='$codeProsfato';";
 						$querykatigoria=$conn->query($cat);
 						$rowKat=$querykatigoria->fetch_assoc();
 						$katigoria=$rowKat['CodeOfCategory'];
 						
-						
-						$ipopsifia="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria';";
+						$ipopsifia="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria' AND `Availability` >0;";
 						$quIpopsifia=$conn->query($ipopsifia);
-						
 						$range=$quIpopsifia->num_rows;
 						
 						$var=rand(1,$range);
@@ -376,7 +388,6 @@ function validateInsertion(){
 							$counter=$counter+1;
 						}
 						$prwto=$rowIpo['Code'];
-						
 						 echo "<div class='col_1_of_3 span_1_of_3'>" ;
 						 $productCode=$rowIpo['Code'];
 						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
@@ -434,7 +445,7 @@ function validateInsertion(){
 						$katigoria2=$rowKat2['CodeOfCategory'];
 						
 						
-						$ipopsifia2="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria2' and `Code`<>'$prwto';";
+						$ipopsifia2="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria2' and `Code`<>'$prwto' AND `Availability` >0;";
 						$quIpopsifia2=$conn->query($ipopsifia2);
 						
 						$range2=$quIpopsifia2->num_rows;
@@ -496,7 +507,7 @@ function validateInsertion(){
 						
 						
 						
-						$tixi="SELECT * FROM `PRODUCT` WHERE `Code`<>'$prwto' AND `Code`<>'$deftero';";
+						$tixi="SELECT * FROM `PRODUCT` WHERE `Code`<>'$prwto' AND `Code`<>'$deftero' AND `Availability` >0 ;";
 						$quIpopsifia3=$conn->query($tixi);
 						$range3=$quIpopsifia3->num_rows;
 						$var3=rand(1,$range3);
@@ -552,19 +563,184 @@ function validateInsertion(){
 						echo                    "</a>";
 						//echo "</form>";
 						echo 				"</div>";
-
-						
-						
-					
-						
-						
-						
-						
-						
 			
-									}
+					}
 					
 
+				}
+				if ($contain==0){
+					$cat="SELECT * FROM `PRODUCT` AND `Availability` > 0";
+					$queryRand=$conn->query($cat);
+					//$rowKat=$queryRand->fetch_assoc();
+					$range1=$queryRand->num_rows;
+					$var1=rand(1,$range1);
+					$counter=0;
+					$rowIpo1;
+					while ($counter!=$var1){
+						$rowIpo1=$queryRand->fetch_assoc();
+						$counter=$counter+1;
+					}
+						$prwto=$rowIpo1['Code'];
+
+					echo "<div class='col_1_of_3 span_1_of_3'>" ;
+						 $productCode=$rowIpo1['Code'];
+						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+						 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+						 // echo 	  	 "<a href='single.html'>";
+						
+						 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+						 echo 		 					"<div class='product_image'>";
+						 
+	// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+						 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $rowIpo1['image'] ).'" width="270" height="250"/>';
+						 echo 				"</div>";
+					     echo         "<div class='price'>";
+						 echo 		   "<div class='cart-left'>";
+						 echo 					"<p class='title'>";
+						 echo $rowIpo1['Name'] ;
+						 echo "</p>";
+						 echo 							"<div class='price1'>";
+						 echo 							  "<span class='actual'>";
+						 echo $rowIpo1['Price'];
+ 						echo "</span>";
+						 echo 							"</div>";
+					 	echo 						"</div>";
+						$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+						$resultCheck=$conn->query($querysCheck);
+						if($resultCheck->num_rows == 0){
+						//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+			
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+						//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+						}
+					  	else{
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+					  	}
+					 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+						echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+						echo					"</form>";
+						echo 						"<div class='clear'></div>";
+						echo 					 "</div>"	;			
+						echo                    "</div>";
+						echo                    "</a>";
+						echo 				"</div>";
+
+					$cat2="SELECT * FROM `PRODUCT` WHERE `Code`<>'$prwto'AND `Availability` >0 ;";
+					$queryRand2=$conn->query($cat2);
+					//$rowKat=$queryRand->fetch_assoc();
+					$range2=$queryRand2->num_rows;
+					$var2=rand(1,$range2);
+					$counter=0;
+					while ($counter!=$var2){
+						$rowIpo2=$queryRand2->fetch_assoc();
+						$counter=$counter+1;
+					}
+						$deftero=$rowIpo2['Code'];
+
+					echo "<div class='col_1_of_3 span_1_of_3'>" ;
+						 $productCode=$rowIpo2['Code'];
+						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+						 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+						 // echo 	  	 "<a href='single.html'>";
+						
+						 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+						 echo 		 					"<div class='product_image'>";
+						 
+	// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+						 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $rowIpo2['image'] ).'" width="270" height="250"/>';
+						 echo 				"</div>";
+					     echo         "<div class='price'>";
+						 echo 		   "<div class='cart-left'>";
+						 echo 					"<p class='title'>";
+						 echo $rowIpo2['Name'] ;
+						 echo "</p>";
+						 echo 							"<div class='price1'>";
+						 echo 							  "<span class='actual'>";
+						 echo $rowIpo2['Price'];
+ 						echo "</span>";
+						 echo 							"</div>";
+					 	echo 						"</div>";
+						$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+						$resultCheck=$conn->query($querysCheck);
+						if($resultCheck->num_rows == 0){
+						//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+			
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+						//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+						}
+					  	else{
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+					  	}
+					 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+						echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+						echo					"</form>";
+						echo 						"<div class='clear'></div>";
+						echo 					 "</div>"	;			
+						echo                    "</div>";
+						echo                    "</a>";
+						echo 				"</div>";
+						
+						
+					//$katigoria=$rowKat['CodeOfCategory'];
+					$cat3="SELECT * FROM `PRODUCT` WHERE `Code`<>'$prwto' AND `Code`<>'$deftero' AND `Availability` >0 ;";
+					$queryRand3=$conn->query($cat3);
+					//$rowKat=$queryRand->fetch_assoc();
+					$range3=$queryRand3->num_rows;
+					$var3=rand(1,$range3);
+					$counter=0;
+					while ($counter!=$var3){
+						$rowIpo3=$queryRand3->fetch_assoc();
+						$counter=$counter+1;
+					}
+						$trito=$rowIpo3['Code'];
+
+					echo "<div class='col_1_of_3 span_1_of_3'>" ;
+						 $productCode=$rowIpo3['Code'];
+						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';
+						 echo 	  	 '<a href="single.php?item='.urlencode($productCode).'">';
+						 // echo 	  	 "<a href='single.html'>";
+						
+						 echo 			 "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+						 echo 		 					"<div class='product_image'>";
+						 
+	// echo "<img src='Image/".$row['image']."' alt='' width='270' height='250' />";
+						 echo '<img  src="data:image/jpeg;base64,'.base64_encode( $rowIpo3['image'] ).'" width="270" height="250"/>';
+						 echo 				"</div>";
+					     echo         "<div class='price'>";
+						 echo 		   "<div class='cart-left'>";
+						 echo 					"<p class='title'>";
+						 echo $rowIpo3['Name'] ;
+						 echo "</p>";
+						 echo 							"<div class='price1'>";
+						 echo 							  "<span class='actual'>";
+						 echo $rowIpo3['Price'];
+ 						echo "</span>";
+						 echo 							"</div>";
+					 	echo 						"</div>";
+						$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+						$resultCheck=$conn->query($querysCheck);
+						if($resultCheck->num_rows == 0){
+						//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+			
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+						//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+						}
+					  	else{
+					  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+					  	}
+					 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+						echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+						echo					"</form>";
+						echo 						"<div class='clear'></div>";
+						echo 					 "</div>"	;			
+						echo                    "</div>";
+						echo                    "</a>";
+						echo 				"</div>";
+
+				
 				}
 				
 			?>
@@ -579,30 +755,109 @@ function validateInsertion(){
 			</div>	
 		  <h2 class="head">Προσφορες</h2>
 		  <div class="top-box1">
-			  <div class="col_1_of_3 span_1_of_3">
-			  	 <a href="single.html">
-				 <div class="inner_content clearfix" style='left: 0px; top: 0px'>
-					<div class="product_image">
-						<img src="images/kumantaria.jpg" alt="" width="270" height="250"/>
+		  
+<?php
+	$sales="SELECT * FROM `OFFER`";
+	$offers=$conn->query($sales);
+	$tipwse=0;
+	if ($offers->num_rows > 0){
+		while($row = $offers->fetch_assoc()){
+			if ($tipwse<3){
+			$productCode=$row['CodeOfProduct'];
+			$oldvalue=$row['OldValue'];
+			$newvalue=$row['NewPrice'];
+			$takePro="SELECT * FROM `PRODUCT` WHERE `Code`='$productCode'";
+			$prs=$conn->query($takePro);
+			$prNow=$prs->fetch_assoc();
+			$namepr=$prNow['Name'];
+			
+			
+			if($prNow['Availability']>0){
+			echo "<div class='col_1_of_3 span_1_of_3'>";
+			echo  '<a href="single.php?item='.urlencode($productCode).'">';
+
+			echo  "<div class='inner_content clearfix' style='left: 0px; top: 0px'>";
+			echo		"<div class='product_image'>";
+			echo '<img  src="data:image/jpeg;base64,'.base64_encode( $prNow['image'] ).'" width="270" height="250"/>';
+			echo "</div>";
+			echo	"<div class='sale-box1'><span class='on_sale title_shop'>Sale</span></div>";	
+            echo       "<div class='price'>";
+			echo		   "<div class='cart-left'>";
+			echo				"<p class='title'>";
+			echo $prNow['Name'];	
+			echo "</p>";
+			echo				"<div classs='price1'>";
+			echo				  "<span class='reducedfrom'>€";
+			echo $oldvalue;
+			echo "</span>";
+			echo				  "<span class='actual'>€";
+			echo $newvalue;
+			echo "</span>";
+			echo	"</div>";
+			echo	"</div>";
+			$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$productCode' ";
+			$resultCheck=$conn->query($querysCheck);
+			if($resultCheck->num_rows == 0){
+			//echo  "<iframe name='votar' style='display:none;' sandbox='allow-iframes allow-same-origin allow-scripts allow-modals' ></iframe>";
+					  		
+	
+		  	echo   "<form id='prosthiki' name='prosthiki' method='POST' action='prosthikiArxiki.php'  accept-charset='UTF-8'>"; 
+				//echo   "<input type='HIDDEN' id='timianazitisi' value='$timi' name='timianazitisi'>";
+			}
+		  	else{
+		  	echo   "<form id='prosthiki' name='prosthiki' method='POST' onsubmit='return doesExist();' accept-charset='UTF-8'>";  	
+		  	}
+		 	echo "<input type='HIDDEN' name='idproiontos' value='".urlencode($productCode)."' name='idproiontos'>";
+			echo					"<input type='submit' class='cart-right' name='kalathi' value='' >";
+			echo					"</form>";
+			echo "<div class='clear'></div>";
+
+
+			echo	"</div>";				
+            echo     "</div>";
+            echo      "</a>";
+			echo	"</div>";
+			$tipwse=$tipwse+1;
+			}
+			}
+		}
+	}
+
+?>		  
+		  
+		  
+		  
+		  
+		  
+		  
+			<!--  <div class='col_1_of_3 span_1_of_3'>
+			  	 <a href='single.php?item='.urlencode($productCode).'">';
+				 <div class='inner_content clearfix' style='left: 0px; top: 0px'>
+					<div class='product_image'>
+						<img src='images/kumantaria.jpg' alt='' width='270' height='250'/>
 					</div>
-					<div class="sale-box1"><span class="on_sale title_shop">Sale</span></div>	
-                    <div class="price">
-					   <div class="cart-left">
-							<p class="title">Κυπριακό Κρασί - Κουμανταρία</p>
-							<div classs="price1">
-							  <span class="reducedfrom">€30,00</span>
-							  <span class="actual">€25,00</span>
+					<div class='sale-box1'><span class='on_sale title_shop'>Sale</span></div>	
+                    <div class='price'>
+					   <div class='cart-left'>
+							<p class='title'>Κυπριακό Κρασί - Κουμανταρία</p>
+							<div classs='price1'>
+							  <span class='reducedfrom'>€30,00</span>
+							  <span class='actual'>€25,00</span>
 							</div>
 						</div>
-						<form id='prosthiki' method="POST" action="prosthiki.php" accept-charset="UTF-8">
-						<input type="submit" class="cart-right" name="kalathi" value="" >
+						<form id='prosthiki' method='POST' action='prosthiki.php' accept-charset='UTF-8'>
+						<input type='submit' class='cart-right' name='kalathi' value='' >
 						</form>
-						<!--<div> <a href="checkout.html" class="cart-right"></a> </div> -->
-						<div class="clear"></div>
+						<div> <a href="checkout.html" class="cart-right"></a> </div> 
+						<div class='clear'></div>
 					 </div>				
                    </div>
                    </a>
 				</div>
+				
+				
+				
+				
 				<div class="col_1_of_3 span_1_of_3">
 					 <a href="single.html">
 					<div class="inner_content clearfix" style='left: 0px; top: 0px'>
@@ -645,7 +900,7 @@ function validateInsertion(){
 					 </div>				
                    </div>
                    </a>
-				</div>
+				</div>-->
 				<div class="clear"></div>
 			</div>	
 		  </div>
@@ -697,7 +952,7 @@ function validateInsertion(){
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
 				            <li><a href="terms.html">Όροι Χρήσης</a></li>
-				             <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				             <li><a href="delivery.php">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
@@ -728,6 +983,10 @@ function validateInsertion(){
 		</div>
 					
 					<div class="footer-bottom">
+									<div class="copy">
+			        <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
+		        </div>
+
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
@@ -746,4 +1005,5 @@ function validateInsertion(){
 		</div>
 
 </body>
+
 </html>

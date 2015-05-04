@@ -4,6 +4,18 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+	session_start(); 
+?>
+<?php
+	if (!(isset($_GET['item']))){
+	header("Location: arxiki.php");
+	die();
+
+	}
+
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -49,16 +61,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$('#img1,#img2,#img3,#img4').zoome({showZoomState:true,magnifierSize:[250,250]});
 	});
 	</script>		
+	 <script type='text/javascript'>
+	function validateInsertion(){
+				alert('Προστέθηκε στο καλάθι σας!');
+				return true;		
+			}
+	</script>
+
 <style type="text/css">
 .auto-style1 {
 	color: #FFFFFF;
 }
 </style>
 </head>
-<body>
-<?php
-	session_start(); 
-?>
+
+<body <?php if(isset($_SESSION['alarmS'])){echo "onload='validateInsertion();' "; unset($_SESSION['alarmS']); } ?> >
 
 <?php
  $servername = "localhost";
@@ -86,10 +103,12 @@ $kodikos=$_GET['item'];
 
 $querys = "SELECT DISTINCT `Code` , `Name` , `Description` , `Availability` , `Price` , `NameCat` , `Weight`  , `image` ,  `CompanyName` FROM `PRODUCT`, `SUPPLIER` , `CATEGORY` where `CodeOfCategory` = `CodeCat` AND `CodeOfSupplier` = `SupplierNumber` AND `Code` = '$kodikos';";
 $result=$conn->query($querys);
-$row = $result->fetch_assoc();	
+
+$row = $result->fetch_assoc();
+	$product=$row['Code'];
+	
 if(isset($_SESSION['login_user'])){
 	$xristis=$_SESSION['login_user'];
-	$product=$row['Code'];
 	$queryview="SELECT * FROM `cyfoodmuseum`.`VIEWPRODUCT` where `UserCode`='$xristis' AND `CodeOfProduct`='$product';";
 	$eideAgain=$conn->query($queryview);
 	if($eideAgain->num_rows > 0){
@@ -242,14 +261,27 @@ if(isset($_SESSION['login_user'])){
 		         	<h3 class="m_3"><?php echo $row['Name']; ?></h3>
 		             <p class="m_5">€ <?php echo $row['Price']; ?></p>
 		         	 <div class="btn_form">
-						<form>
-							<a href="checkout.html"><input type="submit" value="Αγορα" title=""></a>
-						</form>
+					<!--	<form>-->
+							<?php
+							if(isset($_SESSION['login_user'])){
+								$xristis=$_SESSION['login_user'];
+
+							 	$querysCheck ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' AND `CodeOfProduct` = '$product' ";
+								$resultCheck=$conn->query($querysCheck);
+								if($resultCheck->num_rows == 0){
+							//echo   "<input type='HIDDEN' id='timicat' value=$katigoria name='timicat'>";
+							echo '<a href="prosthikiSingle.php?item='.urlencode($product).'"><button  class="grey" >Προσθήκη στο καλάθι</button></a>';
+							}
+							}else{
+							echo '<a href="prosthikiSingle.php?item='.urlencode($product).'"><button class="grey" >Προσθήκη στο καλάθι</button></a>';
+
+							}
+								?>					
+						<!--</form>-->
 					 </div>
 					 <br>
 					 <br>
 					 <div class="clear"></div>
-					<span class="m_link"><a href="checkout.html">ΠΡΟΣΘΗΚΗ ΣΤΟ ΚΑΛΑΘΙ</a></span>
 					<p class="m_text2">Κατηγορία: <?php echo $row['NameCat']; ?></p>
 				     <p class="m_text2">Ζυγίζει: <?php echo $row['Weight']; ?> kg </p>
 				     <p class="m_text2">Διαθεσιμότητα: <?php echo $row['Availability']; ?></p>
@@ -267,122 +299,13 @@ if(isset($_SESSION['login_user'])){
      <div class="toogle">
      </div>
       </div>
-<div class="rsidebar span_1_of_left">
-				<h5 class="m_1">κατηγοριεσ</h5>
-					<select class="dropdown" tabindex="8" data-settings='{"wrapperClass":"metro"}' onChange="window.location.href=this.value" style="left: 0px; top: 0px">
-						<option value="#">Τροφιμα</option>
-						<option value ="allantika.html">Αλλαντικά</option>
-						<option value="glikakoutaliou.html">Γλυκά του Κουταλιού</option>
-						<option value="votana.html">Βότανα</option>
-						<option value="galaktokomika.html">Γαλακτοκομικά</option>
-						<option value="rofimata.html">Κυπριακά Ροφήματα</option>
-					</select>
-					<select class="dropdown" tabindex="8" data-settings='{"wrapperClass":"metro"}' onChange="window.location.href=this.value" style="left: 0px; top: 0px">
-						<option value="skeui.html">Σκεύη</option>
-						<option value="skeui.html">Κατσαρόλλες</option>
-						<option value="skeui.html">Κουζινικά</option>
-						<option value="skeui.html">Τηγάνια</option>
-					</select>
-					<select class="dropdown" tabindex="8" data-settings='{"wrapperClass":"metro"}' onChange="window.location.href=this.value" style="left: 0px; top: 0px">
-						<option value="#">Υλικά Μαγειρικής</option>
-						<option value="zimaria.html">Ζυμάρι</option>
-						<option value="xorta.html">Χόρτα</option>
-						<option value="frouta.html">Φρούτα</option>
-					</select>
-	
-					<ul class="kids">
-						<li><a href="#">Συνταγές</a></li>
-						<li><a href="#">Εστιατόρια</a></li>
-						<li class="last"><a href="#">Βιβλία</a></li>
-					</ul>
-		       		        
-		  
-		      </div>
 			 <div class="clear"></div>
 		   </div>
 		</div>
 			<script src="js/jquery.easydropdown.js"></script><div class="footer">
 	   <p><div class="footer">
 		<div class="footer-middle">
-			<div class="wrap">
-			 <!-- <div class="section group">
-			  	<div class="f_10">
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>Facebook</h3>
-						<script>(function(d, s, id) {
-						  var js, fjs = d.getElementsByTagName(s)[0];
-						  if (d.getElementById(id)) return;
-						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-						  fjs.parentNode.insertBefore(js, fjs);
-						}(document, 'script', 'facebook-jssdk'));</script>
-						<div class="like_box">	
-							<div class="fb-like-box" data-href="http://www.facebook.com/w3layouts" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
-						</div>
-					</div>
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>From Twitter</h3>
-						<div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-						</div>
-						<div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="f_10">
-					<div class="col_1_of_4 span_1_of_4">
-					    <h3>Information</h3>
-						<ul class="f-list1">
-						    <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-				             <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-			         	</ul>
-					</div>
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>Contact us</h3>
-						<div class="company_address">
-					                <p>500 Lorem Ipsum Dolor Sit,</p>
-							   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-							   		<p>USA</p>
-					   		<p>Phone:(00) 222 666 444</p>
-					   		<p>Fax: (000) 000 00 00 0</p>
-					 	 	<p>Email: <span>mail[at]leoshop.com</span></p>
-					   		
-					   </div>
-					   <div class="social-media">
-						     <ul>
-						        <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="Google"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Linked in"><a href="#" target="_blank"> </a> </span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Rss"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Facebook"><a href="#" target="_blank"> </a></span></li>
-						    </ul>
-					   </div>
-					</div>
-				<div class="clear"></div>
-			</div>
-			<div class="clear"></div>
-		  </div>-->
-		   
-		   
-		   
-		   
-		   
+			<div class="wrap">		   
 		   <div class="auto-style3">
 		   	   <br>
 			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">

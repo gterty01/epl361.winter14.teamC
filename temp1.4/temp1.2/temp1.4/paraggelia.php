@@ -1,5 +1,6 @@
 ﻿<?php
 	session_start(); 
+header('Cache-Control: max-age=900');
 ?>
 
 <?php
@@ -15,11 +16,11 @@ header("Location: login.html");
 }
 
 
-if(!(isset($_POST['arithmosproiontwn']))){
+/*if(!(isset($_SESSION['arithmosproiontwn']))){
 header("Location: index.html");
 
 
-}
+}*/
 
 ?>
 
@@ -232,7 +233,7 @@ return true;
 	<?php
 	parse_url(file_get_contents("php://input"), $_POST);
 
-	if(isset($_POST['submitdiefthinsi'])){
+	/*if(isset($_POST['submitdiefthinsi'])){
 		$num=0;
 		$antikeimena=$_POST['arithmosproiontwn'];
 		echo "<div class='register_account'>";
@@ -278,7 +279,7 @@ return true;
 		
 		
 	}	
-	else{
+	else{*/
 	
 	echo "<h4 class='title' style='margin-left:50px;'>ολοκληρωση παραγγελιασ</h4>";
 	echo 	"<br>";
@@ -291,7 +292,7 @@ return true;
 		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='pistwtiki_karta' name='payment' value='pistwtiki_karta'>Πιστωτική Κάρτα</p>";
 		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='PayPal' name='payment' value='PayPal'>PayPal</p>";
 		echo 	"<br>";
-		$num=0;
+		/*	$num=0;
 			$antikeimena=$_POST['arithmosproiontwn'];
 			$address=$_POST['addressSent'];
 			$postalcode=$_POST['postalSent'];
@@ -325,9 +326,9 @@ return true;
 		echo "<input type='hidden' name='citySent' id='citySent' value=$city>";
 		echo "<input type='hidden' name='country' id='country' value=$country>";
 		echo "<input type='hidden' name='name' id='name' value=$name>";
-		echo "<input type='hidden' name='surn' id='surn' value=$surn>";
+		echo "<input type='hidden' name='surn' id='surn' value=$surn>";*/
 
-		echo 	"<button type='submit' class='grey' name='submit' value='Submit'>Υποβολη</button>";
+		echo 	"<button type='submit' class='grey' name='submitKarta' value='Submit'>Υποβολη</button>";
 
     	echo "</form>";
 
@@ -335,7 +336,7 @@ return true;
 	echo "</div>";
 	
 	
-	}
+	//}
 	?>
 				        	
 		
@@ -348,84 +349,6 @@ return true;
 <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">
-			 <!-- <div class="section group">
-			  	<div class="f_10">
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>Facebook</h3>
-						<script>(function(d, s, id) {
-						  var js, fjs = d.getElementsByTagName(s)[0];
-						  if (d.getElementById(id)) return;
-						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-						  fjs.parentNode.insertBefore(js, fjs);
-						}(document, 'script', 'facebook-jssdk'));</script>
-						<div class="like_box">	
-							<div class="fb-like-box" data-href="http://www.facebook.com/w3layouts" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
-						</div>
-					</div>
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>From Twitter</h3>
-						<div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-						</div>
-						<div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="f_10">
-					<div class="col_1_of_4 span_1_of_4">
-					    <h3>Information</h3>
-						<ul class="f-list1">
-						    <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-				             <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-			         	</ul>
-					</div>
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>Contact us</h3>
-						<div class="company_address">
-					                <p>500 Lorem Ipsum Dolor Sit,</p>
-							   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-							   		<p>USA</p>
-					   		<p>Phone:(00) 222 666 444</p>
-					   		<p>Fax: (000) 000 00 00 0</p>
-					 	 	<p>Email: <span>mail[at]leoshop.com</span></p>
-					   		
-					   </div>
-					   <div class="social-media">
-						     <ul>
-						        <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="Google"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Linked in"><a href="#" target="_blank"> </a> </span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Rss"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Facebook"><a href="#" target="_blank"> </a></span></li>
-						    </ul>
-					   </div>
-					</div>
-				<div class="clear"></div>
-			</div>
-			<div class="clear"></div>
-		  </div>-->
-		   
-		   
-		   
-		   
-		   
 		   <div class="auto-style3">
 		   	   <br>
 			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">

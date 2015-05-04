@@ -1,4 +1,4 @@
-<!--A Design by W3layouts
+﻿<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -301,145 +301,83 @@ function validateInsertion(){
 	</div>
     <div class="login">
      <div class="wrap">
-	    <ul class="breadcrumb breadcrumb__t"><a class="home" href="#">Home</a>  / Delivery</ul>
-		<h5 class="m_6">Shipments and Returns</h5>	
-		<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+		<h5 class="m_6">Τροποι Παραλαβης</h5>	
+		<p class="m_text">Μπορείτε να παραλάβετε τις παραγγελίες σας από τα γραφεία του Cyprus Food Museum στη Διεύθυνση:                   ή από τα πιο κάτω σημεία παραλαβής.</p>
 		<ul class="delivery-list">
-			<li><a href="#">Lorem ipsum dolor sit amet</a></li>
-			<li><a href="#">Consectetur adipisicing elit, sed do eiusmod tempor</a></li>
-			<li><a href="#">Incididunt ut labore et dolore magna aliqua</a></li>
-			<li><a href="#">Ut enim ad minim veniam, quis nostrud</a></li>
-			<li><a href="#">Exercitation ullamco laboris nisi ut aliquip</a></li>
-        </ul>
-		<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-		<h5 class="m_6">Your Pack Shipment</h5>	
-		<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-		<ul class="delivery-list">
-			<li><a href="#">Lorem ipsum dolor sit amet</a></li>
-			<li><a href="#">Consectetur adipisicing elit, sed do eiusmod tempor</a></li>
-			<li><a href="#">Incididunt ut labore et dolore magna aliqua</a></li>
-			<li><a href="#">Ut enim ad minim veniam, quis nostrud</a></li>
-			<li><a href="#">Exercitation ullamco laboris nisi ut aliquip</a></li>
-        </ul>
-		<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+			<li>Lorem ipsum dolor sit amet</li>
+			<li>Consectetur adipisicing elit, sed do eiusmod tempor</li>
+			<li>Incididunt ut labore et dolore magna aliqua</li>
+			<li>Ut enim ad minim veniam, quis nostrud</li>
+			<li></li>
+			</ul>
+			<h5 class="m_6">Τροποι Πληρωμης</h5>	
+        	<p class="m_text">Οι Πληρωμές σας στο ηλεκτρονικό κατάστημά μας μπορούν να γίνονται είτε με κάρτα μέσω της JCC είτε με PayPal.</p>
 	</div>	
    </div>  
     <div class="footer">
-		<div class="footer-top">
-			<div class="wrap">
-			  <div class="section group example">
-				<div class="col_1_of_2 span_1_of_2">
-					<ul class="f-list">
-					  <li><img src="images/2.png"><span class="f-text">Free Shipping on orders over $ 100</span><div class="clear"></div></li>
-					</ul>
-				</div>
-				<div class="col_1_of_2 span_1_of_2">
-					<ul class="f-list">
-					  <li><img src="images/3.png"><span class="f-text">Call us! toll free-222-555-6666 </span><div class="clear"></div></li>
-					</ul>
-				</div>
-				<div class="clear"></div>
-		      </div>
-			</div>
-		</div>
-        <div class="footer-middle">
-			<div class="wrap">
-			  <div class="section group example">
-			  <div class="col_1_of_f_1 span_1_of_f_1">
-				 <div class="section group example">
-				   <div class="col_1_of_f_2 span_1_of_f_2">
-				      <h3>Facebook</h3>
-						<script>(function(d, s, id) {
-						  var js, fjs = d.getElementsByTagName(s)[0];
-						  if (d.getElementById(id)) return;
-						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-						  fjs.parentNode.insertBefore(js, fjs);
-						}(document, 'script', 'facebook-jssdk'));</script>
-						<div class="like_box">	
-							<div class="fb-like-box" data-href="http://www.facebook.com/w3layouts" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
-						</div>
- 				  </div>
-				  <div class="col_1_of_f_2 span_1_of_f_2">
-						<h3>From Twitter</h3>
-				       <div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-					   </div>
-					   <div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-					  </div>
-				</div>
-				<div class="clear"></div>
-		      </div>
- 			 </div>
-			 <div class="col_1_of_f_1 span_1_of_f_1">
+		<div class="footer-middle">
+			<div class="wrap">   
+		   <div class="section group example">
+		   	   <br>
+			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
 			   <div class="section group example">
-				 <div class="col_1_of_f_2 span_1_of_f_2">
-				    <h3>Information</h3>
+				 <div class="col_1_of_f_2 span_1_of_f_2" style="width: 41%; margin-left: 0; height: 150px">
+				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
-						    <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-				             <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-			         	</ul>
- 				 </div>
+						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
+				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				             <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="copyright.html">Copyright</a></li>
+			
+				         </ul>
+				 </div>
 				 <div class="col_1_of_f_2 span_1_of_f_2">
-				   <h3>Contact us</h3>
+				 <div class="clear"></div>
+				   <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
 						<div class="company_address">
-					                <p>500 Lorem Ipsum Dolor Sit,</p>
-							   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-							   		<p>USA</p>
-					   		<p>Phone:(00) 222 666 444</p>
-					   		<p>Fax: (000) 000 00 00 0</p>
-					 	 	<p>Email: <span>mail[at]leoshop.com</span></p>
-					   		
-					   </div>
-					   <div class="social-media">
-						     <ul>
-						        <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="Google"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Linked in"><a href="#" target="_blank"> </a> </span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Rss"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Facebook"><a href="#" target="_blank"> </a></span></li>
-						    </ul>
+					                <p>Εικονικό Μουσείο Κυπριακών Τροφίμων και Διατροφής</p>
+							   		<p>Κύπρος</p>
+							   		<p>Κινητό Τηλέφωνο: 99 05 98 20</p>
+					   				<p>Fax: 22 77 06 76</p>
+					 	 			<p style="" >Email: <span>cyfoodmuseum@gmail.com</span></p>
+					   		<!--style="height: 24px"-->
 					   </div>
 				</div>
 				<div class="clear"></div>
+
 		    </div>
 		   </div>
-		  <div class="clear"></div>
-		    </div>
+		   </div>
+		   <div class="clear"></div>
+		  <div class="auto-style1">
+		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
+					μας στο: 99 05 98 20     </span>
+			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
 			</div>
 		</div>
-		<div class="footer-bottom">
-			<div class="wrap">
-				<div class="copy">
+					
+					<div class="footer-bottom">
+									<div class="copy">
 			        <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
 		        </div>
+
+					<div class="wrap">
 				<div class="f-list2">
-				<ul>
-					<li class="active"><a href="about.html">About Us</a></li> |
-					<li><a href="delivery.html">Delivery & Returns</a></li> |
-					<li><a href="delivery.html">Terms & Conditions</a></li> |
-					<li><a href="contact.html">Contact Us</a></li> 
-				</ul>
-				</div>
-				<div class="clear"></div>
+				 <ul>
+					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
+					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
+					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				 </ul>
+			    </div>
+			    <div class="clear"></div>
+			    </div>
 		      </div>
-			</div>
+	     	
+	     	 </div>
+		    </div>
+		  </div>
 		</div>
+
 </body>
+
 </html>

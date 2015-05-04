@@ -1,5 +1,6 @@
 ﻿<?php 
 	session_start(); 
+header('Cache-Control: max-age=900');
 ?>
 
 
@@ -15,11 +16,11 @@ $xristis = "Σύνδεση";
 header("Location: login.html");
 }
 
-if(!(isset($_POST['arithmosproiontwn']))){
+/*if(!(isset($_SESSION['arithmosproiontwn']))){
 header("Location: index.html");
 
 
-}
+}*/
 
 
 ?>
@@ -243,10 +244,10 @@ var ccvL = frm.ccv.value.length;
     <div class="wrap">
 		<h4 class="title">Διευθυνση αποστολησ</h4>
 		<div class="clear"></div>
-				<p class="m_text2"><?php echo $_POST['addressSent']?></p>
-				<p class="m_text2"><?php echo $_POST['postalSent']." ". $_POST['citySent']; ?></p>
-				<p class="m_text2"><?php echo $_POST['country']; ?></p>
-				<p class="m_text2"><?php echo $_POST['name']; ?> <?php echo $_POST['surn']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['addressSent']?></p>
+				<p class="m_text2"><?php echo $_SESSION['postalSent']." ". $_SESSION['citySent']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['countrySent']; ?></p>
+				<p class="m_text2"><?php echo $_SESSION['nameSent']; ?> <?php echo $_SESSION['surnSent']; ?></p>
 				<br>
     	  
     	  <div class="clear"></div>
@@ -264,48 +265,53 @@ var ccvL = frm.ccv.value.length;
 		    </thead>
     	    <tbody>
     	    	<?php
-    	    		$antikeimena=$_POST['arithmosproiontwn'];
-    	    		$address=$_POST['addressSent'];
-					$postalcode=$_POST['postalSent'];
-					$city=$_POST['citySent'];
-					$country=$_POST['country'];
-					$name=$_POST['name'];
-					$surn=$_POST['surn'];
+    	    		$antikeimena=$_SESSION['arithmosproiontwn'];
+    	    	//	echo $antikeimena;
+    	    		$address=$_SESSION['addressSent'];
+					$postalcode=$_SESSION['postalSent'];
+					$city=$_SESSION['citySent'];
+					$country=$_SESSION['countrySent'];
+					$name=$_SESSION['nameSent'];
+					$surn=$_SESSION['surnSent'];
 		
     	    		$num=0; 
     	    		$sinolo=0;
     	    		while($num<$antikeimena){
-    	    		$proionOnoma=$_POST["onoma$num"];
-					$kodikosproion=$_POST["kodikos$num"];
-					$price=$_POST["timi$num"];
-					$varos=$_POST["varos$num"];
-					$posotita=$_POST["posotita$num"];
-					$poso=$_POST["poso$num"];	
+    	    		$proionOnoma=$_SESSION["onoma$num"];
+					$kodikosproion=$_SESSION["kodikos$num"];
+					$price=$_SESSION["timi$num"];
+					$varos=$_SESSION["varos$num"];
+					$posotita=$_SESSION["posotita$num"];
+					$poso=$_SESSION["poso$num"];	
 					echo "<tr>";
     	    		echo "<td><p class='m_text2'>$proionOnoma</p></td>";
     	    		echo "<td><p class='m_text2'>$posotita</p></td>";
     	    		echo "<td><p class='m_text2'>$poso</p></td>";
 					echo "</tr>";
 					
-					echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
+					/*echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
 					echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
 					echo "<input type='hidden' name='timi$num' id='timi$num' value=$price>";
 					echo "<input type='hidden' name='varos$num' id='varos$num' value=$varos>";
 					echo "<input type='hidden' name='posotita$num' id='posotita$num' value=$posotita>";
 					echo "<input type='hidden' name='arithmosproiontwn' id='arithmosproiontwn' value=$antikeimena>";
-					echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";
+					echo "<input type='hidden' name='poso$num' id='poso$num' value=$poso>";*/
 		
     	    		$sinolo=$sinolo+$poso;
     	    	
     	    		$num=$num+1;
     	    		}	
-    	    	echo "<input type='hidden' name='addressSent' id='addressSent' value='$address'>";
+    	    	$_SESSION['sinoloplirwmis']=$sinolo;
+    	    	if(isset($_POST['submitKarta'])){
+    	    		$_SESSION['troposplirwmis']=$_POST['payment'];
+    	    	}
+    	    	/*echo "<input type='hidden' name='addressSent' id='addressSent' value='$address'>";
 				echo "<input type='hidden' name='postalSent' id='postalSent' value=$postalcode>";
 				echo "<input type='hidden' name='citySent' id='citySent' value=$city>";
 				echo "<input type='hidden' name='country' id='country' value=$country>";
 				echo "<input type='hidden' name='name' id='name' value=$name>";
 				echo "<input type='hidden' name='surn' id='surn' value=$surn>";
-				echo "<input type='hidden' name='sinoloplirwmis' id='sinoloplirwmis' value=$sinolo>";
+				echo "<input type='hidden' name='sinoloplirwmis' id='sinoloplirwmis' value=$sinolo>";*/
 
     	    	?>
     	    	 <tr>
