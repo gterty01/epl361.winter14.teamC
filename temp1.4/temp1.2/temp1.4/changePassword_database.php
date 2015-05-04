@@ -34,14 +34,18 @@
 	$oldPassword = $_POST['passwdOld'];
 	$newPassword = $_POST['passwdNew'];
 	
-	$querys = "SELECT * FROM `USERS_FM` WHERE Email = '$email' AND Password = '$oldPassword'" ;
+	$check = md5($oldPassword);
+	
+	$encrypted = md5($newPassword);
+
+
+	$querys = "SELECT * FROM `USERS_FM` WHERE Email = '$email' AND Password = '$check'" ;
 	$result=$conn->query($querys);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()) {
 			$mail = $row["Email"];
-			$sql="UPDATE `USERS_FM` SET Password = '$newPassword' WHERE Email ='$mail'";
-			
-			if ($conn->query($sql) === TRUE){1
+			$sql="UPDATE `USERS_FM` SET Password = '$encrypted' WHERE Email ='$mail'";
+			if ($conn->query($sql) === TRUE){
 				$ok_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας ολοκληρώθηκε επιτυχώς!";
 				$_SESSION['ok_changePassword'] = $ok_changePassword;
 				$_SESSION['error_changePassword'] = " ";
@@ -49,13 +53,34 @@
 				die;
 			}
 		}
-	}else{
-		$error_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας δεν ολοκληρώθηκε επιτυχώς!";
-		$_SESSION['error_changePassword'] = $error_changePassword;
-		$_SESSION['ok_changePassword'] = " ";
-		header("Location:changePassword.php");
-		die;
 	}
+
+	$email = $_SESSION['login_admin'];
+
+	$querys = "SELECT * FROM `ADMINS` WHERE Email = '$email' AND Password = '$check'" ;
+	$result=$conn->query($querys);
+
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()) {
+			$mail = $row["Email"];
+			$sql="UPDATE `ADMINS` SET Password = '$encrypted' WHERE Email ='$mail'";
+			
+			if ($conn->query($sql) === TRUE){
+				$ok_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας ολοκληρώθηκε επιτυχώς!";
+				$_SESSION['ok_changePassword'] = $ok_changePassword;
+				$_SESSION['error_changePassword'] = " ";
+				header("Location:changePasswordAdmin.php");
+				die;
+			}
+		}
+	}
+		
+	$error_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας δεν ολοκληρώθηκε επιτυχώς!";
+	$_SESSION['error_changePassword'] = $error_changePassword;
+	$_SESSION['ok_changePassword'] = " ";
+	header("Location:changePassword.php");
+	die;
+
 ?>
 <body>
 

@@ -60,13 +60,43 @@
 			header("Location: forgotPassword.php");
 			die;
 		}
-	}else{
+	}
+	
+	$querys_admin = "SELECT * FROM `ADMINS` where Email = '$email' ";
+	$result = $conn->query($querys_admin);
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()) {
+			$Password = $row["Password"];
+			$newPass= mt_rand(10000000, 99999999);
+			$encry=md5($newPass);
+			$to = $email;
+			echo $to;
+			$queryChange = "UPDATE `ADMINS` SET `Password`='$encry' WHERE `Email` = '$email';";
+			$conn->query($queryChange);
+			$message = "Συνδεθείτε στο λογαριασμό σας με τον κωδικό:  $newPass. \r\n Έπειτα μπορείτε να αλλάξετε τον κωδικό αυτό και να καταχωρήσετε κάποιον της επιθυμίας σας. \r\n \r\nΕυχαριστούμε, CyFoodMuseum.";
+			$subject = 'Ανάκτηση Κωδικού Πρόσβασης CyFoodMuseum';
+			//$message = wordwrap($msg, 70, "\r\n");
+			//mail($to, $subject, $message);
+			if(@mail($to, $subject, $message)){
+	 			 echo "Mail Sent Successfully";
+			}else{
+	  			echo "Mail Not Sent";
+			}
+			$ok_pass = "Ο κωδικός πρόσβασης σας, σας έχει αποσταλεί με email!";
+			$_SESSION['ok_pass'] = $ok_pass;
+			$_SESSION['error_pass'] = " ";
+			header("Location: forgotPassword.php");
+			die;
+		}
+	}
+
+	
+	
 		$error_pass = "Το email που δώσατε δεν είναι έγκυρο!";
 		$_SESSION['error_pass'] = $error_pass;
 		$_SESSION['ok_pass'] = " ";
 		header("Location: forgotPassword.php");
 		die;
-	}
 
 	
 	

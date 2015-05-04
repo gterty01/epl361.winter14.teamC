@@ -48,8 +48,10 @@
 		}
 	}
 
+	$encrypted=md5($Password);
+
 	$_SESSION['error_addΑdmin'] = " ";
-	$sql="INSERT INTO `cyfoodmuseum`.`ADMINS` (`Password`, `Email`) VALUES ('$Password', '$admin');";
+	$sql="INSERT INTO `cyfoodmuseum`.`ADMINS` (`Password`, `Email`) VALUES ('$encrypted', '$admin');";
 	$_SESSION['ok_addΑdmin'] = " ";
 	
 	if ($conn->query($sql) === TRUE){
