@@ -9,16 +9,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προσθήκη Προμηθευτή</title>
+<title>Διαγραφή Συνταγής</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="dreamcodes/tables2/css/tsc_tables2.css" />
+
 <script type="text/javascript" src="js/jquery1.min.js"></script>
+
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!--start slider -->
     <link rel="stylesheet" href="css/fwslider.css" media="all">
@@ -27,34 +32,61 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/fwslider.js"></script>
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
-				 <style type="text/css">
-				 .auto-style3 {
-					color: red ;
-				}
-				 .auto-style4 {
-					margin-left: 0;
-				}
-				.auto-style5 {
-					float: none;
-					margin-left: 0;
-					margin-top: 6px;
-					display:table-row;
-				}
-				 .auto-style6 {
-					color: #009900;
-				 }
+	<style type="text/css">
+	 .auto-style4 {
+		margin-left: 0;
+	}
+	.auto-style5 {
+		float: none;
+		margin-left: 0;
+		margin-top: 6px;
+		display:table-row;
+	}
 
-				 .auto-style8 {
-	margin-left: 4px;
-}
-.auto-style9 {
-	margin-left: 3px;
-}
+	table {
+		color:#333;
+		font-family:Helvetica,Arial,sans-serif;
+		width:100%;
+		border-spacing:1px;
+		border-collapse:separate;
+		padding:0 3px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	
+	td, th {
+		height:30px;
+		transition:all .3s;
+		text-align:center;
+		width:auto;
+		vertical-align:middle;
+	}
+	
+	th {
+		background:#B1B6AF;
+		font-weight:700;
+		color : white;
+	}
+	
+	td {
+		background:#FAFAFA;
+		color: #666699;
+	}
+	
+	tr:hover td{
+		background:#EEEEEE;
+		color:black;
+	}
+	
+	.searchSubmit{
+		background: url(images/delete.png) center no-repeat;
+		width:24px;
+		height:24px;
+		font-size: 0; line-height: 0;
+	}
 
-				 </style>
-    
-    <script src="addSupplier_check.js"></script>
-				 
+</style>
+							 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
@@ -217,63 +249,84 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
 	  </div>
     </div>
-     <div class="clear"></div>
+    </div>
      <div class="clear"></div>
      <br>
-
      </div>
-	</div>  <!-- start slider -->
-    <div id="fwslider">
-            </div>
-    <!--/slider -->
-<div class="main">
-	  
-<div class="login">
-       <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προμηθευτή /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/<a class="home" href="editSupplier_selectSupplier.php">Επεξεργασία Προμηθευτή</a></ul>
-	    
-	     <div class="clear"></div>
+<div class="wrap">
+<ul class="breadcrumb breadcrumb__t"><a class="home" href="addSintagi.php">Προσθήκη Νέας Συνταγής</a>/Διαγράφη Συνταγής</ul>
+	
+	<form method="post" action="deleteSintagi_database.php" name="formadiagrafis">
 
-	    <p class="auto-style3"><?php echo $_SESSION['error_add_supplier']; $_SESSION['error_add_supplier'] = " "; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_add_supplier']; $_SESSION['ok_add_supplier'] = " " ; ?></p>
-		   <div class="content-top">
-			   <form id='addSupplier' enctype="multipart/form-data" onsubmit="return CheckSupplier()" method="post" action="addSupplier_database.php" accept-charset="utf8" >
-					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Προμηθευτή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προμηθευτή';}" style="width: 34%">
-					 	<input name="til" type="text" class="text" value="Τηλέφωνο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τηλέφωνο';}" style="margin-left: 10px; width: 27%;">
-						<input name="fax" type="text" class="text" value="Φαξ" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Φαξ';}" style="margin-left: 10px; width: 20%;">
-					</div>
-					 
-					<div class="to">
-						<input name="d1" type="text" class="auto-style8" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}" style="width: 31%;">
-						<input name="d2" type="text" class="text" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}" style="margin-left: 10px; width: 30%;">
-						<input name="city" type="text" class="text" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}" style="margin-left: 10px; width: 20%;">
-					</div>
-					
-					<div class="to">
-						<input name="tk" type="text" class="auto-style9" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}" style="width: 23%;">
-						<input name="site" type="text" class="text" value="Ιστοσελίδα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ιστοσελίδα';}" style="margin-left: 10px; width: 29%;">
-						<input name="email" type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" style="margin-left: 10px; width: 25%;">
-					
-					</div>
-				
-					<div class="clear"></div>
-					<br>
-					<br>
-	    	  <div class="submit" >
-	 		 <input type="submit" value="Αποθήκευση"></div>
-      
-               </form>
-            </div>
-    </div>
-    </div>
-			<div class="clear"></div>
+     <table class="tsc_tables2_1" style="width:75%; align:center;" id="proiontakalathiou">
+     <?php
+  		
+    	$servername = "localhost";
+		$username = "cyfoodmuseum";
+		$password = "9m8ESxZD";
+		$dbname = "cyfoodmuseum";
+						
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+						
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+			echo "Connection faild";
+		}
+						
+		if (!$conn->set_charset("utf8")) {
+    		printf("Error loading character set utf8: %s\n", $conn->error);
+    		die;
+		}
+
+    	$kouponia = "SELECT * FROM `SINTAGI`";
+		$result = $conn->query($kouponia);
+		if($result->num_rows > 0){
+		
+			echo '<br>';
+			echo '<br>';
+	  		echo '<tr style="vertical-align:middle">';
+	        echo '<th scope="col">Τίτλος Συνταγής</th>';
+	        echo '<th scope="col">Διαγραφή</th>'; 
+	      	echo '</tr>';
+	    	echo '</thead>';
+	    	echo '<tbody>';
+	    	
+			while($row = $result->fetch_assoc()) {
+				$title = $row["Title"];
+		 		$code = $row["Code"];
+				echo '<tr>';
+					echo "<td>$title<br><br></td>";
+					echo "<td><input type='submit' class='searchSubmit' id='diagrapsou' name='akirwthike' value=$code></td>";
+				echo "</tr>";
+						
+			}
+		}
+		echo '</tbody>';
+
+   ?>
+   </table>
+
+   <br><br>
+   
+   </form>
+   
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+	  
+<div class="clear"></div>
 <div class="footer-bottom1">
 
-                             <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-                          </div>
-                      </div>
+ <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+   <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+  </div>
+</div>
 
 </body>
 </html>

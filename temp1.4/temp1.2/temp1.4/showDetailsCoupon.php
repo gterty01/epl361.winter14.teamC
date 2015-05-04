@@ -9,16 +9,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προσθήκη Προμηθευτή</title>
+<title>Προβολή Λεπτομερειών Κουπονιού</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="dreamcodes/tables2/css/tsc_tables2.css" />
+
 <script type="text/javascript" src="js/jquery1.min.js"></script>
+
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!--start slider -->
     <link rel="stylesheet" href="css/fwslider.css" media="all">
@@ -27,34 +32,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/fwslider.js"></script>
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
-				 <style type="text/css">
-				 .auto-style3 {
-					color: red ;
-				}
-				 .auto-style4 {
-					margin-left: 0;
-				}
-				.auto-style5 {
-					float: none;
-					margin-left: 0;
-					margin-top: 6px;
-					display:table-row;
-				}
-				 .auto-style6 {
-					color: #009900;
-				 }
-
-				 .auto-style8 {
-	margin-left: 4px;
+	<style type="text/css">
+	 .auto-style4 {
+		margin-left: 0;
+	}
+	.auto-style5 {
+		float: none;
+		margin-left: 0;
+		margin-top: 6px;
+		display:table-row;
+	}
+ th{
+	color: black;
 }
-.auto-style9 {
-	margin-left: 3px;
+.button1{
+	float:left;
+	margin-top: 6%;
 }
 
-				 </style>
-    
-    <script src="addSupplier_check.js"></script>
-				 
+</style>
+						 
 </head>
 <body style="color: #FFFFFF; ">
 <div class="header-top">
@@ -217,63 +214,118 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
 	  </div>
     </div>
-     <div class="clear"></div>
+    </div>
      <div class="clear"></div>
      <br>
-
      </div>
-	</div>  <!-- start slider -->
-    <div id="fwslider">
-            </div>
-    <!--/slider -->
-<div class="main">
-	  
-<div class="login">
-       <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προμηθευτή /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/<a class="home" href="editSupplier_selectSupplier.php">Επεξεργασία Προμηθευτή</a></ul>
-	    
-	     <div class="clear"></div>
+     <?php
+     	
+     	$servername = "localhost";
+		$username = "cyfoodmuseum";
+		$password = "9m8ESxZD";
+		$dbname = "cyfoodmuseum";
+		
+		$conn = new mysqli($servername, $username, $password, $dbname);
+						
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+			echo "Connection faild";
+		}
+						
+		if (!$conn->set_charset("utf8")) {
+    		printf("Error loading character set utf8: %s\n", $conn->error);
+    		die;
+		}
+	
+		$code = $_GET['coupon'];
 
-	    <p class="auto-style3"><?php echo $_SESSION['error_add_supplier']; $_SESSION['error_add_supplier'] = " "; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_add_supplier']; $_SESSION['ok_add_supplier'] = " " ; ?></p>
-		   <div class="content-top">
-			   <form id='addSupplier' enctype="multipart/form-data" onsubmit="return CheckSupplier()" method="post" action="addSupplier_database.php" accept-charset="utf8" >
-					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Προμηθευτή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προμηθευτή';}" style="width: 34%">
-					 	<input name="til" type="text" class="text" value="Τηλέφωνο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τηλέφωνο';}" style="margin-left: 10px; width: 27%;">
-						<input name="fax" type="text" class="text" value="Φαξ" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Φαξ';}" style="margin-left: 10px; width: 20%;">
-					</div>
-					 
-					<div class="to">
-						<input name="d1" type="text" class="auto-style8" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}" style="width: 31%;">
-						<input name="d2" type="text" class="text" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}" style="margin-left: 10px; width: 30%;">
-						<input name="city" type="text" class="text" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}" style="margin-left: 10px; width: 20%;">
-					</div>
+    	$kouponia = "SELECT * FROM `COUPON` WHERE Code = '$code'";
+		$result = $conn->query($kouponia);
+		if($result->num_rows > 0){
+			while($row = $result->fetch_assoc()) {
+		
+				$title = $row["Title"];
+				$name = $row["RestaurantName"];
+				$address = $row["RestaurantAddress"];
+				$til = $row["RestaurantTil"];
+				$image = $row['Image'];
+				$description = $row['Description'];
+		
+				$_SESSION['code'] = $code;
+				$_SESSION['title'] = $title;
+				$_SESSION['name'] = $name;
+				$_SESSION['address'] = $address;
+				$_SESSION['til'] = $til;
+				$_SESSION['image'] = $image;
+				$_SESSION['description'] = $description;
+			}
+		}
+     
+     
+     
+     
+     ?>
+<div class="wrap">
+	<h4 class="title">Λεπτομερειες Κουπονιου</h4>
+    	    <div class="clear"></div>
+    		<div class="content-top">
+			   <form id='addCoupon' enctype="multipart/form-data" onsubmit="return CheckCoupon()" method="post" action="addCoupon_database.php" accept-charset="utf8" >
+					
+					<p class="m_text2" style="display:inline; width: 34%;color:#008000" >Όνομα Εστιατορίου:</p>
+					<p class="m_text2" style="display:inline;  margin-left:340px; width: 34%;color:#008000" >Διεύθυνση Εστιατορίου:</p>
+					<br>
 					
 					<div class="to">
-						<input name="tk" type="text" class="auto-style9" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}" style="width: 23%;">
-						<input name="site" type="text" class="text" value="Ιστοσελίδα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ιστοσελίδα';}" style="margin-left: 10px; width: 29%;">
-						<input name="email" type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" style="margin-left: 10px; width: 25%;">
-					
+						<input name="name" type="text" class="text" value="<?php echo $_SESSION['name']; ?>" readonly style="width: 37%">
+						<input name="address" type="text" class="text" value="<?php echo $_SESSION['address']; ?>" readonly style="margin-left: 10px; width: 49%;">
 					</div>
-				
+					
 					<div class="clear"></div>
-					<br>
-					<br>
-	    	  <div class="submit" >
-	 		 <input type="submit" value="Αποθήκευση"></div>
-      
+						<p class="m_text2" style=" display:inline;width: 34%;color:#008000" >Τηλέφωνο Εστιατορίου:</p>
+						<p class="m_text2" style="display:inline;  margin-left:190px; width: 34%;color:#008000" >Τίτλος Κουπονιού:</p>
+
+					<div class="to">
+						<input name="til" type="text" class="auto-style7" value="<?php echo $_SESSION['til']; ?>" readonly style="width: 27%;">
+						<input name="title" type="text" class="text" value="<?php echo $_SESSION['title']; ?>" readonly style="margin-left: 10px; width: 42%;">					
+					</div>		
+					<div class="clear"></div>
+
+					<div class="text">
+						<p class="m_text2" style=" display:inline;width: 76%; color:#008000"> Περιγραφή Κουπονιού (πχ προσφορά, όρους χρήσης, μεχρι ποια ημερομηνία ισχύει, κτλ)</p>
+	                   <textarea name="description" value="Περιγραφή Κουπονιού" readonly style="height: 97px; width: 94%;" cols="20" rows="1"><?php echo $_SESSION['description']; ?></textarea>
+	                </div>
+            	  <div class="clear"></div>
+	  	           <div>
+		             <?php 
+		                if ($_SESSION['image'] != "") {
+			            	echo '<p class="m_text2" style=" display:inline;width: 76%; color:#008000">Φωτογραφία Κουπονιού</p>';
+			               	echo '<br>';
+			               	echo '<br>';			               	
+							echo '<img src="data:image/jpeg;base64,'.base64_encode( $_SESSION['image'] ).'" width="100" height="100"/>';
+		                }
+		             ?>
+	               </div> 
                </form>
             </div>
-    </div>
-    </div>
-			<div class="clear"></div>
+<br>	  
+<div class="clear"></div>
+    <a href="deleteCoupon_select.php"><button type="submit" class="grey" name="submit" value="Submit" style="float:none">Πισω - Προβολη Κουπονιων</button></a>
+
+    <a href="deleteCoupon_database.php"><button type="submit" class="grey" name="submit" value="Submit" style="float:inherit">Διαγραφη Κουπονιου</button></a>
+
+<br>
+
+<div class="clear"></div>
+<br>
+<br>
+
 <div class="footer-bottom1">
 
-                             <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-                          </div>
-                      </div>
+	<p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+	 <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+	</div>
+</div>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προσθήκη Προμηθευτή</title>
+<title>Προσθήκη Κουπονιού</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,6 +28,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 				 <style type="text/css">
+				 .auto-style1 {
+					 color: gray;
+				 }
 				 .auto-style3 {
 					color: red ;
 				}
@@ -44,16 +47,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					color: #009900;
 				 }
 
-				 .auto-style8 {
-	margin-left: 4px;
-}
-.auto-style9 {
-	margin-left: 3px;
-}
+				 .auto-style7 {
+					 margin-left: 0px;
+				 }
 
 				 </style>
     
-    <script src="addSupplier_check.js"></script>
+    <script src="addProduct_check.js"></script>
+ <script>
+
+function CheckCoupon(){
+
+ 	var frm = document.forms["addCoupon"];
+
+ 	if (frm.name.value == "Όνομα Εστιατορίου"){
+		alert ('Καταχωρήστε το όνομα του εστιατορίου!');
+	  	return false;
+	}
+	
+ 	if (frm.address.value == "Διεύθυνση Εστιατορίου"){
+		alert ('Καταχωρήστε τη διεύθυνση του εστιατορίου!');
+	  	return false;
+	}
+
+ 	if (frm.til.value == "Τηλέφωνο Εστιατορίου"){
+		alert ('Καταχωρήστε το τηλέφωνο του εστιατορίου!');
+	  	return false;
+	}
+ 	if (frm.title.value == "Τίτλος Κουπονιού"){
+		alert ('Καταχωρήστε το τίτλο του κουπονιού!');
+	  	return false;
+	}
+
+	if (frm.description.value == "Περιγραφή Κουπονιού:" ){
+	  	alert ('Καταχωρήστε την περιγραφή του κουπονιού!');
+	  	return false;
+	}
+
+}
+ 
+ 
+ </script>
+ 
+
+
 				 
 </head>
 <body style="color: #FFFFFF; ">
@@ -230,39 +267,51 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  
 <div class="login">
        <div class="wrap" style="width: 77%">
-	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Προμηθευτή /<a class="home" href="removeSupplier.php">Διαγράφη Προμηθευτή</a>/<a class="home" href="editSupplier_selectSupplier.php">Επεξεργασία Προμηθευτή</a></ul>
-	    
+	    	    <ul class="breadcrumb breadcrumb__t">Προσθήκη Νέου Κουπονιού /<a class="home" href="deleteCoupon_select.php">Διαγράφη Κουπονιού</a></ul>
+
 	     <div class="clear"></div>
 
-	    <p class="auto-style3"><?php echo $_SESSION['error_add_supplier']; $_SESSION['error_add_supplier'] = " "; ?></p>
-	    <p class="auto-style6"><?php echo $_SESSION['ok_add_supplier']; $_SESSION['ok_add_supplier'] = " " ; ?></p>
+	    <p class="auto-style3"><?php echo $_SESSION['error_addCoupon']; $_SESSION['error_addCoupon'] = " "; ?></p>
+	    <p class="auto-style6"><?php echo $_SESSION['ok_addCoupon']; $_SESSION['ok_addCoupon'] = " " ; ?></p>
+	   
+	   	<div class="clear"></div>
+
 		   <div class="content-top">
-			   <form id='addSupplier' enctype="multipart/form-data" onsubmit="return CheckSupplier()" method="post" action="addSupplier_database.php" accept-charset="utf8" >
+			   <form id='addCoupon' enctype="multipart/form-data" onsubmit="return CheckCoupon()" method="post" action="addCoupon_database.php" accept-charset="utf8" >
 					<div class="to">
-                     	<input name="name" type="text" class="text" value="Όνομα Προμηθευτή" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Προμηθευτή';}" style="width: 34%">
-					 	<input name="til" type="text" class="text" value="Τηλέφωνο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τηλέφωνο';}" style="margin-left: 10px; width: 27%;">
-						<input name="fax" type="text" class="text" value="Φαξ" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Φαξ';}" style="margin-left: 10px; width: 20%;">
-					</div>
-					 
-					<div class="to">
-						<input name="d1" type="text" class="auto-style8" value="Διεύθυνση 1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}" style="width: 31%;">
-						<input name="d2" type="text" class="text" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}" style="margin-left: 10px; width: 30%;">
-						<input name="city" type="text" class="text" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}" style="margin-left: 10px; width: 20%;">
-					</div>
-					
-					<div class="to">
-						<input name="tk" type="text" class="auto-style9" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}" style="width: 23%;">
-						<input name="site" type="text" class="text" value="Ιστοσελίδα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ιστοσελίδα';}" style="margin-left: 10px; width: 29%;">
-						<input name="email" type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" style="margin-left: 10px; width: 25%;">
-					
-					</div>
+						<input name="name" type="text" class="text" value="Όνομα Εστιατορίου" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα Εστιατορίου';}" style="width: 37%">
+					 	<input name="address" type="text" class="text" value="Διεύθυνση Εστιατορίου" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση Εστιατορίου';}" style="margin-left: 10px; width: 49%;">
+						<input name="til" type="text" class="auto-style7" value="Τηλέφωνο Εστιατορίου" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τηλέφωνο Εστιατορίου';}" style="width: 27%;">
+						<input name="title" type="text" class="text" value="Τίτλος Κουπονιού" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Τίτλος Κουπονιού';}" style="margin-left: 10px; width: 42%;">					</div>
 				
 					<div class="clear"></div>
+
+					<div class="text">
+						<p class="m_text2" style=" display:inline;width: 76%; color:#008000"> Περιγραφή Κουπονιού (πχ προσφορά, όρους χρήσης, μεχρι ποια ημερομηνία ισχύει, κτλ)</p>	                  
+						 <textarea name="description" value="Περιγραφή Κουπονιού" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιγραφή Κουπονιού:';}" style="height: 97px; width: 94%;">Περιγραφή Κουπονιού:</textarea>
+	                </div>
+	                
+	                <div>
+	             <p class="auto-style1">Φωτογραφία Κουπονιού</p>
+	             <br>
+				    <input type="file" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)">
+				    <br>
+				   <br>
+				    <img  id="output" width="100" height="100">
+						<script>
+						  var loadFile = function(event) {
+						    var output = document.getElementById('output');
+						    output.src = URL.createObjectURL(event.target.files[0]);
+						  };
+						</script>   
+		                <div class="clear"></div>
 					<br>
-					<br>
-	    	  <div class="submit" >
-	 		 <input type="submit" value="Αποθήκευση"></div>
-      
+
+	                <div class="submit">
+	               		<input type="submit" value="Καταχώρηση">
+	                </div>
+	               </div> 
+
                </form>
             </div>
     </div>
@@ -270,10 +319,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clear"></div>
 <div class="footer-bottom1">
 
-                             <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-                              <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-                          </div>
-                      </div>
+     <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
+     <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
+    </div>
+  </div>
 
 </body>
 </html>

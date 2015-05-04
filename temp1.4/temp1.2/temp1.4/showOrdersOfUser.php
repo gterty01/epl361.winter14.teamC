@@ -77,6 +77,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		background:#EEEEEE;
 		color:black;
 	}
+
 </style>
 							 
 </head>
@@ -152,67 +153,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>
 				
 			</ul>
-            <ul class="megamenu skyblue" >
-			<li><a class="color4" href="#">ΡΥΘΜΙΣΕΙΣ</a>
-				<div class="megapanel">
-					<div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Προϊόντων</h4>
-								<ul>
-									<li><a href="addProduct_dropdown.php">Προσθήκη Προϊόντος</a></li>
-									<li><a href="removeProduct.php">Διαγραφή Προϊόντος</a></li>
-									<li><a href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος</a></li>
-								</ul>	
-							</div>							
-					  </div>
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Μελών</h4>
-								<ul>
-									<li><a href="404.html">Προσθήκη Μέλους</a></li>
-									<li><a href="404.html">Διαγραφή Μέλους</a></li>
-									<li><a href="404.html">Επεξεργασία Μέλους</a></li>
-								</ul>	
-							</div>							
-						</div>
-						</div>
-						<div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Κατηγοριών</h4>
-								<ul>
-									<li><a href="404.html">Προσθήκη Κατηγορίας</a></li>
-									<li><a href="404.html">Διαγραφή Κατηγορίας</a></li>
-									<li><a href="404.html">Επεξεργασία Κατηγορίας</a></li>
-								</ul>	
-							</div>							
-					  </div>
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Παραγγελιών</h4>
-								<ul>
-									<li><a href="404.html">Προσθήκη Παραγγελίας</a></li>
-									<li><a href="404.html">Διαγραφή Παραγγελίας</a></li>
-									<li><a href="404.html">Επεξεργασία Παραγγελίας</a></li>
-								</ul>	
-						</div>
-					  </div>
-					  </div>
-					  <div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Διάφορα</h4>
-								<ul>
-									<li><a href="404.html">Ρυθμίσεις Προμηθευτών</a></li>
-									<li><a href="404.html">Ρυθμίσεις Φορτωτών</a></li>
-								</ul>	
-							</div>							
-						</div>
-					</div>
-					</div>
-				</li>	
-			</ul>			
+            			
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
