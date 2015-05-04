@@ -1,17 +1,14 @@
-<!--A Design by W3layouts
+﻿<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+ 	session_start();
 
-<?php session_start(); ?>
-<?php 
-parse_url(file_get_contents("php://input"), $_GET);
-$code=$_GET['item'];
 
 ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -24,8 +21,7 @@ $code=$_GET['item'];
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
-<link href="captcha-image.php" />
-
+<link href="captcha_image.php" />
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
@@ -41,6 +37,8 @@ $code=$_GET['item'];
 	color: #FFFFFF;
 }
 
+
+
 .auto-style4 {
 	font-size: medium;
 }
@@ -54,7 +52,7 @@ $code=$_GET['item'];
 
 </head>
 <body> 
-   <div class="header-top">
+<div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -164,40 +162,45 @@ $code=$_GET['item'];
 
      </div>
 	</div>
+
           <div class="register_account">
           	<div class="wrap">
     	      <h4 class="title">Δημιουργια Λογαριασμου</h4>
     	    
     		   <form id='register' onsubmit="return DoCustomValidation();" method="POST" action="registration.php" accept-charset="UTF-8"> <!--method='post'-->
-    									
+    											
     			 <div class="col_1_of_2 span_1_of_2">
-		   			<div><input type="text" id ="name" name ="name" value="<?php echo $_SESSION['onoma']; ?>"onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
-		  		   	<div><input type="text" id ="surname" name="surname" value="<?php echo $_SESSION['epitheto']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
-				   	<p class="auto-style5"> Κωδικός</p>
-		    		<div><input type="password" id ="passwd" value=""  name ="passwd" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
+		   			<div><input type="text" id ="name" name ="name" value="Όνομα" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
+		  		   	<div><input type="text" id ="surname" name="surname" value="Επώνυμο" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
+					<p class='auto-style5'>E-Mail</p>				   
+					<div><input type="email" placeholder="me@example.com" name="mail" id ="mail" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
 				   	<p class="auto-style5"> Κωδικός</p>
 		    		<div><input type="password" id ="passwd" value=""  name ="passwd" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
 		    	 	<p class="auto-style5"> Επιβεβαίωση Κωδικού</p>
 		    	 	<div><input type="password" id="passwdCon" name ="passwdCon" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
-					<div><input type="text" id="birth" name="birth" value="<?php echo $_SESSION['gen']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ημερομηνία Γέννησης';}"></div>
-					<div><select id="filo"  oninit="<?php echo $_SESSION['filo']; ?>" name="filo" onchange="change_country(this.value)" class="frm-field required">
+					<div><input type="text" id="birth" name="birth" value="Ημερομηνία Γέννησης" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ημερομηνία Γέννησης';}"></div>
+					<div><select id="filo" name="filo" onchange="change_country(this.value)" class="frm-field required">
 		            <option value="Φύλο">Φύλο</option>         
 		            <option value="Αρρεν">Αρρεν</option>  
 		            <option value="Θηλυ">Θηλυ</option>
 		            </select>
 					</div>
 					<p class="auto-style5"> Πληκτρολογήστε τη λέξη ασφαλείας στο κουτί:</p>
-					<div><img src="captcha_image.php" /></div>
+					<img src="captcha.php?rand=<?php echo rand();?>" id='captchaimg'>
+					<!--<img src="captcha_image.php" />-->
 					<div><input type="text" name="captcha_input" size="15"></div>
+					
+
+					
 
 		    	 </div>
 		    	  <div class="col_1_of_2 span_1_of_2">	
-		    		<div><input type="text" id="address1" name="address1" value="<?php echo $_SESSION['d1']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}"></div>
-		    		<div><input type="text" id="address2" name="address2" value="<?php echo $_SESSION['d2']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}"></div>
-		    		<div><input type="text" id="poli" value="<?php echo $_SESSION['city']; ?>" name="poli" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιοχή';}"></div>
-		    		<div><input type="text" id="postalCode" name="postalCode" value="<?php echo $_SESSION['tk']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}"></div>
+		    		<div><input type='text' id='address1' name='address1' value='Διεύθυνση 1' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 1';}"></div>
+		    		<div><input type="text" id="address2" name="address2" value="Διεύθυνση 2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Διεύθυνση 2';}"></div>
+		    		<div><input type="text" id="poli" value="Περιοχή" name="poli" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Περιοχή';}"></div>
+		    		<div><input type="text" id="postalCode" name="postalCode" value="Ταχυδρομικός Κώδικας" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ταχυδρομικός Κώδικας';}"></div>
 		    		
-		    		<div><select id="country" name="country" oninit="<?php $_SESSION['xwra']; ?>" onchange="change_country(this.value)" class="frm-field required">
+		    		<div><select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
 		           		             <option value="Διάλεξε τη Χώρα σου">Διάλεξε τη Χώρα σου</option>
 									<option value="Åland Islands">Åland Islands</option>
 									<option value="Afghanistan">Afghanistan</option>
@@ -395,20 +398,18 @@ $code=$_GET['item'];
 									<option value="Senegal">Senegal</option>
 											            
 		         </select></div>		        
-		          <div><input type="text" id="city" name="city" value="<?php echo $_SESSION['city']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}"></div>
+		          <div><input type="text" id="city" name="city" value="Πόλη" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Πόλη';}"></div>
 		           <div>
 		          </div>
-		          	<input type="text" id="codeC1" name="codeC1" value="<?php echo $_SESSION['codeC1']; ?>" class="code"> - 
-					  <input type="text" id="tel1" name="<?php echo $_SESSION['tel1']; ?>" value="" class="number"style="width: 69%">
+		          	<input type="text" id="codeC1" name="codeC1" value="" class="code"> - 
+					  <input type="text" id="tel1" name="tel1" value="" class="number" style="width: 69%">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Κινητού Τηλεφώνου</p>
-		          		<input type="text" id="codeC2" name="codeC2" value="<?php echo $_SESSION['codeC2']; ?>" class="code"> - 
-					  <input type="text" id="tel2" name="tel2" value="<?php echo $_SESSION['tel2']; ?>" class="number" style="width: 69%">
+		          		<input type="text" id="codeC2" name="codeC2" value="" class="code"> - 
+					  <input type="text" id="tel2" name="tel2" value="" class="number" style="width: 69%">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Σταθερού Τηλεφώνου</p>
 						<br>
-						<br><br>
 						<br>
-
-
+						<br>
 		          </div>
 		      <button type="submit" class="grey" name="submit" value="Submit">Δημιουργια Λογαριασμου</button>
 		    <p class="terms">Πατώντας το  'Δημιουργία Λογαριασμού' αυτόματα αποδέχεστε τους <a href="terms.html">Όροι Χρήσεις &amp; Προϋποθέσεις</a>.</p>
@@ -558,17 +559,6 @@ $code=$_GET['item'];
 		  </div>
 		</div>
 	</div>
-<?php
-if ($code==0){
-echo '<script type="text/javascript">';
-echo 'alert("Το email που δώσατε υπάρχει ήδη καταχωρημένο.");';
-echo '</script>';
-}else{
-echo '<script type="text/javascript">';
-echo 'alert("Η λέξη ασφαλείας που δώσατε είναι λανθασμένη. Επαναλάβετε!");';
-echo '</script>';
-}
-?>
+
    </body>
-   
 </html>

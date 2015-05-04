@@ -16,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
-
+<link href="captcha_image.php" />
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
@@ -180,6 +180,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            <option value="Θηλυ">Θηλυ</option>
 		            </select>
 					</div>
+					<p class="auto-style5"> Πληκτρολογήστε τη λέξη ασφαλείας στο κουτί:</p>
+					<img src="captcha.php?rand=<?php echo rand();?>" id='captchaimg'>
+					<!--<img src="captcha_image.php" />-->
+					<div><input type="text" name="captcha_input" size="15"></div>
+					
+
+					
 
 		    	 </div>
 		    	  <div class="col_1_of_2 span_1_of_2">	
@@ -395,7 +402,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		          		<input type="text" id="codeC2" name="codeC2" value="" class="code"> - 
 					  <input type="text" id="tel2" name="tel2" value="" class="number" style="width: 69%">
 		          		<p class="code">Κωδικός Χώρας + Αριθμός Σταθερού Τηλεφώνου</p>
-
+						<br>
+						<br>
+						<br>
 		          </div>
 		      <button type="submit" class="grey" name="submit" value="Submit">Δημιουργια Λογαριασμου</button>
 		    <p class="terms">Πατώντας το  'Δημιουργία Λογαριασμού' αυτόματα αποδέχεστε τους <a href="terms.html">Όροι Χρήσεις &amp; Προϋποθέσεις</a>.</p>

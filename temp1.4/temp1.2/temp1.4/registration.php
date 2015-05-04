@@ -76,11 +76,17 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 			$_SESSION['tel1']=$_POST['tel1'];
 			$_SESSION['tel2']=$_POST['tel2'];
 
-	 		header("Location: register2.php");
+	 		header("Location: register2.php?item=0");
 
 	 		$var="yes";
 	 	}
     }
+	}else{
+		if($_POST["captcha_input"] != $_SESSION["pass"]){
+				header("Location: register2.php?item=1");
+		
+	
+		}
 	}
 	if ($var=="no"){
 	
@@ -132,8 +138,9 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	echo $thisdate;
 	//$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('123456','Evanthia','Tingiri', 'evtingiri@gmail.com', '1994-01-12', 'Θηλυ', 'Μαρκος Δρακος', 'Γρηγορη Αυξεντίου', 'Λευκωσια', '2560', '0035799756303', '0035799756614', 'Κύπρος', '2015-3-1');";
 
-	$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('$passwd','$name','$surname', '$email', '$birth', '$filo', '$address1', '$address2', '$city', '$postalCode', '$phone2', '$phone1', '$country', '$thisdate');";
-	
+	$encrypted=md5($passwd);
+	//$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('$passwd','$name','$surname', '$email', '$birth', '$filo', '$address1', '$address2', '$city', '$postalCode', '$phone2', '$phone1', '$country', '$thisdate');";
+	$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('$encrypted','$name','$surname', '$email', '$birth', '$filo', '$address1', '$address2', '$city', '$postalCode', '$phone2', '$phone1', '$country', '$thisdate');";
 	if ($conn->query($sql) === TRUE){
 		echo "new record created";
 		$_SESSION['email'] = $email;

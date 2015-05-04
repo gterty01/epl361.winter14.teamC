@@ -40,6 +40,8 @@
 	$password = $_POST['password'];
 	print ($password);
 	
+	$checkPass= md5($password);
+	
 	$isAdmin="SELECT * FROM `ADMINS` WHERE Email ='$email'";
 	$resultAdmin=$conn->query($isAdmin);
 	
@@ -60,10 +62,10 @@
 			die;
 		}
 
-	$sql1 ="SELECT * FROM `USERS_FM` WHERE Email ='$email' AND Password ='$password'";
+	$sql1 ="SELECT * FROM `USERS_FM` WHERE Email ='$email' AND Password ='$checkPass'";
 	$result1=$conn->query($sql1);
 	
-	$adminPass ="SELECT * FROM `ADMINS` WHERE Email ='$email' AND Password ='$password'";
+	$adminPass ="SELECT * FROM `ADMINS` WHERE Email ='$email' AND Password ='$checkPass'";
 	$PassA=$conn->query($adminPass);
 
 	
