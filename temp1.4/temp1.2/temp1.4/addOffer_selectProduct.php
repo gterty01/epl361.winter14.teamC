@@ -1,5 +1,17 @@
 <?php session_start(); ?>
 
+<?php
+$xristis;
+if(isset($_SESSION['login_admin'])){
+	$xristis = $_SESSION['login_admin'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>

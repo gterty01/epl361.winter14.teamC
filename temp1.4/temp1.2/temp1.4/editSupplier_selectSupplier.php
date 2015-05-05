@@ -1,5 +1,17 @@
 <?php session_start(); ?>
 
+<?php
+$xristis;
+if(isset($_SESSION['login_admin'])){
+	$xristis = $_SESSION['login_admin'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -46,7 +58,7 @@
 		var frm = document.forms["editSupplier"];
 
 		if (frm.supplier.value == "" ){
-	  		alert ('Διαλέξτε το προϊόν που θέλετε να επεξεργαστείτε!');
+	  		alert ('Διαλέξτε τον προμηθευτή που θέλετε να επεξεργαστείτε!');
 	  		return false;
 		}
 	}    
@@ -81,12 +93,12 @@
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
-					<a href="login_index.php">
+					<a href="admin_login.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="auto-style5" style="height:100px" >
 	            <ul class="megamenu skyblue" >
-			<li class="active grid"><a href="login_index.php">ΑΡΧΙΚΗ</a></li>
+			<li class="active grid"><a href="admin_login.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">

@@ -5,6 +5,19 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
+
+<?php
+$xristis;
+if(isset($_SESSION['login_admin'])){
+	$xristis = $_SESSION['login_admin'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -50,6 +63,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 </style>
     
     <script src="selectedDropdown.js"></script>
+  
+  <script>
+	function check() {
+		var frm = document.forms["removeProduct"];
+
+		if (frm.category.value == "" ){
+	  		alert ('Διαλέξτε την κατηγορία του προϊόντος που θέλετε να διαγράψετε!');
+	  		return false;
+		}
+	}    
+    
+    </script>
 				 
 </head>
 <body style="color: #FFFFFF; ">
@@ -229,7 +254,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <p class="auto-style3"><?php echo $_SESSION['error_remove']; $_SESSION['error_remove'] = " ";?></p>
 	    <p class="auto-style6"><?php echo $_SESSION['ok_remove'];  $_SESSION['ok_remove'] = " "; ?></p>
 		<br>
-<form id='removeProduct' method="post" accept-charset="utf8"  action="removeProduct1.php" >
+<form id='removeProduct' onsubmit="return check();" method="post" accept-charset="utf8"  action="removeProduct1.php" >
 
 	<div>
 	<select name="category" style="width: 600px; height: 37px">

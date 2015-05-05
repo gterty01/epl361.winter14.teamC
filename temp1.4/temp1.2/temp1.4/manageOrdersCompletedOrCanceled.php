@@ -6,6 +6,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
 
+<?php
+$xristis;
+if(isset($_SESSION['login_admin'])){
+	$xristis = $_SESSION['login_admin'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -259,6 +271,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <br>
      </div>
 <div class="wrap">
+
+	<h4 class="title">Ολοκληρωμενες/Ακυρωμενες Παραγγελιες</h4>'
+
 	<form method="post" action="manageOrdersNotCompleted_database.php" name="formadiagrafis">
   <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
     <thead>

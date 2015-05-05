@@ -1,5 +1,17 @@
 <?php session_start(); ?>
 
+<?php
+$xristis;
+if(isset($_SESSION['login_admin'])){
+	$xristis = $_SESSION['login_admin'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -43,10 +55,10 @@
     <script src="selectedDropdown.js"></script>
     <script>
 	function check() {
-		var frm = document.forms["addOffer"];
+		var frm = document.forms["removeOffer"];
 
-		if (frm.category.value == "" ){
-	  		alert ('Διαλέξτε το προϊόν που θέλετε να προσθέσετε στις προσφορές!');
+		if (frm.Product_offer.value == "" ){
+	  		alert ('Διαλέξτε το προϊόν που θέλετε να διαγράψετε απο τις προσφορές!');
 	  		return false;
 		}
 	}    
@@ -227,7 +239,7 @@
 <ul class="breadcrumb breadcrumb__t"><a class="home" href="addOffer_selectProduct.php">Προσθήκη Νέας Προσφοράς </a>/Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</ul>
 	
 
-<form id='addOffer' onsubmit="return check();" method="post" accept-charset="utf8" action="removeOffer.php" >
+<form id='removeOffer' onsubmit="return check();" method="post" accept-charset="utf8" action="removeOffer.php" >
      <div class="clear"></div>
 
   <p class="auto-style6"><?php echo $_SESSION['ok_removeOffer']; $_SESSION['ok_removeOffer'] = " "; ?></p>

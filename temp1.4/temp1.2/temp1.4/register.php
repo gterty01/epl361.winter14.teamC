@@ -32,6 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	-o-transition: all .2s linear;
 	-ms-transition: all .2s linear;
 	margin: 0 auto;
+	color: white;
 }
 .auto-style2 {
 	color: #FFFFFF;
@@ -438,86 +439,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
    <div class="footer">
 		<div class="footer-middle">
-			<div class="wrap">
-			 <!-- <div class="section group">
-			  	<div class="f_10">
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>Facebook</h3>
-						<script>(function(d, s, id) {
-						  var js, fjs = d.getElementsByTagName(s)[0];
-						  if (d.getElementById(id)) return;
-						  js = d.createElement(s); js.id = id;
-						  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-						  fjs.parentNode.insertBefore(js, fjs);
-						}(document, 'script', 'facebook-jssdk'));</script>
-						<div class="like_box">	
-							<div class="fb-like-box" data-href="http://www.facebook.com/w3layouts" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
-						</div>
-					</div>
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>From Twitter</h3>
-						<div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-						</div>
-						<div class="recent-tweet">
-							<div class="recent-tweet-icon">
-								<span> </span>
-							</div>
-							<div class="recent-tweet-info">
-								<p>Ds which don't look even slightly believable. If you are <a href="#">going to use nibh euismod</a> tincidunt ut laoreet adipisicing</p>
-							</div>
-							<div class="clear"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="f_10">
-					<div class="col_1_of_4 span_1_of_4">
-					    <h3>Information</h3>
-						<ul class="f-list1">
-						    <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-				             <li><a href="#">Duis autem vel eum iriure </a></li>
-				            <li><a href="#">anteposuerit litterarum formas </a></li>
-				            <li><a href="#">Tduis dolore te feugait nulla</a></li>
-			         	</ul>
-					</div>
-					<div class="col_1_of_4 span_1_of_4">
-						<h3>Contact us</h3>
-						<div class="company_address">
-					                <p>500 Lorem Ipsum Dolor Sit,</p>
-							   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-							   		<p>USA</p>
-					   		<p>Phone:(00) 222 666 444</p>
-					   		<p>Fax: (000) 000 00 00 0</p>
-					 	 	<p>Email: <span>mail[at]leoshop.com</span></p>
-					   		
-					   </div>
-					   <div class="social-media">
-						     <ul>
-						        <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="Google"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Linked in"><a href="#" target="_blank"> </a> </span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Rss"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Facebook"><a href="#" target="_blank"> </a></span></li>
-						    </ul>
-					   </div>
-					</div>
-				<div class="clear"></div>
-			</div>
-			<div class="clear"></div>
-		  </div>-->
-		   
-		   
-		   
-		   
-		   
-		   <div class="auto-style3">
+			<div class="wrap">   
+		   <div class="section group example">
 		   	   <br>
 			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
 			   <div class="section group example">
@@ -526,26 +449,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
 				            <li><a href="terms.html">Όροι Χρήσης</a></li>
-				             <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 				            <li><a href="copyright.html">Copyright</a></li>
-				           			         	</ul>
- 				 </div>
-				 <div class="col_1_of_f_2 span_1_of_f_2" style="height: 150px">
+			
+				         </ul>
+				     <div class="clear"></div>
+				 </div>
+				 </div>
+				 
+				 <div class="col_1_of_f_2 span_1_of_f_2">
+				 <div class="clear"></div>
+				  <div class="section group example">
+
 				   <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
 						<div class="company_address">
 					                <p>Εικονικό Μουσείο Κυπριακών Τροφίμων και Διατροφής</p>
 							   		<p>Κύπρος</p>
 							   		<p>Κινητό Τηλέφωνο: 99 05 98 20</p>
 					   				<p>Fax: 22 77 06 76</p>
-					 	 	<p style="height: 24px">Email: <span>cyfoodmuseum@gmail.com</span></p>
-					   		
+					 	 			<p style="" >Email: <span>cyfoodmuseum@gmail.com</span></p>
+					   		<!--style="height: 24px"-->
 					   </div>
 				</div>
+				</div>
+
+				<div class="clear"></div>
+
 		    </div>
 		   </div>
-		  <div class="clear">
-			  <img src="images/3.png" width="58" class="auto-style2"><span class="auto-style1"><span class="auto-style2">Καλέστε 
-					μας στο: 99 05 98 20</span><a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a><div class="wrap" style="width: 90%; height: 24px">
+		   <div class="clear"></div>
+		  <div class="auto-style1">
+		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε μας στο: 99 05 98 20     </span>
+			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
+			</div>
+		</div>
+					
+					<div class="footer-bottom">
+					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
 					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
@@ -553,12 +493,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
 				 </ul>
 			    </div>
+			    <div class="clear"></div>
+			    </div>
 		      </div>
-	     	 </span></div>
+	     	
+	     	 </div>
 		    </div>
-		  </div>
-		</div>
-	</div>
 
    </body>
 </html>

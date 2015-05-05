@@ -68,19 +68,19 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	$tel1=$_POST['tel1'];
 	$tel2=$_POST['tel2'];
 	
-	if ($_POST['filo']=="Φύλο"){
+	if ($_POST['filo']=="Ξ¦ΟΞ»ΞΏ"){
 	 $filo = "null";
 	}else{ $filo = $_POST['filo'];}
 	
-	if ($_POST['address2']=="Διεύθυνση 2"){
+	if ($_POST['address2']=="Ξ”ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ· 2"){
 	 $address2 = "null";
 	}else{ $address2 = $_POST['address2'];}
 	
-	if ($_POST['country']=="Διάλεξε τη Χώρα σου"){
+	if ($_POST['country']=="Ξ”ΞΉΞ¬Ξ»ΞµΞΎΞµ Ο„Ξ· Ξ§ΟΟΞ± ΟƒΞΏΟ…"){
 	 $country = "null";
 	}else{ $country = $_POST['country'];}
 	
-	if ($_POST['poli']=="Περιοχή"){
+	if ($_POST['poli']=="Ξ ΞµΟΞΉΞΏΟ‡Ξ®"){
 	 $poli = "null";
 	}else{ $poli = $_POST['poli'];}
 	
@@ -89,7 +89,7 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 	echo "Prin to insert";
 	$thisdate = date("Y-m-d");
 	echo $thisdate;
-	//$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('123456','Evanthia','Tingiri', 'evtingiri@gmail.com', '1994-01-12', 'Θηλυ', 'Μαρκος Δρακος', 'Γρηγορη Αυξεντίου', 'Λευκωσια', '2560', '0035799756303', '0035799756614', 'Κύπρος', '2015-3-1');";
+	//$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('123456','Evanthia','Tingiri', 'evtingiri@gmail.com', '1994-01-12', 'ΞΞ·Ξ»Ο…', 'ΞΞ±ΟΞΊΞΏΟ‚ Ξ”ΟΞ±ΞΊΞΏΟ‚', 'Ξ“ΟΞ·Ξ³ΞΏΟΞ· Ξ‘Ο…ΞΎΞµΞ½Ο„Ξ―ΞΏΟ…', 'Ξ›ΞµΟ…ΞΊΟ‰ΟƒΞΉΞ±', '2560', '0035799756303', '0035799756614', 'ΞΟΟ€ΟΞΏΟ‚', '2015-3-1');";
 
 	$sql="INSERT INTO `cyfoodmuseum`.`USERS_FM` (`Password`, `Name`, `Surname`, `Email`, `Birthday`, `Sex`, `Address1`, `Address2`, `City`, `PostalCode`, `HomeNumber`, `PhoneNumber`, `Country`, `DateOfAccountCreation`) VALUES ('$passwd','$name','$surname', '$email', '$birth', '$filo', '$address1', '$address2', '$city', '$postalCode', '$phone2', '$phone1', '$country', '$thisdate');";
 	

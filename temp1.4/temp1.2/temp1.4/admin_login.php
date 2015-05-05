@@ -10,6 +10,17 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
+<?php
+$xristis;
+if(isset($_SESSION['login_admin'])){
+	$xristis = $_SESSION['login_admin'];
+}
+else{
+	$xristis = "Σύνδεση";
+	header("Location: login.html");
+}
+?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -77,12 +88,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo" >
-					<a href="login_index.php">
+					<a href="admin_login.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="auto-style5" style="height:100px" >
 	            <ul class="megamenu skyblue" >
-			<li class="active grid"><a href="login_index.php">ΑΡΧΙΚΗ</a></li>
+			<li class="active grid"><a href="admin_login.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">
@@ -141,9 +152,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="h_nav">
 								<h4>Ρυμίσεις Μελών</h4>
 								<ul>
-									<li><a href="404.html">Προσθήκη Μέλους</a></li>
-									<li><a href="404.html">Διαγραφή Μέλους</a></li>
-									<li><a href="404.html">Επεξεργασία Μέλους</a></li>
+									<li><a href="manageUsers.php">Προβολή και Διαγραφή Μέλους</a></li>
 								</ul>	
 							</div>							
 						</div>
@@ -153,9 +162,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="h_nav">
 								<h4>Ρυμίσεις Κατηγοριών</h4>
 								<ul>
-									<li><a href="404.html">Προσθήκη Κατηγορίας</a></li>
-									<li><a href="404.html">Διαγραφή Κατηγορίας</a></li>
-									<li><a href="404.html">Επεξεργασία Κατηγορίας</a></li>
+									<li><a href="addCategory.php">Προσθήκη Κατηγορίας</a></li>
+									<li><a href="removeCategory.php">Διαγραφή Κατηγορίας</a></li>
+									<li><a href="editCategory_selectCategory.php">Επεξεργασία Κατηγορίας</a></li>
 								</ul>	
 							</div>							
 					  </div>
@@ -163,9 +172,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="h_nav">
 								<h4>Ρυμίσεις Παραγγελιών</h4>
 								<ul>
-									<li><a href="404.html">Προσθήκη Παραγγελίας</a></li>
-									<li><a href="404.html">Διαγραφή Παραγγελίας</a></li>
-									<li><a href="404.html">Επεξεργασία Παραγγελίας</a></li>
+									<li><a href="manageOrdersNotCompleted.php">Επεξεργασία Παραγγελιών που εκκρεμούν</a></li>
+									<li><a href="manageOrdersCompletedOrCanceled.php">Προβολή Ολοκληρωμένων/Ακυρωμένων Παραγγελιών</a></li>
 								</ul>	
 						</div>
 					  </div>
@@ -173,14 +181,60 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <div class="row">
 						<div class="col1">
 							<div class="h_nav">
+								<h4>Ρυμίσεις Προμηθευτών</h4>
+								<ul>
+									<li><a href="addSupplier.php">Προσθήκη Προμηθευτή</a></li>
+									<li><a href="removeSupplier.php">Διαγραφή Προμηθευτή</a></li>
+									<li><a href="editSupplier_selectSupplier.php">Επεξεργασία Προμηθευτή</a></li>
+								</ul>	
+							</div>							
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Ρυμίσεις Κουπονιών</h4>
+								<ul>
+									<li><a href="addCoupon.php">Προσθήκη Κουπονιού</a></li>
+									<li><a href="deleteCoupon_select.php">Διαγραφή Κουπονιού με δυνατότητα προβολής</a></li>
+								</ul>	
+						</div>
+					  </div>
+
+					</div>
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Ρυμίσεις Προσφορών</h4>
+								<ul>
+									<li><a href="addOffer_selectProduct.php">Προσθήκη Προσφοράς</a></li>
+									<li><a href="removeOffer_selectProduct.php">Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></li>
+								</ul>	
+							</div>							
+						</div>
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Προσθήκη Συνταγών</h4>
+								<ul>
+									<li><a href="addSintagi.php">Προσθήκη Συνταγών</a></li>
+									<li><a href="deleteSintagi.php">Διαγραφή Συνταγής</a></li>
+								</ul>	
+						</div>
+					  </div>
+
+					</div>
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
 								<h4>Διάφορα</h4>
 								<ul>
-									<li><a href="404.html">Ρυθμίσεις Προμηθευτών</a></li>
-									<li><a href="404.html">Ρυθμίσεις Φορτωτών</a></li>
+									<li><a href="addAdmin.php">Προσθήκη Διαχειριστή</a></li>
+									<li><a href="changePasswordAdmin.php">Αλλαγή Κωδικού Πρόσβασης</a></li>
+									<li><a href="addSlide.php">Προσθήκη φωτογραφιών για Slide αρχικής</a></li>
+									
 								</ul>	
 							</div>							
 						</div>
 					</div>
+
 					</div>
 				</li>	
 			</ul>			
