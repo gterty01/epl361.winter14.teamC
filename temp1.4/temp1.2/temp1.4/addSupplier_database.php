@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Προσθήκη Προμηθευτή</title>
+<title>Προσθήκη Προμηθευτή στη Βάση</title>
 </head>
 
 <?php

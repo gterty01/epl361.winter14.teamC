@@ -293,12 +293,72 @@ else{
        </div> 
     </div>
 	<div class="clear"></div>
+	<br>	
+<div class="footer">
+		<div class="footer-middle">
+			<div class="wrap">   
+		   <div class="section group example">
+			 <div class="col_1_of_f_1 span_1_of_f_1" >
+			   <div class="section group example">
+				 <div class="col_1_of_f_2 span_1_of_f_2">
+				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
+						<ul class="f-list1">
+						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
+				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="copyright.html">Copyright</a></li>
 			
-<div class="footer-bottom1">
+				         </ul>
+				     				 				<div class="clear"></div>
+				 </div>
+				</div>
+				</div>
+				<div class="col_1_of_f_1 span_1_of_f_1">
+				<div class="section group example">
+				 <div class="col_1_of_f_2 span_1_of_f_2">
 
-    <p class="pull-left">Copyright Β© 2014 Cyprus Food Museum  All rights reserved.</p>
-    <p class="pull-right">Designed by <span><a target="_blank" href="http://foodmuseum.cs.ucy.ac.cy/web/guest/home">Cyprus Food Museum</a></span></p>
-</div>
+				   <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
+						<div class="company_address">
+					                <p>Εικονικό Μουσείο Κυπριακών Τροφίμων και Διατροφής</p>
+							   		<p>Κύπρος</p>
+							   		<p>Κινητό Τηλέφωνο: 99 05 98 20</p>
+					   				<p>Fax: 22 77 06 76</p>
+					 	 			<p style="" >Email: <span>cyfoodmuseum@gmail.com</span></p>
+					   		<!--style="height: 24px"-->
+					   </div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+				<div class="clear"></div>
+
+		    </div>
+		   <div class="clear"></div>
+		   		   <div class="clear"></div>
+		   <div class="clear"></div>
+			<br>
+		  <div class="auto-style1">
+		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
+					μας στο: 99 05 98 20     </span>
+			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
+			</div>
+		</div>
+					
+					<div class="footer-bottom">
+					<div class="wrap">
+				<div class="f-list2">
+				 <ul>
+					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
+					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
+					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				 </ul>
+			    </div>
+			    <div class="clear"></div>
+			    </div>
+		      </div>
+	     	
+	     	 </div>
 </div>
 
 </body>

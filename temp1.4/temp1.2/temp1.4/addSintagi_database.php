@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>AddSintagi</title>
+<title>Προσθήκη Συνταγής στη Βάση</title>
 </head>
 
 <?php

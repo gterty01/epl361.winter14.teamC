@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>E-shop Cyprus Food Museum  | Αρχική</title>
+<title>Τρόποι Πληρωμής και Παραλαβής</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -315,24 +315,29 @@ function validateInsertion(){
 	</div>	
    </div>  
     <div class="footer">
+		<div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">   
 		   <div class="section group example">
-		   	   <br>
-			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
+			 <div class="col_1_of_f_1 span_1_of_f_1" >
 			   <div class="section group example">
-				 <div class="col_1_of_f_2 span_1_of_f_2" style="width: 41%; margin-left: 0; height: 150px">
+				 <div class="col_1_of_f_2 span_1_of_f_2">
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
 				            <li><a href="terms.html">Όροι Χρήσης</a></li>
-				             <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
+				     				 				<div class="clear"></div>
 				 </div>
+				</div>
+				</div>
+				<div class="col_1_of_f_1 span_1_of_f_1">
+				<div class="section group example">
 				 <div class="col_1_of_f_2 span_1_of_f_2">
-				 <div class="clear"></div>
+
 				   <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
 						<div class="company_address">
 					                <p>Εικονικό Μουσείο Κυπριακών Τροφίμων και Διατροφής</p>
@@ -343,12 +348,17 @@ function validateInsertion(){
 					   		<!--style="height: 24px"-->
 					   </div>
 				</div>
+				</div>
+				</div>
+				</div>
+				
 				<div class="clear"></div>
 
 		    </div>
-		   </div>
-		   </div>
 		   <div class="clear"></div>
+		   		   <div class="clear"></div>
+		   <div class="clear"></div>
+			<br>
 		  <div class="auto-style1">
 		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
 					μας στο: 99 05 98 20     </span>
@@ -357,10 +367,6 @@ function validateInsertion(){
 		</div>
 					
 					<div class="footer-bottom">
-									<div class="copy">
-			        <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
-		        </div>
-
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>

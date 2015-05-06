@@ -441,10 +441,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="footer-middle">
 			<div class="wrap">   
 		   <div class="section group example">
-		   	   <br>
-			 <div class="col_1_of_f_1 span_1_of_f_1" style="width: 98%">
+			 <div class="col_1_of_f_1 span_1_of_f_1" >
 			   <div class="section group example">
-				 <div class="col_1_of_f_2 span_1_of_f_2" style="width: 41%; margin-left: 0; height: 150px">
+				 <div class="col_1_of_f_2 span_1_of_f_2">
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
@@ -453,13 +452,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
-				     <div class="clear"></div>
+				     				 				<div class="clear"></div>
 				 </div>
-				 </div>
-				 
+				</div>
+				</div>
+				<div class="col_1_of_f_1 span_1_of_f_1">
+				<div class="section group example">
 				 <div class="col_1_of_f_2 span_1_of_f_2">
-				 <div class="clear"></div>
-				  <div class="section group example">
 
 				   <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
 						<div class="company_address">
@@ -472,14 +471,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					   </div>
 				</div>
 				</div>
-
+				</div>
+				</div>
+				
 				<div class="clear"></div>
 
 		    </div>
-		   </div>
 		   <div class="clear"></div>
+		   		   <div class="clear"></div>
+		   <div class="clear"></div>
+			<br>
 		  <div class="auto-style1">
-		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε μας στο: 99 05 98 20     </span>
+		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
+					μας στο: 99 05 98 20     </span>
 			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
 			</div>
 		</div>
@@ -498,7 +502,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		      </div>
 	     	
 	     	 </div>
-		    </div>
 
    </body>
 </html>

@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>AddProduct</title>
+<title>Προσθήκη Προϊόντος στη Βάση</title>
 </head>
 
 <?php

@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>AddCategory</title>
+<title>Προσθήκη κατηγορίας στη Βάση</title>
 </head>
 
 <?php

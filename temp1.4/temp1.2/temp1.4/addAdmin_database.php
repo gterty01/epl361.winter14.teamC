@@ -63,7 +63,7 @@
 	
 	$error_addΑdmin= "Η προσθήκη του διαχειριστή δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_addΑdmin'] = $error_addΑdmin;
-		header("Location:addAdmin.php");
+	header("Location:addAdmin.php");
 	die;
 
 
