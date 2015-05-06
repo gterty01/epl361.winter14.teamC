@@ -63,7 +63,7 @@ function validateInsertion(){
 </style>
 </head>
 
-<body style="color: #FFFFFF; " <?php if(isset($_SESSION['alarmCat'])){echo "onload='validateInsertion();' "; unset($_SESSION['alarmCat']); } ?> >
+<body style="color: #FFFFFF; " >
         <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">

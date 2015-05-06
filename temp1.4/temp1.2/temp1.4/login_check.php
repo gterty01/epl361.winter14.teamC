@@ -73,13 +73,13 @@
 	if($result1->num_rows == 1)
 		{
 			$_SESSION['login_user']=$email;
-	        header("location:login_index.php"); /* Redirect the browser */
+	        header("location:index.php"); /* Redirect the browser */
 	    }  
 		else {
 			
 			if ($PassA->num_rows == 1){
 			$_SESSION['login_admin']=$email;
-	        header("location:admin_login.php"); /* Redirect the browser */
+	        header("location:index.php"); /* Redirect the browser */
 			}
 			else {
 			$error = "Δώσατε μη έγκυρο κωδικό πρόσβασης!";

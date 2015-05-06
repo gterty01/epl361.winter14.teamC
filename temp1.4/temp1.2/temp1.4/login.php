@@ -4,58 +4,34 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php 
-	session_start(); 
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Τρόποι Πληρωμής και Παραλαβής</title>
+<title>Σύνδεση Χρήστη</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
-<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'/>
+<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/jquery1.min.js"></script>
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<!--start slider -->
-    <link rel="stylesheet" href="css/fwslider.css" media="all">
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/css3-mediaqueries.js"></script>
-    <script src="js/fwslider.js"></script>
-<!--end slider -->
+<!-- dropdown -->
 <script src="js/jquery.easydropdown.js"></script>
-<script type="text/javascript">
-	function doesExist(){
-
-	alert('Το προϊόν που επιλέξατε υπάρχει ήδη στο καλάθι σας!');
-	return false;
-	}
-</script>
-
- <script type='text/javascript'>
-function validateInsertion(){
-				alert('Προστέθηκε στο καλάθι σας!');
-				return true;		
-			}
-	</script>
-
 <style type="text/css">
 .auto-style1 {
-	color: #FFFFFF;
+	float: none;
+	width: 100%;
+	margin-top: 0px;
+	color: white;
 }
 .auto-style2 {
-	margin-top: 0px;
-}
-.auto-style4 {
-	margin-left: 0;
+	color: #FFFFFF;
 }
 </style>
 </head>
-<body style="color: #FFFFFF;" <?php if(isset($_SESSION['alarm'])){ echo "onload='validateInsertion();' "; unset($_SESSION['alarm']); } ?> >
+<body style="color: #FFFFFF;">
      <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
@@ -288,6 +264,7 @@ function validateInsertion(){
 				?>
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
+				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
 
 				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
@@ -299,21 +276,57 @@ function validateInsertion(){
 
      </div>
 	</div>
-    <div class="login">
-     <div class="wrap">
-		<h5 class="m_6">Τροποι Παραλαβης</h5>	
-		<p class="m_text">Μπορείτε να παραλάβετε τις παραγγελίες σας από τα γραφεία του Cyprus Food Museum στη Διεύθυνση:                   ή από τα πιο κάτω σημεία παραλαβής.</p>
-		<ul class="delivery-list">
-			<li>Lorem ipsum dolor sit amet</li>
-			<li>Consectetur adipisicing elit, sed do eiusmod tempor</li>
-			<li>Incididunt ut labore et dolore magna aliqua</li>
-			<li>Ut enim ad minim veniam, quis nostrud</li>
-			<li></li>
-			</ul>
-			<h5 class="m_6">Τροποι Πληρωμης</h5>	
-        	<p class="m_text">Οι Πληρωμές σας στο ηλεκτρονικό κατάστημά μας μπορούν να γίνονται είτε με κάρτα μέσω της JCC είτε με PayPal.</p>
-	</div>	
-   </div>  
+	<?php
+		$sl="SELECT * FROM `SLIDE`";
+		$slide=$conn->query($sl);
+		$slideFirst=$slide->fetch_assoc();
+		$slideSecond=$slide->fetch_assoc();
+
+	
+	
+	?>
+
+
+
+
+     <div class="login">
+          	<div class="wrap">
+				<div class="col_1_of_login span_1_of_login">
+					<h4 class="title">Δεν ειστε Μελος;</h4>
+					<p>Δεν γίνατε ακόμα μέλος στο Ηλεκτρονικό μας Κατάστημα; Εγγραφείτε τώρα για να δημιουργήσετε το δικό σας λογαριασμό και να μπορείτε να αναζητήσετε κάθε λογής προϊόντα της Κυπριακής Παράδοσης, λαμβάνοντας ταυτόχρονα προσφορές και εκπτώσεις. </p>
+					<div class="button1">
+					   <a href="register.html"><input type="submit" name="Submit" value="Δημιουργία Λογαριασμού"></a>
+					 </div>
+					 <div class="clear"></div>
+				</div>
+				<div class="col_1_of_login span_1_of_login">
+				<div class="login-title">
+	           		<h4 class="title">ειστε ηδη μελοσ;</h4>
+					<div id="loginbox" class="loginbox">
+						<form action="login_check.php" method="post" name="login" id="login-form">
+						  <fieldset class="input">
+						    <p id="login-form-username">
+						      <label for="modlgn_username">Email</label>
+						      <input id="modlgn_username" type="text" name="mail" class="inputbox" size="18" autocomplete="off">
+						    </p>
+						    <p id="login-form-password">
+						      <label for="modlgn_passwd">Κωδικός Χρήστη</label>
+						      <input id="modlgn_passwd" type="password" name="password" class="inputbox" size="18" autocomplete="off">
+						    </p>
+						    <div class="remember">
+							    <p id="login-form-remember">
+							      <label for="modlgn_remember"><a href="forgotPassword.php">Ξεχάσατε τον κωδικό σας;</a></label>
+							   </p>
+							    <input type="submit" name="Submit" class="button" value="Σύνδεση"><div class="clear"></div>
+							 </div>
+						  </fieldset>
+						 </form>
+					</div>
+			    </div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
       <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">   

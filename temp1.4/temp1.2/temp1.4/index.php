@@ -94,7 +94,7 @@ function validateInsertion(){
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
-					<a href="arxiki.php">
+					<a href="index.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
 				<div class="menu">
@@ -198,7 +198,7 @@ function validateInsertion(){
     </div>
      <div class="clear"></div>
 	            <ul class="megamenu skyblue"  >
-			<li class="active grid"><a href="arxiki.php">ΑΡΧΙΚΗ</a></li>
+			<li class="active grid"><a href="index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
 					<div class="row">
@@ -826,84 +826,7 @@ function validateInsertion(){
 	}
 
 ?>		  
-		  
-		  
-		  
-		  
-		  
-		  
-			<!--  <div class='col_1_of_3 span_1_of_3'>
-			  	 <a href='single.php?item='.urlencode($productCode).'">';
-				 <div class='inner_content clearfix' style='left: 0px; top: 0px'>
-					<div class='product_image'>
-						<img src='images/kumantaria.jpg' alt='' width='270' height='250'/>
-					</div>
-					<div class='sale-box1'><span class='on_sale title_shop'>Sale</span></div>	
-                    <div class='price'>
-					   <div class='cart-left'>
-							<p class='title'>Κυπριακό Κρασί - Κουμανταρία</p>
-							<div classs='price1'>
-							  <span class='reducedfrom'>€30,00</span>
-							  <span class='actual'>€25,00</span>
-							</div>
-						</div>
-						<form id='prosthiki' method='POST' action='prosthiki.php' accept-charset='UTF-8'>
-						<input type='submit' class='cart-right' name='kalathi' value='' >
-						</form>
-						<div> <a href="checkout.html" class="cart-right"></a> </div> 
-						<div class='clear'></div>
-					 </div>				
-                   </div>
-                   </a>
-				</div>
-				
-				
-				
-				
-				<div class="col_1_of_3 span_1_of_3">
-					 <a href="single.html">
-					<div class="inner_content clearfix" style='left: 0px; top: 0px'>
-					<div class="product_image">
-						<img src="images/xaloumi.jpg" alt="" width="270" height="250"/>
-					</div>
-                    <div class="sale-box1"><span class="on_sale title_shop">Sale</span></div>	
-				    <div class="price">
-					   <div class="cart-left">
-							<p class="title">Χαλλούμι</p>
-							<div class="price1">
-							<span class="reducedfrom">€6,00</span>
-							  <span class="actual">€4,50</span>
-							</div>
-						</div>
-						<div> <a href="checkout.html" class="cart-right"></a> </div>
 						<div class="clear"></div>
-					 </div>				
-                   </div>
-                   </a>
-				</div>
-				<div class="col_1_of_3 span_1_of_3">
-				 <a href="single.html">
-				 <div class="inner_content clearfix" style='left: 0px; top: 0px'>
-					<div class="product_image">
-						<img src="images/pergamonto.jpg" alt="" width="270" height="250"/>
-					</div>
-                    <div class="sale-box1"><span class="on_sale title_shop">Sale</span></div>	
-                    <div class="price">
-					   <div class="cart-left">
-							<p class="title">Γλυκό Κουταλιού - Περγαμόντο</p>
-							<div class="price1">
-							  <span class="reducedfrom">€9,00</span>
-							  <span class="actual">€6,50</span>
-							
-							</div>
-						</div>
-						<div> <a href="checkout.html" class="cart-right"></a> </div>
-						<div class="clear"></div>
-					 </div>				
-                   </div>
-                   </a>
-				</div>-->
-				<div class="clear"></div>
 			</div>	
 		  </div>
 
@@ -925,7 +848,7 @@ function validateInsertion(){
                 <img src="images/koukia.jpg"  alt="" width="230" height="300"/>
               </div>
              </div>
-              <div class="btn"><a href="single.html">Δες Συνταγές!</a></div>
+              <div class="btn"><a href="sintages.php">Δες Συνταγές!</a></div>
              </div>
            <div class="top-border"> </div>
 			<div class="sidebar-bottom">
@@ -952,9 +875,8 @@ function validateInsertion(){
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
-				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
 				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
-				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>
@@ -997,9 +919,7 @@ function validateInsertion(){
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
-					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
-					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
-					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				            <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
 				 </ul>
 			    </div>
 			    <div class="clear"></div>
