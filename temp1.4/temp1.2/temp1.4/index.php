@@ -75,12 +75,18 @@ function validateInsertion(){
 					$xristis=$_SESSION['login_user'];
 					echo "<li class='active'><a href='profile.php'>$xristis</a></li> |";
 					echo "<li><a href='kalathiProionta.php'>Καλάθι/Αγορά</a></li> |";
+					echo "<li><a href='showOrdersOfUser.php'>Παραγγελίες</a></li> |";
 					echo "<li><a href='profile.php'>Προφίλ</a></li> |";
 					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
 
 				}else{
-					echo "<li><a href='login.html'>Σύνδεση</a></li> |";
-					echo "<li><a href='register.html'>Εγγραφή</a></li>";
+				if(isset($_SESSION['login_admin'])){
+					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
+
+				}else{
+					echo "<li><a href='login.php'>Σύνδεση</a></li> |";
+					echo "<li><a href='register.php'>Εγγραφή</a></li>";
+				}
 
 				}				
 				
@@ -153,7 +159,7 @@ function validateInsertion(){
 				echo "</ul>";
 				echo "</li>";
 				}else{
-				echo "<li><a class='active-icon c2' href='checkout.html'> </a>";
+				echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
 				echo  	"<ul class='sub-icon1 list'>";
 				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
 				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
@@ -186,7 +192,7 @@ function validateInsertion(){
 				if($queryCart->num_rows > 0){
 				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.html'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
@@ -295,6 +301,117 @@ function validateInsertion(){
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
 				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
+			<?php
+			if (isset($_SESSION['login_admin'])){
+			echo "<ul class='megamenu skyblue' >";
+echo		"<li><a class='color4' href='#'>ΡΥΘΜΙΣΕΙΣ</a>";
+echo				"<div class='megapanel'>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προϊόντων</h4>";
+echo								"<ul>";
+echo									"<li><a href='addProduct_dropdown.php'>Προσθήκη Προϊόντος</a></li>";
+echo									"<li><a href='removeProduct.php'>Διαγραφή Προϊόντος</a></li>";
+echo									"<li><a href='editProduct_selectCategory.php'>Επεξεργασία Προϊόντος</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo					  "</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Μελών</h4>";
+echo								"<ul>";
+echo									"<li><a href='manageUsers.php'>Προβολή και Διαγραφή Μέλους</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo						"</div>";
+echo						"</div>";
+echo						"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Κατηγοριών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addCategory.php'>Προσθήκη Κατηγορίας</a></li>";
+echo									"<li><a href='removeCategory.php'>Διαγραφή Κατηγορίας</a></li>";
+echo									"<li><a href='editCategory_selectCategory.php'>Επεξεργασία Κατηγορίας</a></li>";
+echo								"</ul>";
+echo							"</div>";							
+echo					  "</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Παραγγελιών</h4>";
+echo								"<ul>";
+echo									"<li><a href='manageOrdersNotCompleted.php'>Επεξεργασία Παραγγελιών που δεν έχουν ολοκληρωθεί</a></li>";
+echo									"<li><a href='manageOrdersCompletedOrCanceled.php'>Προβολή Ολοκληρωμένων/Ακυρωμένων Παραγγελιών</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					 "</div>";
+echo					 "</div>";
+echo					  "<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προμηθευτών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addSupplier.php'>Προσθήκη Προμηθευτή</a></li>";
+echo									"<li><a href='removeSupplier.php'>Διαγραφή Προμηθευτή</a></li>";
+echo									"<li><a href='editSupplier_selectSupplier.php'>Επεξεργασία Προμηθευτή</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo						"</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Κουπονιών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addCoupon.php'>Προσθήκη Κουπονιού</a></li>";
+echo									"<li><a href='deleteCoupon_select.php'>Διαγραφή Κουπονιού με δυνατότητα προβολής</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					 "</div>";
+
+echo					"</div>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προσφορών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addOffer_selectProduct.php'>Προσθήκη Προσφοράς</a></li>";
+echo									"<li><a href='removeOffer_selectProduct.php'>Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></li>";
+echo								"</ul>";
+echo							"</div>";						
+echo						"</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Προσθήκη Συνταγών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addSintagi.php'>Προσθήκη Συνταγών</a></li>";
+echo									"<li><a href='deleteSintagi.php'>Διαγραφή Συνταγής</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					  "</div>";
+
+echo					"</div>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Διάφορα</h4>";
+echo								"<ul>";
+echo									"<li><a href='addAdmin.php'>Προσθήκη Διαχειριστή</a></li>";
+echo									"<li><a href='changePasswordAdmin.php'>Αλλαγή Κωδικού Πρόσβασης</a></li>";
+echo									"<li><a href='addSlide_select.php'>Προσθήκη φωτογραφιών για Slide αρχικής</a></li>";
+									
+echo								"</ul>";	
+echo							"</div>	";						
+echo						"</div>";
+echo					"</div>";
+
+echo					"</div>";
+echo				"</li>	";
+echo			"</ul>";
+			
+			
+			
+			}
+			?>
      <div class="clear"></div>
      <br>
 
@@ -874,9 +991,9 @@ function validateInsertion(){
 				 <div class="col_1_of_f_2 span_1_of_f_2">
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
-						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
+						    <li><a href="about.php">Ποιοι Είμαστε</a></li>
 				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
-				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="delivery.php">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>

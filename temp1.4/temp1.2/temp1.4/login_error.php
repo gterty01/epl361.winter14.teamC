@@ -5,6 +5,12 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
+<?php
+	if((isset($_SESSION['login_user']))||(isset($_SESSION['login_admin']))){
+		header("Location: index.php");
+		die();
+	}
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -37,7 +43,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </style>
 </head>
 <body style="color: #FFFFFF;">
-     <div class="header-top">
+       <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -56,12 +62,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$xristis=$_SESSION['login_user'];
 					echo "<li class='active'><a href='profile.php'>$xristis</a></li> |";
 					echo "<li><a href='kalathiProionta.php'>Καλάθι/Αγορά</a></li> |";
+					echo "<li><a href='showOrdersOfUser.php'>Παραγγελίες</a></li> |";
 					echo "<li><a href='profile.php'>Προφίλ</a></li> |";
+					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
+
+				}else{
+				if(isset($_SESSION['login_admin'])){
 					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
 
 				}else{
 					echo "<li><a href='login.html'>Σύνδεση</a></li> |";
 					echo "<li><a href='register.html'>Εγγραφή</a></li>";
+				}
 
 				}				
 				
@@ -276,6 +288,117 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
 				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
+			<?php
+			if (isset($_SESSION['login_admin'])){
+			echo "<ul class='megamenu skyblue' >";
+echo		"<li><a class='color4' href='#'>ΡΥΘΜΙΣΕΙΣ</a>";
+echo				"<div class='megapanel'>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προϊόντων</h4>";
+echo								"<ul>";
+echo									"<li><a href='addProduct_dropdown.php'>Προσθήκη Προϊόντος</a></li>";
+echo									"<li><a href='removeProduct.php'>Διαγραφή Προϊόντος</a></li>";
+echo									"<li><a href='editProduct_selectCategory.php'>Επεξεργασία Προϊόντος</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo					  "</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Μελών</h4>";
+echo								"<ul>";
+echo									"<li><a href='manageUsers.php'>Προβολή και Διαγραφή Μέλους</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo						"</div>";
+echo						"</div>";
+echo						"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Κατηγοριών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addCategory.php'>Προσθήκη Κατηγορίας</a></li>";
+echo									"<li><a href='removeCategory.php'>Διαγραφή Κατηγορίας</a></li>";
+echo									"<li><a href='editCategory_selectCategory.php'>Επεξεργασία Κατηγορίας</a></li>";
+echo								"</ul>";
+echo							"</div>";							
+echo					  "</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Παραγγελιών</h4>";
+echo								"<ul>";
+echo									"<li><a href='manageOrdersNotCompleted.php'>Επεξεργασία Παραγγελιών που δεν έχουν ολοκληρωθεί</a></li>";
+echo									"<li><a href='manageOrdersCompletedOrCanceled.php'>Προβολή Ολοκληρωμένων/Ακυρωμένων Παραγγελιών</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					 "</div>";
+echo					 "</div>";
+echo					  "<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προμηθευτών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addSupplier.php'>Προσθήκη Προμηθευτή</a></li>";
+echo									"<li><a href='removeSupplier.php'>Διαγραφή Προμηθευτή</a></li>";
+echo									"<li><a href='editSupplier_selectSupplier.php'>Επεξεργασία Προμηθευτή</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo						"</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Κουπονιών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addCoupon.php'>Προσθήκη Κουπονιού</a></li>";
+echo									"<li><a href='deleteCoupon_select.php'>Διαγραφή Κουπονιού με δυνατότητα προβολής</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					 "</div>";
+
+echo					"</div>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προσφορών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addOffer_selectProduct.php'>Προσθήκη Προσφοράς</a></li>";
+echo									"<li><a href='removeOffer_selectProduct.php'>Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></li>";
+echo								"</ul>";
+echo							"</div>";						
+echo						"</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Προσθήκη Συνταγών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addSintagi.php'>Προσθήκη Συνταγών</a></li>";
+echo									"<li><a href='deleteSintagi.php'>Διαγραφή Συνταγής</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					  "</div>";
+
+echo					"</div>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Διάφορα</h4>";
+echo								"<ul>";
+echo									"<li><a href='addAdmin.php'>Προσθήκη Διαχειριστή</a></li>";
+echo									"<li><a href='changePasswordAdmin.php'>Αλλαγή Κωδικού Πρόσβασης</a></li>";
+echo									"<li><a href='addSlide_select.php'>Προσθήκη φωτογραφιών για Slide αρχικής</a></li>";
+									
+echo								"</ul>";	
+echo							"</div>	";						
+echo						"</div>";
+echo					"</div>";
+
+echo					"</div>";
+echo				"</li>	";
+echo			"</ul>";
+			
+			
+			
+			}
+			?>
      <div class="clear"></div>
      <br>
 

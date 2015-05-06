@@ -4,6 +4,14 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php session_start(); ?>
+<?php
+	if((isset($_SESSION['login_user']))||(isset($_SESSION['login_admin']))){
+		header("Location: index.php");
+		die;
+	}
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,8 +63,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
 
 				}else{
-					echo "<li><a href='login.html'>Σύνδεση</a></li> |";
-					echo "<li><a href='register.html'>Εγγραφή</a></li>";
+					echo "<li><a href='login.php'>Σύνδεση</a></li> |";
+					echo "<li><a href='register.php'>Εγγραφή</a></li>";
 
 				}				
 				
@@ -129,7 +137,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				echo "</ul>";
 				echo "</li>";
 				}else{
-				echo "<li><a class='active-icon c2' href='checkout.html'> </a>";
+				echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
 				echo  	"<ul class='sub-icon1 list'>";
 				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
 				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
@@ -162,7 +170,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				if($queryCart->num_rows > 0){
 				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.html'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
@@ -173,7 +181,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  </div>
     </div>
      <div class="clear"></div>
-	            <ul class="megamenu skyblue"  >
+	            <ul class="megamenu skyblue" style="left: -587px; top: 0px"  >
 			<li class="active grid"><a href="index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
@@ -271,6 +279,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
 				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
+			
+			
+			
      <div class="clear"></div>
      <br>
 
@@ -295,7 +306,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h4 class="title">Δεν ειστε Μελος;</h4>
 					<p>Δεν γίνατε ακόμα μέλος στο Ηλεκτρονικό μας Κατάστημα; Εγγραφείτε τώρα για να δημιουργήσετε το δικό σας λογαριασμό και να μπορείτε να αναζητήσετε κάθε λογής προϊόντα της Κυπριακής Παράδοσης, λαμβάνοντας ταυτόχρονα προσφορές και εκπτώσεις. </p>
 					<div class="button1">
-					   <a href="register.html"><input type="submit" name="Submit" value="Δημιουργία Λογαριασμού"></a>
+					   <a href="register.php"><input type="submit" name="Submit" value="Δημιουργία Λογαριασμού"></a>
 					 </div>
 					 <div class="clear"></div>
 				</div>
@@ -336,9 +347,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="col_1_of_f_2 span_1_of_f_2">
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
-						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
+						    <li><a href="about.php">Ποιοι Είμαστε</a></li>
 				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
-				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="delivery.php">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>

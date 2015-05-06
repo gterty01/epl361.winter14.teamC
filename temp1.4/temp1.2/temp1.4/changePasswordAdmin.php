@@ -101,8 +101,8 @@ function checkNewPassword(){
 </script>
 </head>
 <body> 
-   <div class="header-top">
-	   <div class="wrap" style="width: 91%"> 
+        <div class="header-top">
+	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
    				        <select tabindex="4" class="dropdown">
@@ -114,10 +114,28 @@ function checkNewPassword(){
    			 </div>
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href=""><?php echo $_SESSION['login_admin']; ?></a></li> |
-					<li><a href="checkout.html">Λίστα Αγορών</a></li> |
-					<li><a href="checkout.html">Πραγματοποίηση Αγοράς</a></li> |
-					<li><a href="logout.php">Αποσύνδεση</a></li>
+				
+				<?php 
+				if(isset($_SESSION['login_user'])){
+					$xristis=$_SESSION['login_user'];
+					echo "<li class='active'><a href='profile.php'>$xristis</a></li> |";
+					echo "<li><a href='kalathiProionta.php'>Καλάθι/Αγορά</a></li> |";
+					echo "<li><a href='showOrdersOfUser.php'>Παραγγελίες</a></li> |";
+					echo "<li><a href='profile.php'>Προφίλ</a></li> |";
+					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
+
+				}else{
+				if(isset($_SESSION['login_admin'])){
+					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
+
+				}else{
+					echo "<li><a href='login.html'>Σύνδεση</a></li> |";
+					echo "<li><a href='register.html'>Εγγραφή</a></li>";
+				}
+
+				}				
+				
+				?>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -127,113 +145,10 @@ function checkNewPassword(){
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
-					<a href="login_index.php">
+					<a href="index.php">
 					<img src="images/trofima.jpg"></a>
 				</div>
-				<div class="auto-style6" style="height:100px" >
-	            <ul class="megamenu skyblue" >
-			<li class="active grid"><a href="login_index.php">ΑΡΧΙΚΗ</a></li>
-			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
-				<div class="megapanel">
-					<div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Κατηγορίες Τροφίμων</h4>
-								<ul>
-									<li><a href="allantika.html">Αλλαντικά</a></li>
-									<li><a href="glikakoutaliou.html">Γλυκά του Κουταλιού</a></li>
-									<li><a href="votana.html">Βότανα</a></li>
-									<li><a href="galaktokomika.html">Γαλακτοκομικά</a></li>
-									<li><a href="rofimata.html">Κυπριακά Ροφήματα</a></li>
-
-								</ul>	
-							</div>							
-						</div>
-					  </div>
-					</div>
-				</li>				
-				<li><a class="color7" href="skeui.html">ΣΚΕΥΗ</a></li>
-				<li><a class="color6" href="#">ΥΛΙΚΑ</a>
-				<div class="megapanel">
-					<div class="col1">
-							<div class="h_nav">
-								<h4>Υλικά</h4>
-								<ul>
-									<li><a href="zimaria.html">Ζυμάρι</a></li>
-									<li><a href="xorta.html">Χόρτα</a></li>
-									<li><a href="frouta.html">Φρούτα</a></li>
-								</ul>	
-							</div>							
-						</div>
-					</div>
-				</li>
-	
-				<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>
-				
-			</ul>
-            <ul class="megamenu skyblue" >
-			<li><a class="color4" href="#">ΡΥΘΜΙΣΕΙΣ</a>
-				<div class="megapanel">
-					<div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Προϊόντων</h4>
-								<ul>
-									<li><a href="addProduct_dropdown.php">Προσθήκη Προϊόντος</a></li>
-									<li><a href="removeProduct.php">Διαγραφή Προϊόντος</a></li>
-									<li><a href="editProduct_selectCategory.php">Επεξεργασία Προϊόντος</a></li>
-								</ul>	
-							</div>							
-					  </div>
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Μελών</h4>
-								<ul>
-									<li><a href="404.html">Προσθήκη Μέλους</a></li>
-									<li><a href="404.html">Διαγραφή Μέλους</a></li>
-									<li><a href="404.html">Επεξεργασία Μέλους</a></li>
-								</ul>	
-							</div>							
-						</div>
-						</div>
-						<div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Κατηγοριών</h4>
-								<ul>
-									<li><a href="404.html">Προσθήκη Κατηγορίας</a></li>
-									<li><a href="404.html">Διαγραφή Κατηγορίας</a></li>
-									<li><a href="404.html">Επεξεργασία Κατηγορίας</a></li>
-								</ul>	
-							</div>							
-					  </div>
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Ρυμίσεις Παραγγελιών</h4>
-								<ul>
-									<li><a href="404.html">Προσθήκη Παραγγελίας</a></li>
-									<li><a href="404.html">Διαγραφή Παραγγελίας</a></li>
-									<li><a href="404.html">Επεξεργασία Παραγγελίας</a></li>
-								</ul>	
-						</div>
-					  </div>
-					  </div>
-					  <div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Διάφορα</h4>
-								<ul>
-									<li><a href="404.html">Ρυθμίσεις Προμηθευτών</a></li>
-									<li><a href="404.html">Ρυθμίσεις Φορτωτών</a></li>
-								</ul>	
-							</div>							
-						</div>
-					</div>
-					</div>
-				</li>	
-			</ul>			
+				<div class="menu">
 			</div>
 		</div>
 	   <div class="header-bottom-right" style="width: 34%">
@@ -247,18 +162,301 @@ function checkNewPassword(){
 				</form>
 		 </div>
 	  <div class="tag-list">
-		<ul class="icon1 sub-icon1 profile_img">
-			<li><a class="active-icon c2" href="checkout.html"> </a>
+	    <ul class="icon1 sub-icon1 profile_img">
+			<li>
 				<ul class="sub-icon1 list">
-					<li><h3>Αδειο Καλαθι</h3><a href=""></a></li>
-					<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=""></a></p></li>
+					<li><h3>sed diam nonummy</h3><a href=""></a></li>
+					<li><p>Lorem ipsum dolor sit amet, consectetuer  <a href="">adipiscing elit, sed diam</a></p></li>
 				</ul>
 			</li>
 		</ul>
-	    <ul class="last"><li><a href="#">ΚΑΛΑΘΙ(0)</a></li></ul>
+		<ul class="icon1 sub-icon1 profile_img">
+		<?php
+			$servername = "localhost";
+								$username = "cyfoodmuseum";
+								$password = "9m8ESxZD";
+								$dbname = "cyfoodmuseum";
+								// Create connection
+								$conn = new mysqli($servername, $username, $password, $dbname);
+								//@mysql_select_db($dbname) or die ("No database");
+								
+								// Check connection
+								if ($conn->connect_error) {
+								    die("Connection failed: " . $conn->connect_error);
+								    echo "Connection faild";
+								}
+								if (!$conn->set_charset("utf8")) {
+								    printf("Error loading character set utf8: %s\n", $conn->error);
+								} else {
+								    //printf("Current character set: %s\n", $conn->character_set_name());
+								}//die;
+
+			if(isset($_SESSION['login_user'])){
+			    $xristis=$_SESSION['login_user'];
+			
+				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
+				$queryCart=$conn->query($posotitakalathi);
+				if($queryCart->num_rows > 0){
+				echo "<li><a class='active-icon c2' href='kalathiProionta.php'> </a>";
+				echo "<ul class='sub-icon1 list'>";
+				echo 	"<li><h3>$queryCart->num_rows Προϊόντα</h3><a href=''></a></li>";
+				echo	"<li><p>Δες τα προϊόντα στο καλάθι σου και κάνε τις Αγορές σου!<a href=''></a></p></li>";
+				echo "</ul>";
+				echo "</li>";
+				}else{
+				echo "<li><a class='active-icon c2' href='checkout.html'> </a>";
+				echo  	"<ul class='sub-icon1 list'>";
+				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
+				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
+				echo 	"</ul>";
+				echo 	"</li>";
+				}
+			}else{
+			
+				echo "<li><a class='active-icon c2' href=''> </a>";
+				echo "<ul class='sub-icon1 list'>";
+				echo 	"<li><h3>Συνδεθείτε</h3><a href=''></a></li>";
+				echo 	"<li><p>Γίνεται μέλος στο καταστημά μας, προσθέστε προϊόντα στο καλάθι σας και κάνετε τις αγορές σας!<a href=''></a></p></li>";
+				echo "</ul>";
+				echo "</li>";
+
+			
+			
+			
+			}
+			
+		?>			
+		</ul>
+		<?php
+			if(isset($_SESSION['login_user'])){
+
+				$xristis=$_SESSION['login_user'];
+			
+				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
+				$queryCart=$conn->query($posotitakalathi);
+				if($queryCart->num_rows > 0){
+				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
+				}else{
+				echo "<ul class='last'><li><a href='checkout.html'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+				}		   
+		}else{
+			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
+
+		}	    
+	    ?>
+
 	  </div>
     </div>
      <div class="clear"></div>
+	            <ul class="megamenu skyblue"  >
+			<li class="active grid"><a href="index.php">ΑΡΧΙΚΗ</a></li>
+			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
+				<div class="megapanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Κατηγορίες Τροφίμων</h4>
+								<ul>
+								<?php
+								$servername = "localhost";
+								$username = "cyfoodmuseum";
+								$password = "9m8ESxZD";
+								$dbname = "cyfoodmuseum";
+								// Create connection
+								$conn = new mysqli($servername, $username, $password, $dbname);
+								//@mysql_select_db($dbname) or die ("No database");
+								
+								// Check connection
+								if ($conn->connect_error) {
+								    die("Connection failed: " . $conn->connect_error);
+								    echo "Connection faild";
+								}
+								if (!$conn->set_charset("utf8")) {
+								    printf("Error loading character set utf8: %s\n", $conn->error);
+								} else {
+								    //printf("Current character set: %s\n", $conn->character_set_name());
+								}//die;
+									$queryCat="SELECT * FROM `CATEGORY` WHERE `SubCategory`='1';";
+									$trofima=$conn->query($queryCat);
+									if ($trofima->num_rows>0){
+										while($row = $trofima->fetch_assoc()) {
+											$category=$row['CodeCat'];
+											$onomasia=$row['NameCat'];
+											echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';
+
+										
+										}
+									}
+								
+								
+								
+								?>
+								</ul>	
+							</div>							
+						</div>
+					  </div>
+					</div>
+				</li>				
+				<li><a class="color6" href="#">ΥΛΙΚΑ</a>
+				<div class="megapanel">
+					<div class="col1">
+							<div class="h_nav">
+								<h4>Υλικά</h4>
+								<ul>
+								<?php
+								$queryCatY="SELECT * FROM `CATEGORY` WHERE `SubCategory`='2';";
+									$ilika=$conn->query($queryCatY);
+									if ($ilika->num_rows>0){
+										while($row2 = $ilika->fetch_assoc()) {
+											$category=$row2['CodeCat'];
+											$onomasia=$row2['NameCat'];
+											echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';
+
+										
+										}
+									}								
+								?>
+								</ul>	
+							</div>							
+						</div>
+					</div>
+				</li>
+				
+				<?php
+				$katigories="SELECT * FROM `CATEGORY` WHERE `SubCategory`='3';";
+				$all=$conn->query($katigories);
+				if ($all->num_rows>0){
+					while($row3 = $all->fetch_assoc()) {
+						$category=$row3['CodeCat'];
+						$onomasia=$row3['NameCat'];
+						//echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">"$onomasia"</a></li>';
+						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
+					}
+				}			
+				
+				
+				
+				?>
+				
+				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
+				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
+				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
+
+				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
+				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
+				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
+			</ul>
+			<?php
+			if (isset($_SESSION['login_admin'])){
+			echo "<ul class='megamenu skyblue' >";
+echo		"<li><a class='color4' href='#'>ΡΥΘΜΙΣΕΙΣ</a>";
+echo				"<div class='megapanel'>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προϊόντων</h4>";
+echo								"<ul>";
+echo									"<li><a href='addProduct_dropdown.php'>Προσθήκη Προϊόντος</a></li>";
+echo									"<li><a href='removeProduct.php'>Διαγραφή Προϊόντος</a></li>";
+echo									"<li><a href='editProduct_selectCategory.php'>Επεξεργασία Προϊόντος</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo					  "</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Μελών</h4>";
+echo								"<ul>";
+echo									"<li><a href='manageUsers.php'>Προβολή και Διαγραφή Μέλους</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo						"</div>";
+echo						"</div>";
+echo						"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Κατηγοριών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addCategory.php'>Προσθήκη Κατηγορίας</a></li>";
+echo									"<li><a href='removeCategory.php'>Διαγραφή Κατηγορίας</a></li>";
+echo									"<li><a href='editCategory_selectCategory.php'>Επεξεργασία Κατηγορίας</a></li>";
+echo								"</ul>";
+echo							"</div>";							
+echo					  "</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Παραγγελιών</h4>";
+echo								"<ul>";
+echo									"<li><a href='manageOrdersNotCompleted.php'>Επεξεργασία Παραγγελιών που δεν έχουν ολοκληρωθεί</a></li>";
+echo									"<li><a href='manageOrdersCompletedOrCanceled.php'>Προβολή Ολοκληρωμένων/Ακυρωμένων Παραγγελιών</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					 "</div>";
+echo					 "</div>";
+echo					  "<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προμηθευτών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addSupplier.php'>Προσθήκη Προμηθευτή</a></li>";
+echo									"<li><a href='removeSupplier.php'>Διαγραφή Προμηθευτή</a></li>";
+echo									"<li><a href='editSupplier_selectSupplier.php'>Επεξεργασία Προμηθευτή</a></li>";
+echo								"</ul>";	
+echo							"</div>";							
+echo						"</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Κουπονιών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addCoupon.php'>Προσθήκη Κουπονιού</a></li>";
+echo									"<li><a href='deleteCoupon_select.php'>Διαγραφή Κουπονιού με δυνατότητα προβολής</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					 "</div>";
+
+echo					"</div>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Ρυμίσεις Προσφορών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addOffer_selectProduct.php'>Προσθήκη Προσφοράς</a></li>";
+echo									"<li><a href='removeOffer_selectProduct.php'>Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></li>";
+echo								"</ul>";
+echo							"</div>";						
+echo						"</div>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Προσθήκη Συνταγών</h4>";
+echo								"<ul>";
+echo									"<li><a href='addSintagi.php'>Προσθήκη Συνταγών</a></li>";
+echo									"<li><a href='deleteSintagi.php'>Διαγραφή Συνταγής</a></li>";
+echo								"</ul>";	
+echo						"</div>";
+echo					  "</div>";
+
+echo					"</div>";
+echo					"<div class='row'>";
+echo						"<div class='col1'>";
+echo							"<div class='h_nav'>";
+echo								"<h4>Διάφορα</h4>";
+echo								"<ul>";
+echo									"<li><a href='addAdmin.php'>Προσθήκη Διαχειριστή</a></li>";
+echo									"<li><a href='changePasswordAdmin.php'>Αλλαγή Κωδικού Πρόσβασης</a></li>";
+echo									"<li><a href='addSlide_select.php'>Προσθήκη φωτογραφιών για Slide αρχικής</a></li>";
+									
+echo								"</ul>";	
+echo							"</div>	";						
+echo						"</div>";
+echo					"</div>";
+
+echo					"</div>";
+echo				"</li>	";
+echo			"</ul>";
+			
+			
+			
+			}
+			?>
      <div class="clear"></div>
      <br>
 
