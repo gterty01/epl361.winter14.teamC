@@ -15,6 +15,7 @@ if(isset($_SESSION['login_user'])){
 else{
 	$xristis = "Σύνδεση";
 	header("Location: login.html");
+	die;
 }
 
 ?>
