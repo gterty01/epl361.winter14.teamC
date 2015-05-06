@@ -308,9 +308,9 @@ else{
 				 <div class="col_1_of_f_2 span_1_of_f_2">
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
-						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
+						    <li><a href="about.php">Ποιοι Είμαστε</a></li>
 				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
-				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
+				            <li><a href="delivery.php">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>
