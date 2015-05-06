@@ -43,6 +43,9 @@ die();
 	<style type="text/css">
 	.tablewrapper{width: 95%; overflow-y: hidden; overflow-x: auto; 
  background-color:white;  height: auto; padding: 5px;}
+	 .autostyle1 {
+		color:white;
+	}
 
 	 .auto-style4 {
 		margin-left: 0;
@@ -258,10 +261,9 @@ die();
 				 <div class="col_1_of_f_2 span_1_of_f_2">
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
-						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
-				            <li><a href="terms.html">Όροι Χρήσης</a></li>
-				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
-				            <li><a href="copyright.html">Copyright</a></li>
+						    <li><a href="about.php">Ποιοι Είμαστε</a></li>
+				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
+				            <li><a href="delivery.php">Τρόποι Πληρωμής και Παραγγελιών</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>
@@ -304,9 +306,7 @@ die();
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
-					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
-					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
-					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				            <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
 				 </ul>
 			    </div>
 			    <div class="clear"></div>
