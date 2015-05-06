@@ -33,6 +33,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 	<style type="text/css">
+	.tablewrapper{width: 95%; overflow-y: hidden; overflow-x: auto; 
+ background-color:white;  height: auto; padding: 5px;}
+
 	 .auto-style4 {
 		margin-left: 0;
 	}
@@ -187,8 +190,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      <br>
      </div>
 <div class="wrap">
+<h4 class="title">Παραγγελιες που Εκκρεμουν</h4>
 	<form method="post" action="manageOrdersNotCompleted_database.php" name="formadiagrafis">
-  <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
+			<div class="tablewrapper">
+  <table class="responsive" summary="Cart of User" style="width:91%; align:center;" id="proiontakalathiou">
    <!-- <thead>
       <tr style="vertical-align:middle">
         <th scope="col">Διεύθυνση Αποστολής</th>
@@ -224,7 +229,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$result = $conn->query($stoixeiaParaggeliwn);
 		$options = ""; 	
 		if($result->num_rows > 0){
-		echo '<h4 class="title">Παραγγελιες που Εκκρεμουν</h4>';
+		//echo '<h4 class="title">Παραγγελιες που Εκκρεμουν</h4>';
 		echo '<br>';
   		echo '<tr style="vertical-align:middle">';
         echo '<th scope="col">Διεύθυνση Αποστολής</th>';
@@ -261,9 +266,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
    ?>
    </table>
-      <div class="clear"></div>
+   </div>
+        <br>
+     <br>
 
-     <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
+      <div class="clear"></div>
+      <h4 class="title">Παραγγελιες που Ολοκληρωθηκαν/Ακυρωθηκαν</h4>
+		<div class="tablewrapper">
+     <table class="responsive" summary="Cart of User" style="width:91%; align:center;" id="proiontakalathiou">
      <?php
   		
     	$servername = "localhost";
@@ -292,11 +302,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		if($result->num_rows > 0){
 		
 		
-		echo '<br>';
-		echo '<br>';
-		echo '<br>';
 
-		echo '<h4 class="title">Παραγγελιες που Ολοκληρωθηκαν/Ακυρωθηκαν</h4>';
+		//echo '<h4 class="title">Παραγγελιες που Ολοκληρωθηκαν/Ακυρωθηκαν</h4>';
 		echo '<br>';
   		echo '<tr style="vertical-align:middle">';
         echo '<th scope="col">Διεύθυνση Αποστολής</th>';
@@ -342,6 +349,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
    ?>
    </table>
+   </div>
 
    <br><br>
    

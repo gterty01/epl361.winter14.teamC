@@ -33,6 +33,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 	<style type="text/css">
+	.tablewrapper{width: 95%; overflow-y: hidden; overflow-x: auto; 
+ background-color:white;  height: auto; padding: 5px;}
+
 	 .auto-style4 {
 		margin-left: 0;
 	}

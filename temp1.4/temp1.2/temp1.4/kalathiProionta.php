@@ -43,6 +43,8 @@ alert(table.rows[table.rows.length-1].cells[0].children[0].value);
 }
 </script>
 <style type="text/css">
+.tablewrapper{width: 95%; overflow-y: hidden; overflow-x: auto; 
+ background-color:white;  height: auto; padding: 5px;}
 .auto-style1 {
 	width: 90%;
 	-moz-transition: all .2s linear;
@@ -262,16 +264,17 @@ if($result->num_rows == 0){
 
 	<div class="wrap">
 	<form method="post" action="episkopisiparaggelias.php" name="formadiagrafis">
-  <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align=center" id="proiontakalathiou">
+	<div class="tablewrapper">
+  <table class="responsive" summary="Cart of User" style="width:91%; align=center" id="proiontakalathiou">
     <thead>
       <tr style="vertical-align:middle">
-        <th scope="col">Προϊόν</th>
-        <th scope="col">Φωτογραφία</th>
-        <th scope="col">Προμηθευτής</th>
-        <th scope="col">Τιμή</th>
-        <th scope="col">Ποσότητα</th>
-        <th scope="col">Βάρος</th>
-        <th scope="col">Διαγραφή</th>
+        <th scope="col" style="width:14%">Προϊόν</th>
+        <th scope="col" style="width:16%">Φωτογραφία</th>
+        <th scope="col" style="width:14%">Προμηθευτής</th>
+        <th scope="col" style="width:14%">Τιμή</th>
+        <th scope="col" style="width:14%">Ποσότητα</th>
+        <th scope="col" style="width:14%">Βάρος</th>
+        <th scope="col" style="width:14%">Διαγραφή</th>
       </tr>
     </thead>
     <tbody>
@@ -334,6 +337,7 @@ if($result->num_rows == 0){
    ?>
      </tbody>
    </table>
+   </div>
    <br><br>
    <div class='active' style='margin-left:auto; margin-right:auto; width:75%;'>
    

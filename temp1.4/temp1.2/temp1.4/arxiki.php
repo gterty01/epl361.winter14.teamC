@@ -570,10 +570,12 @@ function validateInsertion(){
 
 				}
 				if ($contain==0){
-					$cat="SELECT * FROM `PRODUCT` AND `Availability` > 0";
+					$cat="SELECT * FROM `PRODUCT` WHERE
+					 `Availability` > 0";
 					$queryRand=$conn->query($cat);
 					//$rowKat=$queryRand->fetch_assoc();
 					$range1=$queryRand->num_rows;
+					
 					$var1=rand(1,$range1);
 					$counter=0;
 					$rowIpo1;
@@ -582,7 +584,6 @@ function validateInsertion(){
 						$counter=$counter+1;
 					}
 						$prwto=$rowIpo1['Code'];
-
 					echo "<div class='col_1_of_3 span_1_of_3'>" ;
 						 $productCode=$rowIpo1['Code'];
 						//echo '<a href="view_exp.php?compna='.urlencode($compname).'">'.$compname.'</a>';

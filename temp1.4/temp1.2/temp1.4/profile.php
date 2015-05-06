@@ -44,6 +44,9 @@ else{
 <!-- dropdown -->
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
+.tablewrapper{width: 95%; overflow-y: hidden; overflow-x: auto; 
+ background-color:white;  height: auto; padding: 5px;}
+
 .auto-style1 {
 	width: 90%;
 	-moz-transition: all .2s linear;
@@ -220,8 +223,8 @@ h{
 	<div class="wrap">
 	<h4 class="title">Τα Στοιχεια του λογαριασμου σας</h4>
  <form id='editProfile' method="POST" action="edit_profile.php" accept-charset="UTF-8"> <!--method='post'-->
-	
-  <table class="tsc_tables2_1" summary="Profile of User" style="width:100%; ">
+		<div class="tablewrapper">
+  <table class="responsive" summary="Profile of User" style="width:91%; ">
     <thead>
     </thead>
     <tbody>
@@ -276,7 +279,7 @@ h{
       </tr>
      </tbody>
     </table>
-    
+    </div>
      <br><br>
     </form>
 

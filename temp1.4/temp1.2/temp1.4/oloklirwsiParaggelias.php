@@ -258,9 +258,9 @@ var ccvL = frm.ccv.value.length;
     		<table>
     		<thead>
 		      <tr>
-		        <th class="txt-lt" style="width: 266px; height: 19px">Όνομα</th>
-		        <th class="txt-lt" style="width: 291px; height: 19px">Ποσότητα</th>
-		        <th class="txt-lt" style="width: 291px; height: 19px">Ποσό</th>
+		        <th class="txt-lt" style="width: 50%; height: 19px">Όνομα</th>
+		        <th class="txt-lt" style="width: 20%; height: 19px">Ποσότητα</th>
+		        <th class="txt-lt" style="width: 20%; height: 19px">Ποσό</th>
 		      </tr>
 		    </thead>
     	    <tbody>
