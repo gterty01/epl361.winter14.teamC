@@ -7,9 +7,13 @@
 </head>
 
 <body>
+<?php 
+ 	session_start();
 
+
+
+?>
 <?php
-
 echo "diskola ta pragmata";
 $servername = "localhost";
 $username = "cyfoodmuseum";
@@ -27,6 +31,7 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 parse_url(file_get_contents("php://input"), $_POST);
 print_r($_POST); 
+
 if (!$conn->set_charset("utf8")) {
     printf("Error loading character set utf8: %s\n", $conn->error);
 } else {
@@ -41,7 +46,6 @@ echo $name2;
 	
 		echo "Here";*/
 
-session_start();
 if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && $_POST['passwdCon'] && $_POST['birth'] && $_POST['city'] && $_POST['postalCode'] && $_POST['address1'])
 {
 	echo "Here";
@@ -77,17 +81,17 @@ if($_POST["name"] && $_POST["surname"] && $_POST["mail"] && $_POST["passwd"] && 
 			$_SESSION['tel2']=$_POST['tel2'];
 
 	 		header("Location: register2.php?item=0");
-
+			
 	 		$var="yes";
 	 	}
     }
-	}else{
-		if($_POST["captcha_input"] != $_SESSION["pass"]){
+	}
+		if($_POST["captcha_input"] != $_SESSION["captcha_code"]){
 				header("Location: register2.php?item=1");
-		
+				die();		
 	
 		}
-	}
+	
 	if ($var=="no"){
 	
 	echo "Paei na valei ta dedomena sti vasi";

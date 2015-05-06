@@ -173,8 +173,8 @@ $code=$_GET['item'];
     			 <div class="col_1_of_2 span_1_of_2">
 		   			<div><input type="text" id ="name" name ="name" value="<?php echo $_SESSION['onoma']; ?>"onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Όνομα';}"></div>
 		  		   	<div><input type="text" id ="surname" name="surname" value="<?php echo $_SESSION['epitheto']; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Επώνυμο';}"></div>
-				   	<p class="auto-style5"> Κωδικός</p>
-		    		<div><input type="password" id ="passwd" value=""  name ="passwd" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
+					<p class='auto-style5'>E-Mail</p>				   
+					<div><input type="email" placeholder="me@example.com" name="mail" id ="mail" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
 				   	<p class="auto-style5"> Κωδικός</p>
 		    		<div><input type="password" id ="passwd" value=""  name ="passwd" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"></div>
 		    	 	<p class="auto-style5"> Επιβεβαίωση Κωδικού</p>
@@ -187,7 +187,7 @@ $code=$_GET['item'];
 		            </select>
 					</div>
 					<p class="auto-style5"> Πληκτρολογήστε τη λέξη ασφαλείας στο κουτί:</p>
-					<div><img src="captcha_image.php" /></div>
+					<img src="captcha.php?rand=<?php echo rand();?>" id='captchaimg'>
 					<div><input type="text" name="captcha_input" size="15"></div>
 
 		    	 </div>
