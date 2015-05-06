@@ -294,7 +294,11 @@ else{
     </div>
 	<div class="clear"></div>
 	<br>	
-<div class="footer">
+</div>
+	</div>	  
+	<!--</div>-->
+	<!--</div>-->
+   <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">   
 		   <div class="section group example">
@@ -304,9 +308,8 @@ else{
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
-				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
 				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
-				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>
@@ -349,9 +352,7 @@ else{
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
-					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
-					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
-					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				            <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
 				 </ul>
 			    </div>
 			    <div class="clear"></div>
@@ -359,7 +360,6 @@ else{
 		      </div>
 	     	
 	     	 </div>
-</div>
 
 </body>
 </html>

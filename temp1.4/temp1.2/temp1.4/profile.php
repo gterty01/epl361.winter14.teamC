@@ -219,6 +219,47 @@ h{
 	<div class="clear"><br><br><br></div>
 	<div class="clear"></div>
 	   
+<?php
+
+$servername = "localhost";
+$username = "cyfoodmuseum";
+$password = "9m8ESxZD";
+$dbname = "cyfoodmuseum";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (!$conn->set_charset("utf8")) {
+   	printf("Error loading character set utf8: %s\n", $conn->error);
+    die;
+}
+
+$query1 = "SELECT * FROM `USERS_FM` WHERE Email = '$xristis'";
+
+$result = $conn->query($query1);
+
+while($row = $result->fetch_assoc()) {
+	$_SESSION['onoma'] = $row['Name'];	
+	$_SESSION['epitheto'] = $row['Surname'];	
+	$_SESSION['email'] = $row['Email'];	
+	$_SESSION['birth'] = $row['Birthday'];	
+	$_SESSION['filo'] = $row['Sex'];	
+	$_SESSION['d1'] = $row['Address1'];	
+	$_SESSION['d2'] = $row['Address2'];	
+	$_SESSION['poli'] = $row['City'];	
+	$_SESSION['tk'] = $row['PostalCode'];	
+	$_SESSION['tel2'] = $row['HomeNumber'];	
+	$_SESSION['tel1'] = $row['PhoneNumber'];	
+	$_SESSION['xwra'] = $row['Country'];
+		
+}	
+
+?>
 
 	<div class="wrap">
 	<h4 class="title">Τα Στοιχεια του λογαριασμου σας</h4>
@@ -297,6 +338,10 @@ h{
 	<div class="clear"><br><br></div>
 	<div class="clear"></div>
 	
+  </div>
+	</div>	  
+	<!--</div>-->
+	<!--</div>-->
    <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">   
@@ -307,9 +352,8 @@ h{
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
-				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
 				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
-				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>
@@ -342,7 +386,7 @@ h{
 		   <div class="clear"></div>
 			<br>
 		  <div class="auto-style1">
-		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
+		  <img src="images/3.png" width="58"><span class="auto-style2">Καλέστε 
 					μας στο: 99 05 98 20     </span>
 			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
 			</div>
@@ -352,9 +396,7 @@ h{
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
-					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
-					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
-					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				            <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
 				 </ul>
 			    </div>
 			    <div class="clear"></div>
@@ -362,9 +404,7 @@ h{
 		      </div>
 	     	
 	     	 </div>
+	     	 </div>
+		</div>
 
-
-<!-- DC Table Styles II:1 Start -->
 </body>
-
-</html>

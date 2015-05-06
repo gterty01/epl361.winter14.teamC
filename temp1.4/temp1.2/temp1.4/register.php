@@ -447,9 +447,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    <h2>ΠΛΗΡΟΦΟΡΙΕς</h2>
 						<ul class="f-list1">
 						    <li><a href="about.html">Ποιοι Είμαστε</a></li>
-				            <li><a href="terms.html">Όροι Χρήσης</a></li>
+				           <!-- <li><a href="terms.html">Όροι Χρήσης</a></li>-->
 				            <li><a href="delivery.html">Τρόποι Πληρωμής και Παραγγελιών</a></li>
-				            <li><a href="copyright.html">Copyright</a></li>
 			
 				         </ul>
 				     				 				<div class="clear"></div>
@@ -482,7 +481,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		   <div class="clear"></div>
 			<br>
 		  <div class="auto-style1">
-		  <img src="images/3.png" width="58"><span class="auto-style1">Καλέστε 
+		  <img src="images/3.png" width="58"><span class="auto-style2">Καλέστε 
 					μας στο: 99 05 98 20     </span>
 			<a href="https://www.facebook.com/pages/Cyprus-Food-Virtual-Museum/104034939677867?fref=ts" target="_blank"><img src="images/find_us_facebook_logo.gif" class="auto-style2" height="57" width="143"></a>
 			</div>
@@ -492,9 +491,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
-					<li class="active"><a href="about.html">Ποιοι Είμαστε</a></li> |
-					<li><a href="terms.html">Όροι & Προϋποθέσεις</a></li> |
-					<li><a href="contact.html">Επικοινωνήστε μαζί μας</a></li> 
+				            <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
 				 </ul>
 			    </div>
 			    <div class="clear"></div>
