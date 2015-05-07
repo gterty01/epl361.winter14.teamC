@@ -50,13 +50,11 @@ function validateInsertion(){
 .auto-style2 {
 	margin-top: 0px;
 }
-.auto-style4 {
-	margin-left: 0;
-}
 </style>
 </head>
 <body style="color: #FFFFFF;" <?php if(isset($_SESSION['alarm'])){ echo "onload='validateInsertion();' "; unset($_SESSION['alarm']); } ?> >
-     <div class="header-top">
+     
+          <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -84,8 +82,8 @@ function validateInsertion(){
 					echo "<li><a href='logout.php'>Αποσύνδεση</a></li>";
 
 				}else{
-					echo "<li><a href='login.html'>Σύνδεση</a></li> |";
-					echo "<li><a href='register.html'>Εγγραφή</a></li>";
+					echo "<li><a href='login.php'>Σύνδεση</a></li> |";
+					echo "<li><a href='register.php'>Εγγραφή</a></li>";
 				}
 
 				}				
@@ -159,7 +157,7 @@ function validateInsertion(){
 				echo "</ul>";
 				echo "</li>";
 				}else{
-				echo "<li><a class='active-icon c2' href='checkout.html'> </a>";
+				echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
 				echo  	"<ul class='sub-icon1 list'>";
 				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
 				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
@@ -192,7 +190,7 @@ function validateInsertion(){
 				if($queryCart->num_rows > 0){
 				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.html'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
@@ -295,7 +293,7 @@ function validateInsertion(){
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
-				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
+				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
 				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
@@ -417,6 +415,19 @@ echo			"</ul>";
 
      </div>
 	</div>
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     <div class="login">
      <div class="wrap">
 		<h5 class="m_6">Τροποι Παραλαβης</h5>	

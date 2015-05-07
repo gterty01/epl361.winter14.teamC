@@ -15,6 +15,7 @@ if(isset($_SESSION['login_user'])){
 else{
 	$xristis = "Σύνδεση";
 	header("Location: login.php");
+	die;
 }
 
 ?>
@@ -50,9 +51,6 @@ else{
 	color: #FFFFFF;
 }
 
-.auto-style4 {
-	font-size: medium;
-}
 p.code1{
 	color:#008000;
 }
@@ -62,6 +60,7 @@ p.code1{
 
 </head>
 <body> 
+
      <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
@@ -165,7 +164,7 @@ p.code1{
 				echo "</ul>";
 				echo "</li>";
 				}else{
-				echo "<li><a class='active-icon c2' href='checkout.html'> </a>";
+				echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
 				echo  	"<ul class='sub-icon1 list'>";
 				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
 				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
@@ -198,7 +197,7 @@ p.code1{
 				if($queryCart->num_rows > 0){
 				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.html'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
@@ -301,7 +300,7 @@ p.code1{
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
-				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
+				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
 				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
@@ -423,6 +422,17 @@ echo			"</ul>";
 
      </div>
 	</div>
+
+
+
+
+
+
+
+
+
+
+
           <div class="register_account">
           	<div class="wrap">
     	      <h4 class="title">Επεξεργασια Στοιχειων του Λογαριασμου σας</h4>
