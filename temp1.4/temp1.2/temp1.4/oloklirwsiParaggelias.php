@@ -13,7 +13,8 @@ $xristis = $_SESSION['login_user'];
 else
 {
 $xristis = "Σύνδεση";
-header("Location: login.html");
+header("Location: login.php");
+die;
 }
 
 /*if(!(isset($_SESSION['arithmosproiontwn']))){
