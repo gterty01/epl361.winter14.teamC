@@ -42,10 +42,10 @@ $kodikos=$_GET['item'];
 $querys = "SELECT * FROM `SINTAGI` WHERE `Code` = '$kodikos';";
 $result=$conn->query($querys);
 
-$row = $result->fetch_assoc();
-	$ilikasinagis=$row['Ilika'];
-	 $titlos=$row['Title'];
-	$des=$row['Description'];
+$rows = $result->fetch_assoc();
+	$ilikasinagis=$rows['Ilika'];
+	 $titlos=$rows['Title'];
+	$des=$rows['Description'];
 	
 ?>
 
@@ -491,7 +491,14 @@ echo			"</ul>";
 							<div id="products_example">
 								<div id="products" style="height: 29px">
 									<div class="slides_container">-->
-									        <a href="#"><?php if ($row['Image']!=""){ echo '<img class="a" src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" alt="" width="270" height="250"/>'; } else{ echo '<img  src="images/trofima.jpg" width="270" height="250"/>'; } ?></a>
+									        <a href="#">
+									        <?php if ($rows['Image']!=""){ 
+									        echo '<img class="a" src="data:image/jpeg;base64,'.base64_encode( $rows['Image'] ).'" alt="" width="270" height="250"/>'; 
+									        	} 
+									        else{ 
+									        echo '<img  src="images/trofima.jpg" width="270" height="250"/>';
+									        } ?></a>
+
 									<!--</div>
 									<ul class="pagination">
 										<li><a href="#"><?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" width="s-img" alt="1144953 3 2x"/>'; ?></a></li>

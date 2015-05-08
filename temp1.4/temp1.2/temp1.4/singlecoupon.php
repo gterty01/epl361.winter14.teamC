@@ -43,13 +43,13 @@ $kodikos=$_GET['item'];
 $querys = "SELECT * FROM `COUPON` WHERE `Code` = '$kodikos';";
 $result=$conn->query($querys);
 
-$row = $result->fetch_assoc();
-	$product=$row['Code'];
-	$estiatorio=$row['RestaurantName'];
-	 $titlos=$row['Title'];
-	$address=$row['RestaurantAddress'];
-	$til=$row['RestaurantTil'];
-	$des=$row['Description'];
+$rows = $result->fetch_assoc();
+	$product=$rows['Code'];
+	$estiatorio=$rows['RestaurantName'];
+	 $titlos=$rows['Title'];
+	$address=$rows['RestaurantAddress'];
+	$til=$rows['RestaurantTil'];
+	$des=$rows['Description'];
 	
 ?>
 
@@ -501,7 +501,13 @@ echo			"</ul>";
 							<div id="products_example">
 								<div id="products" style="height: 29px">
 									<div class="slides_container">-->
-									        <a href="#"><?php if ($row['Image']!=""){ echo '<img class="a" id="img1" src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" alt="" width="270" height="250"/>'; } else{ echo '<img  src="images/trofima.jpg" width="270" height="250"/>'; } ?></a>
+									        <a href="#">
+									           <?php if ($rows['Image']!= ""){ 
+									        echo '<img class="a" src="data:image/jpeg;base64,'.base64_encode( $rows['Image'] ).'" alt="" width="270" height="250"/>'; 
+									        	} 
+									        else{ 
+									        echo '<img  src="images/trofima.jpg" width="270" height="250"/>';
+									        } ?></a>
 									<!--</div>
 									<ul class="pagination">
 										<li><a href="#"><?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" width="s-img" alt="1144953 3 2x"/>'; ?></a></li>
