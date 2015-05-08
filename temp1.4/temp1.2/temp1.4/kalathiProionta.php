@@ -145,6 +145,7 @@ $querys ="SELECT * FROM `USERACTIONFORCART` WHERE `UserCode`='$xristis' ";
 $result=$conn->query($querys);
 if($result->num_rows == 0){
 	header("Location: checkout.php");
+	die;
 
 }
 ?>
