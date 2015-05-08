@@ -57,7 +57,7 @@ function validateInsertion(){
           <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
-			    				    <div class="box1">
+			    <div class="box1">
    				        <select tabindex="4" class="dropdown">
 							<option value="" class="label" value="">Νόμισμα :</option>
 							<option value="1">€ Ευρώ</option>
@@ -433,10 +433,10 @@ echo			"</ul>";
 		<h5 class="m_6">Τροποι Παραλαβης</h5>	
 		<p class="m_text">Μπορείτε να παραλάβετε τις παραγγελίες σας από τα γραφεία του Cyprus Food Museum στη Διεύθυνση:                   ή από τα πιο κάτω σημεία παραλαβής.</p>
 		<ul class="delivery-list">
-			<li>Lorem ipsum dolor sit amet</li>
-			<li>Consectetur adipisicing elit, sed do eiusmod tempor</li>
-			<li>Incididunt ut labore et dolore magna aliqua</li>
-			<li>Ut enim ad minim veniam, quis nostrud</li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
 			<li></li>
 			</ul>
 			<h5 class="m_6">Τροποι Πληρωμης</h5>	

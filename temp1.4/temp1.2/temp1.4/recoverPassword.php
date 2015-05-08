@@ -27,6 +27,7 @@
 	}
 			
 	parse_url(file_get_contents("php://input"), $_POST);
+	
 	if (!$conn->set_charset("utf8")) {
 	    printf("Error loading character set utf8: %s\n", $conn->error);
 	    die;
@@ -42,21 +43,20 @@
 			$newPass= mt_rand(10000000, 99999999);
 			$encry=md5($newPass);
 			$to = $email;
-			echo $to;
 			$queryChange = "UPDATE `USERS_FM` SET `Password`='$encry' WHERE `Email` = '$email';";
 			$conn->query($queryChange);
 			$message = "Συνδεθείτε στο λογαριασμό σας με τον κωδικό:  $newPass. \r\n Έπειτα μπορείτε να αλλάξετε τον κωδικό αυτό και να καταχωρήσετε κάποιον της επιθυμίας σας. \r\n \r\nΕυχαριστούμε, CyFoodMuseum.";
 			$subject = 'Ανάκτηση Κωδικού Πρόσβασης CyFoodMuseum';
-			//$message = wordwrap($msg, 70, "\r\n");
-			//mail($to, $subject, $message);
 			if(@mail($to, $subject, $message)){
 	 			 echo "Mail Sent Successfully";
 			}else{
 	  			echo "Mail Not Sent";
 			}
+			
 			$ok_pass = "Ο κωδικός πρόσβασης σας, σας έχει αποσταλεί με email!";
 			$_SESSION['ok_pass'] = $ok_pass;
 			$_SESSION['error_pass'] = " ";
+			mysqli_close($conn);
 			header("Location: forgotPassword.php");
 			die;
 		}
@@ -70,13 +70,10 @@
 			$newPass= mt_rand(10000000, 99999999);
 			$encry=md5($newPass);
 			$to = $email;
-			echo $to;
 			$queryChange = "UPDATE `ADMINS` SET `Password`='$encry' WHERE `Email` = '$email';";
 			$conn->query($queryChange);
 			$message = "Συνδεθείτε στο λογαριασμό σας με τον κωδικό:  $newPass. \r\n Έπειτα μπορείτε να αλλάξετε τον κωδικό αυτό και να καταχωρήσετε κάποιον της επιθυμίας σας. \r\n \r\nΕυχαριστούμε, CyFoodMuseum.";
 			$subject = 'Ανάκτηση Κωδικού Πρόσβασης CyFoodMuseum';
-			//$message = wordwrap($msg, 70, "\r\n");
-			//mail($to, $subject, $message);
 			if(@mail($to, $subject, $message)){
 	 			 echo "Mail Sent Successfully";
 			}else{
@@ -85,20 +82,19 @@
 			$ok_pass = "Ο κωδικός πρόσβασης σας, σας έχει αποσταλεί με email!";
 			$_SESSION['ok_pass'] = $ok_pass;
 			$_SESSION['error_pass'] = " ";
+			mysqli_close($conn);
 			header("Location: forgotPassword.php");
 			die;
 		}
 	}
 
-	
-	
-		$error_pass = "Το email που δώσατε δεν είναι έγκυρο!";
-		$_SESSION['error_pass'] = $error_pass;
-		$_SESSION['ok_pass'] = " ";
-		header("Location: forgotPassword.php");
-		die;
+	$error_pass = "Το email που δώσατε δεν είναι έγκυρο!";
+	$_SESSION['error_pass'] = $error_pass;
+	$_SESSION['ok_pass'] = " ";
+	mysqli_close($conn);
+	header("Location: forgotPassword.php");
+	die;
 
-	
 	
 ?>
 </body>

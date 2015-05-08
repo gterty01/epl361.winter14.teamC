@@ -41,9 +41,10 @@
 	if($check != false) {
     }else{
     	if ($imgData != ""){
-	    	$error_addCoupon  = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
-	        $_SESSION['error_addCoupon '] = $error_addCoupon;
+	    	$error_addCoupon  = "Το αρχείο που δώσατε δεν είναι εικόνα!";
+	        $_SESSION['error_addCoupon'] = $error_addCoupon;
 	        $_SESSION['ok_addCoupon'] = " ";
+	        mysqli_close($conn);
 			header("Location:addCoupon.php");
 			die;
 		}
@@ -56,12 +57,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_addCoupon = "Η προσθήκη του κουπονιού ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_addCoupon'] = $ok_addCoupon;
+		mysqli_close($conn);
 		header("Location:addCoupon.php");
 		die;
 	 }
 	
 	$error_addCoupon = "Η προσθήκη του κουπονιού δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_addCoupon'] = $error_addCoupon;
+	mysqli_close($conn);
 	header("Location:addCoupon.php");
 	die;
 ?>

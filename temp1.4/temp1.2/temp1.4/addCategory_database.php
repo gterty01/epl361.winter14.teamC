@@ -39,11 +39,12 @@
 	if($check != false) {
     }else{
     	if ($imgData != ""){
-    	$error_add_category = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
-        $_SESSION['error_add_category'] = $error_add_category;
-        $_SESSION['ok_add_category'] = " ";
-		header("Location:addCategory.php");
-		die;
+	    	$error_add_category = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
+	        $_SESSION['error_add_category'] = $error_add_category;
+	        $_SESSION['ok_add_category'] = " ";
+			mysqli_close($conn);
+			header("Location:addCategory.php");
+			die;
 		}
     }
     
@@ -56,6 +57,7 @@
 		 		$error_add_category = "Η κατηγορία υπάρχει ήδη!";
 		 		$_SESSION['error_add_category'] = $error_add_category;
 		 		$_SESSION['ok_add_category'] = " ";
+		 		mysqli_close($conn);
 		 		header("Location:addCategory.php");
 				die;
 			}
@@ -69,12 +71,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_add_category = "Η προσθήκη της κατηγορίας ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_add_category'] = $ok_add_category;
+		mysqli_close($conn);
 		header("Location:addCategory.php");
 		die;
 	 }
 	
 	$error_add_category = "Η προσθήκη της κατηγορίας δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_add_category'] = $error_add_category;
+	mysqli_close($conn);
 	header("Location:addCategory.php");
 	die;
 ?>

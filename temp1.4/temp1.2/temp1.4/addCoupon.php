@@ -13,7 +13,7 @@ if(isset($_SESSION['login_admin'])){
 }
 else{
 	$xristis = "Σύνδεση";
-	header("Location: login.php");
+	header("Location: index.php");
 	die;
 }
 ?>
@@ -341,7 +341,7 @@ function CheckCoupon(){
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
-				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
+				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
 				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
@@ -588,8 +588,6 @@ echo			"</ul>";
 		      </div>
 	     	
 	     	 </div>
-	     	 </div>
-		</div>
 
 </body>
 

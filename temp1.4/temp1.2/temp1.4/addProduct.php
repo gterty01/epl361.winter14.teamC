@@ -36,8 +36,6 @@
 	$CodeSupplier= $_POST['supplier'];
 	$thisdate = date("Y-m-d");
 	$CodeCategory = $_POST['category'];
-
-   //$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
@@ -45,6 +43,7 @@
     	$error_add = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
         $_SESSION['error_add'] = $error_add;
         $_SESSION['ok_add'] = " ";
+        mysqli_close($conn);
 		header("Location:addProduct_dropdown.php");
 		die;
     }
@@ -57,6 +56,7 @@
 		 		$error_add = "Το προϊόν υπάρχει ήδη!";
 		 		$_SESSION['error_add'] = $error_add;
 		 		$_SESSION['ok_add'] = " ";
+		 		mysqli_close($conn);
 		 		header("Location:addProduct_dropdown.php");
 				die;
 			}
@@ -70,12 +70,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_add = "Η προσθήκη του προϊόντος ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_add'] = $ok_add;
+		mysqli_close($conn);
 		header("Location:addProduct_dropdown.php");
 		die;
 	 }
 	
 	$error_add = "Η προσθήκη του προϊόντος δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_add'] = $error_add;
+	mysqli_close($conn);
 	header("Location:addProduct_dropdown.php");
 	die;
 ?>

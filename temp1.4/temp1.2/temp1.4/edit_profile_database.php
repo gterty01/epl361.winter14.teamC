@@ -62,12 +62,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_edit_profile = "Η επεξεργασία των στοιχείων ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_edit_profile'] = $ok_edit_profile;
+		mysqli_close($conn);
 		header("Location:profile.php");
 		die;
 	 }
 	$error_edit_profile = "Η επεξεργασία των στοιχειων δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_edit_profile'] = $error_edit_profile;
-	//header("Location:profile.php");
+	mysqli_close($conn);
+	header("Location:profile.php");
 	die;
 
 ?>

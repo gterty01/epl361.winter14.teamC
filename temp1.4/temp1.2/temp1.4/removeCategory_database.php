@@ -47,21 +47,24 @@
     			$error_remove_category = "Δεν έγινε η διαγραφή των κατηγοριών! Ξαναπροσπαθήστε!";
 		 		$_SESSION['error_remove_category'] = $error_remove_category;
 		 		$_SESSION['ok_remove_category'] = " ";
+		 		mysqli_close($conn);
 		 		header("Location:removeCategory.php");
 		 		die;
 			}			
-   		 }
+   		}
     } // end brace for if(isset
-
-    else {
-
-    		$error_remove_category = "Δεν επέλεξες κατηγορία!";
-		 	$_SESSION['error_remove_category'] = $error_remove_category;
-		 	header("Location:removeCategory.php");
-
-    }
- 		header("Location:removeCategory.php");
+    else{
+    	$error_remove_category = "Δεν επέλεξες κατηγορία!";
+		$_SESSION['error_remove_category'] = $error_remove_category;
+		mysqli_close($conn);
+		header("Location:removeCategory.php");
 		die;
+	}
+	
+ 	mysqli_close($conn);
+ 	header("Location:removeCategory.php");
+	die;
+	
 ?>
 </body>
 

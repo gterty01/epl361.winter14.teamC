@@ -32,6 +32,7 @@
 	 echo "true";
 }
 	$result=$conn->query($sql);
+	mysqli_close($conn);
 	header("Location:manageUsers.php");
 	die;
 

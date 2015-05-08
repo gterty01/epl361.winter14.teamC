@@ -40,6 +40,7 @@
 	if($result->num_rows > 0){
 		$error_addOffer = "Το προϊόν είναι ήδη σε προσφορα!";
 		$_SESSION['error_addOffer'] = $error_addOffer;
+		mysqli_close($conn);
 		header("Location:addOffer.php");
 		die;
 	}
@@ -52,12 +53,14 @@
 	if ($conn->query($sql1) === TRUE){
 		$ok_addOffer = "Η προσθήκη της προσφοράς ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_addOffer'] = $ok_addOffer;
+		mysqli_close($conn);
 		header("Location:addOffer_selectProduct.php");
 		die;
 	 }
 	
 	$error_addOffer = "Η προσθήκη της προσφοράς δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_addOffer'] = $error_addOffer;
+	mysqli_close($conn);
 	header("Location:addOffer.php");
 	die;
 

@@ -49,6 +49,7 @@
 				$ok_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας ολοκληρώθηκε επιτυχώς!";
 				$_SESSION['ok_changePassword'] = $ok_changePassword;
 				$_SESSION['error_changePassword'] = " ";
+				mysqli_close($conn);
 				header("Location:changePassword.php");
 				die;
 			}
@@ -69,6 +70,7 @@
 				$ok_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας ολοκληρώθηκε επιτυχώς!";
 				$_SESSION['ok_changePassword'] = $ok_changePassword;
 				$_SESSION['error_changePassword'] = " ";
+				mysqli_close($conn);
 				header("Location:changePasswordAdmin.php");
 				die;
 			}
@@ -78,6 +80,7 @@
 	$error_changePassword = "Η αλλαγή του κωδικού πρόσβασης σας δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_changePassword'] = $error_changePassword;
 	$_SESSION['ok_changePassword'] = " ";
+	mysqli_close($conn);
 	header("Location:changePassword.php");
 	die;
 

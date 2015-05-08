@@ -30,9 +30,11 @@
     $sql = "DELETE FROM `SINTAGI` WHERE Code = '$code' ";
 
     if ($conn->query($sql) === TRUE) {
+    	mysqli_close($conn);
 		header("Location:deleteSintagi.php");
     }
     
+    mysqli_close($conn);
 	header("Location:deleteSintagi.php");
 
 ?>

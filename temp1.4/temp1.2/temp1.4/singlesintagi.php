@@ -11,8 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	if (!(isset($_GET['item']))){
 	header("Location: index.php");
 	die;
-
-	}
+}
 
 
 ?>
@@ -44,7 +43,7 @@ $querys = "SELECT * FROM `SINTAGI` WHERE `Code` = '$kodikos';";
 $result=$conn->query($querys);
 
 $row = $result->fetch_assoc();
-	$ilika=$row['Ilika'];
+	$ilikasinagis=$row['Ilika'];
 	 $titlos=$row['Title'];
 	$des=$row['Description'];
 	
@@ -73,6 +72,8 @@ $row = $result->fetch_assoc();
 		</script>
 <!-- start details -->
 <script src="js/slides.min.jquery.js"></script>
+<script src="js/jquery.easydropdown.js"></script>
+
    <script>
 		$(function(){
 			$('#products').slides({
@@ -112,9 +113,6 @@ function printDiv(divName) {
 
      document.body.innerHTML = originalContents;
 }
-
-
-
 </script>
 
 <style type="text/css">
@@ -125,8 +123,7 @@ function printDiv(divName) {
 </head>
 
 <body>
-
-         <div class="header-top">
+<div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -166,7 +163,8 @@ function printDiv(divName) {
 			<div class="clear"></div>
  		</div>
 	</div>
-	<div class="header-bottom">
+
+<div class="header-bottom">
 	    <div class="wrap" style="width: 98%">
 			<div class="header-bottom-left">
 				<div class="logo">
@@ -198,23 +196,24 @@ function printDiv(divName) {
 		<ul class="icon1 sub-icon1 profile_img">
 		<?php
 			$servername = "localhost";
-								$username = "cyfoodmuseum";
-								$password = "9m8ESxZD";
-								$dbname = "cyfoodmuseum";
-								// Create connection
-								$conn = new mysqli($servername, $username, $password, $dbname);
-								//@mysql_select_db($dbname) or die ("No database");
+			$username = "cyfoodmuseum";
+			$password = "9m8ESxZD";
+			$dbname = "cyfoodmuseum";
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			//@mysql_select_db($dbname) or die ("No database");
 								
-								// Check connection
-								if ($conn->connect_error) {
-								    die("Connection failed: " . $conn->connect_error);
-								    echo "Connection faild";
-								}
-								if (!$conn->set_charset("utf8")) {
-								    printf("Error loading character set utf8: %s\n", $conn->error);
-								} else {
-								    //printf("Current character set: %s\n", $conn->character_set_name());
-								}//die;
+			// Check connection
+			if ($conn->connect_error) {
+				die("Connection failed: " . $conn->connect_error);
+				echo "Connection faild";
+			}
+			
+			if (!$conn->set_charset("utf8")) {
+				printf("Error loading character set utf8: %s\n", $conn->error);
+			} else {
+				//printf("Current character set: %s\n", $conn->character_set_name());
+			}//die;
 
 			if(isset($_SESSION['login_user'])){
 			    $xristis=$_SESSION['login_user'];
@@ -273,7 +272,7 @@ function printDiv(divName) {
 	  </div>
     </div>
      <div class="clear"></div>
-	            <ul class="megamenu skyblue"  >
+	    <ul class="megamenu skyblue"  >
 			<li class="active grid"><a href="index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">
@@ -312,8 +311,6 @@ function printDiv(divName) {
 										
 										}
 									}
-								
-								
 								
 								?>
 								</ul>	
@@ -478,8 +475,6 @@ echo					"</div>";
 echo				"</li>	";
 echo			"</ul>";
 			
-			
-			
 			}
 			?>
      <div class="clear"></div>
@@ -489,14 +484,14 @@ echo			"</ul>";
 	</div>
 	<div class="mens">    
   <div class="main">
-     <div class="wrap" id="kouponi">
+     <div class="wrap" id="sintagi">
 		<div class="cont span_2_of_3">
 		  	<div class="grid images_3_of_2">
 						<!--<div id="container">
 							<div id="products_example">
 								<div id="products" style="height: 29px">
 									<div class="slides_container">-->
-									        <a href="#"><?php if ($row['Image']!=""){ echo '<img class="a" id="img1" src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" alt="" width="270" height="250"/>'; } else{ echo '<img  src="images/trofima.jpg" width="270" height="250"/>'; } ?></a>
+									        <a href="#"><?php if ($row['Image']!=""){ echo '<img class="a" src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" alt="" width="270" height="250"/>'; } else{ echo '<img  src="images/trofima.jpg" width="270" height="250"/>'; } ?></a>
 									<!--</div>
 									<ul class="pagination">
 										<li><a href="#"><?php echo '<img  src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" width="s-img" alt="1144953 3 2x"/>'; ?></a></li>
@@ -508,26 +503,24 @@ echo			"</ul>";
 	            </div>
 		         <div class="desc1 span_3_of_2">
 		         	 <p class="m_5"><?php echo $titlos; ?></p>
-
 		         	<br>
 		             <h3 class="m_3">Yλικα</h3>
 					 <div class="clear"></div>
-					<p class="m_text2"><?php echo $ilika; ?></p>
-
+					<p class="m_text2"><?php echo $ilikasinagis; ?></p>
 			     </div>
+			     
 			   <div class="clear"></div>	
+			   
 	         <div class="toogle">
-     	<h3 class="m_3">Περιγραφh Εκτeλεσης</h3>
-     	<p class="m_text"><?php echo $des; ?></p>
-     	<br>
-
-     </div>
-     <div class="toogle">
-     </div>
-      </div>
+		     	<h3 class="m_3">Περιγραφh Εκτeλεσης</h3>
+		     	<p class="m_text"><?php echo $des; ?></p>
+		     	<br>
+     		</div>
+     		
+           </div>
 			 <div class="clear"></div>
 		   </div>
-		   		   </div>
+		 </div>
 
 		 <div class='wrap'>
 		<button type='button' onclick=printDiv('kouponi') class='grey' value='ΕΚΤΥΠΩΣΗ ΣΥΝΤΑΓΗΣ'>ΕΚΤΥΠΩΣΗ ΚΟΥΠΟΝΙΟΥ</button>
@@ -536,9 +529,13 @@ echo			"</ul>";
 		<br><br>
 		<!--<button type='button' onclick=printDiv('kouponi') class='grey' value='ΕΚΤΥΠΩΣΗ ΚΟΥΠΟΝΙΟΥ'>ΕΚΤΥΠΩΣΗ ΚΟΥΠΟΝΙΟΥ</button>
 		<br>-->
-
 		</div>
-			<script src="js/jquery.easydropdown.js"></script><div class="footer">
+		
+		
+		
+     <div class="clear"></div>
+     
+     <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">   
 		   <div class="section group example">

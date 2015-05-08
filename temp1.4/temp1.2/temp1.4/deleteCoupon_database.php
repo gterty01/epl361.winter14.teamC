@@ -31,9 +31,11 @@
     $sql = "DELETE FROM `COUPON` WHERE Code = '$code' ";
 
     if ($conn->query($sql) === TRUE) {
+   	 	mysqli_close($conn);
 		header("Location:deleteCoupon_select.php");
     }
     
+    mysqli_close($conn);
     header("Location:deleteCoupon_select.php");
 
 ?>

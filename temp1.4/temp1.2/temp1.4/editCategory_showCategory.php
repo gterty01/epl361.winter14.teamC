@@ -38,10 +38,12 @@
 			$_SESSION['image'] = $row['imageCat'];
 		}
 	}
+	
 	$code = $_SESSION['SubCategory'];
 
 	if ($code == 0){
 		$_SESSION['iperkatigoria'] = "Δεν ανήκει σε κάποια υπερκατηγορία";
+		mysqli_close($conn);
 		header("Location:editCategory.php");
 		die;
 	}else{
@@ -50,13 +52,12 @@
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()) {
 				$_SESSION['iperkatigoria'] = $row["Name"];
+				mysqli_close($conn);
 				header("Location:editCategory.php");
 				die;
+			}
 		}
-
 	}
-
-}
 	
 
 		

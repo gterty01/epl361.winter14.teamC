@@ -6,7 +6,7 @@ if(isset($_SESSION['login_admin'])){
 }
 else{
 	$xristis = "Σύνδεση";
-	header("Location: login.php");
+	header("Location: index.php");
 	die;
 }
 
@@ -49,7 +49,7 @@ else{
 				 
 </head>
 <body style="color: #FFFFFF; ">
-     <div class="header-top">
+     <div class="header-top" >
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -196,7 +196,7 @@ else{
 	  </div>
     </div>
      <div class="clear"></div>
-	            <ul class="megamenu skyblue"  >
+	    <ul class="megamenu skyblue"  >
 			<li class="active grid"><a href="index.php">ΑΡΧΙΚΗ</a></li>
 			<li><a class="color4" href="#">ΤΡΟΦΙΜΑ</a>
 				<div class="megapanel">

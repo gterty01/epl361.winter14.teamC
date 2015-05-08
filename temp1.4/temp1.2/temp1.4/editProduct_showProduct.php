@@ -55,7 +55,7 @@
 
 				$_SESSION['SName'] = $row2['CompanyName'];	
 			}	
-
+			mysqli_close($conn);
 			header("Location:editProduct.php");
 			die;
 
@@ -63,6 +63,9 @@
 	}
 
 
+mysqli_close($conn);
+header("Location:editProduct.php");
+die;
 	
 
 		

@@ -39,6 +39,7 @@
 	    	$error_addSintagi = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
 	        $_SESSION['error_addSintagi'] = $error_addSintagi;
 	        $_SESSION['ok_addSintagi'] = " ";
+	        mysqli_close($conn);
 			header("Location:addSintagi.php");
 			die;
 		}
@@ -56,6 +57,7 @@
 				$_SESSION['ilika'] = $ilika;
 				$_SESSION['Description'] = $Description;
 		 		$_SESSION['ok_addSintagi'] = " ";
+		 		mysqli_close($conn);
 				header("Location:addSintagi.php");
 				die;
 			}
@@ -79,6 +81,7 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_addSintagi = "Η προσθήκη της συνταγής ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_addSintagi'] = $ok_addSintagi;
+		mysqli_close($conn);
 		header("Location:addSintagi.php");
 		$conn->query($lines);
 		$conn->query($lines2);
@@ -89,6 +92,7 @@
 	
 	$error_addSintagi = "Η προσθήκη της συνταγής δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_addSintagi'] = $error_addSintagi;
+	mysqli_close($conn);
 	header("Location:addSintagi.php");
 	die;
 ?>

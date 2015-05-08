@@ -56,6 +56,7 @@
 		 		$error_add_supplier = "O προμηθευτής υπάρχει ήδη!";
 		 		$_SESSION['error_add_supplier'] = $error_add_supplier;
 		 		$_SESSION['ok_add_supplier'] = " ";
+		 		mysqli_close($conn);
 		 		header("Location:addSupplier.php");
 				die;
 			}
@@ -69,12 +70,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_add_supplier = "Η προσθήκη του προϊόντος ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_add_supplier'] = $ok_add_supplier;
+		mysqli_close($conn);
 		header("Location:addSupplier.php");
 		die;
 	 }
 	
 	$error_add_supplier = "Η προσθήκη του προϊόντος δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_add_supplier'] = $error_add_supplier;
+	mysqli_close($conn);
 	header("Location:addSupplier.php");
 	die;
 ?>

@@ -34,9 +34,7 @@
 	$imgData = addslashes(file_get_contents($_FILES['fileToUpload']['tmp_name']));
 	
 	$title = $_POST['title'];	
-	$slide = $_SESSION['slide'];
-	echo $slide;
-	
+	$slide = $_SESSION['slide'];	
 	
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
@@ -45,6 +43,7 @@
     		$error_slide = "Η επεξεργασία δεν ολοκληρώθηκε επιτυχώς! Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
         	$_SESSION['error_slide'] = $error_slide ;
        	 	$_SESSION['ok_slide'] = " ";
+       	 	mysqli_close($conn);
 			header("Location:addSlide_select.php");
 			die;
 		}
@@ -62,6 +61,7 @@
 				if ($conn->query($sql) === TRUE){
 					$ok_slide = "Η επεξεργασία του slide ολοκληρώθηκε επιτυχώς!";		
 					$_SESSION['ok_slide'] = $ok_slide;
+					mysqli_close($conn);
 					header("Location:addSlide_select.php");
 					die;
 	 			}
@@ -76,12 +76,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_slide = "Η επεξεργασία του slide ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_slide'] = $ok_slide;
+		mysqli_close($conn);
 		header("Location:addSlide_select.php");
 		die;
 	 }
 	
 	$error_slide = "Η επεξεργασία του slide δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_slide'] = $error_slide;
+	mysqli_close($conn);
 	header("Location:addSlide_select.php");
 	die;
 

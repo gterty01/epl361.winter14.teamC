@@ -17,27 +17,23 @@
 	$password = "9m8ESxZD";
 	$dbname = "cyfoodmuseum";
 								
-				// Create connection
+	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 								
-				// Check connection
+	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 		echo "Connection faild";
 	}
 	
-	print_r($_POST);
-
 	$date = $_POST['date'];
-	echo $date;
   	$code = $_SESSION["code_order"];
-  	echo $code;
 	$complete = 1;
 	$sql="UPDATE `ORDERS` SET Completed = '$complete', DateSent = '$date' WHERE Code = '$code'";
 	$result = $conn->query($sql);
-	
+	mysqli_close($conn);
 	header("Location: manageOrdersNotCompleted.php");
-
+	die;
 ?>
 
 </body>

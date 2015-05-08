@@ -28,7 +28,7 @@
     	printf("Error loading character set utf8: %s\n", $conn->error);
     	die;
 	}
-//print_r($_POST);
+
 	$Code = $_SESSION['Code'];
     if($_POST['iperkatigoria']=="parousatimi") {
    		$sql = "DELETE FROM `OFFER` WHERE CodeOfProduct = '$Code' ";
@@ -50,19 +50,20 @@
 	   		$sql= "DELETE FROM `OFFER` WHERE CodeOfProduct = '$Code' ";
 			$result=$conn->query($sql);
 	    
-	    
 	    }
 }	    
   		 if ($conn->query($sql) === TRUE) {
     		$ok_removeOffer = "Επιτυχής διαγραφή της προσφοράς!";
 			$_SESSION['error_removeOffer'] = " ";
 			$_SESSION['ok_removeOffer'] = $ok_removeOffer;
+			mysqli_close($conn);
 		 	header("Location:removeOffer_selectProduct.php");
-
+		 	die;
 		} else {
     		$error_removeOffer = "Δεν έγινε η διαγρφή της προσφοράς! Ξαναπροσπαθήστε!";
 	 		$_SESSION['error_removeOffer'] = $error_removeOffer;
 			$_SESSION['ok_removeOffer'] = " ";
+			mysqli_close($conn);
 		 	header("Location:removeOffer.php");
 			die;
 		}	

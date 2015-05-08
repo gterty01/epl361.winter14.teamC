@@ -47,6 +47,7 @@
     	$error_edit = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
         $_SESSION['error_edit'] = $error_edit;
         $_SESSION['ok_edit'] = " ";
+        mysqli_close($conn);
 		header("Location:editProduct.php");
 		die;
     }
@@ -68,12 +69,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_edit = "Η επεξεργασία του προϊόντος ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_edit'] = $ok_edit;
+		mysqli_close($conn);
 		header("Location:editProduct_selectCategory.php");
 		die;
 	 }
 	
 	$error_edit = "Η επεξεργασία του προϊόντος δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_edit'] = $error_edit;
+	mysqli_close($conn);
 	header("Location:editProduct.php");
 	die;
 

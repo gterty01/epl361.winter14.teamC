@@ -13,7 +13,7 @@ if(isset($_SESSION['login_admin'])){
 }
 else{
 	$xristis = "Σύνδεση";
-	header("Location: login.php");
+	header("Location: index.php");
 	die;
 }
 ?>
@@ -154,23 +154,23 @@ function check(){
 		<ul class="icon1 sub-icon1 profile_img">
 		<?php
 			$servername = "localhost";
-								$username = "cyfoodmuseum";
-								$password = "9m8ESxZD";
-								$dbname = "cyfoodmuseum";
-								// Create connection
-								$conn = new mysqli($servername, $username, $password, $dbname);
-								//@mysql_select_db($dbname) or die ("No database");
+			$username = "cyfoodmuseum";
+			$password = "9m8ESxZD";
+			$dbname = "cyfoodmuseum";
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			//@mysql_select_db($dbname) or die ("No database");
 								
-								// Check connection
-								if ($conn->connect_error) {
-								    die("Connection failed: " . $conn->connect_error);
-								    echo "Connection faild";
-								}
-								if (!$conn->set_charset("utf8")) {
-								    printf("Error loading character set utf8: %s\n", $conn->error);
-								} else {
-								    //printf("Current character set: %s\n", $conn->character_set_name());
-								}//die;
+			// Check connection
+			if ($conn->connect_error) {
+				die("Connection failed: " . $conn->connect_error);
+				echo "Connection faild";
+			}
+			if (!$conn->set_charset("utf8")) {
+				printf("Error loading character set utf8: %s\n", $conn->error);
+			} else {
+				//printf("Current character set: %s\n", $conn->character_set_name());
+			}//die;
 
 			if(isset($_SESSION['login_user'])){
 			    $xristis=$_SESSION['login_user'];
@@ -200,9 +200,6 @@ function check(){
 				echo 	"<li><p>Γίνεται μέλος στο καταστημά μας, προσθέστε προϊόντα στο καλάθι σας και κάνετε τις αγορές σας!<a href=''></a></p></li>";
 				echo "</ul>";
 				echo "</li>";
-
-			
-			
 			
 			}
 			
@@ -264,8 +261,6 @@ function check(){
 											$category=$row['CodeCat'];
 											$onomasia=$row['NameCat'];
 											echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';
-
-										
 										}
 									}
 								
@@ -321,7 +316,7 @@ function check(){
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
-				<li><a class="color7" href="prosfores.php" target="_blank">Συνταγες</a></li>
+				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
 				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
 				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>

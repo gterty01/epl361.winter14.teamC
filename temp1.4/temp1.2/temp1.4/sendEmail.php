@@ -5,25 +5,22 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Untitled 1</title>
+<title>Αποστολή email</title>
 </head>
 
 <body>
 <?php
-$to = $_SESSION['email'];
-echo $to;
-$message = "Σας ενημερώνουμε ότι η εγγραφή σας έχει ολοκληρωθεί επιτυχώς. \r\n Πλέον, μπορείτε να βρείτε στο κατάστημα μας Κυπριακά Παραδοσικά προϊόντα, σε εξαιρετικές τιμές. \r\n \r\nΕυχαριστούμε, CyFoodMuseum.";
-$subject = 'Εγγραφή CyFoodMuseum';
-//$message = wordwrap($msg, 70, "\r\n");
-//mail($to, $subject, $message);
-if(@mail($to, $subject, $message))
-{
-  echo "Mail Sent Successfully";
-}else{
-  echo "Mail Not Sent";
-}
-header("Location: index.html");
-die;
+	$to = $_SESSION['email'];
+	$message = "Σας ενημερώνουμε ότι η εγγραφή σας έχει ολοκληρωθεί επιτυχώς. \r\n Πλέον, μπορείτε να βρείτε στο κατάστημα μας Κυπριακά Παραδοσικά προϊόντα, σε εξαιρετικές τιμές. \r\n \r\nΕυχαριστούμε, CyFoodMuseum.";
+	$subject = 'Εγγραφή CyFoodMuseum';
+	if(@mail($to, $subject, $message))
+	{
+	  echo "Mail Sent Successfully";
+	}else{
+	  echo "Mail Not Sent";
+	}
+	header("Location: index.php");
+	die;
 ?>
 
 </body>

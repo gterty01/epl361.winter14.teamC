@@ -42,11 +42,11 @@
 		 		$_SESSION['error_supplier'] = " ";
 		 		$_SESSION['ok_remove_supplier'] = $ok_remove_supplier;
 		
-    			
 			} else {
     			$error_remove_supplier = "Δεν έγινε η διαγρφή του προμηθευτή! Ξαναπροσπαθήστε!";
 		 		$_SESSION['error_remove_supplier'] = $error_remove_supplier;
 		 		$_SESSION['ok_remove_supplier'] = " ";
+		 		mysqli_close($conn);
 		 		header("Location:removeSupplier.php");
 		 		die;
 			}			
@@ -54,14 +54,15 @@
     } // end brace for if(isset
 
     else {
-
     		$error_remove = "Δεν επέλεξες προμηθευτή!";
 		 	$_SESSION['error_remove_supplier'] = $error_remove_suppler;
+		 	mysqli_close($conn);
 		 	header("Location:removeSupplier.php");
-
+			die;
     }
- 		header("Location:removeSupplier.php");
-		die;
+    mysqli_close($conn);
+ 	header("Location:removeSupplier.php");
+	die;
 ?>
 </body>
 

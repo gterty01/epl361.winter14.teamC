@@ -57,6 +57,7 @@
     		$error_edit_category = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
         	$_SESSION['error_edit_category'] = $error_edit_category;
        	 	$_SESSION['ok_edit_category'] = " ";
+       	 	mysqli_close($conn);
 			header("Location:editCategory.php");
 			die;
 		}
@@ -73,6 +74,7 @@
 				if ($conn->query($sql) === TRUE){
 					$ok_edit_category = "Η επεξεργασία της κατηγορίας ολοκληρώθηκε επιτυχώς!";		
 					$_SESSION['ok_edit_category'] = $ok_edit_category;
+					mysqli_close($conn);
 					header("Location:editCategory_selectCategory.php");
 					die;
 				 }
@@ -93,12 +95,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_edit_category = "Η επεξεργασία της κατηγορίας ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_edit_category'] = $ok_edit_category;
+		mysqli_close($conn);
 		header("Location:editCategory_selectCategory.php");
 		die;
 	 }
 	
 	$error_edit_category = "Η επεξεργασία της κατηγορίας δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_edit_category'] = $error_edit_category;
+	mysqli_close($conn);
 	header("Location:editCategory.php");
 	die;
 

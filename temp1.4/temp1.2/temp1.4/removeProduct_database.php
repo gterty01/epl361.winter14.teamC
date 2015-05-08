@@ -45,6 +45,7 @@
     			$error_remove = "Δεν έγινε η διαγρφή του προϊόντος! Ξαναπροσπαθήστε!";
 		 		$_SESSION['error_remove'] = $error_remove;
 		 		$_SESSION['ok_remove'] = " ";
+		 		mysqli_close($conn);
 		 		header("Location:removeProduct.php");
 		 		die;
 			}			
@@ -55,10 +56,12 @@
 
     		$error_remove = "Δεν επέλεξες προϊόν!";
 		 	$_SESSION['error_remove'] = $error_remove;
+		 	mysqli_close($conn);
 		 	header("Location:removeProduct.php");
-
+		 	die;
     }
     
+    mysqli_close($conn);
 	header("Location:removeProduct.php");
 	die;
 

@@ -4,26 +4,10 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-
-<?php session_start(); ?>
-
-<?php
-$xristis;
-if(isset($_SESSION['login_admin'])){
-	$xristis = $_SESSION['login_admin'];
-}
-else{
-	$xristis = "Σύνδεση";
-	header("Location: index.php");
-	die;
-}
-
-?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Αλλαγή Κωδικού Πρόσβασης</title>
+<title>Ποιοι Είμαστε</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -32,68 +16,17 @@ else{
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
-
-
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<!-- dropdown -->
 <script src="js/jquery.easydropdown.js"></script>
 <style type="text/css">
 .auto-style1 {
-	width: 90%;
-	-moz-transition: all .2s linear;
-	-webkit-transition: all .2s linear;
-	-o-transition: all .2s linear;
-	-ms-transition: all .2s linear;
-	margin: 0 auto;
-	color:white;
-}
-.auto-style2 {
 	color: #FFFFFF;
 }
-.auto-style3 {
-	color: red ;
-}
-.auto-style5 {
-	color: #009900;
-}
-p.code1{
-	color:#008000;
-}
-
 </style>
-
-<script>
-
-function checkNewPassword(){
-
-	var frm = document.forms["ChangePassword"];
-	var pass1 = frm.passwdNew.value.length;
-	var fr1 = parseInt(pass1, 10);
-	var pass2 = frm.passwdOld.value.length;
-	var fr2 = parseInt(pass2, 10);
-	
-	var sigkrisi = parseInt("6",10);
-	var sigkrisi2 = parseInt("1",10);
-
-	if (fr2 < sigkrisi2){
-		alert('Δεν καταχώρησατε τον προγηγούμενο κωδικό πρόσβασης σας');
-	  	return false;
-	}
-
-	if (fr1 < sigkrisi){
-		alert('Καταχωρήστε τον νέο κωδικό σας, με τουλάχιστον 6 χαρακτήρες');
-	  	return false;
-	}
-
-  	if(frm.passwdNew.value != frm.passwdRepeat.value){
-    	alert('Ο κωδικός που δώσατε δεν είναι ίδιος με την Επιβεβαίωσή του. Δώστε ίδιο κωδικό και στα δύο πεδία.');
-    	return false;
-  	}
-
-}
-</script>
 </head>
-<body> 
-      <div class="header-top">
+<body>
+     <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -444,9 +377,6 @@ echo					"</div>";
 echo					"</div>";
 echo				"</li>	";
 echo			"</ul>";
-			
-			
-			
 			}
 			?>
      <div class="clear"></div>
@@ -456,39 +386,69 @@ echo			"</ul>";
 	</div>
 
 
-
+       <div class="login">
+          <div class="wrap">
+				<ul class="breadcrumb breadcrumb__t"><a class="home" href="index.html">Αρχική</a>  / Ποιοι Είμαστε</ul>
+				<div class="section group">
+				    <div class="cont span_2_of_about">
+				       <h3>Το οραμα μας</h3>
+					   <p>Το Εικονικό Μουσείο Κυπριακών Τροφίμων και Διατροφής δημιουργήθηκε λόγω του ενθουσιασμού των εμπνευστών του στην προσπάθεια ανάδειξης του κυπριακού πολιτισμού και παράδοσης. Βασικός στόχος μας είναι η καταγραφή, μελέτη, διάσωση και παρουσίαση της γαστρονομικής κληρονομιάς του τόπου μας, της Κύπρου, καθώς επίσης και η διάδοσή της για επιστημονικούς, παιδαγωγικούς και ψυχαγωγικούς σκοπούς. </p>
+					   <p>Μετά τη δημιουργία του Εικονικού Κυπριακού Μουσείου (<a href="http://foodmuseum.cs.ucy.ac.cy">http://foodmuseum.cs.ucy.ac.cy</a>) που αγκαλιάστηκε από άτομα που αγαπούν την Κυπριακή Παράδοση και Κουζίνα, αποφασίσαμε την επέκταση του έργου μας αυτού και σε ένα Ηλεκτρονικό Κατάστημα, στο οποίο θα μπορούν οι λάτρεις της κυπριακής κουζίνας να αγοράσουν τα κυπριακά προϊόντα ηλεκτρονικά με αμεσότητα και ευκολία. </p>
+				       <p>Μεγάλο κίνητρό μας, ήταν να μπορούν να κάνουν παραγγελίες και Ομογενείς Συμπατριώτες μας που κατοικούν στο εξωτερικό και δυσκολεύονται να έχουν πρόσβαση στα αυθεντικά κυπριακά προϊόντα.</p>
+				       <p>Στο Ηλεκτρονικό μας κατάστημα μπορείτε να βρείτε Κυπριακά Προϊόντα ανά κατηγορία, Τρόφιμα (αλλαντικά, γλυκά κουταλιού, βότανα, γαλακτοκομικά, ροφήματα), Μαγειρικά Σκεύη, μέχρι και Συνταγές και Βιβλία.</p>
+				       <p>Μπορείτε να γίνετε εύκολα μέλος, να αναζητήσετε προϊόντα, να τα βάλετε στο καλάθι σας και στο τέλος να ολοκληρώσετε την παραγγελία σας λαμβάνοντας ακόμα προσφορές και εκπτώσεις.</p>
+				        <h5 class="m_6">Η ομαδα μασ</h5>
+				        <ul class="breadcrumb breadcrumb__t"><a href="http://foodmuseum.cs.ucy.ac.cy/web/guest/colls" class="home" target="_blank">Η ομάδα μας βρίσκεται εδώ</a></ul>
 	
-	
-	<p class="auto-style3"  style="margin-left:2%;"><?php echo $_SESSION['error_changePassword']; $_SESSION['error_changePassword'] = " "; ?></p>
-	<p class="auto-style5" style="margin-left:2%;"><?php echo $_SESSION['ok_changePassword']; $_SESSION['ok_changePassword'] = " "; ?></p>
+					<!--		 <h4 class="m_7"><a href="#">Χρυσταλλενη Λαζαρου </a></h4>
+							 <p>Ιδιώτης Ερευνητής.</p>
+					     </div>
+						<div class="col_1_of_about-box span_1_of_about-box">
+						   <a class="popup-with-zoom-anim" href="#small-dialog4">  <span class="rollover"></span><img src="images/xrisanthou.jpg" width="280" height="200" title="continue" alt=""/></a>
+		                    <div id="small-dialog4" class="mfp-hide">
+							   <div class="pop_up2">
+							   	 <h2>γιωργος χρυσανθου </h2>
+								 <p>Ο Γιώργος Λ. Χρυσάνθου είναι Αν. Καθηγητής στο Τμήμα Πληροφορικής του Παν.Κύπρου, όπου και διευθύνει το Εργαστήριο Γραφικών και Υπερμέσων.
+								  Επιστημονικός Υπεύθυνος ή μέλος Ερευνητικών Ομάδων αρκετών ερευνητικών προγραμμάτων, 
+								  που είχαν σχέση με γραφικά, εικονική πραγματικότητα και πολιτιστική κληρονομιά, που
+								   χρηματοδοτήθηκαν από διάφορες εθνικές και ευρωπαϊκές πηγές.
+								   Δημοσίευσε πάνω από 40 άρθρα σε περιοδικά και διεθνή συνέδρια σε γραφικά υπολογιστών και εικονική πραγματικότητα και είναι ένας από τους συγγραφείς 
+								   του βιβλίου "Computer Graphics and Virtual Environments: From Realism to Real-Time", (Addison-Wesley 2001). Ήταν συνδιοργανωτής του 5ο Διεθνές Συμπόσιο Virtual Reality, Archaeology and Cultural Heritage (VAST 2004),
+								   για το 12ο και το 13ο ACM Virtual Reality Software and Technology (ACM VRST 2005 and 2006) και για το 22ο EUROPEAN Conference on Modelling and Simulation (ECMS 2008).</p>
+								</div>
+							 </div>-->
 
-
-          <div class="register_account">
-          	<div class="wrap">
-    	      <h4 class="title">Αλλαγη Κωδικου Προσβασης διαχειριστη</h4>
-    	    
-    		   <form id='ChangePassword' onsubmit="return checkNewPassword();" method="POST" action="changePassword_database.php" accept-charset="UTF-8"> <!--method='post'-->
-    									
-    			 <div class="col_1_of_2 span_1_of_2" style="width: 40%;">
-				 	<p class="m_text2">Προηγούμενος Κωδικός Πρόσβασης</p>
-		    	 	<div><input type="password" id="passwdOld" name ="passwdOld" value=""></div>
-		          	<p class="m_text2">Νέος Κωδικός Πρόσβασης</p>
-					<div><input type="password" id="passwdNew" name="passwdNew" value=""></div>
-					<p class="m_text2">Επανάληψη Νέου Κωδικού Πρόσβασης</p>
-					<div><input type="password" id="passwdRepeat" name="passwdRepeat" value=""></div>					
-		    	 </div>
-		    	 <div>
-		         <br>
-		    <div class="clear"></div>
-		         <br>
-		      		<button type="submit" class="grey" name="submit" value="Submit" style="float:none">Αποθηκευση νεου κωδικου προσβασης</button></div>
-		    <div class="clear"></div>
-		    </form>						
-		    
-		    
-    	</div>
-    </div>
-      <div class="footer">
+		                    
+					     </div>
+				        <div class="clear"></div> 
+							
+		   </div>
+		   <!-- Add fancyBox main JS and CSS files -->
+		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+		<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+		<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+			});
+		});
+		</script>
+           </div>
+		   <div class="clear">
+					</div>	
+		  </div>
+	</div>	
+   </div>  
+   
+   <div class="footer">
 		<div class="footer-middle">
 			<div class="wrap">   
 		   <div class="section group example">
@@ -550,6 +510,5 @@ echo			"</ul>";
 		      </div>
 	     	
 	     	 </div>
-</body>
-
+    </body>
 </html>

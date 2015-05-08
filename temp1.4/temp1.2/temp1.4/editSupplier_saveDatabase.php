@@ -59,12 +59,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_edit_supplier = "Η επεξεργασία του προμηθευτή ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_edit_supplier'] = $ok_edit_supplier;
+		mysqli_close($conn);
 		header("Location:editSupplier.php");
 		die;
 	 }
 	
 	$error_edit_supplier = "Η επεξεργασία του προμηθευτή δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_edit_supplier'] = $error_edit_supplier;
+	mysqli_close($conn);
 	header("Location:editSupplier.php");
 	die;
 

@@ -58,6 +58,7 @@
 	else{
 			$error = "Δώσατε μη έγκυρο email!";
 			$_SESSION['error']=$error;
+			mysqli_close($conn);
 			header("Location:login_error.php");
 			die;
 		}
@@ -73,18 +74,22 @@
 	if($result1->num_rows == 1)
 		{
 			$_SESSION['login_user']=$email;
+			mysqli_close($conn);
 	        header("location:index.php"); /* Redirect the browser */
+	        die;
 	    }  
 		else {
 			
 			if ($PassA->num_rows == 1){
-			$_SESSION['login_admin']=$email;
-	        header("location:index.php"); /* Redirect the browser */
-			}
-			else {
-			$error = "Δώσατε μη έγκυρο κωδικό πρόσβασης!";
-			$_SESSION['error']=$error;
-			header("Location:login_error.php");
+				$_SESSION['login_admin']=$email;
+				mysqli_close($conn);
+		        header("location:index.php"); /* Redirect the browser */
+		        die;
+			}else {
+				$error = "Δώσατε μη έγκυρο κωδικό πρόσβασης!";
+				$_SESSION['error']=$error;
+				mysqli_close($conn);
+				header("Location:login_error.php");
 			}
 		}
 

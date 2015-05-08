@@ -42,7 +42,7 @@
 			$_SESSION['site'] = $row['Site'];
 			$_SESSION['fax'] = $row['Fax'];
 
-			
+			mysqli_close($conn);
 			header("Location:editSupplier.php");
 			die;
 

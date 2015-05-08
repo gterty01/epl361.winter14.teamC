@@ -29,13 +29,12 @@
     	die;
 	}
 	
-	print_r($_POST);
-	echo $_POST['oloklirwsi'];
 	$code = $_POST['oloklirwsi'];
 	
 	if(isset($_POST['oloklirwsi'])){
 		$code = $_POST['oloklirwsi'];	
 		$_SESSION["code_order"] = $code;
+		mysqli_close($conn);
 		header("Location: manageOrdersSetCompleted.php");
 		
 	}else{
@@ -44,6 +43,7 @@
 		$cancel = 1;
 		$sql="UPDATE `ORDERS` SET Canceled = '$cancel' WHERE Code = '$code'";
 		$result = $conn->query($sql);		
+		mysqli_close($conn);
 		header("Location: manageOrdersNotCompleted.php");
 	}
 

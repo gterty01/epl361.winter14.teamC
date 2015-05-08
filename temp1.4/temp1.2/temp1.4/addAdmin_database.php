@@ -42,6 +42,7 @@
 		 		$error_addΑdmin= "Το email υπάρχει ήδη!";
 		 		$_SESSION['error_addΑdmin'] = $error_addΑdmin;
 		 		$_SESSION['ok_addΑdmin'] = " ";
+				mysqli_close($conn);		 		
 				header("Location:addAdmin.php");
 				die;
 			}
@@ -57,12 +58,14 @@
 	if ($conn->query($sql) === TRUE){
 		$ok_addΑdmin= "Η προσθήκη του διαχειριστή ολοκληρώθηκε επιτυχώς!";		
 		$_SESSION['ok_addΑdmin'] = $ok_addΑdmin;
+		mysqli_close($conn);
 		header("Location:addAdmin.php");
 		die;
 	 }
 	
 	$error_addΑdmin= "Η προσθήκη του διαχειριστή δεν ολοκληρώθηκε επιτυχώς!";
 	$_SESSION['error_addΑdmin'] = $error_addΑdmin;
+	mysqli_close($conn);
 	header("Location:addAdmin.php");
 	die;
 
