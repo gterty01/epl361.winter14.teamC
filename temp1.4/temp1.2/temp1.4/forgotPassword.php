@@ -420,7 +420,7 @@ echo			"</ul>";
 						  <fieldset class="input">
 						    <p id="login-form-username">
 						      <label for="modlgn_username">Email που έχετε καταχωρήσει στην ιστοσελίδα μας:</label><br>
-						      <input id="modlgn_username" type="text" name="mail" class="inputbox" size="18" autocomplete="off" style="width: 45%">
+						      <input id="modlgn_username" type="text" name="mail" class="m_text2" size="18" autocomplete="off" style="width: 45%">
 						    </p>
 						    <div class="remember">
 							   <input type="submit" name="Submit" class="button" style="float:left; width: 261px;" value="Ανάκτηση Κωδικού Πρόσβασης"><div class="clear"></div>
