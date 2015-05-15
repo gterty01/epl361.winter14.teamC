@@ -52,11 +52,10 @@ $rows = $result->fetch_assoc();
 	$des=$rows['Description'];
 	
 ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Πληροφορίες Προϊόντων</title>
+<title>Κουπόνι Εστιατορίων</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />

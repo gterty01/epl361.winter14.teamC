@@ -486,10 +486,26 @@ echo			"</ul>";
 					if ($queryViewd->num_rows > 0){
 						$contain=1;
 						
-						$maxdate="SELECT MAX(Date_view), `CodeOfProduct`  FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis'; ";
+						$maxdate="SELECT MAX(Date_view) as maxdate  FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis'; ";
 						$querymax=$conn->query($maxdate);
 						$rowMax=$querymax->fetch_assoc();
-						$codeProsfato=$rowMax['CodeOfProduct'];
+						$dateMax=$rowMax['maxdate'];
+						
+						$selectProduct="SELECT `CodeOfProduct` FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis' AND `Date_view`='$dateMax' ; ";
+						$queryselectProduct=$conn->query($selectProduct);
+						$rowselectProduct=$queryselectProduct->fetch_assoc();
+
+						
+						
+						
+						
+						$codeProsfato=$rowselectProduct['CodeOfProduct'];
+						
+						
+						
+						
+						
+						
 						$cat="SELECT * FROM `PRODUCT` WHERE `Code`='$codeProsfato';";
 						$querykatigoria=$conn->query($cat);
 						$rowKat=$querykatigoria->fetch_assoc();
@@ -552,20 +568,21 @@ echo			"</ul>";
 						echo 				"</div>";
 					
 						
-						$maxtimes="SELECT MAX(SumTimes), `CodeOfProduct`  FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis'; ";
+						$maxtimes="SELECT MAX(SumTimes) as maxtime  FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis'; ";
 						$querytimes=$conn->query($maxtimes);
 						$rowTimes=$querytimes->fetch_assoc();
-						$codeTimes=$rowTimes['CodeOfProduct'];
+						$times = $rowTimes['maxtime'];
 						
+						$findprod = "SELECT `CodeOfProduct` FROM `VIEWPRODUCT` WHERE`UserCode`='$xristis' AND `SumTimes`='$times'; ";
+						$queryprod=$conn->query($findprod);
+						$rowProd=$queryprod->fetch_assoc();
+						$codeTimes=$rowProd['CodeOfProduct'];
 						$cat2="SELECT * FROM `PRODUCT` WHERE `Code`='$codeTimes';";
 						$querykatigoria2=$conn->query($cat2);
 						$rowKat2=$querykatigoria2->fetch_assoc();
 						$katigoria2=$rowKat2['CodeOfCategory'];
-						
-						
 						$ipopsifia2="SELECT * FROM `PRODUCT` WHERE `CodeOfCategory`='$katigoria2' and `Code`<>'$prwto' AND `Availability` >0;";
-						$quIpopsifia2=$conn->query($ipopsifia2);
-						
+						$quIpopsifia2=$conn->query($ipopsifia2);						
 						$range2=$quIpopsifia2->num_rows;
 						$var2=rand(1,$range2);
 						$counter=0;
