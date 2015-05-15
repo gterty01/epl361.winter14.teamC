@@ -48,13 +48,7 @@ else{
 	 .auto-style4 {
 		margin-left: 0;
 	}
-	.auto-style5 {
-		float: none;
-		margin-left: 0;
-		margin-top: 6px;
-		display:table-row;
-	}
-.auto-style1 {
+	.auto-style1 {
 	width: 90%;
 	-moz-transition: all .2s linear;
 	-webkit-transition: all .2s linear;
@@ -486,17 +480,17 @@ echo			"</ul>";
 <div class="wrap">
 	<form method="post" action="manageOrdersNotCompleted_database.php" name="formadiagrafis">
 		<h4 class="title"> Παραγγελιες που εκκρεμουν</h4>'
-
-  <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
+	<h1 class="remove">Παραγγελίες με Αντικαταβολή - Παραλαβή από το Χρήστη</h1>'
+<table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
     <thead>
       <tr style="vertical-align:middle">
-        <th scope="col">Email Χρήστη</th>
-        <th scope="col">Διεύθυνση Αποστολής</th>
-        <th scope="col">Συνολική Τιμή</th>
-        <th scope="col">Συνολικό Βάρος</th>
-        <th scope="col">Ημερομηνία Δημιουργίας</th> 
-        <th scope="col">Ολοκληρώθηκε </th>
-        <th scope="col">Ακύρωση </th>
+		<th scope="col" style="height: 46px">Email Χρήστη</th>
+        <th scope="col" style="height: 46px">Συνολική Τιμή</th>
+        <th scope="col" style="height: 46px">Συνολικό Βάρος</th>
+        <th scope="col" style="height: 46px">Ημερομηνία Δημιουργίας</th> 
+        <th scope="col" style="height: 46px">Ολοκληρώθηκε </th>
+        <th scope="col" style="height: 46px">Ακύρωση </th>
+        <th scope="col" style="height: 46px">Σημείο Παραλαβής</th>
       </tr>
     </thead>
     <tbody>
@@ -518,43 +512,49 @@ echo			"</ul>";
 		if (!$conn->set_charset("utf8")) {
     		printf("Error loading character set utf8: %s\n", $conn->error);
     		die;
-		}		
+		}	
+			
 		$not = 0;										
     	$stoixeiaParaggeliwn = "SELECT * FROM `ORDERS` WHERE Completed = '$not' AND Canceled = '$not' ";
 		$result = $conn->query($stoixeiaParaggeliwn);
 		$options = ""; 	
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()) {
-				$code = $row["Code"];
-				$email = $row["userEmail"];
-				$address = $row["AddressSent"];
-				$city = $row["citySent"];
-				$country = $row["countrySent"];
-				$pc = $row["postalSent"];
-				$date = $row["DateCreated"];
-				$price = $row["Price"];
-				$weight = $row["Weight"];
-		
-				echo "<tr>";
-				echo "<td>$email  </td>";
-				echo "<td>$address, $city, $country, $pc<br><br></td>";
-				echo "<td>$price   </td>";
-				echo "<td>$weight  </td>";
-				echo "<td>$date </td>";
-				echo "<td><input type='submit' class='oloklirwsiSubmit' id='oloklirwthike' name='oloklirwsi' value=$code></td>";
-				echo "<td><input type='submit' class='searchSubmit' id='diagrapsou$counter' name='akirwthike' value=$code></td>";
-				echo "</tr>";
-				
-				}
-		}
+				if ($row['antikataboli']!="ΟΧΙ"){
 
+					$code = $row["Code"];
+					$email = $row["userEmail"];
+					$address = $row["AddressSent"];
+					$city = $row["citySent"];
+					$country = $row["countrySent"];
+					$pc = $row["postalSent"];
+					$date = $row["DateCreated"];
+					$price = $row["Price"];
+					$weight = $row["Weight"];
+					$anti = $row['antikataboli'];
+	
+					echo '<tr onclick="window.location.href= \'AdminOrderAntikatavoli.php?order='.urlencode($code).' \'">';
+					echo "<td>$email  </td>";
+					echo "<td>$price   </td>";
+					echo "<td>$weight  </td>";
+					echo "<td>$date </td>";
+					echo "<td><input type='submit' class='oloklirwsiSubmit' id='oloklirwthike' name='oloklirwsi' value=$code></td>";
+					echo "<td><input type='submit' class='searchSubmit' id='diagrapsou$counter' name='akirwthike' value=$code></td>";
+					echo "<td>$anti</td>"; 
+					echo "</tr>";
+				}
+			}
+		}
    ?>
      </tbody>
    </table>
-   <br><br>
-   
-   </form>
-   
+    </form>
+  
+     <div class="clear"></div>
+     <br>
+     <br>
+     <br>
+     <br>
 
    <!--/slider -->
 </div>
@@ -612,7 +612,7 @@ echo			"</ul>";
 					<div class="wrap">
 				<div class="f-list2">
 				 <ul>
-				            <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
+				  <li>Copyright: CyFoodMuseum Team, CS-ucy</li>
 				 </ul>
 			    </div>
 			    <div class="clear"></div>

@@ -1,4 +1,4 @@
-<!--A Design by W3layouts
+﻿<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -6,22 +6,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
 <?php
-$xristis;
-if(isset($_SESSION['login_admin'])){
-	$xristis = $_SESSION['login_admin'];
-}
-else{
-	$xristis = "Σύνδεση";
-	header("Location: index.php");
-	die;
+if (!(isset($_SESSION['login_admin']))){
+header("Location: index.php");
+die;
 }
 
 ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προβολή Παραγγελιών που δεν ολοκληρώθηκαν</title>
+<title>Προβολή Λεπτομερειών της Παραγγελίας</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,6 +29,22 @@ else{
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+
+
+</script>
+    	
 
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!--start slider -->
@@ -45,35 +55,25 @@ else{
 <!--end slider -->
 <script src="js/jquery.easydropdown.js"></script>
 	<style type="text/css">
-	 .auto-style1 {
+	.tablewrapper{width: 95%; overflow-y: hidden; overflow-x: auto; 
+ background-color:white;  height: auto; padding: 5px;}
+	 .autostyle1 {
 		color:white;
 	}
 
 	 th{
-		color: black;
-	}
-	.button1{
-		float:left;
-		margin-top: 6%;
-	}
+	color: black;
+}
+.button1{
+	float:left;
+	margin-top: 6%;
+}
 
 </style>
-<script>
-	function check() {
-	
-	var frm = document.forms["imerominiaApostolis"];
-
-  	re=/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
-  	if (!(re.test(frm.date.value))){	
-  		alert ('Καταχωρήστε την Ημερομηνία Αποστολής στη μορφή YYYY-MM-DD');
-  		return false;
-  	}	
-	}    
-    
-  </script>								 
+						 
 </head>
 <body style="color: #FFFFFF; ">
-     <div class="header-top">
+   <div class="header-top">
 	   <div class="wrap"> 
 			<div class="header-top-left">
 			    				    <div class="box1">
@@ -434,11 +434,9 @@ echo			"</ul>";
 
      </div>
 	</div>
-     
-     
-     
-     
+
 <div class="wrap">
+	<div id="anafora">
 	<h4 class="title">Προϊοντα</h4>
     	    <div class="clear"></div>
     		<table>
@@ -469,9 +467,12 @@ echo			"</ul>";
 		    		printf("Error loading character set utf8: %s\n", $conn->error);
 		    		die;
 				}		
-						
-  				$code = $_SESSION["code_order"];
+				print_r($_GET);		
+  				$code = $_GET["order"];
   				$stoixeiaParaggelias = "SELECT * FROM `SERIESOFORDERS` WHERE CodeOfOrder = '$code'";
+  				$evresianti = "SELECT * FROM `ORDERS` WHERE `Code`='$code'";
+  				$antikResult = $conn->query($evresianti);
+  				$rowAnti = $antikResult -> fetch_assoc();
 				$result = $conn->query($stoixeiaParaggelias);	
 				$sinoliko = 0;
 				if($result->num_rows > 0){
@@ -507,35 +508,34 @@ echo			"</ul>";
 
     	    </tbody>
 			</table>
-    	    <div class="clear"></div>
-    	    <br>
-			<br>
-			<?php
-				$evresianti = "SELECT * FROM `ORDERS` WHERE `Code`='$code'";
-  				$antikResult = $conn->query($evresianti);
-  				$rowAnti = $antikResult -> fetch_assoc();
-  				
+<br>	  
+<br>
+	<?php
 				echo "<h1 class='remove'>Σημείο Παραλαβής</h1>";
 				echo "<div class='clear'></div>";
 				echo "<p class='m_text2'>"; echo $rowAnti['antikataboli']; echo "</p>";
 				echo "<br>";				
 				echo "<br>";
+				
+
+
+			
+	
 	?>
-
-<form id='imerominiaApostolis' method="post" onsubmit="return check()" action="manageEditOrder_database.php" name="imerominiaApostolis">			
-	<h1 class="remove" style="height: 19px">Καθορίστε την ημερομηνία που αποστάλθηκε η παραγγελία: </h1>
-	<br>
-	<input id="date" type="text" name="date" size="18" style="width: 19%">	
-
+</div>	
+				<button type='button' onclick=printDiv('anafora') class='grey' value='ΕΚΤΥΠΩΣΗ ΑΝΑΦΟΡΑΣ'>ΕΚΤΥΠΩΣΗ ΑΝΑΦΟΡΑΣ</button>
+				<br>
+				
+<div class="clear"></div>
 <div class="button1">
-<input type="submit" name="Submit" class="button" value="Υποβολή">
+<a href="manageOrdersCompletedOrCanceled.php"><input type="submit" name="Submit" class="button" value="Πίσω στις Παραγγελίες"></a>
 </div>
-</form>
-<br>	  
+<br>
+
 <div class="clear"></div>
 <br>
 <br>
-</div>
+
 </div>
 <div class="footer">
 		<div class="footer-middle">

@@ -5,6 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php session_start(); ?>
+
 <?php
 $xristis;
 if(isset($_SESSION['login_admin'])){
@@ -21,7 +22,7 @@ else{
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Προβολή Παραγγελιών που δεν ολοκληρώθηκαν</title>
+<title>Προβολή Παραγγελιών που ολοκληρώθηκαν ή ακυρώθηκαν</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,28 +50,42 @@ else{
 		color:white;
 	}
 
-	 th{
-		color: black;
+	 table {
+		color:#333;
+		font-family:Helvetica,Arial,sans-serif;
+		width:100%;
+		border-spacing:1px;
+		border-collapse:separate;
+		padding:0 3px;
+		margin-left:auto;
+		margin-right:auto;
 	}
-	.button1{
-		float:left;
-		margin-top: 6%;
-	}
-
-</style>
-<script>
-	function check() {
 	
-	var frm = document.forms["imerominiaApostolis"];
-
-  	re=/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
-  	if (!(re.test(frm.date.value))){	
-  		alert ('Καταχωρήστε την Ημερομηνία Αποστολής στη μορφή YYYY-MM-DD');
-  		return false;
-  	}	
-	}    
-    
-  </script>								 
+	td, th {
+		height:30px;
+		transition:all .3s;
+		text-align:center;
+		width:auto;
+		vertical-align:middle;
+	}
+	
+	th {
+		background:#B1B6AF;
+		font-weight:700;
+		color : white;
+	}
+	
+	td {
+		background:#FAFAFA;
+		color: #666699;
+	}
+	
+	tr:hover td{
+		background:#EEEEEE;
+		color:black;
+	}
+</style>
+							 
 </head>
 <body style="color: #FFFFFF; ">
      <div class="header-top">
@@ -434,108 +449,102 @@ echo			"</ul>";
 
      </div>
 	</div>
-     
-     
-     
-     
+
+
+
 <div class="wrap">
-	<h4 class="title">Προϊοντα</h4>
-    	    <div class="clear"></div>
-    		<table>
-    		<thead>
-		      <tr>
-		        <th class="remove" style="width: 266px; height: 19px">Όνομα</th>
-		        <th class="remove" style="width: 291px; height: 19px">Ποσότητα</th>
-		        <th class="remove" style="width: 291px; height: 19px">Ποσό</th>
-		      </tr>
-		    </thead>
-    	    <tbody>
-  			<?php
-  				$servername = "localhost";
-				$username = "cyfoodmuseum";
-				$password = "9m8ESxZD";
-				$dbname = "cyfoodmuseum";
-								
-				// Create connection
-				$conn = new mysqli($servername, $username, $password, $dbname);
-								
-				// Check connection
-				if ($conn->connect_error) {
-					die("Connection failed: " . $conn->connect_error);
-					echo "Connection faild";
-				}
+
+	<h4 class="title">Ολοκληρωμενες/Ακυρωμενες Παραγγελιες</h4>'
+
+	<form method="post" action="manageOrdersNotCompleted_database.php" name="formadiagrafis">
+  <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
+    <thead>
+      <tr style="vertical-align:middle">
+        <th scope="col">Email Χρήστη</th>
+        <th scope="col">Διεύθυνση Αποστολής</th>
+        <th scope="col">Συνολική Τιμή</th>
+        <th scope="col">Συνολικό Βάρος</th>
+        <th scope="col">Ημερομηνία Δημιουργίας</th> 
+        <th scope="col">Ημερομηνία Αποστολής</th> 
+        <th scope="col">Ολοκληρώθηκε </th>
+        <th scope="col">Ακυρώθηκε </th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+    	$servername = "localhost";
+		$username = "cyfoodmuseum";
+		$password = "9m8ESxZD";
+		$dbname = "cyfoodmuseum";
 						
-				if (!$conn->set_charset("utf8")) {
-		    		printf("Error loading character set utf8: %s\n", $conn->error);
-		    		die;
-				}		
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
 						
-  				$code = $_SESSION["code_order"];
-  				$stoixeiaParaggelias = "SELECT * FROM `SERIESOFORDERS` WHERE CodeOfOrder = '$code'";
-				$result = $conn->query($stoixeiaParaggelias);	
-				$sinoliko = 0;
-				if($result->num_rows > 0){
-					while($row = $result->fetch_assoc()) {
-						$product = $row["CodeOfProduct"];
-						$quantity = $row["Quantity"];
-  						$stoixeiaProiontwn= "SELECT * FROM `PRODUCT` WHERE Code = '$product'";
-  						$result1 = $conn->query($stoixeiaProiontwn);	
-  						if($result1->num_rows > 0){
-							while($row1 = $result1->fetch_assoc()) {
-								$name = $row1["Name"];
-								$price = $row1["Price"];
-								$poso = $price * $quantity;
-								echo "<tr>";
-			    	    		echo "<td><p class='m_text2'>$name</p></td>";
-			    	    		echo "<td><p class='m_text2'>$quantity</p></td>";
-			    	    		echo "<td><p class='m_text2'>$poso</p></td>";
-								echo "</tr>";
-								$sinoliko = $sinoliko + $poso;
-							}
-						}
-					}
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+			echo "Connection faild";
+		}
+						
+		if (!$conn->set_charset("utf8")) {
+    		printf("Error loading character set utf8: %s\n", $conn->error);
+    		die;
+		}		
+		$yes = 1;										
+    	$stoixeiaParaggeliwn = "SELECT * FROM `ORDERS` WHERE Completed = '$yes' OR Canceled = '$yes' ";
+		$result = $conn->query($stoixeiaParaggeliwn);
+		$options = ""; 	
+		if($result->num_rows > 0){
+			while($row = $result->fetch_assoc()) {
+				$code = $row["Code"];
+				$email = $row["userEmail"];
+				$address = $row["AddressSent"];
+				$city = $row["citySent"];
+				$country = $row["countrySent"];
+				$pc = $row["postalSent"];
+				$dateSent = $row["DateSent"];
+				$dateCreated = $row["DateCreated"];
+				$price = $row["Price"];
+				$weight = $row["Weight"];
+				$complete = $row["Completed"];
+				$cancel = $row["Canceled"];
+
+				echo "<tr>";
+				echo "<td>$email  </td>";
+				echo "<td>$address, $city, $country, $pc<br><br></td>";
+				echo "<td>$price   </td>";
+				echo "<td>$weight  </td>";
+				echo "<td>$dateCreated </td>";
+				echo "<td>$dateSent </td>";
+
+				if ($complete == 1){
+					echo "<td>ΝΑΙ</td>";
 				}
-			?> 
-    	    	 <tr>
-    	    	  <td><br></td>
-			 	</tr>
-      	    	<tr>
-				 <th class="txt-lt" style="width: 266px; height: 19px">Σύνολο</th>
-				 <td><h1 class="remove" style="width: 266px; height: 19px">€<?php echo $sinoliko?></h1></td>
-								
-    	    	</tr>
+				else{
+					echo "<td>OΧΙ</td>";
+				}
+				
+				if ($cancel == 1){
+					echo "<td>ΝΑΙ</td>";
+				}
+				else{
+					echo "<td>OΧΙ</td>";
+				}
+				
+				echo "</tr>";
+				
+				}
+		}
 
-    	    </tbody>
-			</table>
-    	    <div class="clear"></div>
-    	    <br>
-			<br>
-			<?php
-				$evresianti = "SELECT * FROM `ORDERS` WHERE `Code`='$code'";
-  				$antikResult = $conn->query($evresianti);
-  				$rowAnti = $antikResult -> fetch_assoc();
-  				
-				echo "<h1 class='remove'>Σημείο Παραλαβής</h1>";
-				echo "<div class='clear'></div>";
-				echo "<p class='m_text2'>"; echo $rowAnti['antikataboli']; echo "</p>";
-				echo "<br>";				
-				echo "<br>";
-	?>
+   ?>
+     </tbody>
+   </table>
+   <br><br>
+   
+   </form>
+   
 
-<form id='imerominiaApostolis' method="post" onsubmit="return check()" action="manageEditOrder_database.php" name="imerominiaApostolis">			
-	<h1 class="remove" style="height: 19px">Καθορίστε την ημερομηνία που αποστάλθηκε η παραγγελία: </h1>
-	<br>
-	<input id="date" type="text" name="date" size="18" style="width: 19%">	
-
-<div class="button1">
-<input type="submit" name="Submit" class="button" value="Υποβολή">
-</div>
-</form>
-<br>	  
-<div class="clear"></div>
-<br>
-<br>
-</div>
+   <!--/slider -->
 </div>
 <div class="footer">
 		<div class="footer-middle">
