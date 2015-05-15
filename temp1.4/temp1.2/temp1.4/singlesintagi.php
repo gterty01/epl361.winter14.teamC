@@ -52,7 +52,7 @@ $rows = $result->fetch_assoc();
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Πληροφορίες Προϊόντων</title>
+<title>Συνταγές</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -530,7 +530,7 @@ echo			"</ul>";
 		 </div>
 
 		 <div class='wrap'>
-		<button type='button' onclick=printDiv('kouponi') class='grey' value='ΕΚΤΥΠΩΣΗ ΣΥΝΤΑΓΗΣ'>ΕΚΤΥΠΩΣΗ ΚΟΥΠΟΝΙΟΥ</button>
+		<button type='button' onclick=printDiv('sintagi') class='grey' value='ΕΚΤΥΠΩΣΗ ΣΥΝΤΑΓΗΣ'>ΕΚΤΥΠΩΣΗ ΣΥΝΤΑΓΗΣ</button>
 		</div>
 		<br><br>
 		<br><br>

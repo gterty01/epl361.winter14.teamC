@@ -508,7 +508,7 @@ echo			"</ul>";
     	    </tbody>
 			</table>
 <form id='imerominiaApostolis' method="post" onsubmit="return check()" action="manageEditOrder_database.php" name="imerominiaApostolis">			
-	<h1 class="remove" style="height: 19px">Καθορίστε την ημερομηνία που αποστάλθηκε η παραγγελία: </h1>
+	<h1 class="remove" style="height: 19px">Καθορίστε την ημερομηνία που ολοκληρώθηκε η παραγγελία: </h1>
 	<br>
 	<input id="date" type="text" name="date" size="18" style="width: 19%">	
 

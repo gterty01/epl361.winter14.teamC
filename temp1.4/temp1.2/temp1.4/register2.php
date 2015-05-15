@@ -747,11 +747,18 @@ if ($code==0){
 echo '<script type="text/javascript">';
 echo 'alert("Το email που δώσατε υπάρχει ήδη καταχωρημένο.");';
 echo '</script>';
-}else{
+}
+if ($code==1){
 echo '<script type="text/javascript">';
 echo 'alert("Η λέξη ασφαλείας που δώσατε είναι λανθασμένη. Επαναλάβετε!");';
 echo '</script>';
 }
+if ($code==2){
+echo '<script type="text/javascript">';
+echo 'alert("Οι ειδικοί χαρακτήρες δεν επιτρέπονται στα πεδία. Χρησιμοποιήστε μόνο γράμματα και αριθμούς.");';
+echo '</script>';
+}
+
 ?>
    </body>
    
