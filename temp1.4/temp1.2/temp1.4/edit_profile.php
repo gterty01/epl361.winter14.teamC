@@ -4,8 +4,11 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-
 <?php session_start(); ?>
+<?php 
+	parse_url(file_get_contents("php://input"), $_GET);
+	$code=$_GET['item'];
+?>
 
 <?php
 $xristis;
@@ -750,5 +753,13 @@ echo			"</ul>";
 		</div>
 
 </body>
+
+<?php
+if ($code==1){
+	echo '<script type="text/javascript">';
+	echo 'alert("Οι ειδικοί χαρακτήρες δεν επιτρέπονται στα πεδία. Χρησιμοποιήστε μόνο γράμματα και αριθμούς.");';
+	echo '</script>';
+}
+?>
 
 </html>

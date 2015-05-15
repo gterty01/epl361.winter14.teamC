@@ -27,8 +27,8 @@
     	printf("Error loading character set utf8: %s\n", $conn->error);
     	die;
 	}
-	
-	parse_url(file_get_contents("php://input"), $_POST);	
+	parse_url(file_get_contents("php://input"), $_POST);
+		
 	$Name = $_POST['name'];	
 	$Surname = $_POST['surname'];
 	$Birth = $_POST['birth'];
@@ -41,6 +41,50 @@
 	$PhoneNumber =$_POST['tel1'];
 	$HomeNumber = $_POST['tel2'];
     $email = $_SESSION['login_user'];
+
+	if ((preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['name']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['surname']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['city']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['postalCode']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['birth']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>\.\?\\\]/', $_POST['address1']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>\.\?\\\]/', $_POST['address2']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['poli']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['codeC1']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['codeC2']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel1']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel2']))){
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['name']))){
+			$_SESSION['onoma'] = $_POST["name"];
+		}
+			
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['surname']))){
+			$_SESSION['epitheto']= $_POST['surname'];
+		}
+			
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['birth']))){
+			$_SESSION['birth'] = $_POST['birth'];
+		}
+			
+		$_SESSION['filo']=$_POST['filo'];
+			
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['postalCode']))){
+			$_SESSION['tk'] = $_POST['postalCode'];
+		}
+			
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['address1']))){
+			$_SESSION['d1']= $_POST['address1'];
+		}
+								
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['address2']))){
+			$_SESSION['d2']=$_POST['address2'];
+		}
+		
+		$_SESSION['xwra']=$_POST['country'];
+			
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['city']))){
+			$_SESSION['poli'] = $_POST['city'];
+		}
+
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel1']))){
+			$_SESSION['tel1']=$_POST['tel1'];
+		}
+		if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel2']))){
+			$_SESSION['tel2']=$_POST['tel2'];
+		}
+
+	 	header("Location: edit_profile.php?item=1");
+	 	die;
+	}	
 	
 	$_SESSION['onoma'] = $Name;
 	$_SESSION['epitheto'] = $Surname;

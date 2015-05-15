@@ -49,6 +49,22 @@
 		}
 	}
 
+	$querys ="SELECT * FROM `USERS_FM`";
+	$result=$conn->query($querys);
+	
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()) {
+		 	if ($row["Email"] == $admin){
+		 		$error_addΑdmin= "Το email υπάρχει ήδη!";
+		 		$_SESSION['error_addΑdmin'] = $error_addΑdmin;
+		 		$_SESSION['ok_addΑdmin'] = " ";
+				mysqli_close($conn);		 		
+				header("Location:addAdmin.php");
+				die;
+			}
+		}
+	}
+
 	$encrypted=md5($Password);
 
 	$_SESSION['error_addΑdmin'] = " ";

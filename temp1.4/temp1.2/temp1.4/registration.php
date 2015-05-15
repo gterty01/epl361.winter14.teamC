@@ -67,10 +67,103 @@
 			 	}
 		    }
 		}
+		
+		$admins ="SELECT * FROM `ADMINS`";
+		$result_admins = $conn->query($admins);
+			
+		if($result_admins->num_rows > 0){
+			while($rowAdmins = $result_admins->fetch_assoc()) {
+			 	if ($rowAdmins["Email"]==$_POST['mail']){
+			 			 		
+			 		$_SESSION['onoma'] = $_POST["name"];
+					$_SESSION['epitheto']= $_POST['surname'];
+					
+					$_SESSION['gen'] = $_POST['birth'];
+					$_SESSION['city'] = $_POST['city'];
+					$_SESSION['tk'] = $_POST['postalCode'];
+					$_SESSION['d1']= $_POST['address1'];
+					
+					$_SESSION['filo']=$_POST['filo'];
+					$_SESSION['d2']=$_POST['address2'];
+					$_SESSION['xwra']=$_POST['country'];
+					$_SESSION['poli']=$_POST['poli'];
+					$_SESSION['codeC1']=$_POST['codeC1'];
+					$_SESSION['codeC2']=$_POST['codeC2'];
+					$_SESSION['tel1']=$_POST['tel1'];
+					$_SESSION['tel2']=$_POST['tel2'];
+					mysqli_close($conn);
+			 		header("Location: register2.php?item=0");
+			 		die;
+			 	}
+		    }
+		}
+
 		if($_POST["captcha_input"] != $_SESSION["captcha_code"]){
+					$_SESSION['onoma'] = $_POST["name"];
+					$_SESSION['epitheto']= $_POST['surname'];
+					
+					$_SESSION['gen'] = $_POST['birth'];
+					$_SESSION['city'] = $_POST['city'];
+					$_SESSION['tk'] = $_POST['postalCode'];
+					$_SESSION['d1']= $_POST['address1'];
+					
+					$_SESSION['filo']=$_POST['filo'];
+					$_SESSION['d2']=$_POST['address2'];
+					$_SESSION['xwra']=$_POST['country'];
+					$_SESSION['poli']=$_POST['poli'];
+					$_SESSION['codeC1']=$_POST['codeC1'];
+					$_SESSION['codeC2']=$_POST['codeC2'];
+					$_SESSION['tel1']=$_POST['tel1'];
+					$_SESSION['tel2']=$_POST['tel2'];
+
 			mysqli_close($conn);
 			header("Location: register2.php?item=1");
 			die;		
+		}
+		if ((preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['name']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['surname']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['city']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['postalCode']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['birth']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['address1']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['address2']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['poli']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['codeC1']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['codeC2']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel1']))||(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel2']))){
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['name']))){
+					$_SESSION['onoma'] = $_POST["name"];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['surname']))){
+					$_SESSION['epitheto']= $_POST['surname'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['birth']))){
+					$_SESSION['gen'] = $_POST['birth'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['city']))){
+					$_SESSION['city'] = $_POST['city'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['postalCode']))){
+					$_SESSION['tk'] = $_POST['postalCode'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['address1']))){
+					$_SESSION['d1']= $_POST['address1'];
+					}
+					
+					$_SESSION['filo']=$_POST['filo'];
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['address2']))){
+					$_SESSION['d2']=$_POST['address2'];
+					}
+					$_SESSION['xwra']=$_POST['country'];
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['poli']))){
+					$_SESSION['poli']=$_POST['poli'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['codeC1']))){
+					$_SESSION['codeC1']=$_POST['codeC1'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['codeC2']))){
+					$_SESSION['codeC2']=$_POST['codeC2'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel1']))){
+					$_SESSION['tel1']=$_POST['tel1'];
+					}
+					if (!(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_POST['tel2']))){
+					$_SESSION['tel2']=$_POST['tel2'];
+					}
+
+		 	header("Location: register2.php?item=2");
+		 	die;
+		
 		}
 		
 		if ($var=="no"){
