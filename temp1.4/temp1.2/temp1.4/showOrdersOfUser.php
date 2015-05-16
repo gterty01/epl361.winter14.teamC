@@ -485,14 +485,14 @@ echo			"</ul>";
 		}
 		$email = $_SESSION['login_user'];		
 		$no = 0;										
-    	$stoixeiaParaggeliwn = "SELECT * FROM `ORDERS` WHERE userEmail = '$email' AND Completed = '$no'";
+    	$stoixeiaParaggeliwn = "SELECT * FROM `ORDERS` WHERE userEmail = '$email' AND Completed = '$no' AND `Canceled`='$no'";
 		$result = $conn->query($stoixeiaParaggeliwn);
 		$options = ""; 	
 		if($result->num_rows > 0){
 		//echo '<h4 class="title">Παραγγελιες που Εκκρεμουν</h4>';
 		echo '<br>';
   		echo '<tr style="vertical-align:middle">';
-        echo '<th scope="col">Διεύθυνση Αποστολής</th>';
+        echo '<th scope="col">Σημείο Παραλαβής</th>';
         echo '<th scope="col">Συνολική Τιμή</th>';
         echo '<th scope="col">Συνολικό Βάρος</th>';
         echo '<th scope="col">Ημερομηνία Δημιουργίας</th>'; 
@@ -512,13 +512,15 @@ echo			"</ul>";
 				$weight = $row["Weight"];
 				$complete = $row["Completed"];
 				$cancel = $row["Canceled"];
-	 			
+	 			$anti = $row["antikataboli"];
+	 			if ($anti!="ΟΧΙ"){
 				echo '<tr onclick="window.location.href= \'showProductsOfOrder.php?order='.urlencode($code).' \'">';
-				echo "<td>$address, $city, $country, $pc<br><br></td>";
+				echo "<td>$anti</td>";
 				echo "<td>$price   </td>";
 				echo "<td>$weight  </td>";
 				echo "<td>$dateCreated </td>";
 				echo "</tr>";
+				}
 					
 			}
 		}
@@ -566,7 +568,7 @@ echo			"</ul>";
 		//echo '<h4 class="title">Παραγγελιες που Ολοκληρωθηκαν/Ακυρωθηκαν</h4>';
 		echo '<br>';
   		echo '<tr style="vertical-align:middle">';
-        echo '<th scope="col">Διεύθυνση Αποστολής</th>';
+        echo '<th scope="col">Σημείο Παραλαβής</th>';
         echo '<th scope="col">Συνολική Τιμή</th>';
         echo '<th scope="col">Συνολικό Βάρος</th>';
         echo '<th scope="col">Ημερομηνία Δημιουργίας</th>'; 
@@ -588,9 +590,10 @@ echo			"</ul>";
 				$weight = $row["Weight"];
 				$complete = $row["Completed"];
 				$cancel = $row["Canceled"];
-	 			
+				$anti=$row['antikataboli'];
+	 			if ($anti!="ΟΧΙ"){
 				echo '<tr onclick="window.location.href= \'showProductsOfOrder.php?order='.urlencode($code).' \'">';
-				echo "<td>$address, $city, $country, $pc<br><br></td>";
+				echo "<td>$anti</td>";
 				echo "<td>$price   </td>";
 				echo "<td>$weight  </td>";
 				echo "<td>$dateCreated </td>";
@@ -602,6 +605,7 @@ echo			"</ul>";
 					}
 				}
 				echo "</tr>";
+				}
 					
 			}
 		}

@@ -31,6 +31,22 @@ die;
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+
+
+</script>
+    	
 
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <!--start slider -->
@@ -422,6 +438,7 @@ echo			"</ul>";
 	</div>
 
 <div class="wrap">
+	<div id="anafora">
 	<h4 class="title">Προϊοντα</h4>
     	    <div class="clear"></div>
     		<table>
@@ -455,6 +472,9 @@ echo			"</ul>";
 				print_r($_GET);		
   				$code = $_GET["order"];
   				$stoixeiaParaggelias = "SELECT * FROM `SERIESOFORDERS` WHERE CodeOfOrder = '$code'";
+  				$evresianti = "SELECT * FROM `ORDERS` WHERE `Code`='$code'";
+  				$antikResult = $conn->query($evresianti);
+  				$rowAnti = $antikResult -> fetch_assoc();
 				$result = $conn->query($stoixeiaParaggelias);	
 				$sinoliko = 0;
 				if($result->num_rows > 0){
@@ -491,6 +511,30 @@ echo			"</ul>";
     	    </tbody>
 			</table>
 <br>	  
+<br>
+	<?php
+			if (($rowAnti['antikataboli']!="ΟΧΙ") && ($rowAnti['Canceled']==0) && ($rowAnti['Completed']==0)){
+					echo "<h1 class='remove'>Σημείο Παραλαβής</h1>";
+					echo "<div class='clear'></div>";
+				echo "<p class='m_text2'>"; echo $rowAnti['antikataboli']; echo "</p>";
+				echo "<br>";
+				echo "<p class='m_text2'>Παραλάβετε την παραγγελία σας επιδεικνύοντας αυτήν την αναφορά εκτυπωμένη στο σημείο που επιλέξατε.</p>";
+				echo "<p class='m_text2'>Η πληρωμή γίνεται με αντικαταβολή, την ημέρα παραλαβής από το σημείο που έχετε επιλέξει.</p>";
+				
+				echo "<br>";
+				
+
+
+			}
+	
+	?>
+</div>	
+		<?php	
+			if (($rowAnti['antikataboli']!="ΟΧΙ") && ($rowAnti['Canceled']==0) && ($rowAnti['Completed']==0)){
+				echo "<button type='button' onclick=printDiv('anafora') class='grey' value='ΕΚΤΥΠΩΣΗ ΑΝΑΦΟΡΑΣ'>ΕΚΤΥΠΩΣΗ ΑΝΑΦΟΡΑΣ</button>";
+				echo "<br>";
+				}
+		?>
 <div class="clear"></div>
 <div class="button1">
 <a href="showOrdersOfUser.php"><input type="submit" name="Submit" class="button" value="Προβολή Παραγγελιών"></a>

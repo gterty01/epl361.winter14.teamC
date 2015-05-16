@@ -527,9 +527,6 @@ echo			"</ul>";
 				<br>
 				
 <div class="clear"></div>
-<div class="button1">
-<a href="manageOrdersCompletedOrCanceled.php"><input type="submit" name="Submit" class="button" value="Πίσω στις Παραγγελίες"></a>
-</div>
 <br>
 
 <div class="clear"></div>

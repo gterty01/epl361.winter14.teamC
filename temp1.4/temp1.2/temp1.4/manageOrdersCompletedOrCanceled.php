@@ -455,19 +455,19 @@ echo			"</ul>";
 <div class="wrap">
 
 	<h4 class="title">Ολοκληρωμενες/Ακυρωμενες Παραγγελιες</h4>'
+	<h1 class="remove">Παραγγελίες με Αντικαταβολή - Παραλαβή από το Χρήστη</h1>'
 
-	<form method="post" action="manageOrdersNotCompleted_database.php" name="formadiagrafis">
   <table class="tsc_tables2_1" summary="Cart of User" style="width:75%; align:center;" id="proiontakalathiou">
     <thead>
       <tr style="vertical-align:middle">
-        <th scope="col">Email Χρήστη</th>
-        <th scope="col">Διεύθυνση Αποστολής</th>
-        <th scope="col">Συνολική Τιμή</th>
-        <th scope="col">Συνολικό Βάρος</th>
-        <th scope="col">Ημερομηνία Δημιουργίας</th> 
-        <th scope="col">Ημερομηνία Αποστολής</th> 
-        <th scope="col">Ολοκληρώθηκε </th>
-        <th scope="col">Ακυρώθηκε </th>
+        <th scope="col" style="height: 46px">Email Χρήστη</th>
+        <th scope="col" style="height: 46px">Συνολική Τιμή</th>
+        <th scope="col" style="height: 46px">Συνολικό Βάρος</th>
+        <th scope="col" style="height: 46px">Ημερομηνία Δημιουργίας</th> 
+        <th scope="col" style="height: 46px">Ημερομηνία Ολοκλήρωσης</th> 
+        <th scope="col" style="height: 46px">Ολοκληρώθηκε </th>
+        <th scope="col" style="height: 46px">Ακυρώθηκε </th>
+        <th scope="col" style="height: 46px">Σημείο Παραλαβής</th>
       </tr>
     </thead>
     <tbody>
@@ -491,11 +491,12 @@ echo			"</ul>";
     		die;
 		}		
 		$yes = 1;										
-    	$stoixeiaParaggeliwn = "SELECT * FROM `ORDERS` WHERE Completed = '$yes' OR Canceled = '$yes' ";
+    	$stoixeiaParaggeliwn = "SELECT * FROM `ORDERS` WHERE Completed = '$yes' OR Canceled = '$yes'";
 		$result = $conn->query($stoixeiaParaggeliwn);
 		$options = ""; 	
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()) {
+				if ($row['antikataboli']!="ΟΧΙ"){
 				$code = $row["Code"];
 				$email = $row["userEmail"];
 				$address = $row["AddressSent"];
@@ -508,10 +509,11 @@ echo			"</ul>";
 				$weight = $row["Weight"];
 				$complete = $row["Completed"];
 				$cancel = $row["Canceled"];
+				$anti = $row['antikataboli'];
 
-				echo "<tr>";
+				//echo "<tr>";
+				echo '<tr onclick="window.location.href= \'AdminOrderAntikatavoli.php?order='.urlencode($code).' \'">';
 				echo "<td>$email  </td>";
-				echo "<td>$address, $city, $country, $pc<br><br></td>";
 				echo "<td>$price   </td>";
 				echo "<td>$weight  </td>";
 				echo "<td>$dateCreated </td>";
@@ -530,8 +532,9 @@ echo			"</ul>";
 				else{
 					echo "<td>OΧΙ</td>";
 				}
-				
+				echo "<td>$anti</td>"; 
 				echo "</tr>";
+				}
 				
 				}
 		}
@@ -540,10 +543,6 @@ echo			"</ul>";
      </tbody>
    </table>
    <br><br>
-   
-   </form>
-   
-
    <!--/slider -->
 </div>
 <div class="footer">

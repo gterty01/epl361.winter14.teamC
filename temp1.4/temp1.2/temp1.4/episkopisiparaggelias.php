@@ -66,6 +66,25 @@ $xristis = $_SESSION['login_user'];
 
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="js/jquery.easydropdown.js"></script>
+<script>
+function checkSimeio(){
+if(document.getElementById('simeio1').checked) {
+return true;
+
+}
+if(document.getElementById('simeio2').checked){
+return true;
+}
+if(document.getElementById('simeio3').checked){
+return true;
+}
+
+  alert('Δεν διαλέξατε σημείο παραλαβής!');
+  return false;
+
+}
+</script>
+
 <style type="text/css">
 .auto-style1 {
 	width: 90%;
@@ -472,13 +491,11 @@ if (!$conn->set_charset("utf8")) {
     //printf("Current character set: %s\n", $conn->character_set_name());
 }//die;
 $xristis=$_SESSION['login_user'];
-if(!(isset($_POST['diagrapsou']))){
 if(isset($_POST['arithmosproiontwn'])){
 $_SESSION['arithmosproiontwn']=$_POST['arithmosproiontwn'];
 }
 $num=0;
 $antikeimena=$_SESSION['arithmosproiontwn'];	
-	echo "<form method='post' action='paraggelia.php' name='formaproiontwn'>";
 if((isset($_POST['arithmosproiontwn']))){
 	while ($num<$antikeimena){
 	$proionOnoma=$_POST["onoma$num"];
@@ -492,6 +509,8 @@ if((isset($_POST['arithmosproiontwn']))){
 	$_SESSION["varos$num"]=$varos;
 	$_SESSION["posotita$num"]=$posotita;
 			$poso=$posotita*$price;
+			$varosAntikeimenou=$posotita*$varos;
+	$_SESSION["varosAntikeimenou$num"]=$varosAntikeimenou;
 	$_SESSION["poso$num"]=$poso;
 		/*	echo "<input type='hidden' name='onoma$num' id='onoma$num' value=$proionOnoma>";
 			echo "<input type='hidden' name='kodikos$num' id='kodikos$num' value=$kodikosproion>";
@@ -525,50 +544,28 @@ while($row = $result->fetch_assoc()) {
 	$_SESSION['surnSent']=$surn;
 }
 
-	if(isset($_POST['diefthinsiApostolis'])){
-	$address=$_POST['address'];
-	$postalcode=$_POST['postalCode'];
-	$city=$_POST['Poli'];
-	$_SESSION['addressSent']=$address;
-	$_SESSION['postalSent']=$postalcode;
-	$_SESSION['citySent']=$city;
+echo "<h4 class='title' style='margin-left:50px;'>ολοκληρωση παραγγελιασ</h4>";
+	echo 	"<br>";
 
+    echo "<div class='wrap'>";
+			 
+    	echo "<h4 class='title'>Επιλεξτε σημειο παραλαβης</h4>";
+    	echo "<div class='clear'></div>";
+		echo "<form id='simeioparalavis' onsubmit='return checkSimeio();' method='POST' action='oloklirwsiAnaforas.php' accept-charset='UTF-8'>";
+		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='simeio1' name='simeio' value='Σημείο 1'>Σημείο 1</p>";
+		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='simeio2' name='simeio' value='Σημείο 2'>Σημείο 2</p>";
+		echo "<p class='m_text2'><input class='m_text2' type='radio' id ='simeio3' name='simeio' value='Σημείο 3'>Σημείο 3</p>";
 
-	}
+		echo 	"<br>";
 
-$address2=$_SESSION['addressSent'];
-$postal2=$_SESSION['postalSent'];
-$city2=$_SESSION['citySent'];
-$country2=$_SESSION['countrySent'];
-$name2=$_SESSION['nameSent'];
-$surn2=$_SESSION['surnSent'];
+		echo 	"<button type='submit' class='grey' name='submitSimeio' value='Submit'>Υποβολη</button>";
 
-echo "<div class='wrap'>";
-		echo "<h4 class='title'>διευθυνση αποστολης</h4>";
-    	echo 	"<div class='clear'></div>";
-    	echo    	"<p class='m_text2'>$address2</p>";
-		echo		"<p class='m_text2'>$postal2, $city2, $country2 </p>";
-		echo		"<p class='m_text2'>$name2 $surn2</p>";
-		echo	"<br>";
-		echo "<input type='hidden' name='addressSent' id='addressSent' value='$address2'>";
-		echo "<input type='hidden' name='postalSent' id='postalSent' value=$postal2>";
-		echo "<input type='hidden' name='citySent' id='citySent' value=$city2>";
-		echo "<input type='hidden' name='country' id='country' value=$country2>";
-		echo "<input type='hidden' name='name' id='name' value=$name2>";
-		echo "<input type='hidden' name='surn' id='surn' value=$surn2>";
+    	echo "</form>";
+
 	
-		//echo 	"<button type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>Επεξεργασια Διευθυνσης</button>";
-		//echo	"<input type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>";
-		//echo 	"<input type='submit' class='grey' name='submitsinexeia' value='Συνεχεια' style='margin-left:50px; '>";
-		echo 	"<button type='submit' class='grey' name='submitsinexeia' style='margin-left:50px; ' value='Συνεχεια'>Συνεχεια</button>";
-
 	echo "</div>";
-	echo "</form>";
-	echo "<form method='post' action='allagidiefthinsis.php' name='formaallagwn'>";
-	echo 	"<button type='submit' class='grey' name='submitdiefthinsi' value='Επεξεργασια Διευθυνσης'>Επεξεργασια Διευθυνσης</button>";
-	echo "</form>";
 
-}
+
 ?>
      <div class="clear"><br><br></div>
      <div class="clear"></div>
