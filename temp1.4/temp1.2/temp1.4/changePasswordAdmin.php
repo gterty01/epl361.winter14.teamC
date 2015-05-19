@@ -165,23 +165,23 @@ function checkNewPassword(){
 		<ul class="icon1 sub-icon1 profile_img">
 		<?php
 			$servername = "localhost";
-								$username = "cyfoodmuseum";
-								$password = "9m8ESxZD";
-								$dbname = "cyfoodmuseum";
-								// Create connection
-								$conn = new mysqli($servername, $username, $password, $dbname);
-								//@mysql_select_db($dbname) or die ("No database");
+			$username = "cyfoodmuseum";
+			$password = "9m8ESxZD";
+			$dbname = "cyfoodmuseum";
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			//@mysql_select_db($dbname) or die ("No database");
 								
-								// Check connection
-								if ($conn->connect_error) {
-								    die("Connection failed: " . $conn->connect_error);
-								    echo "Connection faild";
-								}
-								if (!$conn->set_charset("utf8")) {
-								    printf("Error loading character set utf8: %s\n", $conn->error);
-								} else {
-								    //printf("Current character set: %s\n", $conn->character_set_name());
-								}//die;
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			    echo "Connection faild";
+			}
+			if (!$conn->set_charset("utf8")) {
+			    printf("Error loading character set utf8: %s\n", $conn->error);
+			} else {
+			    //printf("Current character set: %s\n", $conn->character_set_name());
+			}//die;
 
 			if(isset($_SESSION['login_user'])){
 			    $xristis=$_SESSION['login_user'];
@@ -234,7 +234,10 @@ function checkNewPassword(){
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
 
-		}	    
+		}
+		
+		mysqli_close($conn);
+	    
 	    ?>
 
 	  </div>
@@ -322,11 +325,12 @@ function checkNewPassword(){
 						$category=$row3['CodeCat'];
 						$onomasia=$row3['NameCat'];
 						//echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">"$onomasia"</a></li>';
+						mysqli_close($conn);
 						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
 					}
 				}			
 				
-				
+				mysqli_close($conn);
 				
 				?>
 				
@@ -334,9 +338,6 @@ function checkNewPassword(){
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){
