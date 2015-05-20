@@ -326,7 +326,7 @@ echo				"<div class='megapanel'>";
 echo					"<div class='row'>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Προϊόντων</h4>";
+echo								"<h4>Ρυθμίσεις Προϊόντων</h4>";
 echo								"<ul>";
 echo									"<li><a href='addProduct_dropdown.php'>Προσθήκη Προϊόντος</a></li>";
 echo									"<li><a href='removeProduct.php'>Διαγραφή Προϊόντος</a></li>";
@@ -336,7 +336,7 @@ echo							"</div>";
 echo					  "</div>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Μελών</h4>";
+echo								"<h4>Ρυθμίσεις Μελών</h4>";
 echo								"<ul>";
 echo									"<li><a href='manageUsers.php'>Προβολή και Διαγραφή Μέλους</a></li>";
 echo								"</ul>";	
@@ -346,7 +346,7 @@ echo						"</div>";
 echo						"<div class='row'>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Κατηγοριών</h4>";
+echo								"<h4>Ρυθμίσεις Κατηγοριών</h4>";
 echo								"<ul>";
 echo									"<li><a href='addCategory.php'>Προσθήκη Κατηγορίας</a></li>";
 echo									"<li><a href='removeCategory.php'>Διαγραφή Κατηγορίας</a></li>";
@@ -356,7 +356,7 @@ echo							"</div>";
 echo					  "</div>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Παραγγελιών</h4>";
+echo								"<h4>Ρυθμίσεις Παραγγελιών</h4>";
 echo								"<ul>";
 echo									"<li><a href='manageOrdersNotCompleted.php'>Επεξεργασία Παραγγελιών που δεν έχουν ολοκληρωθεί</a></li>";
 echo									"<li><a href='manageOrdersCompletedOrCanceled.php'>Προβολή Ολοκληρωμένων/Ακυρωμένων Παραγγελιών</a></li>";
@@ -367,7 +367,7 @@ echo					 "</div>";
 echo					  "<div class='row'>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Προμηθευτών</h4>";
+echo								"<h4>Ρυθμίσεις Προμηθευτών</h4>";
 echo								"<ul>";
 echo									"<li><a href='addSupplier.php'>Προσθήκη Προμηθευτή</a></li>";
 echo									"<li><a href='removeSupplier.php'>Διαγραφή Προμηθευτή</a></li>";
@@ -377,7 +377,7 @@ echo							"</div>";
 echo						"</div>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Κουπονιών</h4>";
+echo								"<h4>Ρυθμίσεις Κουπονιών</h4>";
 echo								"<ul>";
 echo									"<li><a href='addCoupon.php'>Προσθήκη Κουπονιού</a></li>";
 echo									"<li><a href='deleteCoupon_select.php'>Διαγραφή Κουπονιού με δυνατότητα προβολής</a></li>";
@@ -389,7 +389,7 @@ echo					"</div>";
 echo					"<div class='row'>";
 echo						"<div class='col1'>";
 echo							"<div class='h_nav'>";
-echo								"<h4>Ρυμίσεις Προσφορών</h4>";
+echo								"<h4>Ρυθμίσεις Προσφορών</h4>";
 echo								"<ul>";
 echo									"<li><a href='addOffer_selectProduct.php'>Προσθήκη Προσφοράς</a></li>";
 echo									"<li><a href='removeOffer_selectProduct.php'>Αφαίρεση Προσφοράς - Επαναφορά Αρχικής Τιμής</a></li>";
@@ -424,10 +424,7 @@ echo					"</div>";
 echo					"</div>";
 echo				"</li>	";
 echo			"</ul>";
-			
-			
-			
-			}
+	}
 			?>
      <div class="clear"></div>
      <br>
