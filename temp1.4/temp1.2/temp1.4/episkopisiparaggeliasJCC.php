@@ -172,19 +172,19 @@ header("Location: index.html");
 				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
 				$queryCart=$conn->query($posotitakalathi);
 				if($queryCart->num_rows > 0){
-				echo "<li><a class='active-icon c2' href='kalathiProionta.php'> </a>";
-				echo "<ul class='sub-icon1 list'>";
-				echo 	"<li><h3>$queryCart->num_rows Προϊόντα</h3><a href=''></a></li>";
-				echo	"<li><p>Δες τα προϊόντα στο καλάθι σου και κάνε τις Αγορές σου!<a href=''></a></p></li>";
-				echo "</ul>";
-				echo "</li>";
+					echo "<li><a class='active-icon c2' href='kalathiProionta.php'> </a>";
+					echo "<ul class='sub-icon1 list'>";
+					echo 	"<li><h3>$queryCart->num_rows Προϊόντα</h3><a href=''></a></li>";
+					echo	"<li><p>Δες τα προϊόντα στο καλάθι σου και κάνε τις Αγορές σου!<a href=''></a></p></li>";
+					echo "</ul>";
+					echo "</li>";
 				}else{
-				echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
-				echo  	"<ul class='sub-icon1 list'>";
-				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
-				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
-				echo 	"</ul>";
-				echo 	"</li>";
+					echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
+					echo  	"<ul class='sub-icon1 list'>";
+					echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
+					echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
+					echo 	"</ul>";
+					echo 	"</li>";
 				}
 			}else{
 			
@@ -210,14 +210,17 @@ header("Location: index.html");
 				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
 				$queryCart=$conn->query($posotitakalathi);
 				if($queryCart->num_rows > 0){
-				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
+					mysqli_close($conn);
+					echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+					mysqli_close($conn);
+					echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
-		}else{
-			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
-
-		}	    
+			}else{
+				echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
+			}	   
+			mysqli_close($conn);
+ 
 	    ?>
 
 	  </div>
@@ -305,11 +308,13 @@ header("Location: index.html");
 						$category=$row3['CodeCat'];
 						$onomasia=$row3['NameCat'];
 						//echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">"$onomasia"</a></li>';
+						mysqli_close($conn);
 						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
 					}
 				}			
 				
-				
+				mysqli_close($conn);
+
 				
 				?>
 				
@@ -317,9 +322,6 @@ header("Location: index.html");
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){

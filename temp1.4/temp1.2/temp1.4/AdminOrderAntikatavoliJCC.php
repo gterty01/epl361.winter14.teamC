@@ -214,7 +214,9 @@ function printDiv(divName) {
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
 
-		}	    
+		}
+		mysqli_close($conn);
+	    
 	    ?>
 
 	  </div>
@@ -305,18 +307,13 @@ function printDiv(divName) {
 						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
 					}
 				}			
-				
-				
+				mysqli_close($conn);
 				
 				?>
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
-
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){
@@ -516,11 +513,8 @@ echo			"</ul>";
 				echo "<p class='m_text2'>"; echo $rowAnti['antikataboli']; echo "</p>";
 				echo "<br>";				
 				echo "<br>";
-				
+				mysqli_close($conn);
 
-
-			
-	
 	?>
 </div>	
 				<button type='button' onclick=printDiv('anafora') class='grey' value='ΕΚΤΥΠΩΣΗ ΑΝΑΦΟΡΑΣ'>ΕΚΤΥΠΩΣΗ ΑΝΑΦΟΡΑΣ</button>

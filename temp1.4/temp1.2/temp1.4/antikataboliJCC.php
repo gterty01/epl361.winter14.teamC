@@ -205,9 +205,6 @@ return true;
 				echo "</ul>";
 				echo "</li>";
 
-			
-			
-			
 			}
 			
 		?>			
@@ -220,14 +217,19 @@ return true;
 				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
 				$queryCart=$conn->query($posotitakalathi);
 				if($queryCart->num_rows > 0){
-				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
+					mysqli_close($conn);
+					echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+					mysqli_close($conn);
+					echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
-		}else{
-			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
-
-		}	    
+			}else{
+				echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
+	
+			}
+			
+			mysqli_close($conn);
+	    
 	    ?>
 
 	  </div>
@@ -327,9 +329,6 @@ return true;
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){
@@ -451,8 +450,8 @@ echo			"</ul>";
 <?php
 
 	
-$name2=$_SESSION['nameSent'];
-$surn2=$_SESSION['surnSent'];
+	$name2=$_SESSION['nameSent'];
+	$surn2=$_SESSION['surnSent'];
 	echo "<h4 class='title' style='margin-left:50px;'>ολοκληρωση παραγγελιασ</h4>";
 	echo 	"<br>";
 
@@ -472,7 +471,9 @@ $surn2=$_SESSION['surnSent'];
     	echo "</form>";
 
 	
-	echo "</div>";
+		echo "</div>";
+		mysqli_close($conn);
+
 
 
 ?>

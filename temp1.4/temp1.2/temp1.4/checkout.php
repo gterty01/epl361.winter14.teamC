@@ -114,23 +114,23 @@ session_start();
 		<ul class="icon1 sub-icon1 profile_img">
 		<?php
 			$servername = "localhost";
-								$username = "cyfoodmuseum";
-								$password = "9m8ESxZD";
-								$dbname = "cyfoodmuseum";
-								// Create connection
-								$conn = new mysqli($servername, $username, $password, $dbname);
-								//@mysql_select_db($dbname) or die ("No database");
-								
-								// Check connection
-								if ($conn->connect_error) {
-								    die("Connection failed: " . $conn->connect_error);
-								    echo "Connection faild";
-								}
-								if (!$conn->set_charset("utf8")) {
-								    printf("Error loading character set utf8: %s\n", $conn->error);
-								} else {
-								    //printf("Current character set: %s\n", $conn->character_set_name());
-								}//die;
+			$username = "cyfoodmuseum";
+			$password = "9m8ESxZD";
+			$dbname = "cyfoodmuseum";
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			//@mysql_select_db($dbname) or die ("No database");
+						
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			    echo "Connection faild";
+			}
+			if (!$conn->set_charset("utf8")) {
+			    printf("Error loading character set utf8: %s\n", $conn->error);
+			} else {
+			    //printf("Current character set: %s\n", $conn->character_set_name());
+			}//die;
 
 			if(isset($_SESSION['login_user'])){
 			    $xristis=$_SESSION['login_user'];
@@ -138,19 +138,19 @@ session_start();
 				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
 				$queryCart=$conn->query($posotitakalathi);
 				if($queryCart->num_rows > 0){
-				echo "<li><a class='active-icon c2' href='kalathiProionta.php'> </a>";
-				echo "<ul class='sub-icon1 list'>";
-				echo 	"<li><h3>$queryCart->num_rows Προϊόντα</h3><a href=''></a></li>";
-				echo	"<li><p>Δες τα προϊόντα στο καλάθι σου και κάνε τις Αγορές σου!<a href=''></a></p></li>";
-				echo "</ul>";
-				echo "</li>";
+					echo "<li><a class='active-icon c2' href='kalathiProionta.php'> </a>";
+					echo "<ul class='sub-icon1 list'>";
+					echo 	"<li><h3>$queryCart->num_rows Προϊόντα</h3><a href=''></a></li>";
+					echo	"<li><p>Δες τα προϊόντα στο καλάθι σου και κάνε τις Αγορές σου!<a href=''></a></p></li>";
+					echo "</ul>";
+					echo "</li>";
 				}else{
-				echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
-				echo  	"<ul class='sub-icon1 list'>";
-				echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
-				echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
-				echo 	"</ul>";
-				echo 	"</li>";
+					echo "<li><a class='active-icon c2' href='checkout.php'> </a>";
+					echo  	"<ul class='sub-icon1 list'>";
+					echo 		"<li><h3>Αδειο Καλαθι</h3><a href=''></a></li>";
+					echo		"<li><p>Δεν υπάρχουν προϊόντα στο καλάθι σου<a href=''></a></p></li>";
+					echo 	"</ul>";
+					echo 	"</li>";
 				}
 			}else{
 			
@@ -160,10 +160,7 @@ session_start();
 				echo 	"<li><p>Γίνεται μέλος στο καταστημά μας, προσθέστε προϊόντα στο καλάθι σας και κάνετε τις αγορές σας!<a href=''></a></p></li>";
 				echo "</ul>";
 				echo "</li>";
-
-			
-			
-			
+		
 			}
 			
 		?>			
@@ -176,14 +173,16 @@ session_start();
 				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
 				$queryCart=$conn->query($posotitakalathi);
 				if($queryCart->num_rows > 0){
-				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
+					mysqli_close($conn);
+					echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
-				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
+					mysqli_close($conn);
+					echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
-		}else{
-			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
-
-		}	    
+			}else{
+				echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
+			}	
+			mysqli_close($conn);    
 	    ?>
 
 	  </div>
@@ -271,10 +270,11 @@ session_start();
 						$category=$row3['CodeCat'];
 						$onomasia=$row3['NameCat'];
 						//echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">"$onomasia"</a></li>';
+						mysqli_close($conn);
 						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
 					}
 				}			
-				
+				mysqli_close($conn);
 				
 				
 				?>
@@ -283,9 +283,6 @@ session_start();
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){
@@ -404,11 +401,6 @@ echo			"</ul>";
      </div>
 	</div>
 	
-
-
-
-
-
       <div class="register_account">
            <div class="wrap">
     	     <h4 class="title">το καλαθι ειναι αδειο</h4>

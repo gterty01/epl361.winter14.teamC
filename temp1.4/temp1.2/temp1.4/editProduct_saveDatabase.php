@@ -44,12 +44,24 @@
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	if($check != false) {
     }else{
-    	$error_edit = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
-        $_SESSION['error_edit'] = $error_edit;
-        $_SESSION['ok_edit'] = " ";
-        mysqli_close($conn);
-		header("Location:editProduct.php");
-		die;
+    	if ($imgData != null){
+	    	$error_edit = "Το αρχείο που δώσατε δεν είναι εικόνα" . $check["mime"] . ".";
+	        $_SESSION['error_edit'] = $error_edit;
+	        $_SESSION['ok_edit'] = " ";
+	        mysqli_close($conn);
+			header("Location:editProduct.php");
+			die;
+		}else {
+			$sql="UPDATE `PRODUCT` SET Name='$ProductName', Description ='$Description', Price = '$Price', CodeOfCategory = '$CodeCategory', CodeOfSupplier = '$CodeSupplier', Weight = '$Weight', Availability = '$Quantity' WHERE Code='$CodeProduct'";
+			if ($conn->query($sql) === TRUE){
+				$ok_edit = "Η επεξεργασία του προϊόντος ολοκληρώθηκε επιτυχώς!";		
+				$_SESSION['ok_edit'] = $ok_edit;
+				mysqli_close($conn);
+				header("Location:editProduct_selectCategory.php");
+				die;
+			 }
+		}
+
     }
     
 	$_SESSION['product'] = $CodeProduct;

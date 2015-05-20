@@ -190,14 +190,17 @@ function validateInsertion(){
 				$posotitakalathi="SELECT * FROM `USERACTIONFORCART` where `UserCode`='$xristis'";
 				$queryCart=$conn->query($posotitakalathi);
 				if($queryCart->num_rows > 0){
+				mysqli_close($conn);
 				echo "<ul class='last'><li><a href='kalathiProionta.php'>ΚΑΛΑΘΙ($queryCart->num_rows)</a></li></ul>";		
 				}else{
+				mysqli_close($conn);
 				echo "<ul class='last'><li><a href='checkout.php'>ΚΑΛΑΘΙ(0)</a></li></ul>";						
 				}		   
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
 
-		}	    
+		}
+		mysqli_close($conn);	    
 	    ?>
 
 	  </div>
@@ -290,16 +293,11 @@ function validateInsertion(){
 				}			
 				
 				
-				
 				?>
 				
 				<li><a class="color7" href="prosfores.php">Προσφορες</a></li>
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
-
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){
@@ -954,11 +952,12 @@ echo			"</ul>";
             echo      "</a>";
 			echo	"</div>";
 			$tipwse=$tipwse+1;
+			
 			}
 			}
 		}
 	}
-
+mysqli_close($conn);
 ?>		  
 						<div class="clear"></div>
 			</div>	

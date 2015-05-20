@@ -197,7 +197,8 @@ else{
 		}else{
 			echo "<ul class='last'><li><a href=''>ΚΑΛΑΘΙ</a></li></ul>";						
 
-		}	    
+		}	
+		mysqli_close($conn);    
 	    ?>
 
 	  </div>
@@ -285,11 +286,12 @@ else{
 						$category=$row3['CodeCat'];
 						$onomasia=$row3['NameCat'];
 						//echo '<li><a href="categorySearch.php?cat='.urlencode($category).'">"$onomasia"</a></li>';
+						mysqli_close($conn);
 						echo  '<li><a class="color7" href="categorySearch.php?cat='.urlencode($category).'">'.$onomasia.'</a></li>';				
 					}
 				}			
 				
-				
+				mysqli_close($conn);
 				
 				?>
 				
@@ -297,9 +299,6 @@ else{
 				<li><a class="color7" href="estiatoria.php">εστιατορια</a></li>
 				<li><a class="color7" href="sintages.php">Συνταγες</a></li>
 
-				<!--<li><a class="color7" href="other.html">ΣΥΝΤΑΓΕΣ</a></li>
-				<li><a class="color7" href="other.html">ΕΣΤΙΑΤΟΡΙΑ</a></li>
-				<li><a class="color7" href="other.html">ΒΙΒΛΙΑ</a></li>-->
 			</ul>
 			<?php
 			if (isset($_SESSION['login_admin'])){
@@ -462,6 +461,7 @@ echo			"</ul>";
 		    
 			}
 		}
+		mysqli_close($conn);
 ?>
 </select>
 </div>
